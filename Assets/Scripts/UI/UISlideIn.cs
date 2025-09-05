@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance { get; private set; }
     public static bool activate = false;
     public Image blur_effect;
+    public float unpause_delay = 0.7f;
     public enum UIState{
         INACTIVE,
         ACTIVE
@@ -75,11 +76,16 @@ public class UIManager : MonoBehaviour
         FadeOut();
         ui_state = UIState.INACTIVE;
         pause_animator.SetBool("Pause", false);
-        Time.timeScale = 1.0f;
+        ResetTime();
+        //Invoke("ResetTime", unpause_delay);
     }
 
     public void ResetTimer(){
         timer = 0.0f;
+    }
+
+    public void ResetTime(){
+        Time.timeScale = 1.0f;
     }
 
     public void FadeIn(){

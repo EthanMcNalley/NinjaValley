@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration = 7.0f;
     public float max_speed = 7.0f;
     public float rotation_speed = 15.0f;
+    float normal_speed;
+    float normal_acceleration;
+    float normal_roto_speed;
+    public float jump_power = 16.0f;
 
     public bool is_jumping = false;
 
@@ -18,14 +22,37 @@ public class PlayerMovement : MonoBehaviour
         movement_input = GetComponent<MovementInput>();
         rb = GetComponent<Rigidbody>();
         cam = Camera.main.transform;
-    }
+        normal_speed = max_speed;
+        normal_acceleration = acceleration;
+        normal_roto_speed = rotation_speed;
+    }   
 
     // Update is called once per frame
     void Update()
     {
-        
+        // if (TimeManager.time_state == TimeManager.TimeState.SLOWED){
+        //     max_speed = normal_speed/Time.timeScale;
+        //     acceleration = normal_acceleration/Time.timeScale;
+        //     rotation_speed = normal_roto_speed/Time.timeScale;
+        // }
+
+        // else{
+        //     max_speed = normal_speed;
+        //     acceleration = normal_acceleration;
+        //     rotation_speed = normal_roto_speed;
+        // }
+
+        if (Input.GetKeyDown(KeyCode.B)){
+            Jump();
+            //rb.AddForce(new Vector3(0f, 1000f / Time.timeScale, 0f));
+        }
     }
 
+    public void Jump(){
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+
+        rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
+    }
     public void HandleAllMovement(){
         HandleMovement();
         HandleRotation();
