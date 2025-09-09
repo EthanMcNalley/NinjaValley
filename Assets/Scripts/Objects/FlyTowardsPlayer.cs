@@ -12,7 +12,7 @@ public class FlyTowardsPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Time.timeScale != 0.0f){
             acceleration = acceleration + Time.fixedDeltaTime;
