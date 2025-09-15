@@ -32,7 +32,7 @@ public class CameraManager : MonoBehaviour
         movement_input = FindAnyObjectByType<MovementInput>();
         target_transform = GameObject.FindGameObjectWithTag("Player").transform;
         camera_transform = Camera.main.transform;
-        default_position = camera_transform.localPosition.z; 
+        default_position = camera_transform.localPosition.z;
     }
 
     public void HandleAllCameraMovement(){
