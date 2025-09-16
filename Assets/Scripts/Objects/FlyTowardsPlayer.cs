@@ -12,11 +12,11 @@ public class FlyTowardsPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Time.timeScale != 0.0f){
-            acceleration = acceleration + Time.fixedDeltaTime;
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, starting_speed * acceleration);
+            starting_speed = starting_speed + acceleration;
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, starting_speed);
         }
     }
 

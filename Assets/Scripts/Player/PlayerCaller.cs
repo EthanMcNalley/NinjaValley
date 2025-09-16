@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerCaller : MonoBehaviour
 {
     MovementInput movement_input;
-    CameraManager camera_manager;
+    GameObject cam;
     PlayerMovement player_movement;
     public UIManager ui_manager;
 
@@ -12,7 +12,7 @@ public class PlayerCaller : MonoBehaviour
     void Awake()
     {
         movement_input = GetComponent<MovementInput>();
-        camera_manager = FindAnyObjectByType<CameraManager>();
+        cam =  GameObject.FindGameObjectWithTag("MainCamera");
         player_movement = GetComponent<PlayerMovement>();
     }
 
@@ -39,20 +39,20 @@ public class PlayerCaller : MonoBehaviour
 
     private void LateUpdate()
     {
-        camera_manager.HandleAllCameraMovement( );
+        //camera_manager.HandleAllCameraMovement( );
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("CameraChanger")){
-            camera_manager.ChangeAngle(other.gameObject);
+            //camera_manager.ChangeAngle(other.gameObject);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("CameraChanger")){
-            camera_manager.ResetCam();
+            //camera_manager.ResetCam();
         }
     }
 }
