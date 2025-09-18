@@ -9,6 +9,7 @@ public class TimeManager : MonoBehaviour
     public float time_timer = 0.0f;
     public float time_slowed_down = 3.0f;
     public static float slowed_amount = 0.1f;
+    public float slow_amount = 0.1f;
     public GameObject volume;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,6 +50,14 @@ public class TimeManager : MonoBehaviour
                 //Time.timeScale = 1.0f;
                 
             }
+        }
+
+        if (time_state == TimeState.NORMAL){
+            slowed_amount = 1.0f;
+        }
+
+        else{
+            slowed_amount = slow_amount;
         }
     }
 

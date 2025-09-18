@@ -233,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 10152144}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1207,7 +1207,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15212338, y: 0, z: 0, w: 0.98836154}
-  m_LocalPosition: {x: 1.92, y: 5.277058, z: 23.65483}
+  m_LocalPosition: {x: 49, y: 62.007057, z: 193.79483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1819,6 +1819,7 @@ GameObject:
   - component: {fileID: 1281518391}
   - component: {fileID: 1281518392}
   - component: {fileID: 1281518393}
+  - component: {fileID: 1281518394}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -1877,6 +1878,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutscene_bars: {fileID: 1139298228}
+--- !u!114 &1281518394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281518390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d80644d6775940788441b4d5cb936aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1977726211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,6 +2028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time_timer: 0
   time_slowed_down: 10
+  slow_amount: 0.1
   volume: {fileID: 475202059}
 --- !u!1 &2114408098
 GameObject:
@@ -2041,7 +2055,7 @@ Transform:
   m_GameObject: {fileID: 2114408098}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.92, y: 2.27, z: 33.192}
+  m_LocalPosition: {x: 58, y: 59, z: 203.332}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
