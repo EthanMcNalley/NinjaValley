@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    MovementInput movement_input;
+    //MovementInput movement_input;
+	PlayerInput player_controls;
     Vector3 move_direction;
     Transform cam;
     Rigidbody rb;
@@ -14,17 +16,31 @@ public class PlayerMovement : MonoBehaviour
     float normal_roto_speed;
     public float jump_power = 16.0f;
 
+    private Vector2 moveValue;
+    private Vector2 lookValue;
+
     public bool is_jumping = false;
+    
+    private InputAction jumpAction;
+    private InputAction moveAction;
+    private InputAction lookAction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        movement_input = GetComponent<MovementInput>();
+        //movement_input = GetComponent<MovementInput>();
         rb = GetComponent<Rigidbody>();
         cam = Camera.main.transform;
         normal_speed = max_speed;
         normal_acceleration = acceleration;
         normal_roto_speed = rotation_speed;
+
+        if (InputSystem.actions)
+        {
+            jumpAction = InputSystem.actions.FindAction("Jump");
+            moveAction = InputSystem.actions.FindAction("Move");
+            lookAction = InputSystem.actions.FindAction("Look");
+        }
     }   
 
     // Update is called once per frame
@@ -42,25 +58,38 @@ public class PlayerMovement : MonoBehaviour
         //     rotation_speed = normal_roto_speed;
         // }
 
-        if (Input.GetKeyDown(KeyCode.B)){
-            Jump();
+        moveValue = moveAction.ReadValue<Vector2>();
+        lookValue = lookAction.ReadValue<Vector2>();
+        
+        if (jumpAction.triggered)
+        /*{
+            if (!is_jumping)
+            {
+                is_jumping = true;*/
+                Jump();
+            /*}
             //rb.AddForce(new Vector3(0f, 1000f / Time.timeScale, 0f));
         }
+        else
+        {
+            is_jumping = false;
+        }*/
     }
 
-    public void Jump(){
+    private void Jump(){
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
         rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
     }
+
     public void HandleAllMovement(){
         HandleMovement();
         HandleRotation();
     }
 
     private void HandleMovement(){
-        move_direction = cam.forward * movement_input.vertical_input;
-        move_direction = move_direction + cam.right * movement_input.horizontal_input;
+        move_direction = cam.forward * moveValue.y;
+        move_direction = move_direction + cam.right * moveValue.x;
         move_direction.Normalize();
         move_direction.y = 0;
         move_direction = move_direction * max_speed;
@@ -92,8 +121,8 @@ public class PlayerMovement : MonoBehaviour
     private void HandleRotation(){
         Vector3 target_direction = Vector3.zero;
 
-        target_direction = cam.forward * movement_input.vertical_input;
-        target_direction = target_direction + cam.right * movement_input.horizontal_input;
+        target_direction = cam.forward * moveValue.y;
+        target_direction = target_direction + cam.right * moveValue.x;
         target_direction.Normalize();
         target_direction.y = 0;
 

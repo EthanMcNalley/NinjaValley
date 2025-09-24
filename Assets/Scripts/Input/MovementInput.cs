@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovementInput : MonoBehaviour
 {
@@ -16,10 +17,6 @@ public class MovementInput : MonoBehaviour
     public bool jump;
     public bool pause;
 
-    void Awake()
-    {
-        
-    }
 
     private void OnEnable()
     {
@@ -43,7 +40,7 @@ public class MovementInput : MonoBehaviour
     public void HandleInputs(){
         HandleMovementInput();
 
-        HandleJumpingInput();
+        //HandleJumpingInput();
     }
 
     private void OnDisable()
@@ -60,13 +57,13 @@ public class MovementInput : MonoBehaviour
 
     }
 
-    private void HandleJumpingInput(){
+    /*private void HandleJumpingInput(){
         if (jump){
             jump = false;
             player_movement.HandleJumping();
         }
         
-    }
+    }*/
 
 
 }

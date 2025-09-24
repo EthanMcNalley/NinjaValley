@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    PlayerInput player_controls;
+    
     public float timer;
 	public float duration = 2.0f;
 	public float speed = 3.5f;
@@ -14,6 +17,9 @@ public class UIManager : MonoBehaviour
     public static bool activate = false;
     public Image blur_effect;
     public float unpause_delay = 0.7f;
+    
+    private InputAction menuAction;
+    
     public enum UIState{
         INACTIVE,
         ACTIVE
@@ -27,6 +33,8 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        menuAction = InputSystem.actions.FindAction("UI/Menu");
+        
         blur_effect.gameObject.SetActive(true);
 		timer = duration;
         ui_state = UIState.INACTIVE;
@@ -36,7 +44,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)){
+        if (menuAction.triggered){
             if (ui_state == UIState.INACTIVE){
                 OpenMenu();
             }
