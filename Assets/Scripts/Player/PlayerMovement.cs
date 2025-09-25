@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction jumpAction;
     private InputAction moveAction;
     private InputAction lookAction;
+    private InputAction runAction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
