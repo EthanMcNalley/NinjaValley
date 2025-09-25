@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,9 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     public float acceleration = 7.0f;
     public float max_speed = 7.0f;
+    public float run_Speed = 20.0f;
     public float rotation_speed = 15.0f;
+    public float dash_speed = 0f, dash_time = 0.05f;
     float normal_speed;
     float normal_acceleration;
     float normal_roto_speed;
@@ -25,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction runAction;
+    private InputAction dashAction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
             jumpAction = InputSystem.actions.FindAction("Jump");
             moveAction = InputSystem.actions.FindAction("Move");
             lookAction = InputSystem.actions.FindAction("Look");
+            runAction = InputSystem.actions.FindAction("Run");
+            dashAction = InputSystem.actions.FindAction("Dash");
         }
     }   
 
@@ -61,28 +67,44 @@ public class PlayerMovement : MonoBehaviour
 
         moveValue = moveAction.ReadValue<Vector2>();
         lookValue = lookAction.ReadValue<Vector2>();
-        
-        if (jumpAction.triggered)
-        /*{
-            if (!is_jumping)
-            {
-                is_jumping = true;*/
-                Jump();
-            /*}
-            //rb.AddForce(new Vector3(0f, 1000f / Time.timeScale, 0f));
-        }
-        else
+
+       
+
+            if (jumpAction.triggered)
+            /*{
+                if (!is_jumping)
+                {
+                    is_jumping = true;*/
+            Jump();
+        /*}
+        //rb.AddForce(new Vector3(0f, 1000f / Time.timeScale, 0f));
+    }
+    else
+    {
+        is_jumping = false;
+    }*/
+
+        if (dashAction.triggered)
         {
-            is_jumping = false;
-        }*/
+            StartCoroutine(Dash());
+        }
     }
 
     private void Jump(){
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
-        rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
+        rb.AddForce(move_direction * dash_speed, ForceMode.Impulse);
     }
 
+    IEnumerator Dash()
+    {
+        float startTime = Time.time;
+        while (Time.time < startTime + dash_time)
+        {
+            rb.AddForce(Vector3.forward * jump_power, ForceMode.Impulse);
+            yield return null;
+        }
+    }
     public void HandleAllMovement(){
         HandleMovement();
         HandleRotation();
@@ -93,6 +115,16 @@ public class PlayerMovement : MonoBehaviour
         move_direction = move_direction + cam.right * moveValue.x;
         move_direction.Normalize();
         move_direction.y = 0;
+        if (runAction.ReadValue<float>() > 0f)
+        {
+            max_speed = run_Speed;
+            Debug.Log(runAction.ReadValue<float>());
+        }
+        else
+            max_speed = 7.0f;
+
+        
+
         move_direction = move_direction * max_speed;
 
         Vector3 velocity = move_direction;
@@ -116,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.AddForce(velocity * acceleration);
-
+        
     }
 
     private void HandleRotation(){
