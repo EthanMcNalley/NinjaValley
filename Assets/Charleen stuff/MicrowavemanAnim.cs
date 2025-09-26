@@ -11,6 +11,11 @@ public class MicrowavemanAnim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (InputSystem.actions.FindAction("Jump").triggered)
+        {
+            microwaveAnim.SetTrigger("isJump");
+        }
+
         if (isGrounded)
         {
             if (InputSystem.actions.FindAction("Move").IsPressed())
@@ -22,13 +27,11 @@ public class MicrowavemanAnim : MonoBehaviour
             {
                 microwaveAnim.SetBool("isWalk", false);
             }
-
-            microwaveAnim.SetBool("isJump", false);
         }
 
-        else
+        if (!isGrounded)
         {
-            microwaveAnim.SetBool("isJump", true);
+            microwaveAnim.SetBool("isWalk", false);
         }
     }
 
@@ -37,6 +40,14 @@ public class MicrowavemanAnim : MonoBehaviour
         if (collision.gameObject.tag == "Kurt")
         {
             isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Kurt")
+        {
+            isGrounded = false;
         }
     }
 }
