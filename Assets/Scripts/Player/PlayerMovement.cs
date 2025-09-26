@@ -6,14 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     //MovementInput movement_input;
 	PlayerInput player_controls;
-    Vector3 move_direction;
+    MovementInput movement_input;
+    Vector3 move_direction, dash_direction;
     Transform cam;
     Rigidbody rb;
     public float acceleration = 7.0f;
     public float max_speed = 7.0f;
     public float run_Speed = 20.0f;
     public float rotation_speed = 15.0f;
-    public float dash_speed = 0f, dash_time = 0.05f;
+    public float dash_speed = 50f, dash_time = 0.05f;
     float normal_speed;
     float normal_acceleration;
     float normal_roto_speed;
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         normal_speed = max_speed;
         normal_acceleration = acceleration;
         normal_roto_speed = rotation_speed;
+        movement_input = GetComponent<MovementInput>();
 
         if (InputSystem.actions)
         {
@@ -92,8 +94,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(){
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-
-        rb.AddForce(move_direction * dash_speed, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
+        
     }
 
     IEnumerator Dash()
@@ -101,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dash_time)
         {
-            rb.AddForce(Vector3.forward * jump_power, ForceMode.Impulse);
+            rb.AddForce(dash_direction * dash_speed, ForceMode.Impulse);
             yield return null;
         }
     }
@@ -111,14 +113,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void HandleMovement(){
-        move_direction = cam.forward * moveValue.y;
-        move_direction = move_direction + cam.right * moveValue.x;
+        move_direction = cam.forward * movement_input.vertical_input;
+        move_direction = move_direction + cam.right * movement_input.horizontal_input;
         move_direction.Normalize();
         move_direction.y = 0;
+
+        dash_direction = cam.forward * movement_input.vertical_input;
+        dash_direction = move_direction + cam.right * movement_input.horizontal_input;
+        dash_direction.Normalize();
+        dash_direction.y = 0;
         if (runAction.ReadValue<float>() > 0f)
         {
             max_speed = run_Speed;
-            Debug.Log(runAction.ReadValue<float>());
         }
         else
             max_speed = 7.0f;
@@ -154,10 +160,11 @@ public class PlayerMovement : MonoBehaviour
     private void HandleRotation(){
         Vector3 target_direction = Vector3.zero;
 
-        target_direction = cam.forward * moveValue.y;
-        target_direction = target_direction + cam.right * moveValue.x;
+        target_direction = cam.forward * movement_input.vertical_input;
+        target_direction = target_direction + cam.right * movement_input.horizontal_input;
         target_direction.Normalize();
         target_direction.y = 0;
+
 
         if (target_direction == Vector3.zero){
             target_direction = transform.forward;
