@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerCaller : MonoBehaviour
 {
-    MovementInput movement_input;
+    //MovementInput movement_input;
     GameObject cam;
     PlayerMovement player_movement;
     public UIManager ui_manager;
@@ -11,13 +11,13 @@ public class PlayerCaller : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        movement_input = GetComponent<MovementInput>();
+        //movement_input = GetComponent<MovementInput>();
         cam =  GameObject.FindGameObjectWithTag("MainCamera");
         player_movement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         movement_input.HandleInputs();
     
@@ -30,7 +30,7 @@ public class PlayerCaller : MonoBehaviour
 
             // }
 
-    }
+    }*/
 
     private void FixedUpdate()
     {

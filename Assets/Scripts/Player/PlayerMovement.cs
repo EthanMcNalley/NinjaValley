@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveValue;
     private Vector2 lookValue;
 
-    public bool is_jumping = false;
+    public bool isGrounded = true;
     
     private InputAction jumpAction;
     private InputAction moveAction;
@@ -61,25 +61,19 @@ public class PlayerMovement : MonoBehaviour
         moveValue = moveAction.ReadValue<Vector2>();
         lookValue = lookAction.ReadValue<Vector2>();
         
+        
         if (jumpAction.triggered)
-        /*{
-            if (!is_jumping)
-            {
-                is_jumping = true;*/
-                Jump();
-            /*}
-            //rb.AddForce(new Vector3(0f, 1000f / Time.timeScale, 0f));
-        }
-        else
         {
-            is_jumping = false;
-        }*/
+            Jump();
+        }
+
     }
 
     private void Jump(){
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
-        rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
+        
     }
 
     public void HandleAllMovement(){
@@ -137,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void HandleJumping(){
-        if (is_jumping){
+        if (isGrounded){
             
         }
     }
