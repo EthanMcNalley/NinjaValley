@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B)){
             Jump();
+            GetComponent<AudioSource>().Play();
             //rb.AddForce(new Vector3(0f, 1000f / Time.timeScale, 0f));
         }
     }

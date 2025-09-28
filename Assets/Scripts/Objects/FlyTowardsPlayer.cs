@@ -16,7 +16,7 @@ public class FlyTowardsPlayer : MonoBehaviour
     {
         if (Time.timeScale != 0.0f){
             starting_speed = starting_speed + acceleration;
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, starting_speed);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, starting_speed * TimeManager.slowed_amount);
         }
     }
 
