@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveValue;
     private Vector2 lookValue;
 
-    public bool is_jumping = false;
+    public bool isGrounded = true;
     
     private InputAction jumpAction;
     private InputAction moveAction;
@@ -67,8 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveValue = moveAction.ReadValue<Vector2>();
         lookValue = lookAction.ReadValue<Vector2>();
-
-       
+        
 
             if (jumpAction.triggered)
             /*{
@@ -169,9 +169,19 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = player_rotation; 
     }
 
-    public void HandleJumping(){
+    /*public void HandleJumping(){
         if (is_jumping){
             
         }
+    }*/
+
+    private void FixedUpdate()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.2f);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Physics.Raycast(transform.position, Vector3.down, 0.2f);
     }
 }
