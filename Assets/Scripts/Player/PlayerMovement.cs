@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction lookAction;
     private InputAction runAction;
     private InputAction dashAction;
+    private Animator animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         normal_speed = max_speed;
         normal_acceleration = acceleration;
         normal_roto_speed = rotation_speed;
+        animator = GetComponent<Animator>();
 
         if (InputSystem.actions)
         {
@@ -65,13 +67,20 @@ public class PlayerMovement : MonoBehaviour
         //     acceleration = normal_acceleration;
         //     rotation_speed = normal_roto_speed;
         // }
+        if (rb.linearVelocity != Vector3.zero && rb.linearVelocity.y == 0){
+            animator.SetBool("Moving", true);
+        }
 
+        else{
+            animator.SetBool("Moving", false);
+        }
         moveValue = moveAction.ReadValue<Vector2>();
         lookValue = lookAction.ReadValue<Vector2>();
         
 
             if (jumpAction.triggered){
                 Jump();
+                animator.SetTrigger("Jump");
             }
             /*{
                 if (!is_jumping)
