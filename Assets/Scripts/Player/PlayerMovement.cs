@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump(){
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
-        rb.AddForce(move_direction * dash_speed, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
     }
 
     IEnumerator Dash()
