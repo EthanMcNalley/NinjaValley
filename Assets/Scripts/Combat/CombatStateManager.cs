@@ -33,7 +33,7 @@ public class CombatStateManager : MonoBehaviour
     void Update()
     {
         stateTime += Time.deltaTime;
-        if (attackAction.triggered)
+        if (attackAction.inProgress)
         {
             attacking = true;
         }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class CombatState
 {
-    public float duration;
+    public float stateDuration;
     public float bufferDuration;
     
     public abstract void EnterState(CombatStateManager state);

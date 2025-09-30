@@ -41,7 +41,7 @@ public class TimeManager : MonoBehaviour
             if (timeSlowAction.triggered){
                 time_state = TimeState.SLOWED;
                 time_timer = 0.0f;
-                GetComponent<AudioSource>().Play();
+//                GetComponent<AudioSource>().Play();
                 //Time.fixedDeltaTime = 0.02f * slowed_amount;
             }
         }

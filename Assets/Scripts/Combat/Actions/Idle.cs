@@ -5,7 +5,7 @@ public class Idle : CombatState
     
     public override void EnterState(CombatStateManager stateManager)
     {
-        duration = 0f;
+        stateDuration = 0f;
         bufferDuration = 0f;
         Debug.Log("Idle");
     }
