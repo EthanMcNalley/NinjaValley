@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
     public Animator pause_animator;
     public Animator settings_animator;
     public Animator text_scroll_animator;
+    public TMP_Text sign_text;
 
     // public enum UIType{
     //     PAUSE
