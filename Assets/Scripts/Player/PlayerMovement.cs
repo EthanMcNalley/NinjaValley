@@ -70,12 +70,13 @@ public class PlayerMovement : MonoBehaviour
         lookValue = lookAction.ReadValue<Vector2>();
         
 
-            if (jumpAction.triggered)
+            if (jumpAction.triggered){
+                Jump();
+            }
             /*{
                 if (!is_jumping)
                 {
                     is_jumping = true;*/
-            Jump();
         /*}
         //rb.AddForce(new Vector3(0f, 1000f / Time.timeScale, 0f));
     }
@@ -84,16 +85,16 @@ public class PlayerMovement : MonoBehaviour
         is_jumping = false;
     }*/
 
-        if (dashAction.triggered)
-        {
-            StartCoroutine(Dash());
-        }
+        // if (dashAction.triggered)
+        // {
+        //     StartCoroutine(Dash());
+        // }
     }
 
-    private void Jump(){
+    public void Jump(){
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
-        rb.AddForce(move_direction * dash_speed, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
     }
 
     IEnumerator Dash()
@@ -101,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dash_time)
         {
-            rb.AddForce(Vector3.forward * jump_power, ForceMode.Impulse);
+            rb.AddForce(Vector3.forward * dash_speed, ForceMode.Impulse);
             yield return null;
         }
     }
@@ -115,14 +116,14 @@ public class PlayerMovement : MonoBehaviour
         move_direction = move_direction + cam.right * moveValue.x;
         move_direction.Normalize();
         move_direction.y = 0;
-        if (runAction.ReadValue<float>() > 0f)
-        {
-            max_speed = run_Speed;
-            Debug.Log(runAction.ReadValue<float>());
-        }
-        else
-            max_speed = 7.0f;
-
+        // if (runAction.ReadValue<float>() > 0f)
+        // {
+        //     max_speed = run_Speed;
+        //     Debug.Log(runAction.ReadValue<float>());
+        // }
+        // else{
+        //     max_speed = 7.0f;
+        // }
         
 
         move_direction = move_direction * max_speed;
