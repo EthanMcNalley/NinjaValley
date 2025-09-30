@@ -35,7 +35,7 @@ public class TimeManager : MonoBehaviour
         // if(volume.profile)){
         //     original_saturation_value = adjustments.saturation.value;
         // }
-        Debug.Log(Time.fixedDeltaTime);
+        //Debug.Log(Time.fixedDeltaTime);
         if (time_state == TimeState.NORMAL){
             volume.SetActive(false);
             if (timeSlowAction.triggered){

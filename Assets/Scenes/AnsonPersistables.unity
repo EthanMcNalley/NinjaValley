@@ -321,6 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f2cd6e11ea15f409c172a8e85cef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comboStep: 0
+  attacking: 0
+  stateTime: 0
 --- !u!1 &75435885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,7 +2003,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281518390}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0b0764a294864f408905c233bcfb81e, type: 3}
   m_Name: 
@@ -2011,7 +2014,15 @@ MonoBehaviour:
   delay: 0
   blur_effect: {fileID: 75435887}
   unpause_delay: 0.7
+  time_manager: {fileID: 0}
+  time_bar: {fileID: 0}
+  fill_rate: 0.001
+  cam: {fileID: 0}
+  cam_sensitivity_slider_x: {fileID: 0}
+  cam_sensitivity_slider_y: {fileID: 0}
   pause_animator: {fileID: 1223442076}
+  settings_animator: {fileID: 0}
+  text_scroll_animator: {fileID: 0}
 --- !u!114 &1281518393
 MonoBehaviour:
   m_ObjectHideFlags: 0
