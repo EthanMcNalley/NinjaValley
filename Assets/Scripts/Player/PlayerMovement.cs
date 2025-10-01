@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     private InputAction dashAction;
     private Animator animator;
 
+    public GroundCheck ground_check;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
             dashAction = InputSystem.actions.FindAction("Dash");
         }
     }   
-
     // Update is called once per frame
     void Update()
     {
@@ -67,21 +68,28 @@ public class PlayerMovement : MonoBehaviour
         //     acceleration = normal_acceleration;
         //     rotation_speed = normal_roto_speed;
         // }
-        if (rb.linearVelocity != Vector3.zero && rb.linearVelocity.y == 0){
+        
+        moveValue = moveAction.ReadValue<Vector2>();
+        lookValue = lookAction.ReadValue<Vector2>();
+        
+        if ((moveValue != Vector2.zero) && (rb.linearVelocity.y < 0.01f && rb.linearVelocity.y > -0.01f)){
             animator.SetBool("Moving", true);
         }
 
         else{
             animator.SetBool("Moving", false);
         }
-        moveValue = moveAction.ReadValue<Vector2>();
-        lookValue = lookAction.ReadValue<Vector2>();
-        
 
+        
+        if (isGrounded){
             if (jumpAction.triggered){
                 Jump();
                 animator.SetTrigger("Jump");
             }
+        }
+
+
+        
             /*{
                 if (!is_jumping)
                 {
@@ -187,11 +195,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.2f);
+        isGrounded = ground_check.is_grounded;
     }
 
     private void OnDrawGizmos()
     {
-        Physics.Raycast(transform.position, Vector3.down, 0.2f);
     }
 }

@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
         }
 
         else{
-            time_bar.fillAmount = time_bar.fillAmount + fill_rate;
+            time_bar.fillAmount = time_bar.fillAmount + (Time.deltaTime / time_manager.refresh_time);
         }
         // if (timer <= duration)
         // {

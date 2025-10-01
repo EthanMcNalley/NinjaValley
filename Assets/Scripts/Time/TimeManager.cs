@@ -12,6 +12,8 @@ public class TimeManager : MonoBehaviour
     public float time_slowed_down = 3.0f;
     public static float slowed_amount = 0.1f;
     public float slow_amount = 0.1f;
+    public float refresh_time = 3.0f;
+    public float refresh_timer = 0.0f;
     public GameObject volume;
     private GameObject[] anim_objects;
     private InputAction timeSlowAction;
@@ -20,6 +22,7 @@ public class TimeManager : MonoBehaviour
     {
         time_timer = time_slowed_down;
         time_state = TimeState.NORMAL;
+        refresh_timer = refresh_time;
 
         if (InputSystem.actions)
         {
@@ -35,32 +38,46 @@ public class TimeManager : MonoBehaviour
         // if(volume.profile)){
         //     original_saturation_value = adjustments.saturation.value;
         // }
-        Debug.Log(Time.fixedDeltaTime);
-        if (time_state == TimeState.NORMAL){
-            volume.SetActive(false);
-            if (timeSlowAction.triggered){
-                time_state = TimeState.SLOWED;
-                time_timer = 0.0f;
-                GetComponent<AudioSource>().Play();
-                //Time.fixedDeltaTime = 0.02f * slowed_amount;
+
+            if (time_state == TimeState.NORMAL){
+                volume.SetActive(false);
+
+                if (refresh_timer >= refresh_time){
+                    if (timeSlowAction.triggered){
+                        time_timer = 0.0f;
+                        refresh_timer = 0.0f;
+                        time_state = TimeState.SLOWED;
+                        //Time.fixedDeltaTime = 0.02f * slowed_amount;
+                    }
+                }
             }
+
+            else{
+                volume.SetActive(true);
+                // Time.timeScale = slowed_amount;
+                Debug.Log(time_timer);
+
+                if (time_timer >= time_slowed_down){
+                    time_state = TimeState.NORMAL;
+                    //Time.fixedDeltaTime = 0.02f;
+                    //Time.timeScale = 1.0f;
+                    
+                }
+
+                if (timeSlowAction.triggered){
+                    refresh_timer = time_slowed_down - time_timer;
+                    time_timer = time_slowed_down;
+                    time_state = TimeState.NORMAL;
+                }
+            }
+
+        if (time_timer < time_slowed_down){
+            time_timer = time_timer + Time.deltaTime;
         }
 
         else{
-            volume.SetActive(true);
-            // Time.timeScale = slowed_amount;
-            time_timer = time_timer + Time.deltaTime;
-            Debug.Log(time_timer);
-
-            if (timeSlowAction.triggered){
-                time_timer = time_slowed_down;
-            }
-
-            if (time_timer >= time_slowed_down){
-                time_state = TimeState.NORMAL;
-                //Time.fixedDeltaTime = 0.02f;
-                //Time.timeScale = 1.0f;
-                
+            if (refresh_timer < refresh_time){
+                refresh_timer = refresh_timer + Time.deltaTime;
             }
         }
 
