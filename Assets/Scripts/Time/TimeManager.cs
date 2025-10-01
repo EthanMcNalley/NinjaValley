@@ -16,6 +16,7 @@ public class TimeManager : MonoBehaviour
     public float refresh_timer = 0.0f;
     public GameObject volume;
     private GameObject[] anim_objects;
+    
     private InputAction timeSlowAction;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

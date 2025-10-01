@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMOD.Studio;
+using FMODUnity;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,6 +35,10 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     public GroundCheck ground_check;
+    
+    //Audio Stuff
+    [Header("Sound Stuff")]
+    public EventReference JumpSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         normal_acceleration = acceleration;
         normal_roto_speed = rotation_speed;
         animator = GetComponent<Animator>();
+        
 
         if (InputSystem.actions)
         {
@@ -87,31 +94,15 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetTrigger("Jump");
             }
         }
-
-
-        
-            /*{
-                if (!is_jumping)
-                {
-                    is_jumping = true;*/
-        /*}
-        //rb.AddForce(new Vector3(0f, 1000f / Time.timeScale, 0f));
-    }
-    else
-    {
-        is_jumping = false;
-    }*/
-
-        // if (dashAction.triggered)
-        // {
-        //     StartCoroutine(Dash());
-        // }
     }
 
     public void Jump(){
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
         rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
+        
+        if (JumpSound.Path.Length > 0)
+            AudioManager.instance.PlayOneShot(JumpSound, transform.position);
     }
 
     IEnumerator Dash()

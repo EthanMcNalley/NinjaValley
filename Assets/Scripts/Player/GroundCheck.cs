@@ -5,7 +5,7 @@ public class GroundCheck : MonoBehaviour
     public bool is_grounded = true;
 
     void Update(){
-        Debug.Log(is_grounded);
+        //Debug.Log(is_grounded);
     }
     void OnTriggerEnter(Collider collision){
         if (collision.gameObject.layer != 3){
