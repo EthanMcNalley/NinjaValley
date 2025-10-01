@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
     public Animator pause_animator;
     public Animator settings_animator;
     public Animator text_scroll_animator;
+    public TMP_Text sign_text;
 
     // public enum UIType{
     //     PAUSE
@@ -74,7 +76,7 @@ public class UIManager : MonoBehaviour
         }
 
         else{
-            time_bar.fillAmount = time_bar.fillAmount + fill_rate;
+            time_bar.fillAmount = time_bar.fillAmount + (Time.deltaTime / time_manager.refresh_time);
         }
         // if (timer <= duration)
         // {

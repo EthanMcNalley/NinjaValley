@@ -21,6 +21,7 @@ public class InteractTextBox : MonoBehaviour
                 if (UIManager.ui_state == UIManager.UIState.INACTIVE){
                     UI_manager.OpenTextScrollMenu();
                     UI_manager.FadeIn();
+                    UI_manager.sign_text.text = text;
                     Time.timeScale = 0.0f;
                 }
 
