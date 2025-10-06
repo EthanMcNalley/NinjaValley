@@ -15,6 +15,11 @@ public class CombatStateManager : MonoBehaviour
     public GroundAttack2 Melee2 = new GroundAttack2();
     public GroundAttack3 Melee3 = new GroundAttack3();
     
+    //Hitbox stuff
+    public GameObject GroundAttackHitbox;
+    public Animator AttackAnimation;
+    public Collider GroundHitboxCollider;
+    public float currentDamage;
     
     //Input Stuff
     private InputAction attackAction;
@@ -24,8 +29,10 @@ public class CombatStateManager : MonoBehaviour
     void Start()
     {
         attackAction = InputSystem.actions.FindAction("Attack");
+        AttackAnimation = GroundAttackHitbox.GetComponent<Animator>();
+        GroundHitboxCollider = GroundAttackHitbox.gameObject.GetComponent<Collider>();
         
-        currentState =  Idle;
+        currentState = Idle;
         currentState.EnterState(this);
     }
 
@@ -33,7 +40,7 @@ public class CombatStateManager : MonoBehaviour
     void Update()
     {
         stateTime += Time.deltaTime;
-        if (attackAction.inProgress)
+        if (attackAction.triggered)
         {
             attacking = true;
         }
@@ -54,6 +61,11 @@ public class CombatStateManager : MonoBehaviour
         comboStep = 1;
         attacking = false;
         SwitchState(Melee1);
+    }
+
+    public float GetDamage()
+    {
+        return currentDamage;
     }
 
     public void ContinueCombo(CombatState nextState)

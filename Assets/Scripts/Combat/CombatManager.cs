@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class HealthSystem : MonoBehaviour
+public class CombatManager : MonoBehaviour
 {
-    [SerializeField] public float healthPoint = 20f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,14 +13,14 @@ public class HealthSystem : MonoBehaviour
     {
         
     }
+
     public void TakeDamage(float damage)
     {
-        healthPoint -= damage;
-        Debug.Log(this.name+ " took " + damage + " damage");
+        
     }
 
-    public float GetHealthPoint()
+    public void DealDamage(float damage, GameObject target)
     {
-        return healthPoint;
+        //target.hp -= damage;
     }
 }

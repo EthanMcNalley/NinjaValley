@@ -18,8 +18,8 @@ public class Idle : CombatState
         }
     }
 
-    public override void OnCollisionEnter(CombatStateManager stateManager)
+    /*public override void OnCollisionEnter(Collider other)
     {
         
-    }
+    }*/
 }

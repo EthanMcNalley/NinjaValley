@@ -15,11 +15,11 @@ public class DealDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             isAttack = true;
             
-        }
+        }*/
 
         
         
@@ -27,14 +27,11 @@ public class DealDamage : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {   
-        if (isAttack)
+        if (isAttack && other.gameObject.CompareTag("Enemy"))
         {
-            if (other.gameObject.tag =="Enemy")
-            {
                 HealthSystem enemy = other.GetComponent<HealthSystem>();
                 enemy.TakeDamage(damage);
                 isAttack = false;
-            }
         }
     }
 }

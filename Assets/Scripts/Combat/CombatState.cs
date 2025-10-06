@@ -9,6 +9,6 @@ public abstract class CombatState
     
     public abstract void UpdateState(CombatStateManager state);
     
-    public abstract void OnCollisionEnter(CombatStateManager state);
+    //public abstract void OnCollisionEnter(Collider other);
     
 }
