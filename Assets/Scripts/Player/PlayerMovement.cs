@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     //Audio Stuff
     [Header("Sound Stuff")]
     public EventReference JumpSound;
+    
+    //Movement test stuff
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,24 +62,29 @@ public class PlayerMovement : MonoBehaviour
             runAction = InputSystem.actions.FindAction("Run");
             dashAction = InputSystem.actions.FindAction("Dash");
         }
-    }   
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        // if (TimeManager.time_state == TimeManager.TimeState.SLOWED){
-        //     max_speed = normal_speed/Time.timeScale;
-        //     acceleration = normal_acceleration/Time.timeScale;
-        //     rotation_speed = normal_roto_speed/Time.timeScale;
-        // }
-
-        // else{
-        //     max_speed = normal_speed;
-        //     acceleration = normal_acceleration;
-        //     rotation_speed = normal_roto_speed;
-        // }
-        
         moveValue = moveAction.ReadValue<Vector2>();
         lookValue = lookAction.ReadValue<Vector2>();
+        
+         /*if (TimeManager.time_state == TimeManager.TimeState.SLOWED){
+             max_speed = normal_speed/Time.timeScale;
+             acceleration = normal_acceleration/Time.timeScale;
+             rotation_speed = normal_roto_speed/Time.timeScale;
+         }
+         else{
+             max_speed = normal_speed;
+             acceleration = normal_acceleration;
+             rotation_speed = normal_roto_speed;
+         }*/
+
+         /*if (dashAction.triggered)
+         {
+             Dash();
+         }*/
         
         if ((moveValue != Vector2.zero) && (rb.linearVelocity.y < 0.01f && rb.linearVelocity.y > -0.01f)){
             animator.SetBool("Moving", true);
@@ -114,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
     }
+    
     public void HandleAllMovement(){
         HandleMovement();
         HandleRotation();
@@ -132,9 +140,6 @@ public class PlayerMovement : MonoBehaviour
         // else{
         //     max_speed = 7.0f;
         // }
-        
-
-        move_direction = move_direction * max_speed;
 
         Vector3 velocity = move_direction;
         // rb.linearVelocity = velocity;
@@ -156,8 +161,9 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector3 (rb.linearVelocity.x, rb.linearVelocity.y, -max_speed);
         }
 
-        rb.AddForce(velocity * acceleration);
+        rb.AddForce(velocity * acceleration, ForceMode.VelocityChange);
         
+        //Debug.Log(velocity);
     }
 
     private void HandleRotation(){
@@ -187,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = ground_check.is_grounded;
+        HandleAllMovement();
     }
 
     private void OnDrawGizmos()
