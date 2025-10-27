@@ -24,5 +24,10 @@ public class AttackHitBox : MonoBehaviour
             float damage = CombatStateManager.GetDamage();
             enemy.TakeDamage(damage);
         }
+
+        /*if (other.gameObject.CompareTag("Bush"))
+        {
+            Destroy(other.gameObject);
+        }*/
     }
 }
