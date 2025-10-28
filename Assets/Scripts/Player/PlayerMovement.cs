@@ -94,6 +94,11 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetTrigger("Jump");
             }
         }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("Attack1");
+        }
     }
 
     public void Jump(){
@@ -156,8 +161,9 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector3 (rb.linearVelocity.x, rb.linearVelocity.y, -max_speed);
         }
 
-        rb.AddForce(velocity * acceleration);
-        
+        Vector3 newVel = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, newVel, acceleration * Time.deltaTime);
+
     }
 
     private void HandleRotation(){
