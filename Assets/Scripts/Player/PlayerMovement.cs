@@ -8,7 +8,7 @@ using FMODUnity;
 public class PlayerMovement : MonoBehaviour
 {
     //MovementInput movement_input;
-	PlayerInput player_controls;
+    PlayerInput player_controls;
     Vector3 move_direction;
     Transform cam;
     Rigidbody rb;
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 lookValue;
 
     public bool isGrounded = true;
-    
+
     private InputAction jumpAction;
     private InputAction moveAction;
     private InputAction lookAction;
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     public GroundCheck ground_check;
-    
+
     //Audio Stuff
     [Header("Sound Stuff")]
     public EventReference JumpSound;
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         normal_acceleration = acceleration;
         normal_roto_speed = rotation_speed;
         animator = GetComponent<Animator>();
-        
+
 
         if (InputSystem.actions)
         {
@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
             runAction = InputSystem.actions.FindAction("Run");
             dashAction = InputSystem.actions.FindAction("Dash");
         }
-    }   
+    }
     // Update is called once per frame
     void Update()
     {
@@ -75,37 +75,42 @@ public class PlayerMovement : MonoBehaviour
         //     acceleration = normal_acceleration;
         //     rotation_speed = normal_roto_speed;
         // }
-        
+
         moveValue = moveAction.ReadValue<Vector2>();
         lookValue = lookAction.ReadValue<Vector2>();
-        
-        if ((moveValue != Vector2.zero) && (rb.linearVelocity.y < 0.01f && rb.linearVelocity.y > -0.01f)){
+
+        if ((moveValue != Vector2.zero) && (rb.linearVelocity.y < 0.01f && rb.linearVelocity.y > -0.01f))
+        {
             animator.SetBool("Moving", true);
         }
 
-        else{
+        else
+        {
             animator.SetBool("Moving", false);
         }
 
-        
-        if (isGrounded){
-            if (jumpAction.triggered){
+
+        if (isGrounded)
+        {
+            if (jumpAction.triggered)
+            {
                 Jump();
                 animator.SetTrigger("Jump");
             }
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("Attack1");
         }
     }
 
-    public void Jump(){
+    public void Jump()
+    {
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
 
         rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
-        
+
         if (JumpSound.Path.Length > 0)
             AudioManager.instance.PlayOneShot(JumpSound, transform.position);
     }
@@ -119,12 +124,14 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
     }
-    public void HandleAllMovement(){
+    public void HandleAllMovement()
+    {
         HandleMovement();
         HandleRotation();
     }
 
-    private void HandleMovement(){
+    private void HandleMovement()
+    {
         move_direction = cam.forward * moveValue.y;
         move_direction = move_direction + cam.right * moveValue.x;
         move_direction.Normalize();
@@ -137,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         // else{
         //     max_speed = 7.0f;
         // }
-        
+
 
         move_direction = move_direction * max_speed;
 
@@ -145,20 +152,24 @@ public class PlayerMovement : MonoBehaviour
         // rb.linearVelocity = velocity;
 
         //Max speed check
-        if (rb.linearVelocity.x > max_speed){
-            rb.linearVelocity = new Vector3 (max_speed, rb.linearVelocity.y, rb.linearVelocity.z);
+        if (rb.linearVelocity.x > max_speed)
+        {
+            rb.linearVelocity = new Vector3(max_speed, rb.linearVelocity.y, rb.linearVelocity.z);
         }
 
-        else if (rb.linearVelocity.x < -max_speed){
-            rb.linearVelocity = new Vector3 (-max_speed, rb.linearVelocity.y, rb.linearVelocity.z);
+        else if (rb.linearVelocity.x < -max_speed)
+        {
+            rb.linearVelocity = new Vector3(-max_speed, rb.linearVelocity.y, rb.linearVelocity.z);
         }
 
-        if (rb.linearVelocity.z > max_speed){
-            rb.linearVelocity = new Vector3 (rb.linearVelocity.x, rb.linearVelocity.y, max_speed);
+        if (rb.linearVelocity.z > max_speed)
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, max_speed);
         }
 
-        else if (rb.linearVelocity.z < -max_speed){
-            rb.linearVelocity = new Vector3 (rb.linearVelocity.x, rb.linearVelocity.y, -max_speed);
+        else if (rb.linearVelocity.z < -max_speed)
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, -max_speed);
         }
 
         Vector3 newVel = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
@@ -166,7 +177,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void HandleRotation(){
+    private void HandleRotation()
+    {
         Vector3 target_direction = Vector3.zero;
 
         target_direction = cam.forward * moveValue.y;
@@ -174,14 +186,15 @@ public class PlayerMovement : MonoBehaviour
         target_direction.Normalize();
         target_direction.y = 0;
 
-        if (target_direction == Vector3.zero){
+        if (target_direction == Vector3.zero)
+        {
             target_direction = transform.forward;
         }
 
         Quaternion target_rotation = Quaternion.LookRotation(target_direction);
         Quaternion player_rotation = Quaternion.Slerp(transform.rotation, target_rotation, rotation_speed * Time.deltaTime);
 
-        transform.rotation = player_rotation; 
+        transform.rotation = player_rotation;
     }
 
     /*public void HandleJumping(){
