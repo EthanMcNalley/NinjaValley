@@ -5,6 +5,7 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private SceneField[] scenes_to_load;
     [SerializeField] private SceneField[] scenes_to_unload;
+    public SceneField persistables_scene;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,5 +57,10 @@ public class SceneLoader : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void TitleScreenLoading(){
+        SceneManager.LoadScene(persistables_scene);
+        LoadScenes();
     }
 }
