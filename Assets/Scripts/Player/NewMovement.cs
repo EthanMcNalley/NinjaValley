@@ -63,9 +63,10 @@ public class NewMovement : MonoBehaviour
     void Update()
     {
         groundedPlayer = controller.isGrounded;
+        
         if (groundedPlayer && playerVelocity.y < 0)
         {
-            playerVelocity.y = 0f;
+            playerVelocity.y = gravityValue;
         }
         
         // Read input
@@ -84,7 +85,7 @@ public class NewMovement : MonoBehaviour
         
         HandleRotation(move);
 
-        if (move.magnitude > 0.01f & controller.isGrounded)
+        if (move.magnitude > 0.01f & groundedPlayer)
         {
             animator.SetBool("Moving", true);
         }
@@ -105,18 +106,13 @@ public class NewMovement : MonoBehaviour
         Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
         controller.Move(finalMove * Time.deltaTime);
 
-        if (Input.GetMouseButton(0))
+        if(!groundedPlayer)
         {
-            animator.SetTrigger("Attack1");
-        }
-
-        if(!controller.isGrounded)
-        {
-            animator.SetBool("Jump", false);
+            animator.SetBool("Jump", true);
         }
         else
         {
-            animator.SetBool("Jump", true);
+            animator.SetBool("Jump", false);
         }
     }
     
