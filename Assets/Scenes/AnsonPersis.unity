@@ -2659,6 +2659,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b8fc9c71fb8d3294a9200e26691f8432, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b8fc9c71fb8d3294a9200e26691f8432, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -3023,13 +3027,13 @@ PrefabInstance:
       addedObject: {fileID: 1897112696}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b8fc9c71fb8d3294a9200e26691f8432, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1897112699}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b8fc9c71fb8d3294a9200e26691f8432, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1897112695}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b8fc9c71fb8d3294a9200e26691f8432, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1897112694}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b8fc9c71fb8d3294a9200e26691f8432, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1897112699}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b8fc9c71fb8d3294a9200e26691f8432, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1897112693}
@@ -3416,7 +3420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1394931480
 Transform:
   m_ObjectHideFlags: 0
@@ -5828,7 +5832,7 @@ GameObject:
   - component: {fileID: 8139561332969690446}
   m_Layer: 3
   m_Name: Katana
-  m_TagString: Untagged
+  m_TagString: AttackHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7363,9 +7367,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CombatStateManager
   comboStep: 0
   GroundAttackHitbox: {fileID: 3497175710712646902}
-  KatanaEnableAnimator: {fileID: 0}
-  AttackAnimator: {fileID: 0}
-  GroundHitboxCollider: {fileID: 0}
+  KatanaEnableAnimator: {fileID: 8139561332969690446}
+  AttackAnimator: {fileID: 5752429590933728019}
+  GroundHitboxCollider: {fileID: 8139561332969690444}
   currentDamage: 0
   attacking: 0
   stateTime: 0
@@ -8832,7 +8836,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.1843957, y: 0.78336996, z: 8.122381}
   m_Center: {x: -0.3157475, y: 0.18672733, z: -2.8443756}
