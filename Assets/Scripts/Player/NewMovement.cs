@@ -104,6 +104,20 @@ public class NewMovement : MonoBehaviour
         // Combine horizontal and vertical movement
         Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
         controller.Move(finalMove * Time.deltaTime);
+
+        if (Input.GetMouseButton(0))
+        {
+            animator.SetTrigger("Attack1");
+        }
+
+        if(!controller.isGrounded)
+        {
+            animator.SetBool("Jump", false);
+        }
+        else
+        {
+            animator.SetBool("Jump", true);
+        }
     }
     
     private void HandleRotation(Vector3 moveDir){
