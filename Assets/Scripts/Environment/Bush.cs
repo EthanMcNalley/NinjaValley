@@ -4,16 +4,18 @@ using UnityEngine;
 public class Bush : MonoBehaviour
 {
     Material mat;
+    Animator animator;
     void Start()
     {
+        animator = GetComponent<Animator>();
         mat = GetComponent<Renderer>().material;
     }
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("AttackHitBox"))
         {
-            mat.SetColor("_BaseColor", Color.red);
-            Destroy(gameObject, 2f);
+            animator.SetTrigger("Damage");
+            Destroy(gameObject, 1f);
         }
     }
 }
