@@ -40,6 +40,8 @@ public class NewMovement : MonoBehaviour
             runAction = InputSystem.actions.FindAction("Run");
             dashAction = InputSystem.actions.FindAction("Dash");
         }
+        
+        Debug.Log(InputSystem.actions);
     }
 
     private void OnEnable()
