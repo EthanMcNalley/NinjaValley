@@ -5822,6 +5822,7 @@ GameObject:
   - component: {fileID: 8139561332969690443}
   - component: {fileID: 7286274592338622310}
   - component: {fileID: 2586864543741226743}
+  - component: {fileID: 8139561332969690444}
   m_Layer: 3
   m_Name: Katana
   m_TagString: Untagged
@@ -6968,6 +6969,7 @@ GameObject:
   - component: {fileID: 5752429590933728013}
   - component: {fileID: 5752429590933728021}
   - component: {fileID: 5752429590933728020}
+  - component: {fileID: 5752429590933728022}
   - component: {fileID: 5752429590933728017}
   - component: {fileID: 5752429590933728014}
   - component: {fileID: 5752429590933728019}
@@ -7344,6 +7346,25 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.5, z: -0.4}
+--- !u!114 &5752429590933728022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944790284320682423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f2cd6e11ea15f409c172a8e85cef39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatStateManager
+  comboStep: 0
+  GroundAttackHitbox: {fileID: 3497175710712646902}
+  AttackAnimation: {fileID: 0}
+  GroundHitboxCollider: {fileID: 0}
+  currentDamage: 0
+  attacking: 0
+  stateTime: 0
 --- !u!4 &5786015332749801645
 Transform:
   m_ObjectHideFlags: 0
@@ -8790,6 +8811,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7235959325243164004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8139561332969690444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497175710712646902}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1843958, y: 0.78337, z: 7.6719418}
+  m_Center: {x: -0.31222412, y: 0.19518267, z: -2.6186588}
 --- !u!95 &8189884744824689998
 Animator:
   serializedVersion: 7
