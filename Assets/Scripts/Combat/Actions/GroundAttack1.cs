@@ -9,7 +9,8 @@ public class GroundAttack1 : CombatState
         bufferDuration = 0.5f;
         stateManager.currentDamage = damage;
         Debug.Log("Melee1");
-        stateManager.AttackAnimation.SetTrigger("Attack1");
+        stateManager.KatanaEnableAnimator.SetTrigger("Attack1");
+        stateManager.AttackAnimator.SetTrigger("Attack1");
     }
 
     public override void UpdateState(CombatStateManager stateManager)

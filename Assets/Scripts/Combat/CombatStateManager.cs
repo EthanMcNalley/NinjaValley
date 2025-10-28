@@ -17,7 +17,8 @@ public class CombatStateManager : MonoBehaviour
     
     //Hitbox stuff
     public GameObject GroundAttackHitbox;
-    public Animator AttackAnimation;
+    public Animator KatanaEnableAnimator;
+    public Animator AttackAnimator;
     public Collider GroundHitboxCollider;
     public float currentDamage;
     
@@ -29,8 +30,10 @@ public class CombatStateManager : MonoBehaviour
     void Start()
     {
         attackAction = InputSystem.actions.FindAction("Attack");
-        AttackAnimation = GroundAttackHitbox.GetComponent<Animator>();
+        KatanaEnableAnimator = GroundAttackHitbox.GetComponent<Animator>();
         GroundHitboxCollider = GroundAttackHitbox.gameObject.GetComponent<Collider>();
+        
+        AttackAnimator = GetComponent<Animator>();
         
         currentState = Idle;
         currentState.EnterState(this);
