@@ -14,6 +14,7 @@ public class NewMovement : MonoBehaviour
     private Transform cam;
     private Vector2 inputVector;
     private Vector3 MoveDirection;
+    private Animator animator;
     
     
     private float rotationSpeed = 20f;
@@ -28,6 +29,7 @@ public class NewMovement : MonoBehaviour
     private void Awake()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        animator = gameObject.GetComponent<Animator>();
         cam = Camera.main.transform;
 
         if (InputSystem.actions)
@@ -81,14 +83,16 @@ public class NewMovement : MonoBehaviour
         Vector3 move = (inputVector.x * camRight + inputVector.y * camForward).normalized;
         
         HandleRotation(move);
-        //move = Vector3.ClampMagnitude(move, 1f);
 
-        /*if (move != Vector3.zero)
+        if (move.magnitude > 0.01f & controller.isGrounded)
         {
-            transform.forward = move;
-        }*/
-
-        // Jump
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
+        
         if (jumpAction.triggered && groundedPlayer)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
