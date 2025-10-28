@@ -500,6 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210892963}
   - component: {fileID: 210892964}
+  - component: {fileID: 210892965}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -534,7 +535,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a6f4dcc9faeba4ba6f398a330921be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needMusic: 0
+  needMusic: 1
+--- !u!114 &210892965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210892962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4645bb61c0f835c4599ffd8604eaf80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FmodEvents
+  playerWalkingEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  music:
+    Guid:
+      Data1: -1445660812
+      Data2: 1195789329
+      Data3: -1929828179
+      Data4: -1880770220
+    Path: event:/MusicArea
 --- !u!1 &385363366
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,75 +595,6 @@ Transform:
   - {fileID: 210892963}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &412171988
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 412171989}
-  - component: {fileID: 412171991}
-  - component: {fileID: 412171990}
-  m_Layer: 3
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &412171989
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412171988}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09999943, y: 0.010000358, z: -0.8500004}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5752429590933728013}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &412171990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412171988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de0458bc026884c4fa5e92ac478768af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
-  is_grounded: 1
---- !u!136 &412171991
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412171988}
-  m_Material: {fileID: 13400000, guid: 1d03cffe88c07408dac09829ffc25bea, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.93403524
-  m_Height: 2.6667295
-  m_Direction: 1
-  m_Center: {x: -0.000000004142395, y: -1.7014356, z: 0.43403515}
 --- !u!1 &435376038
 GameObject:
   m_ObjectHideFlags: 0
@@ -7286,7 +7244,6 @@ Transform:
   - {fileID: 5812138307083753491}
   - {fileID: 471549251292990687}
   - {fileID: 910091464116285181}
-  - {fileID: 412171989}
   - {fileID: 1050691149}
   m_Father: {fileID: 999236500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7360,7 +7317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36b0ae307e7719409471fa7d27a3f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Example
-  controller: {fileID: 5752429590933728021}
+  playerSpeed: 10
+  jumpHeight: 5
 --- !u!143 &5752429590933728021
 CharacterController:
   m_ObjectHideFlags: 0
@@ -7379,13 +7337,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 7.5
+  m_Radius: 1.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.5, z: -0.4}
 --- !u!4 &5786015332749801645
 Transform:
   m_ObjectHideFlags: 0
