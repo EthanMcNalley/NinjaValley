@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public EventInstance soundToStop;
     public EventInstance musicEventInstance;
     
+    private EventInstance CurrentSound;
     private PlaySound psound;
 
     private void Awake()
@@ -40,8 +41,47 @@ public class AudioManager : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(clip, position);
     }
+    
+    public IEnumerator PlaySound(EventReference clip, GameObject gameObject, bool waitToEnd)
+    {
+        CurrentSound = CreateEventInstance(clip);
+        RuntimeManager.AttachInstanceToGameObject(CurrentSound, gameObject, false);
+        CurrentSound.getDescription(out EventDescription description);
 
-    public EventInstance CreateEventInstance(EventReference eventRef)
+        int soundLength;
+        description.getLength(out soundLength);
+        //UnityEngine.Debug.Log(soundLength);
+        CurrentSound.start();
+
+        if (waitToEnd)
+        {
+            yield return new WaitForSeconds(soundLength / 1000f);
+        }
+    }
+
+    //Release EventInstance to save resources
+    public void ReleaseEventInstance()
+    {
+        if (CurrentSound.isValid())
+        {
+            CurrentSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            CurrentSound.release();
+        }
+    }
+
+    //To check how long an audio clip would play for
+    public float GetSoundLengthInSeconds(EventReference clip)
+    {
+        CurrentSound = CreateEventInstance(clip);
+        CurrentSound.getDescription(out EventDescription description);
+        
+        description.getLength(out var soundLength);
+        //UnityEngine.Debug.Log(soundLength);
+        CurrentSound.release();
+        return (soundLength / 1000f); //in ms so have to divide 1000
+    }
+
+    private EventInstance CreateEventInstance(EventReference eventRef)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventRef);
         return eventInstance;
@@ -55,6 +95,7 @@ public class AudioManager : MonoBehaviour
     public void StopEventInstance(EventInstance eventInstance)
     {
         eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        eventInstance.release();
     }
     
     public void DisableSound()
