@@ -34,7 +34,7 @@ public class PlayerCaller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        player_movement.HandleAllMovement();
+        //player_movement.HandleAllMovement();
     }
 
     private void LateUpdate()
