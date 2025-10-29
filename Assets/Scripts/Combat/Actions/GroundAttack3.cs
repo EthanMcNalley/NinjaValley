@@ -6,7 +6,7 @@ public class GroundAttack3 : CombatState
     public override void EnterState(CombatStateManager stateManager)
     {
         stateDuration = 1f;
-        bufferDuration = 0.75f;
+        bufferDuration = 0.5f;
         stateManager.currentDamage = damage;
         Debug.Log("Melee3");
         stateManager.KatanaEnableAnimator.SetTrigger("Attack1");

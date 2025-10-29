@@ -26,6 +26,8 @@ public class CombatStateManager : MonoBehaviour
     private InputAction attackAction;
     public bool attacking = false;
     public float stateTime = 0f;
+    private float bufferTime = 0f;
+    private float bufferDurationTimer = 1f;
     
     void Start()
     {
@@ -43,9 +45,25 @@ public class CombatStateManager : MonoBehaviour
     void Update()
     {
         stateTime += Time.deltaTime;
+        
         if (attackAction.triggered)
         {
             attacking = true;
+        }
+
+        if (bufferTime > bufferDurationTimer)
+        {
+            bufferTime = 0f;
+            attacking = false;
+        }
+        
+        if (attacking)
+        {
+            bufferTime += Time.deltaTime;
+        }
+        else
+        {
+            bufferTime = 0f;
         }
         
         currentState.UpdateState(this);
