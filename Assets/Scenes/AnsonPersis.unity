@@ -1218,7 +1218,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3921746147429835837, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_SlopeLimit
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3921746147429835837, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_MinMoveDistance
@@ -1244,13 +1244,17 @@ PrefabInstance:
       propertyPath: playerSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4968851423410113761, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
+      propertyPath: gravityValue
+      value: -25
+      objectReference: {fileID: 0}
     - target: {fileID: 6751356174266540828, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.6
       objectReference: {fileID: 0}
     - target: {fileID: 6751356174266540828, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.3
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: 6751356174266540828, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1548,7 +1552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.981076, y: -9.590883}
+  m_AnchoredPosition: {x: -4.981076, y: 9.839117}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963194229
@@ -8740,6 +8744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Example
   playerSpeed: 10
   jumpHeight: 5
+  gravityValue: -9.81
 --- !u!143 &5752429590933728021
 CharacterController:
   m_ObjectHideFlags: 0
@@ -10391,6 +10396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NewMovement
   playerSpeed: 10
   jumpHeight: 5
+  gravityValue: -9.81
 --- !u!143 &7787373520759822477
 CharacterController:
   m_ObjectHideFlags: 0
