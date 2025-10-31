@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(CombatStateManager))]
 public class ShadowAssassin : MonoBehaviour
@@ -7,7 +8,12 @@ public class ShadowAssassin : MonoBehaviour
     public float currentShadowMeter = 0f;
     public float maxShadowMeter = 100f;
 
+    public float ShadowAssassinDuration = 6f;
+
     public bool shadowReady;
+    public bool shadowActive;
+    
+    private Coroutine shadowCoroutine;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,21 +27,55 @@ public class ShadowAssassin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TimeManager.time_state == TimeManager.TimeState.SLOWED && shadowReady)
+        if (TimeManager.time_state == TimeManager.TimeState.SLOWED && shadowReady && !shadowActive)
         {
             EnterShadowAssassin();
+        }
+
+        if (shadowActive && TimeManager.time_state == TimeManager.TimeState.NORMAL)
+        {
+            ExitShadowAssassin();
         }
     }
 
     private void EnterShadowAssassin()
+    {
+
+        if (!shadowReady || shadowActive)
+        {
+            return;
+        }
+            
+        shadowReady = false;
+        shadowActive = true;
+
+        CombatEvents.RaiseShadowAssassinStarted();
+
+        shadowCoroutine = StartCoroutine(ShadowAssassinTimer());
+    }
+    
+    private IEnumerator ShadowAssassinTimer()
+    {
+        yield return new WaitForSeconds(ShadowAssassinDuration);
+        ExitShadowAssassin();
+    }
+
+    private void ExitShadowAssassin()
     {
         
     }
 
     public void UpdateShadowMeter(float charge)
     {
-        currentShadowMeter +=  charge;
-        currentShadowMeter = Mathf.Clamp(currentShadowMeter, 0f, maxShadowMeter);
+        if (TimeManager.time_state == TimeManager.TimeState.NORMAL)
+        {
+            currentShadowMeter += charge;
+            currentShadowMeter = Mathf.Clamp(currentShadowMeter, 0f, maxShadowMeter);
+        }
+        else
+        {
+            return;
+        }
 
         if (currentShadowMeter >= maxShadowMeter)
         {
