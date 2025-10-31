@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 183332696}
   - component: {fileID: 183332695}
   - component: {fileID: 183332694}
+  - component: {fileID: 183332698}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -223,6 +224,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &183332698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183332693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7b31837979af44a9fe48bf214ee0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIFirstSelect
+  first: {fileID: 1628829318}
 --- !u!1 &195385124
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,18 +473,18 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ba5e39a37452cd4449210624b60a37ed, type: 3}
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
@@ -486,7 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1628829316}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &277082756
@@ -1181,7 +1195,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.51572317, g: 0.51572317, b: 0.51572317, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}

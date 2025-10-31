@@ -100,6 +100,11 @@ public class TimeManager : MonoBehaviour
         SLOWED
     }
 
+    public TimeState GetTimeState()
+    {
+        return time_state;
+    }
+
     public void SlowTime(){
 
     }

@@ -1246,7 +1246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4968851423410113761, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: gravityValue
-      value: -25
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 6751356174266540828, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1254,7 +1254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6751356174266540828, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.13
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6751356174266540828, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1330,7 +1330,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4352459680086596439, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1137996009}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4780501015488321735, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 2084857674}
   m_SourcePrefab: {fileID: 100100000, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
 --- !u!4 &631092017 stripped
 Transform:
@@ -1572,7 +1575,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.981076, y: 9.839117}
+  m_AnchoredPosition: {x: -4.981076, y: 8.799116}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963194229
@@ -4058,6 +4061,26 @@ MonoBehaviour:
   stateTime: 0
   Kunai: {fileID: 0}
   kunaiPosition: {fileID: 0}
+--- !u!1 &2084857667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4780501015488321735, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
+  m_PrefabInstance: {fileID: 631092016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2084857674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084857667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee375e368bd43a48ac0c53fa5c7c35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShadowAssassin
+  currentShadowMeter: 0
+  maxShadowMeter: 100
+  shadowReady: 0
 --- !u!1 &2087478413
 GameObject:
   m_ObjectHideFlags: 0

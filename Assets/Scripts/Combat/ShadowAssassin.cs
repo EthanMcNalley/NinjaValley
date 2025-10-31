@@ -6,8 +6,8 @@ public class ShadowAssassin : MonoBehaviour
     CombatStateManager combatStateManager;
     public float currentShadowMeter = 0f;
     public float maxShadowMeter = 100f;
-    
-    public bool shadowReady {get; private set;}
+
+    public bool shadowReady;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +20,14 @@ public class ShadowAssassin : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        if (TimeManager.time_state == TimeManager.TimeState.SLOWED && shadowReady)
+        {
+            EnterShadowAssassin();
+        }
+    }
+
+    private void EnterShadowAssassin()
     {
         
     }
