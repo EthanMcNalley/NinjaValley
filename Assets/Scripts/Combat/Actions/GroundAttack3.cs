@@ -3,10 +3,10 @@ using UnityEngine;
 public class GroundAttack3 : CombatState
 {
     public float damage = 3f;
+    float stateDuration = 1f;
+    float bufferDuration = 0.5f;
     public override void EnterState(CombatStateManager stateManager)
     {
-        stateDuration = 1f;
-        bufferDuration = 0.5f;
         stateManager.currentDamage = damage;
         Debug.Log("Melee3");
         stateManager.KatanaEnableAnimator.SetTrigger("Attack1");
@@ -20,9 +20,4 @@ public class GroundAttack3 : CombatState
             stateManager.ContinueCombo(stateManager.Melee1);
         }
     }
-
-    /*public override void OnCollisionEnter(Collider other)
-    {
-        
-    }*/
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CombatStateManager))]
 public class ShadowAssassin : MonoBehaviour
 {
     CombatStateManager combatStateManager;
