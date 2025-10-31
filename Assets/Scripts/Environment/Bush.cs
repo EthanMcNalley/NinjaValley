@@ -7,14 +7,26 @@ public class Bush : MonoBehaviour
     Animator animator;
     void Start()
     {
-        animator = GetComponent<Animator>();
-        mat = GetComponent<Renderer>().material;
+        if (TryGetComponent<Animator>(out animator))
+        {
+            animator = GetComponent<Animator>();
+        }
+
+        if (TryGetComponent<Renderer>(out Renderer renderer))
+        {
+            mat = GetComponent<Renderer>().material;
+        }
     }
+    
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("AttackHitBox"))
         {
-            animator.SetTrigger("Damage");
+            if (animator != null)
+            {
+                animator.SetTrigger("Damage");
+            }
+
             Destroy(gameObject, 1f);
         }
     }

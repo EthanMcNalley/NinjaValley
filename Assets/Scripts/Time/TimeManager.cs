@@ -56,7 +56,7 @@ public class TimeManager : MonoBehaviour
             else{
                 volume.SetActive(true);
                 // Time.timeScale = slowed_amount;
-                Debug.Log(time_timer);
+                //Debug.Log(time_timer);
 
                 if (time_timer >= time_slowed_down){
                     time_state = TimeState.NORMAL;

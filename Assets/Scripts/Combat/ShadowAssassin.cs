@@ -8,7 +8,8 @@ public class ShadowAssassin : MonoBehaviour
     public float currentShadowMeter = 0f;
     public float maxShadowMeter = 100f;
 
-    public float ShadowAssassinDuration = 6f;
+    public float shadowAssassinDuration = 6f;
+    public float shadowAssassinDamagePercentage = 0.3f;
 
     public bool shadowReady;
     public bool shadowActive;
@@ -49,6 +50,7 @@ public class ShadowAssassin : MonoBehaviour
         shadowReady = false;
         shadowActive = true;
 
+        //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
 
         shadowCoroutine = StartCoroutine(ShadowAssassinTimer());
@@ -56,13 +58,33 @@ public class ShadowAssassin : MonoBehaviour
     
     private IEnumerator ShadowAssassinTimer()
     {
-        yield return new WaitForSeconds(ShadowAssassinDuration);
-        ExitShadowAssassin();
+        yield return new WaitForSeconds(shadowAssassinDuration);
+        EndShadowAssassin();
     }
 
     private void ExitShadowAssassin()
     {
+        if (!shadowActive)
+        {
+            return;
+        }
+
+        if (shadowCoroutine != null)
+        {
+            StopCoroutine(shadowCoroutine);
+            shadowCoroutine = null;
+        }
         
+        EndShadowAssassin();
+    }
+
+    private void EndShadowAssassin()
+    {
+        shadowActive = false;
+        
+        //revert any effects like screen and vfx stuff here if we have it...
+        
+        CombatEvents.RaiseShadowAssassinEnded();
     }
 
     public void UpdateShadowMeter(float charge)
