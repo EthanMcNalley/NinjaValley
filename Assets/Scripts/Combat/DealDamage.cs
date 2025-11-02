@@ -5,7 +5,6 @@ public class DealDamage : MonoBehaviour
     [SerializeField]
     private float damage;
     public float attackCooldown = 0.3f;
-    private bool alreadyAttacked = false;
     private bool isAttacking = false;
 
     private void OnTriggerEnter(Collider other)

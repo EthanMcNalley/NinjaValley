@@ -5,7 +5,6 @@ public class AttackHitBox : MonoBehaviour
 {
     public CombatStateManager CombatStateManager;
     
-    private bool alreadyAttacked = false;
     private bool isAttacking = false;
 
     private HashSet<GameObject> enemyHitted = new HashSet<GameObject>();

@@ -13,6 +13,7 @@ public class CombatStateManager : MonoBehaviour
     public GroundAttack1 Melee1 = new GroundAttack1();
     public GroundAttack2 Melee2 = new GroundAttack2();
     public GroundAttack3 Melee3 = new GroundAttack3();
+    public Dodge Dodge = new Dodge();
     
     //Hitbox stuff
     [Header ("Hitbox Stuff")]
@@ -25,11 +26,17 @@ public class CombatStateManager : MonoBehaviour
     //Input Stuff
     [Header ("Input Stuff")]
     private InputAction attackAction;
+    private InputAction dodgeAction;
     private InputAction kunaiAction;
     public bool attacking = false;
     public float stateTime = 0f;
     private float bufferTime = 0f;
     private float bufferDurationTimer = 1f;
+    
+    [Header ("Dodge Stuff")]
+    public float DodgeCoolDown = 1.5f;
+    public float DodgeCoolDownTimer = 0f;
+    private float lastDodgeTime = 0f;
     
     [Header ("Kunai Stuff")]
     public GameObject Kunai;
@@ -38,7 +45,9 @@ public class CombatStateManager : MonoBehaviour
     void Start()
     {
         attackAction = InputSystem.actions.FindAction("Attack");
+        dodgeAction = InputSystem.actions.FindAction("Dodge");
         kunaiAction = InputSystem.actions.FindAction("Kunai");
+
         KatanaEnableAnimator = GroundAttackHitbox.GetComponent<Animator>();
         GroundHitboxCollider = GroundAttackHitbox.gameObject.GetComponent<Collider>();
         
@@ -52,7 +61,12 @@ public class CombatStateManager : MonoBehaviour
     void Update()
     {
         stateTime += Time.deltaTime;
+        if (DodgeCoolDownTimer <= DodgeCoolDown)
+        {
+            DodgeCoolDownTimer += Time.deltaTime;
+        }
         AttackCheck();
+        DodgeCheck();
         KunaiCheck();
         currentState.UpdateState(this);
     }
@@ -85,6 +99,15 @@ public class CombatStateManager : MonoBehaviour
         if (kunaiAction.triggered)
         {
             Instantiate(Kunai, kunaiPosition.transform.position, gameObject.transform.rotation);
+        }
+    }
+
+    private void DodgeCheck()
+    {
+        if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown)
+        {
+            SwitchState(Dodge);
+            DodgeCoolDownTimer = 0f;
         }
     }
 
