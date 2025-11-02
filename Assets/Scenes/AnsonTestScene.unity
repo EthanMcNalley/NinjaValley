@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 201737502}
   - component: {fileID: 201737501}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: EnemyTestCube
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,9 +277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56d49ac244362d428dbbc5894463b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealthPoint: 100
+  healthPoint: 100
   shadowAssassin: {fileID: 0}
-  maxHealthPoint: 20
-  healthPoint: 20
 --- !u!65 &201737502
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,12 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class HealthSystem : MonoBehaviour
+public class EnemyHealth : HealthSystem
 {
     public ShadowAssassin shadowAssassin;
     private GameObject player;
-    public float maxHealthPoint = 20f;
-    public float healthPoint = 20f;
     private float shadowMultiplyPersentage;
     private bool playerShadowMode;
     private float damageDuringShadow;
@@ -17,14 +15,7 @@ public class HealthSystem : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         shadowAssassin = player.GetComponent<ShadowAssassin>();
-        healthPoint = maxHealthPoint;
         shadowMultiplyPersentage = shadowAssassin.shadowAssassinDamagePercentage;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnEnable()
@@ -42,6 +33,7 @@ public class HealthSystem : MonoBehaviour
     void OnShadowStart()
     {
         playerShadowMode = true;
+        shadowMultiplyPersentage = shadowAssassin.shadowAssassinDamagePercentage;
         damageDuringShadow = 0f;
     }
 
@@ -51,10 +43,9 @@ public class HealthSystem : MonoBehaviour
         BurstShadowDamage();
     }
     
-    public void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
-        healthPoint -= damage;
-        Debug.Log(this.name+ " took " + damage + " damage");
+        base.TakeDamage(damage);
 
         if (playerShadowMode)
         {
@@ -62,16 +53,17 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    protected override void Dead()
+    {
+        
+    }
+    
+
     void BurstShadowDamage()
     {
         damageBurst = damageDuringShadow * shadowMultiplyPersentage;
         healthPoint -= damageBurst;
         
         Debug.Log(this.name+ " took " + damageBurst + " shadow burst damage");
-    }
-
-    public float GetHealthPoint()
-    {
-        return healthPoint;
     }
 }
