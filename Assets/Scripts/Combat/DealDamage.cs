@@ -5,15 +5,17 @@ public class DealDamage : MonoBehaviour
     [SerializeField]
     private float damage;
     public float attackCooldown = 0.3f;
-    private bool isAttack=false;
+    private bool alreadyAttacked = false;
+    private bool isAttacking = false;
 
-    private void OnTriggerStay(Collider other)
-    {   
-        if (isAttack && other.gameObject.CompareTag("Enemy"))
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isAttacking) return;
+        
+        if (other.gameObject.CompareTag("Enemy"))
         {
                 HealthSystem enemy = other.GetComponent<HealthSystem>();
                 enemy.TakeDamage(damage);
-                isAttack = false;
         }
     }
 }
