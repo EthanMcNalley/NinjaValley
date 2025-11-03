@@ -20,4 +20,9 @@ public class GroundAttack1 : CombatState
             stateManager.ContinueCombo(stateManager.Melee2);
         }
     }
+
+    public override void ExitState(CombatStateManager stateManager)
+    {
+        return;
+    }
 }

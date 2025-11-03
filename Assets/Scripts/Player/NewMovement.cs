@@ -13,18 +13,17 @@ public class NewMovement : MonoBehaviour
     private bool groundedPlayer;
     private Transform cam;
     private Vector2 inputVector;
-    private Vector3 MoveDirection;
+    private Vector3 moveDirection;
     private Animator animator;
     
     
     private float rotationSpeed = 20f;
+    public bool translationDisabled = false;
 
     [Header("Input Actions")]
     InputAction moveAction;
     InputAction jumpAction;
     private InputAction lookAction;
-    private InputAction runAction;
-    private InputAction dashAction;
 
     private void Awake()
     {
@@ -37,8 +36,6 @@ public class NewMovement : MonoBehaviour
             moveAction = InputSystem.actions.FindAction("Move");
             jumpAction = InputSystem.actions.FindAction("Jump");
             lookAction = InputSystem.actions.FindAction("Look");
-            runAction = InputSystem.actions.FindAction("Run");
-            dashAction = InputSystem.actions.FindAction("Dash");
         }
         
         Debug.Log(InputSystem.actions);
@@ -49,8 +46,6 @@ public class NewMovement : MonoBehaviour
         moveAction.Enable();
         jumpAction.Enable();
         lookAction.Enable();
-        runAction.Enable();  
-        dashAction.Enable();
     }
 
     private void OnDisable()
@@ -58,8 +53,18 @@ public class NewMovement : MonoBehaviour
         moveAction.Disable();
         jumpAction.Disable();
         lookAction.Disable();
-        runAction.Disable();  
-        dashAction.Disable();
+    }
+
+    public void EnableMovement()
+    {
+        moveAction.Enable();
+        jumpAction.Enable();
+    }
+    
+    public void DisableMovement()
+    {
+        moveAction.Disable();
+        jumpAction.Disable();
     }
 
     void Update()
@@ -70,31 +75,12 @@ public class NewMovement : MonoBehaviour
         {
             playerVelocity.y = gravityValue;
         }
-        
-        // Read input
-        inputVector = moveAction.ReadValue<Vector2>();
-        
-        Vector3 camForward = cam.forward;
-        Vector3 camRight = cam.right;
 
-        camForward.y = 0f;
-        camRight.y = 0f;
-
-        camForward.Normalize();
-        camRight.Normalize();
+        moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
         
-        Vector3 move = (inputVector.x * camRight + inputVector.y * camForward).normalized;
+        HandleRotation(moveDirection);
         
-        HandleRotation(move);
-
-        if (move.magnitude > 0.01f & groundedPlayer)
-        {
-            animator.SetBool("Moving", true);
-        }
-        else
-        {
-            animator.SetBool("Moving", false);
-        }
+        animator.SetBool("Moving", moveDirection.magnitude > 0.01f & groundedPlayer);
         
         if (jumpAction.triggered && groundedPlayer)
         {
@@ -105,17 +91,11 @@ public class NewMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
 
         // Combine horizontal and vertical movement
-        Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
+        Vector3 finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
         controller.Move(finalMove * Time.deltaTime);
-
-        if(!groundedPlayer)
-        {
-            animator.SetBool("Jump", true);
-        }
-        else
-        {
-            animator.SetBool("Jump", false);
-        }
+        
+        
+        animator.SetBool("Jump", !groundedPlayer);
     }
     
     private void HandleRotation(Vector3 moveDir){
@@ -128,5 +108,28 @@ public class NewMovement : MonoBehaviour
         
         float t = 1f - Mathf.Exp(-rotationSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, target, t);
+    }
+    
+    public Vector3 GetInputVector()
+    {
+        inputVector = moveAction.ReadValue<Vector2>();
+        
+        Vector3 camForward = cam.forward;
+        Vector3 camRight = cam.right;
+
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        camForward.Normalize();
+        camRight.Normalize();
+        
+        Vector3 move = (inputVector.x * camRight + inputVector.y * camForward).normalized;
+
+        return move;
+    }
+    
+    public void SetTranslationDisabled(bool disabled)
+    {
+        translationDisabled = disabled;
     }
 }

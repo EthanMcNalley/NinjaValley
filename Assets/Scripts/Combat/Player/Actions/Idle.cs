@@ -15,6 +15,11 @@ public class Idle : CombatState
             stateManager.StartCombo();
         }
     }
+    
+    public override void ExitState(CombatStateManager stateManager)
+    {
+        return;
+    }
 
     /*public override void OnCollisionEnter(Collider other)
     {

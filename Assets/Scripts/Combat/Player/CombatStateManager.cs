@@ -5,8 +5,9 @@ public class CombatStateManager : MonoBehaviour
 {
     public CombatState currentState;
 
+
     // Current stage of the combo
-    public int comboStep = 0;
+    private int comboStep = 0;
     
     //State instances
     public Idle Idle = new Idle();
@@ -17,6 +18,9 @@ public class CombatStateManager : MonoBehaviour
     
     //Hitbox stuff
     [Header ("Hitbox Stuff")]
+    public CharacterController characterController;
+    public HealthSystem healthSystem;
+    public NewMovement movementController;
     public GameObject GroundAttackHitbox;
     public Animator KatanaEnableAnimator;
     public Animator AttackAnimator;
@@ -48,8 +52,11 @@ public class CombatStateManager : MonoBehaviour
         dodgeAction = InputSystem.actions.FindAction("Dodge");
         kunaiAction = InputSystem.actions.FindAction("Kunai");
 
+        characterController = GetComponent<CharacterController>();
+        movementController = GetComponent<NewMovement>();
         KatanaEnableAnimator = GroundAttackHitbox.GetComponent<Animator>();
         GroundHitboxCollider = GroundAttackHitbox.gameObject.GetComponent<Collider>();
+
         
         AttackAnimator = GetComponent<Animator>();
         
@@ -113,6 +120,7 @@ public class CombatStateManager : MonoBehaviour
 
     public void SwitchState(CombatState state)
     {
+        currentState.ExitState(this);
         currentState = state;
         //Reset for new state
         stateTime = 0f;
