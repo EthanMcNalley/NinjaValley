@@ -10,9 +10,9 @@ public class EnemyHealth : HealthSystem
     private float damageDuringShadow;
     private float damageBurst;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        healthBar = GetComponentInChildren<FloatingHPDisplay>();
         player = GameObject.FindGameObjectWithTag("Player");
         shadowAssassin = player.GetComponent<ShadowAssassin>();
         shadowMultiplyPersentage = shadowAssassin.shadowAssassinDamagePercentage;
@@ -51,6 +51,7 @@ public class EnemyHealth : HealthSystem
         {
             damageDuringShadow += damage;
         }
+        healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint);
     }
 
     protected override void Dead()
@@ -62,7 +63,8 @@ public class EnemyHealth : HealthSystem
     void BurstShadowDamage()
     {
         damageBurst = damageDuringShadow * shadowMultiplyPersentage;
-        healthPoint -= damageBurst;
+        currHealthPoint -= damageBurst;
+        healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint);
         
         Debug.Log(this.name+ " took " + damageBurst + " shadow burst damage");
     }

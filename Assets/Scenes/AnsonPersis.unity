@@ -1338,6 +1338,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4780501015488321735, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       insertIndex: 4
       addedObject: {fileID: 2084857674}
+    - targetCorrespondingSourceObject: {fileID: 4780501015488321735, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 2084857679}
   m_SourcePrefab: {fileID: 100100000, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
 --- !u!4 &631092017 stripped
 Transform:
@@ -4092,6 +4095,21 @@ MonoBehaviour:
   shadowAssassinDamagePercentage: 0.3
   shadowReady: 1
   shadowActive: 0
+--- !u!114 &2084857679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084857667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7035e4b2614f6a4fba788621d89562a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealthPoint: 100
+  healthPoint: 100
+  isInvincible: 0
 --- !u!1 &2087478413
 GameObject:
   m_ObjectHideFlags: 0

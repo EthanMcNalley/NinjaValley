@@ -4,9 +4,12 @@ using UnityEngine.UI;
 public abstract class HealthSystem : MonoBehaviour
 {
     public float maxHealthPoint = 100f;
-    public float healthPoint = 100f;
+    public float currHealthPoint = 100f;
     private bool isDead = false;
-    protected bool isInvincible { get; private set; }
+
+    public bool isInvincible;
+    
+    public FloatingHPDisplay healthBar;
 
     public void SetInvincible(bool isInvincible) =>
         this.isInvincible = isInvincible; //just found this is a short version
@@ -14,7 +17,7 @@ public abstract class HealthSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        healthPoint = maxHealthPoint;
+        currHealthPoint = maxHealthPoint;
     }
 
     public virtual void TakeDamage(float damage)
@@ -24,10 +27,10 @@ public abstract class HealthSystem : MonoBehaviour
             return;
         }
 
-        healthPoint = Mathf.Clamp(healthPoint - damage, 0f, maxHealthPoint);
+        currHealthPoint = Mathf.Clamp(currHealthPoint - damage, 0f, maxHealthPoint);
         Debug.Log(this.name + " took " + damage + " damage");
 
-        if (healthPoint <= 0)
+        if (currHealthPoint <= 0)
         {
             isDead = true;
             Dead();
