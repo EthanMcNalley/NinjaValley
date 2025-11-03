@@ -54,6 +54,7 @@ public class CombatStateManager : MonoBehaviour
 
         characterController = GetComponent<CharacterController>();
         movementController = GetComponent<NewMovement>();
+        healthSystem =  GetComponent<HealthSystem>();
         KatanaEnableAnimator = GroundAttackHitbox.GetComponent<Animator>();
         GroundHitboxCollider = GroundAttackHitbox.gameObject.GetComponent<Collider>();
 

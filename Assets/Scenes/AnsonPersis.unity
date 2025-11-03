@@ -1217,6 +1217,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3921746147429835837, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
+      propertyPath: m_Height
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921746147429835837, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_SlopeLimit
       value: 15
       objectReference: {fileID: 0}
@@ -4051,7 +4055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f2cd6e11ea15f409c172a8e85cef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comboStep: 0
+  characterController: {fileID: 0}
+  healthSystem: {fileID: 0}
+  movementController: {fileID: 0}
   GroundAttackHitbox: {fileID: 1049858996}
   KatanaEnableAnimator: {fileID: 0}
   AttackAnimator: {fileID: 0}
@@ -4059,6 +4065,8 @@ MonoBehaviour:
   currentDamage: 0
   attacking: 0
   stateTime: 0
+  DodgeCoolDown: 1.5
+  DodgeCoolDownTimer: 0
   Kunai: {fileID: 0}
   kunaiPosition: {fileID: 0}
 --- !u!1 &2084857667 stripped
@@ -8824,6 +8832,7 @@ MonoBehaviour:
   playerSpeed: 10
   jumpHeight: 5
   gravityValue: -9.81
+  translationDisabled: 0
 --- !u!143 &5752429590933728021
 CharacterController:
   m_ObjectHideFlags: 0
@@ -10476,6 +10485,7 @@ MonoBehaviour:
   playerSpeed: 10
   jumpHeight: 5
   gravityValue: -9.81
+  translationDisabled: 0
 --- !u!143 &7787373520759822477
 CharacterController:
   m_ObjectHideFlags: 0
