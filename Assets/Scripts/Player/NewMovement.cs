@@ -71,10 +71,10 @@ public class NewMovement : MonoBehaviour
     {
         groundedPlayer = controller.isGrounded;
         
-        if (groundedPlayer && playerVelocity.y < 0)
+        /*if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = gravityValue;
-        }
+        }*/
 
         moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
         

@@ -46,6 +46,8 @@ public class Dodge : CombatState
             // Once the grace period ends, disable further rotation/input
             stateManager.movementController.DisableMovement();
             movementDisabled = true;
+            var rot = Quaternion.LookRotation(dir);
+            stateManager.transform.rotation = rot;
         }
 
         if (dodgeTimer >= iframeEndTime && isInvincible)
@@ -57,7 +59,7 @@ public class Dodge : CombatState
         float t = Mathf.Clamp01(dodgeTimer / stateDuration);
         float easeOut = 1f - t * t;
         
-        stateManager.characterController.Move(dir * dodgeSpeed * easeOut * Time.deltaTime);
+        stateManager.characterController.Move(dodgeSpeed * easeOut * Time.deltaTime * dir);
         
         dodgeTimer += Time.deltaTime;
     }
