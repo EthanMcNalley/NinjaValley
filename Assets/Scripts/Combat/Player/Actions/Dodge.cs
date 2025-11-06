@@ -10,6 +10,7 @@ public class Dodge : CombatState
     private float gracePeriod = 0.05f;
     private bool movementDisabled = false;
     private Vector3 dir;
+    private float gravity = -30f;
     
     public override void EnterState(CombatStateManager stateManager)
     {
@@ -18,6 +19,7 @@ public class Dodge : CombatState
         dodgeTimer = 0f;
         movementDisabled = false;
         isInvincible = true;
+        gravity = stateManager.movementController.gravityValue;
         if (stateManager.healthSystem != null) stateManager.healthSystem.SetInvincible(true);
         stateManager.movementController.SetTranslationDisabled(true);
         
@@ -61,6 +63,10 @@ public class Dodge : CombatState
         
         stateManager.characterController.Move(dodgeSpeed * easeOut * Time.deltaTime * dir);
         
+        //just to keep the player grounded
+        stateManager.characterController.Move(-0.5f * Time.deltaTime * Vector3.up);
+
+
         dodgeTimer += Time.deltaTime;
     }
     
