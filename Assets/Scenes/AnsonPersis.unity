@@ -1252,6 +1252,14 @@ PrefabInstance:
       propertyPath: gravityValue
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 4968851423410113761, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
+      propertyPath: maxJumpHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968851423410113761, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
+      propertyPath: minJumpHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6751356174266540828, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.6
@@ -4108,8 +4116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealthPoint: 100
-  healthPoint: 100
+  currHealthPoint: 100
   isInvincible: 0
+  healthBar: {fileID: 0}
 --- !u!1 &2087478413
 GameObject:
   m_ObjectHideFlags: 0
@@ -8851,6 +8860,9 @@ MonoBehaviour:
   jumpHeight: 5
   gravityValue: -9.81
   translationDisabled: 0
+  minJumpHeight: 0.5
+  maxJumpHeight: 1.5
+  timeToMaxHeight: 0.3
 --- !u!143 &5752429590933728021
 CharacterController:
   m_ObjectHideFlags: 0
@@ -10504,6 +10516,9 @@ MonoBehaviour:
   jumpHeight: 5
   gravityValue: -9.81
   translationDisabled: 0
+  minJumpHeight: 0.5
+  maxJumpHeight: 1.5
+  timeToMaxHeight: 0.3
 --- !u!143 &7787373520759822477
 CharacterController:
   m_ObjectHideFlags: 0

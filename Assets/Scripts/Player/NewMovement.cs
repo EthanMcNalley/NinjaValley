@@ -19,6 +19,17 @@ public class NewMovement : MonoBehaviour
     
     private float rotationSpeed = 20f;
     public bool translationDisabled = false;
+    
+    [Header("Jump")]
+    public float minJumpHeight = 0.5f;
+    public float maxJumpHeight = 1.5f;
+    public float timeToMaxHeight = 0.5f;
+    
+    private float baseGravity;
+    private float initialJumpVelocity;
+    private float minJumpCutVelocity;
+    
+    
 
     [Header("Input Actions")]
     InputAction moveAction;
@@ -38,7 +49,10 @@ public class NewMovement : MonoBehaviour
             lookAction = InputSystem.actions.FindAction("Look");
         }
         
-        Debug.Log(InputSystem.actions);
+        baseGravity = -(2f * maxJumpHeight) / (timeToMaxHeight * timeToMaxHeight);
+        initialJumpVelocity = (2f * maxJumpHeight) / timeToMaxHeight;
+        
+        minJumpCutVelocity = Mathf.Sqrt(2f * Mathf.Abs(baseGravity) * minJumpHeight);
     }
 
     private void OnEnable()
@@ -46,6 +60,12 @@ public class NewMovement : MonoBehaviour
         moveAction.Enable();
         jumpAction.Enable();
         lookAction.Enable();
+        
+        if (jumpAction != null)
+        {
+            jumpAction.performed += OnJumpPerformed;
+            jumpAction.canceled  += OnJumpCanceled;
+        }
     }
 
     private void OnDisable()
@@ -53,6 +73,12 @@ public class NewMovement : MonoBehaviour
         moveAction.Disable();
         jumpAction.Disable();
         lookAction.Disable();
+        
+        if (jumpAction != null)
+        {
+            jumpAction.performed -= OnJumpPerformed;
+            jumpAction.canceled  -= OnJumpCanceled;
+        }
     }
 
     public void EnableMovement()
@@ -65,6 +91,19 @@ public class NewMovement : MonoBehaviour
     {
         moveAction.Disable();
         jumpAction.Disable();
+    }
+
+    private void OnJumpPerformed(InputAction.CallbackContext ctx)
+    {
+        Jump();
+    }
+
+    private void OnJumpCanceled(InputAction.CallbackContext ctx)
+    {
+        if (playerVelocity.y > 0f)
+        {
+            playerVelocity.y = Mathf.Min(playerVelocity.y, minJumpCutVelocity);
+        }
     }
 
     void Update()
@@ -81,21 +120,31 @@ public class NewMovement : MonoBehaviour
         HandleRotation(moveDirection);
         
         animator.SetBool("Moving", moveDirection.magnitude > 0.01f & groundedPlayer);
-        
-        if (jumpAction.triggered && groundedPlayer)
-        {
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-        }
 
         // Apply gravity
-        playerVelocity.y += gravityValue * Time.deltaTime;
+        if (groundedPlayer && playerVelocity.y <= 0f)
+        {
+            playerVelocity.y = -1f;
+        }
+        else
+        {
+            playerVelocity.y += gravityValue * Time.deltaTime;
+
+        }
 
         // Combine horizontal and vertical movement
         Vector3 finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
         controller.Move(finalMove * Time.deltaTime);
         
-        
         animator.SetBool("Jump", !groundedPlayer);
+    }
+
+    private void Jump()
+    {
+        if (!groundedPlayer) return;
+        
+        if (playerVelocity.y < 0f) playerVelocity.y = 0f;
+        playerVelocity.y = initialJumpVelocity;
     }
     
     private void HandleRotation(Vector3 moveDir){
