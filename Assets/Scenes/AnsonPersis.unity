@@ -562,6 +562,11 @@ MonoBehaviour:
       Data3: -1929828179
       Data4: -1880770220
     Path: event:/MusicArea
+--- !u!4 &242300976 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6751356174266540828, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
+  m_PrefabInstance: {fileID: 631092016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &385363366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,6 +1344,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6751356174266540828, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 963194228}
     - targetCorrespondingSourceObject: {fileID: 4352459680086596439, guid: e543e6a491d430b4fbef9c340f05901a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1137996009}
@@ -1581,16 +1589,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.15212338, y: 0, z: 0, w: 0.98836154}
-  m_LocalPosition: {x: 0, y: 0, z: 12.978556}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.15212338, y: -0, z: -0, w: 0.98836154}
+  m_LocalPosition: {x: 0, y: 0, z: -31.24065}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 242300976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.981076, y: 8.799116}
+  m_AnchoredPosition: {x: -4.7621512, y: 17.418232}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963194229
@@ -8863,6 +8871,7 @@ MonoBehaviour:
   minJumpHeight: 0.5
   maxJumpHeight: 1.5
   timeToMaxHeight: 0.3
+  lockedIn: 0
 --- !u!143 &5752429590933728021
 CharacterController:
   m_ObjectHideFlags: 0
@@ -10519,6 +10528,7 @@ MonoBehaviour:
   minJumpHeight: 0.5
   maxJumpHeight: 1.5
   timeToMaxHeight: 0.3
+  lockedIn: 0
 --- !u!143 &7787373520759822477
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11809,7 +11819,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 999236500}
   - {fileID: 631092016}
-  - {fileID: 963194228}
   - {fileID: 385363367}
   - {fileID: 475202061}
   - {fileID: 1394931480}

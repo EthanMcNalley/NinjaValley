@@ -29,7 +29,7 @@ public class NewMovement : MonoBehaviour
     private float initialJumpVelocity;
     private float minJumpCutVelocity;
     
-    
+    public bool lockedIn;
 
     [Header("Input Actions")]
     InputAction moveAction;
@@ -49,6 +49,7 @@ public class NewMovement : MonoBehaviour
             lookAction = InputSystem.actions.FindAction("Look");
         }
         
+        //Like wtf physics is this, just found it online
         baseGravity = -(2f * maxJumpHeight) / (timeToMaxHeight * timeToMaxHeight);
         initialJumpVelocity = (2f * maxJumpHeight) / timeToMaxHeight;
         
@@ -162,7 +163,7 @@ public class NewMovement : MonoBehaviour
     public Vector3 GetInputVector()
     {
         inputVector = moveAction.ReadValue<Vector2>();
-        
+
         Vector3 camForward = cam.forward;
         Vector3 camRight = cam.right;
 
