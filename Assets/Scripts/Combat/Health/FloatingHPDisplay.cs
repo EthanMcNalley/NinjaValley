@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class FloatingHPDisplay : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
+    [SerializeField] private Slider shadowBar;
     private Image healthFillImage;
     public Color maxColor = Color.green;
     public Color minColor = Color.red;
@@ -21,10 +22,13 @@ public class FloatingHPDisplay : MonoBehaviour
         healthFillImage.color = maxColor;
     }
     
-    public void UpdateHealthBar(float currHealth, float maxHealth)
+    public void UpdateHealthBar(float currHealth, float maxHealth, float shadowDamage)
     {
-        ratio = Mathf.Clamp01(currHealth / maxHealth);
+        ratio = Mathf.Clamp01((currHealth - shadowDamage) / maxHealth);
         healthBar.value = ratio;
+        
+        ratio = Mathf.Clamp01(currHealth / maxHealth);
+        shadowBar.value = ratio;
         
         adjustedRatio = Mathf.Pow(ratio, 1.3f);
         healthFillImage.color = Color.Lerp(minColor, maxColor, adjustedRatio);
@@ -32,7 +36,8 @@ public class FloatingHPDisplay : MonoBehaviour
 
     public void UpdateShadowBar(float currHealth, float maxHealth)
     {
-        
+        ratio = Mathf.Clamp01(currHealth / maxHealth);
+        shadowBar.value = ratio;
     }
 
     void Update()

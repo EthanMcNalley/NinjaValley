@@ -50,8 +50,9 @@ public class EnemyHealth : HealthSystem
         if (playerShadowMode)
         {
             damageDuringShadow += damage;
+            damageBurst = damageDuringShadow * shadowMultiplyPersentage;
         }
-        healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint);
+        healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint, damageBurst);
     }
 
     protected override void Dead()
@@ -62,10 +63,10 @@ public class EnemyHealth : HealthSystem
 
     void BurstShadowDamage()
     {
-        damageBurst = damageDuringShadow * shadowMultiplyPersentage;
         currHealthPoint -= damageBurst;
-        healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint);
+        healthBar.UpdateShadowBar(currHealthPoint, maxHealthPoint);
         
+        damageDuringShadow = 0f;
         Debug.Log(this.name+ " took " + damageBurst + " shadow burst damage");
     }
 }
