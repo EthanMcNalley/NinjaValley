@@ -26,17 +26,19 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _APPLY_AMBIENT_NO
-  - _APPLY_BUMP_NO
+  - _APPLY_BUMP_YES
   - _APPLY_COLOR_CORRECTION_NO
-  - _APPLY_FLAT_SHADING_YES
+  - _APPLY_FLAT_SHADING_NO
+  - _APPLY_OUTLINE_NO
   - _APPLY_REFLECTION_NO
-  - _APPLY_RIM_NO
+  - _APPLY_RIM_YES
   - _APPLY_SPECULAR_NO
   - _APPLY_TOON_YES
+  - _APPLY_WATERCOLOR_SHADING_YES
   m_InvalidKeywords:
   - _APPLY_WATER_A
   - _WATER_TYPE_A
-  m_LightmapFlags: 4
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -60,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Bump_texture:
-        m_Texture: {fileID: 2800000, guid: 9ddd51ec9afda4c3b95efec462787b9c, type: 3}
+        m_Texture: {fileID: 2800000, guid: bbf6be84d6180a94c89c86fb3bc9d33a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Cubemap:
@@ -112,7 +114,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Toon_ramp:
-        m_Texture: {fileID: 2800000, guid: dcf8782a2d84b30428674ea21f7c7205, type: 3}
+        m_Texture: {fileID: 2800000, guid: ecb6390580f5e3f4c99d9806dd8b231b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Watercolor_texture:
+        m_Texture: {fileID: 2800000, guid: bbf6be84d6180a94c89c86fb3bc9d33a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -130,14 +136,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _APPLY_AMBIENT: 0
-    - _APPLY_BUMP: 0
+    - _APPLY_BUMP: 1
     - _APPLY_COLOR_CORRECTION: 0
-    - _APPLY_FLAT_SHADING: 1
+    - _APPLY_FLAT_SHADING: 0
+    - _APPLY_OUTLINE: 0
     - _APPLY_REFLECTION: 0
-    - _APPLY_RIM: 0
+    - _APPLY_RIM: 1
     - _APPLY_SPECULAR: 0
     - _APPLY_TOON: 1
     - _APPLY_WATER: 0
+    - _APPLY_WATERCOLOR_SHADING: 1
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
@@ -145,7 +153,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _Brightness: 10
     - _BumpScale: 1
-    - _Bump_amount: 1
+    - _Bump_amount: 10
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Contribution: 0
@@ -156,19 +164,21 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _Fade_distance: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _Outline_thickness: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Reflection_blend: 1
     - _Reflection_intensity: 1
-    - _Rim_glow: 10
-    - _Rim_power: 5
+    - _Rim_glow: -20
+    - _Rim_power: 10
     - _Ripple_density: 5
     - _Ripple_egde_sharpness: 0.35
     - _Ripple_shininess: 5
@@ -181,6 +191,8 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WATER_TYPE: 0
+    - _Watercolor_blend: 20
+    - _Watercolor_tiling: 15
     - _Wave_height: 0
     - _WorkflowMode: 0
     - _ZWrite: 1
@@ -190,11 +202,13 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
-    - _Rim_color: {r: 0.47450978, g: 1, b: 1, a: 1}
+    - _Outline_color: {r: 0, g: 0, b: 0, a: 0}
+    - _Rim_color: {r: 1, g: 1, b: 1, a: 1}
     - _Ripple_color: {r: 0, g: 1, b: 1, a: 0}
     - _Ripple_tiling: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_color: {r: 1, g: 1, b: 1, a: 0}
     - _Tiling: {r: 2, g: 1, b: 0, a: 0}
+    - _Watercolor_tiling: {r: 10, g: 15, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
