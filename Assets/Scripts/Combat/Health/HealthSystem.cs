@@ -3,13 +3,11 @@ using UnityEngine.UI;
 
 public abstract class HealthSystem : MonoBehaviour
 {
-    public float maxHealthPoint = 100f;
-    public float currHealthPoint = 100f;
+    public float maxHealthPoint = 10f;
+    public float currHealthPoint = 10f;
     private bool isDead = false;
 
     public bool isInvincible;
-    
-    public FloatingHPDisplay healthBar;
 
     public void SetInvincible(bool isInvincible) =>
         this.isInvincible = isInvincible; //just found this is a short version

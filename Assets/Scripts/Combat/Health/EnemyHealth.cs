@@ -10,6 +10,8 @@ public class EnemyHealth : HealthSystem
     private float damageDuringShadow;
     private float damageBurst;
     
+    public FloatingHPDisplay healthBar;
+    
     void Start()
     {
         healthBar = GetComponentInChildren<FloatingHPDisplay>();

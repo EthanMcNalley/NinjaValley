@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class PathController : MonoBehaviour
 {
     Transform playerPos;
-    public PathManager pathManager;
+    //public PathManager pathManager;
     public float waitTime = 2.5f;
     Waypoint targetPoints;
     private NavMeshAgent agent;
@@ -30,7 +30,7 @@ public class PathController : MonoBehaviour
             target = patrolPoints[0];
             
         }
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -79,7 +79,7 @@ public class PathController : MonoBehaviour
 
             isChasing = false;
         }
-       //rotateTowardsTarget();
+        //rotateTowardsTarget();
     }
 
 
