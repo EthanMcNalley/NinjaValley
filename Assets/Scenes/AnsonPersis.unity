@@ -4197,12 +4197,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee375e368bd43a48ac0c53fa5c7c35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShadowAssassin
-  currentShadowMeter: 0
+  currentShadowMeter: 100
   maxShadowMeter: 100
   shadowAssassinDuration: 6
   shadowAssassinDamagePercentage: 0.3
   shadowReady: 1
   shadowActive: 0
+  shadowBarSlider: {fileID: 906732822}
+  timer: 0
 --- !u!114 &2084857679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4218,7 +4220,9 @@ MonoBehaviour:
   maxHealthPoint: 100
   currHealthPoint: 100
   isInvincible: 0
-  healthBar: {fileID: 0}
+  healthBarSlider: {fileID: 1841325613}
+  maxColor: {r: 0, g: 1, b: 0, a: 1}
+  minColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &2087478413
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ public class EnemyHealth : HealthSystem
 
     protected override void Dead()
     {
-        
+        Destroy(gameObject);
     }
     
 

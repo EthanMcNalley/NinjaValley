@@ -20,12 +20,14 @@ public class CombatStateManager : MonoBehaviour
     [Header ("Hitbox Stuff")]
     public CharacterController characterController;
     public HealthSystem healthSystem;
+    public ShadowAssassin shadowAssassin;
     public NewMovement movementController;
     public GameObject GroundAttackHitbox;
     public Animator KatanaEnableAnimator;
     public Animator AttackAnimator;
     public Collider GroundHitboxCollider;
     public float currentDamage;
+    public float shadowCharge;
     
     //Input Stuff
     [Header ("Input Stuff")]
@@ -55,6 +57,7 @@ public class CombatStateManager : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         movementController = GetComponent<NewMovement>();
         healthSystem =  GetComponent<HealthSystem>();
+        shadowAssassin = GetComponent<ShadowAssassin>();
         KatanaEnableAnimator = GroundAttackHitbox.GetComponent<Animator>();
         GroundHitboxCollider = GroundAttackHitbox.gameObject.GetComponent<Collider>();
 
@@ -138,6 +141,11 @@ public class CombatStateManager : MonoBehaviour
     public float GetDamage()
     {
         return currentDamage;
+    }
+
+    public float GetShadowCharge()
+    {
+        return shadowCharge;
     }
 
     public void ContinueCombo(CombatState nextState)

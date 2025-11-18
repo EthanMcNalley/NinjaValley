@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent(typeof(CombatStateManager))]
@@ -14,6 +15,11 @@ public class ShadowAssassin : MonoBehaviour
     public bool shadowReady;
     public bool shadowActive;
     
+    public Slider shadowBarSlider;
+    private Image shadowBarImage;
+    private float ratio;
+    private float timer;
+    
     private Coroutine shadowCoroutine;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,6 +29,7 @@ public class ShadowAssassin : MonoBehaviour
         {
             combatStateManager = GetComponent<CombatStateManager>();
         }
+        timer = shadowAssassinDuration;
     }
 
     // Update is called once per frame
@@ -37,6 +44,17 @@ public class ShadowAssassin : MonoBehaviour
         {
             ExitShadowAssassin();
         }
+
+        if (TimeManager.time_state == TimeManager.TimeState.SLOWED && shadowActive)
+        {
+            timer -= Time.deltaTime;
+            ratio = Mathf.Clamp01( timer / shadowAssassinDuration);
+            shadowBarSlider.value = ratio;
+            
+        }
+        
+        /*ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
+        shadowBarSlider.value = ratio;*/
     }
 
     private void EnterShadowAssassin()
@@ -49,7 +67,8 @@ public class ShadowAssassin : MonoBehaviour
             
         shadowReady = false;
         shadowActive = true;
-
+        timer = shadowAssassinDuration;
+        
         //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
 
@@ -81,7 +100,7 @@ public class ShadowAssassin : MonoBehaviour
     private void EndShadowAssassin()
     {
         shadowActive = false;
-        
+        currentShadowMeter = 0f;
         //revert any effects like screen and vfx stuff here if we have it...
         
         CombatEvents.RaiseShadowAssassinEnded();
@@ -103,5 +122,8 @@ public class ShadowAssassin : MonoBehaviour
         {
             shadowReady = true;
         }
+        
+        ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
+        shadowBarSlider.value = ratio;
     }
 }
