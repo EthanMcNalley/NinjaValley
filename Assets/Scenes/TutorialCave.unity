@@ -131,8 +131,9 @@ GameObject:
   - component: {fileID: 267338711}
   - component: {fileID: 267338710}
   - component: {fileID: 267338709}
+  - component: {fileID: 267338713}
   m_Layer: 0
-  m_Name: SceneUnloadTrigger
+  m_Name: SceneLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +154,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -224,12 +225,33 @@ Transform:
   m_GameObject: {fileID: 267338708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -7.33, y: -207.3, z: 429.45}
+  m_LocalScale: {x: 24.423, y: 24.423, z: 24.423}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &267338713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267338708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960d9b882d83749f8ade0773f8f40921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
+  scenes_to_load:
+  - m_SceneAsset: {fileID: 0}
+    m_SceneName: 
+  scenes_to_unload:
+  - m_SceneAsset: {fileID: 102900000, guid: 9c3e6772f025f4024bfa06960c130926, type: 3}
+    m_SceneName: CharleenTestScene
+  persistables_scene:
+    m_SceneAsset: {fileID: 0}
+    m_SceneName: 
 --- !u!1001 &1566547446
 PrefabInstance:
   m_ObjectHideFlags: 0
