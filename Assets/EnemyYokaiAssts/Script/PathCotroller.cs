@@ -10,6 +10,7 @@ public class PathController : MonoBehaviour
     public float waitTime = 2.5f;
     Waypoint targetPoints;
     private NavMeshAgent agent;
+    public float movementSpeed;
     public float RotateSpeed;
     public Animator animator;
     bool isWalking;
@@ -20,6 +21,8 @@ public class PathController : MonoBehaviour
     public GameObject[] patrolPoints;
     public int prevIndex = -1;
     public Transform rotateNode;
+    
+    public float shadowSlow = 0.1f;
 
     void Start()
     {
@@ -31,8 +34,35 @@ public class PathController : MonoBehaviour
             
         }
         player = GameObject.FindGameObjectWithTag("Player");
+        agent.speed = movementSpeed;
     }
 
+    private void OnEnable()
+    {
+        CombatEvents.ShadowAssassinStarted += OnShadowStart;
+        CombatEvents.ShadowAssassinEnded += OnShadowEnd;
+    }
+
+    private void OnDisable()
+    {
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+    }
+
+    void OnShadowStart()
+    {
+        animator.SetFloat("Speed", shadowSlow);
+        agent.speed = movementSpeed * shadowSlow;
+        agent.angularSpeed *= shadowSlow;
+    }
+
+    void OnShadowEnd()
+    {
+        animator.SetFloat("Speed", 1f);
+        agent.speed = movementSpeed / shadowSlow;
+        agent.angularSpeed /= shadowSlow;
+    }
+    
     // Update is called once per frame
     void Update()
     {
