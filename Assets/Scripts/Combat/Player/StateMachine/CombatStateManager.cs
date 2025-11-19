@@ -40,7 +40,7 @@ public class CombatStateManager : MonoBehaviour
     private float bufferDurationTimer = 1f;
     
     [Header ("Dodge Stuff")]
-    public float DodgeCoolDown = 1.5f;
+    public float DodgeCoolDown = 1f;
     public float DodgeCoolDownTimer = 0f;
     private float lastDodgeTime = 0f;
     

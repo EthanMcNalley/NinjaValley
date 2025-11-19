@@ -37,6 +37,7 @@ public class EnemyHealth : HealthSystem
         playerShadowMode = true;
         shadowMultiplyPersentage = shadowAssassin.shadowAssassinDamagePercentage;
         damageDuringShadow = 0f;
+        damageBurst = 0f;
     }
 
     void OnShadowEnd()
@@ -55,6 +56,7 @@ public class EnemyHealth : HealthSystem
             damageBurst = damageDuringShadow * shadowMultiplyPersentage;
         }
         healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint, damageBurst);
+        
     }
 
     protected override void Dead()
@@ -69,6 +71,7 @@ public class EnemyHealth : HealthSystem
         healthBar.UpdateShadowBar(currHealthPoint, maxHealthPoint);
         
         damageDuringShadow = 0f;
+        damageBurst = 0f;
         Debug.Log(this.name+ " took " + damageBurst + " shadow burst damage");
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PathController : MonoBehaviour
 {
     Transform playerPos;
+    
     //public PathManager pathManager;
     public float waitTime = 2.5f;
     Waypoint targetPoints;
@@ -125,6 +126,7 @@ public class PathController : MonoBehaviour
     public void Attack()
     {
         animator.SetTrigger("Attack");
+        agent.speed = 0;
     }
 
     public void HitBoxOn()
@@ -154,12 +156,13 @@ public class PathController : MonoBehaviour
         {
             Attack();
             isAttacking = true;
-
         }
     }
 
     public void checkAttack()
     {
         isAttacking = false;
+        agent.speed = movementSpeed;
+        animator.ResetTrigger("Attack");
     }
 }
