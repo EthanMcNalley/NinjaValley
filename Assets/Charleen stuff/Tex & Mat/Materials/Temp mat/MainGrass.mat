@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: bush bark
+  m_Name: MainGrass
   m_Shader: {fileID: -6465566751694194690, guid: e193b5ea4da71b24990b1153a3ca899c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,10 +29,12 @@ Material:
   - _APPLY_BUMP_NO
   - _APPLY_COLOR_CORRECTION_NO
   - _APPLY_FLAT_SHADING_YES
+  - _APPLY_OUTLINE_NO
   - _APPLY_REFLECTION_NO
   - _APPLY_RIM_NO
   - _APPLY_SPECULAR_NO
   - _APPLY_TOON_YES
+  - _APPLY_WATERCOLOR_SHADING_NO
   m_InvalidKeywords:
   - _APPLY_WATER_A
   - _WATER_TYPE_A
@@ -115,6 +117,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: dcf8782a2d84b30428674ea21f7c7205, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Watercolor_texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -133,11 +139,13 @@ Material:
     - _APPLY_BUMP: 0
     - _APPLY_COLOR_CORRECTION: 0
     - _APPLY_FLAT_SHADING: 1
+    - _APPLY_OUTLINE: 0
     - _APPLY_REFLECTION: 0
     - _APPLY_RIM: 0
     - _APPLY_SPECULAR: 0
     - _APPLY_TOON: 1
     - _APPLY_WATER: 0
+    - _APPLY_WATERCOLOR_SHADING: 0
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
@@ -156,11 +164,13 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _Fade_distance: 15
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _Outline_thickness: 0.01
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -181,13 +191,14 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WATER_TYPE: 0
+    - _Watercolor_blend: 1
     - _Wave_height: 0
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Base_color: {r: 0.493859, g: 0.49458948, b: 0.5849056, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Base_color: {r: 0.16867264, g: 0.4433962, b: 0.14012992, a: 1}
+    - _Color: {r: 0.67630833, g: 0.8324821, b: 0.9622642, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
     - _Rim_color: {r: 0.47450978, g: 1, b: 1, a: 1}
@@ -195,6 +206,7 @@ Material:
     - _Ripple_tiling: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_color: {r: 1, g: 1, b: 1, a: 0}
-    - _Tiling: {r: 2, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 5, b: 0, a: 0}
+    - _Watercolor_tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
