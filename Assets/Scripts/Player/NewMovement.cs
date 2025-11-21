@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class NewMovement : MonoBehaviour
 { 
     public float playerSpeed = 5.0f;
-    public float jumpHeight = 1.5f;
     public float gravityValue = -9.81f;
 
     private CharacterController controller;
