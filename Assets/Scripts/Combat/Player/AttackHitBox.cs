@@ -33,14 +33,14 @@ public class AttackHitBox : MonoBehaviour
             HealthSystem enemy = other.GetComponent<HealthSystem>();
             if (enemy == null) return;
                 
-            if (enemyHitted.Contains(gameObject)) return;
+            if (enemyHitted.Contains(other.gameObject)) return;
             
             float damage = CombatStateManager.GetDamage();
             float charge = CombatStateManager.GetShadowCharge();
             
             enemy.TakeDamage(damage);
             CombatStateManager.shadowAssassin.UpdateShadowMeter(charge);
-            enemyHitted.Add(gameObject);
+            enemyHitted.Add(other.gameObject);
         }
     }
 }
