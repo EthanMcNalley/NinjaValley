@@ -27,6 +27,6 @@ public class GroundAttack1 : CombatState
 
     public override void ExitState(CombatStateManager stateManager)
     {
-
+        stateManager.movementController.EnableMovement();
     }
 }

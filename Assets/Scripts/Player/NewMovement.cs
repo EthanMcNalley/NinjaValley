@@ -125,14 +125,11 @@ public class NewMovement : MonoBehaviour
         // Apply gravity
         if (groundedPlayer && playerVelocity.y <= 0f)
         {
-            playerVelocity.y = -10f;
-        }
-        else
-        {
-            playerVelocity.y += gravityValue * Time.deltaTime;
-
+            playerVelocity.y = -2f;
         }
 
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        
         // Combine horizontal and vertical movement
         Vector3 finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
         controller.Move(finalMove * Time.deltaTime);
@@ -181,5 +178,15 @@ public class NewMovement : MonoBehaviour
     public void SetTranslationDisabled(bool disabled)
     {
         translationDisabled = disabled;
+    }
+
+    public void SetGravity(bool disabled)
+    {
+        if  (!groundedPlayer) return;
+
+        if (disabled)
+        {
+            
+        }
     }
 }
