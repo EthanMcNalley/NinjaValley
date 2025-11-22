@@ -10,7 +10,7 @@ public class NewMovement : MonoBehaviour
 
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private bool groundedPlayer;
+    [SerializeField]private bool groundedPlayer;
     private Transform cam;
     private Vector2 inputVector;
     private Vector3 moveDirection;
@@ -125,7 +125,7 @@ public class NewMovement : MonoBehaviour
         // Apply gravity
         if (groundedPlayer && playerVelocity.y <= 0f)
         {
-            playerVelocity.y = -1f;
+            playerVelocity.y = -10f;
         }
         else
         {
