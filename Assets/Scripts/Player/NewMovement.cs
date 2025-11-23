@@ -15,9 +15,9 @@ public class NewMovement : MonoBehaviour
     private Vector2 inputVector;
     private Vector3 moveDirection;
     private Animator animator;
+    public static bool controllable = true;
     
-    
-    private float rotationSpeed = 20f;
+    public float rotationSpeed = 20f;
     public bool translationDisabled = false;
     
     [Header("Jump")]
@@ -96,14 +96,18 @@ public class NewMovement : MonoBehaviour
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx)
     {
-        Jump();
+        if (controllable){
+            Jump();
+        }
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext ctx)
     {
-        if (playerVelocity.y > 0f)
-        {
-            playerVelocity.y = Mathf.Min(playerVelocity.y, minJumpCutVelocity);
+        if (controllable){
+            if (playerVelocity.y > 0f)
+            {
+                playerVelocity.y = Mathf.Min(playerVelocity.y, minJumpCutVelocity);
+            }
         }
     }
 
@@ -116,23 +120,25 @@ public class NewMovement : MonoBehaviour
             playerVelocity.y = gravityValue;
         }*/
 
-        moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
+        if (controllable){
+            moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
         
-        HandleRotation(moveDirection);
-        
-        animator.SetBool("Moving", moveDirection.magnitude > 0.01f & groundedPlayer);
+            HandleRotation(moveDirection);
+            
+            animator.SetBool("Moving", moveDirection.magnitude > 0.01f & groundedPlayer);
 
-        // Apply gravity
-        if (groundedPlayer && playerVelocity.y <= 0f)
-        {
-            playerVelocity.y = -2f;
+            // Apply gravity
+            if (groundedPlayer && playerVelocity.y <= 0f)
+            {
+                playerVelocity.y = -2f;
+            }
+
+            playerVelocity.y += gravityValue * Time.deltaTime;
+            
+            // Combine horizontal and vertical movement
+            Vector3 finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
+            controller.Move(finalMove * Time.deltaTime);
         }
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        
-        // Combine horizontal and vertical movement
-        Vector3 finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
-        controller.Move(finalMove * Time.deltaTime);
         
         animator.SetBool("Jump", !groundedPlayer);
     }

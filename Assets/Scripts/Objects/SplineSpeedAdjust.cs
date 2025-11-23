@@ -4,12 +4,11 @@ using UnityEngine.Splines;
 public class SplineSpeedAdjust : MonoBehaviour
 {
     SplineAnimate splineAnim;
-    float original_speed;
+    public float original_speed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         splineAnim = GetComponent<SplineAnimate>();
-        original_speed = splineAnim.MaxSpeed;
     }
     private void UpdatePathSpeed()
     {
@@ -23,5 +22,9 @@ public class SplineSpeedAdjust : MonoBehaviour
     void Update()
     {
         UpdatePathSpeed();
+    }
+
+    public void ChangeOriginalSpeed(float new_speed){
+        original_speed = new_speed;
     }
 }

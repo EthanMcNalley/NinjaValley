@@ -2,19 +2,37 @@ using UnityEngine;
 using Unity.Cinemachine;
 public class CameraMoveTrigger : MonoBehaviour
 {
+    public float increase_size = 5;
+    public bool cutscene = false;
     public CinemachineCamera cinemachine_camera;
+    CutsceneBars cutscene_bars;
     void Start(){
-        cinemachine_camera = GetComponent<CinemachineCamera>();
+        cutscene_bars = GameObject.FindGameObjectWithTag("UIManager").GetComponent<CutsceneBars>();
     }
     void OnTriggerEnter(Collider collider){
         if (collider.CompareTag("Player")){
-            cinemachine_camera.Priority = 10;
+            if (cutscene){
+                cutscene_bars.ActivateCutscene(3);
+                cinemachine_camera.GetComponent<CutsceneCamera>().FocusCameraSwitch(3);
+            }
+
+            else{
+                cinemachine_camera.Priority = 10;
+                transform.localScale = transform.localScale + (Vector3.one * increase_size);
+            }
         }
     }
 
     void OnTriggerExit(Collider collider){
         if (collider.CompareTag("Player")){
-            cinemachine_camera.Priority = 0;
+            if (cutscene){
+                Destroy(gameObject);
+            }
+
+            else{
+                cinemachine_camera.Priority = 0;
+                transform.localScale = transform.localScale - (Vector3.one * increase_size);
+            }
         }
     }
 }
