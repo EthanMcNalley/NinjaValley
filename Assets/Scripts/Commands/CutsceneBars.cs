@@ -5,6 +5,7 @@ public class CutsceneBars : MonoBehaviour
     public static CutsceneState cutscene_state;
     public Animator cutscene_bars;
     public float active_timer = 0.0f;
+    public Animator UI_scroll_animator;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,10 +37,13 @@ public class CutsceneBars : MonoBehaviour
 
         if (cutscene_state == CutsceneState.ACTIVE){
             cutscene_bars.SetBool("Active", true);
+            UI_scroll_animator.SetBool("Fold", true);
         }
 
         else{
             cutscene_bars.SetBool("Active", false);
+            UI_scroll_animator.SetBool("Fold", false);
+            //THIS WILL CAUSE ISSUES LATER ON, AND WILL LIKELY MAKE THE PLAYER CONTROLLABLE EVEN WHEN THEYRE NOT SUPPOSED TO, REMEMBER THIS WHEN THAT HAPPENS
         }
     }
 
