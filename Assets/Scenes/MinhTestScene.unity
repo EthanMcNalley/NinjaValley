@@ -150,98 +150,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 238324741}
   m_LocalEulerAnglesHint: {x: 5.345443, y: 14.199437, z: -9.163607}
---- !u!1 &181018336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 181018339}
-  - component: {fileID: 181018338}
-  - component: {fileID: 181018337}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &181018337
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181018336}
-  m_Enabled: 1
---- !u!20 &181018338
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181018336}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &181018339
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181018336}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &206106228
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathController
   waitTime: 2.5
+  movementSpeed: 0
   RotateSpeed: 0
   animator: {fileID: 0}
   distToPlayer: 0
@@ -587,6 +496,7 @@ MonoBehaviour:
   - {fileID: 1212795920}
   prevIndex: -1
   rotateNode: {fileID: 0}
+  shadowSlow: 0.1
 --- !u!1 &481776825
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathController
   waitTime: 2.5
+  movementSpeed: 0
   RotateSpeed: 0
   animator: {fileID: 0}
   distToPlayer: 0
@@ -977,6 +888,7 @@ MonoBehaviour:
   - {fileID: 1212795920}
   prevIndex: -1
   rotateNode: {fileID: 0}
+  shadowSlow: 0.1
 --- !u!195 &738517354
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1668,6 +1580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathController
   waitTime: 2.5
+  movementSpeed: 0
   RotateSpeed: 2
   animator: {fileID: 1357137027}
   distToPlayer: 0
@@ -1682,6 +1595,7 @@ MonoBehaviour:
   - {fileID: 1212795920}
   prevIndex: -1
   rotateNode: {fileID: 0}
+  shadowSlow: 0.1
 --- !u!1001 &1614097063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2402,6 +2316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathController
   waitTime: 2.5
+  movementSpeed: 0
   RotateSpeed: 10
   animator: {fileID: 2041754121}
   distToPlayer: 0
@@ -2416,6 +2331,7 @@ MonoBehaviour:
   - {fileID: 1212795920}
   prevIndex: 0
   rotateNode: {fileID: 0}
+  shadowSlow: 0.1
 --- !u!1 &919132149577701600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3418,6 +3334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathController
   waitTime: 2.5
+  movementSpeed: 0
   RotateSpeed: 3
   animator: {fileID: 0}
   distToPlayer: 0
@@ -3432,6 +3349,7 @@ MonoBehaviour:
   - {fileID: 1212795920}
   prevIndex: -1
   rotateNode: {fileID: 0}
+  shadowSlow: 0.1
 --- !u!4 &7787299052113377127
 Transform:
   m_ObjectHideFlags: 0
@@ -3634,7 +3552,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 181018339}
   - {fileID: 206106230}
   - {fileID: 355433110}
   - {fileID: 1175903940}
