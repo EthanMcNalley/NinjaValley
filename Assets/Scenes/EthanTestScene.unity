@@ -570,7 +570,7 @@ Transform:
   m_GameObject: {fileID: 163478518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.02, y: 1.29, z: -2.36}
+  m_LocalPosition: {x: -3.02, y: 2.69, z: -2.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2437,6 +2437,9 @@ MonoBehaviour:
   - m_SceneAsset: {fileID: 102900000, guid: d9621280ebae94b53b1c5ec968c02222, type: 3}
     m_SceneName: LoadTestScene
   scenes_to_unload: []
+  persistables_scene:
+    m_SceneAsset: {fileID: 0}
+    m_SceneName: 
 --- !u!65 &1533909885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3195,12 +3198,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7426739683345471715, guid: 353f162647f1c4d3a9eb2caf3839a314, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426739683345471715, guid: 353f162647f1c4d3a9eb2caf3839a314, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426739683345471715, guid: 353f162647f1c4d3a9eb2caf3839a314, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426739683345471715, guid: 353f162647f1c4d3a9eb2caf3839a314, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.30706024
       objectReference: {fileID: 0}
     - target: {fileID: 7426739683345471715, guid: 353f162647f1c4d3a9eb2caf3839a314, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.034065
+      value: 5.96
       objectReference: {fileID: 0}
     - target: {fileID: 7426739683345471715, guid: 353f162647f1c4d3a9eb2caf3839a314, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3243,6 +3258,106 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 353f162647f1c4d3a9eb2caf3839a314, type: 3}
+--- !u!1001 &8419925415634062105
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 681413650977858387, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: switch_action.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 681413650977858387, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: switch_action.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8419925415634062106}
+    - target: {fileID: 681413650977858387, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: switch_action.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartSwitchCutscene
+      objectReference: {fileID: 0}
+    - target: {fileID: 681413650977858387, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: switch_action.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PuzzleSwitch, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 681413650977858387, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: switch_action.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 681413650977858387, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: switch_action.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 34.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921398197018987557, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464102411089482628, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_Name
+      value: CrystalLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092511675490985565, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: m_Name
+      value: PuzzleSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924856352002524179, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bedf2255c3f2d4e9ebe55d1566c580d5, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+--- !u!114 &8419925415634062106 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 681413650977858387, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
+  m_PrefabInstance: {fileID: 8419925415634062105}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de7c797f27414c85b27df8424cafdf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleSwitch
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3277,3 +3392,4 @@ SceneRoots:
   - {fileID: 512201361}
   - {fileID: 5094187862202674981}
   - {fileID: 66493992}
+  - {fileID: 8419925415634062105}
