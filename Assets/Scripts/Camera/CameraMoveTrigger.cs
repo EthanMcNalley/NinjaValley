@@ -12,8 +12,8 @@ public class CameraMoveTrigger : MonoBehaviour
     void OnTriggerEnter(Collider collider){
         if (collider.CompareTag("Player")){
             if (cutscene){
-                cutscene_bars.ActivateCutscene(3);
-                cinemachine_camera.GetComponent<CutsceneCamera>().FocusCameraSwitch(3);
+                cutscene_bars.ActivateCutscene(cinemachine_camera.GetComponent<CutsceneCamera>().focusing_time);
+                cinemachine_camera.GetComponent<CutsceneCamera>().FocusCameraSwitch(cinemachine_camera.GetComponent<CutsceneCamera>().focusing_time);
             }
 
             else{

@@ -119,6 +119,7 @@ public class NewMovement : MonoBehaviour
         {
             playerVelocity.y = gravityValue;
         }*/
+        Vector3 finalMove;
 
         if (controllable){
             moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
@@ -136,9 +137,13 @@ public class NewMovement : MonoBehaviour
             playerVelocity.y += gravityValue * Time.deltaTime;
             
             // Combine horizontal and vertical movement
-            Vector3 finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
-            controller.Move(finalMove * Time.deltaTime);
+            finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
         }
+
+        else{
+            finalMove = (moveDirection * 0) + (playerVelocity.y * Vector3.up);
+        }
+        controller.Move(finalMove * Time.deltaTime);
         
         animator.SetBool("Jump", !groundedPlayer);
     }

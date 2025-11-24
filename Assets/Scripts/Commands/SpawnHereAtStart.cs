@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class SpawnHereAtStart : MonoBehaviour
 {
+    Transform spawn_point;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        spawn_point = GetComponent<Transform>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = spawn_point.position;
     }
 }
