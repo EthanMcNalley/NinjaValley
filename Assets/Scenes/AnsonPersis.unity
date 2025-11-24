@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63072b12e56806e48bf5b19d87f7c666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackHitBox
-  CombatStateManager: {fileID: 8253815643632512712}
+  CombatStateManager: {fileID: 1114144295919848659}
   katanaTrail: {fileID: 1533452259}
 --- !u!65 &962073182
 BoxCollider:
@@ -1613,7 +1613,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.1521234, y: 0, z: 0, w: 0.98836154}
-  m_LocalPosition: {x: 0, y: 0, z: -2.4036446}
+  m_LocalPosition: {x: 0, y: 0, z: 7.0150757}
   m_LocalScale: {x: 0.95238096, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1621,7 +1621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.591522, y: 29.843645}
+  m_AnchoredPosition: {x: -3.93, y: 10.679646}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963194229
@@ -3146,7 +3146,7 @@ Transform:
   m_GameObject: {fileID: 1027097147}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1521234, y: 0, z: 0, w: 0.98836154}
-  m_LocalPosition: {x: 9.591522, y: 29.843645, z: -2.4036446}
+  m_LocalPosition: {x: -3.93, y: 10.679646, z: 7.0150757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3519,11 +3519,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CombatStateManager: {fileID: 1897112699}
   katanaTrail: {fileID: 0}
---- !u!1 &1137996008 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2840463173752369735, guid: f47ccb2007d472648b62eb4acfcfd1f5, type: 3}
-  m_PrefabInstance: {fileID: 4096774571334657024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1139298226
 GameObject:
   m_ObjectHideFlags: 0
@@ -4946,8 +4941,8 @@ Transform:
   m_GameObject: {fileID: 1114144295919848658}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.231523, y: 20.83, z: 21.29528}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: -3.45, y: 2.04, z: 30.75}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1964005093787493750}
@@ -5356,10 +5351,10 @@ MonoBehaviour:
   healthSystem: {fileID: 0}
   shadowAssassin: {fileID: 0}
   movementController: {fileID: 0}
-  GroundAttackHitbox: {fileID: 8393827685807052156}
-  KatanaEnableAnimator: {fileID: 4298939659566558550}
-  AttackAnimator: {fileID: 1216447200036661667}
-  GroundHitboxCollider: {fileID: 8927226561271012618}
+  GroundAttackHitbox: {fileID: 962073177}
+  KatanaEnableAnimator: {fileID: 962073180}
+  AttackAnimator: {fileID: 1114144295919848664}
+  GroundHitboxCollider: {fileID: 962073182}
   currentDamage: 0
   shadowCharge: 0
   attacking: 0
@@ -5367,7 +5362,7 @@ MonoBehaviour:
   DodgeCoolDown: 1
   DodgeCoolDownTimer: 0
   Kunai: {fileID: 2513444036954186253, guid: 2f25f3108c1be9145ab9e91dda7946ee, type: 3}
-  kunaiPosition: {fileID: 1137996008}
+  kunaiPosition: {fileID: 489424986}
 --- !u!114 &1114144295919848660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5539,11 +5534,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1216447200036661667 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4446364397549092687, guid: f47ccb2007d472648b62eb4acfcfd1f5, type: 3}
-  m_PrefabInstance: {fileID: 4096774571334657024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1228648334749855758
 GameObject:
   m_ObjectHideFlags: 0
@@ -7462,11 +7452,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &4298939659566558550 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 97949698912710397, guid: f47ccb2007d472648b62eb4acfcfd1f5, type: 3}
-  m_PrefabInstance: {fileID: 4096774571334657024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!222 &4310018453555785104
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9677,17 +9662,6 @@ RectTransform:
   m_AnchoredPosition: {x: -4, y: 155}
   m_SizeDelta: {x: 743, y: 141}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8253815643632512712 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3763616421979438100, guid: f47ccb2007d472648b62eb4acfcfd1f5, type: 3}
-  m_PrefabInstance: {fileID: 4096774571334657024}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f2cd6e11ea15f409c172a8e85cef39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatStateManager
 --- !u!114 &8306664980516578449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9826,11 +9800,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &8393827685807052156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6524899672180989449, guid: f47ccb2007d472648b62eb4acfcfd1f5, type: 3}
-  m_PrefabInstance: {fileID: 4096774571334657024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!222 &8401056480653781916
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10191,11 +10160,6 @@ Transform:
   - {fileID: 6744782784590017980}
   m_Father: {fileID: 207702421522809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8927226561271012618 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 3569694562979538376, guid: f47ccb2007d472648b62eb4acfcfd1f5, type: 3}
-  m_PrefabInstance: {fileID: 4096774571334657024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!222 &8927483836861245101
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10473,10 +10437,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 545157700}
   - {fileID: 300112761}
+  - {fileID: 305660904197117544}
   - {fileID: 4096774571334657024}
   - {fileID: 385363367}
   - {fileID: 475202061}
   - {fileID: 1394931480}
   - {fileID: 835845636}
   - {fileID: 621880240}
-  - {fileID: 305660904197117544}
