@@ -692,8 +692,9 @@ GameObject:
   - component: {fileID: 296431607}
   - component: {fileID: 296431606}
   - component: {fileID: 296431605}
+  - component: {fileID: 296431610}
   m_Layer: 0
-  m_Name: CameraChangeTrigger
+  m_Name: CutsceneTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,6 +807,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 753063356}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &296431610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296431604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5365002508c1645c9b917d38015fc632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvisibleOnStart
 --- !u!1 &323323709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,7 +1077,7 @@ PrefabInstance:
     - target: {fileID: 681413650977858387, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
       propertyPath: switch_action.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1885219319}
+      objectReference: {fileID: 0}
     - target: {fileID: 681413650977858387, guid: 9e1b1a549623f4fcdbf4ecc0b3ee3359, type: 3}
       propertyPath: switch_action.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -2146,6 +2159,7 @@ GameObject:
   - component: {fileID: 1329178540}
   - component: {fileID: 1329178539}
   - component: {fileID: 1329178538}
+  - component: {fileID: 1329178542}
   m_Layer: 0
   m_Name: CameraChangeTrigger
   m_TagString: Untagged
@@ -2260,6 +2274,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329178536}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1329178542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329178536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5365002508c1645c9b917d38015fc632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvisibleOnStart
 --- !u!1001 &1412393987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3165,17 +3191,6 @@ Transform:
   - {fileID: 1076008641}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1885219319 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9088028540471397193, guid: b7f59eeac52d74f5d999d078b385f8cf, type: 3}
-  m_PrefabInstance: {fileID: 8593522482756601087}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
 --- !u!1 &1986692127
 GameObject:
   m_ObjectHideFlags: 0
@@ -3702,5 +3717,5 @@ SceneRoots:
   - {fileID: 12586923}
   - {fileID: 1867432981}
   - {fileID: 421625462}
-  - {fileID: 8593522482756601087}
   - {fileID: 1875030096}
+  - {fileID: 8593522482756601087}
