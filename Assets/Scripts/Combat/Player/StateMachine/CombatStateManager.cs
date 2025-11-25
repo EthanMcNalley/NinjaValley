@@ -37,7 +37,7 @@ public class CombatStateManager : MonoBehaviour
     public bool attacking = false;
     public float stateTime = 0f;
     private float bufferTime = 0f;
-    private float bufferDurationTimer = 1f;
+    public float bufferDurationTimer = 1f;
     
     [Header ("Dodge Stuff")]
     public float DodgeCoolDown = 1f;
@@ -107,11 +107,12 @@ public class CombatStateManager : MonoBehaviour
 
     private void KunaiCheck()
     {
-        if (kunaiAction.triggered)
-        {
-            AttackAnimator.SetTrigger("Kunai");
-            Instantiate(Kunai, kunaiPosition.transform.position, gameObject.transform.rotation);
-        }
+        //Commented out for now cuz animation is broken
+        // if (kunaiAction.triggered)
+        // {
+        //     AttackAnimator.SetTrigger("Kunai");
+        //     Instantiate(Kunai, kunaiPosition.transform.position, gameObject.transform.rotation);
+        // }
     }
 
     private void DodgeCheck()
