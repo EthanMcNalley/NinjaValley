@@ -114,7 +114,6 @@ public class NewMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, Vector3.down, Color.red);
         groundedPlayer = groundCheck.IsGrounded;
         
         /*if (groundedPlayer && playerVelocity.y < 0)
@@ -134,12 +133,11 @@ public class NewMovement : MonoBehaviour
             playerVelocity.y = -2f;
         }
 
+        playerVelocity.y += gravityValue * Time.deltaTime;
         
         // Combine horizontal and vertical movement
 
         Vector3 finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
-        finalMove = StickToSlopes(finalMove);
-        playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(finalMove * Time.deltaTime);
         
         animator.SetBool("Jump", !groundedPlayer);
@@ -188,12 +186,10 @@ public class NewMovement : MonoBehaviour
         translationDisabled = disabled;
     }
 
-    private Vector3 StickToSlopes(Vector3 velocity){
+    private Vector3 slope_sticking(Vector3 velocity){
         var ray = new Ray(transform.position, Vector3.down);
-        Debug.DrawRay(ray.origin, ray.direction * 1.0f, Color.red);
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 1.0f)){
-            Debug.Log("YIPEPE");
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f)){
             var slope_rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
             var adjusted_velocity = slope_rotation * velocity;
 
