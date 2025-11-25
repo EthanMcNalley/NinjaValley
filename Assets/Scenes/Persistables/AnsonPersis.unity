@@ -4810,6 +4810,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  isGrounded: 0
 --- !u!136 &2087478416
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5802,10 +5803,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
   groundCheck: {fileID: 866461288}
-  GroundCheckRadius: 0.2
+  GroundCheckRadius: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  isGrounded: 0
 --- !u!1 &1145774470325214564
 GameObject:
   m_ObjectHideFlags: 0
