@@ -14,8 +14,6 @@ public class NewMovement : MonoBehaviour
     private Vector2 inputVector;
     private Vector3 moveDirection;
     private Animator animator;
-    public static bool controllable = true;
-    
     public float rotationSpeed = 20f;
     public bool translationDisabled = false;
     

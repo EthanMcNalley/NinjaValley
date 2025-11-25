@@ -6,6 +6,7 @@ public class CutsceneBars : MonoBehaviour
     public Animator cutscene_bars;
     public float active_timer = 0.0f;
     public Animator UI_scroll_animator;
+    public NewMovement player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,12 +28,12 @@ public class CutsceneBars : MonoBehaviour
         if (active_timer > 0){
             active_timer = active_timer - Time.deltaTime;
             cutscene_state = CutsceneState.ACTIVE;
-            NewMovement.controllable = false;
+            player.DisableMovement();
         }
 
         else{
             cutscene_state = CutsceneState.INACTIVE;
-            NewMovement.controllable = true;
+            player.EnableMovement();
         }
 
         if (cutscene_state == CutsceneState.ACTIVE){
