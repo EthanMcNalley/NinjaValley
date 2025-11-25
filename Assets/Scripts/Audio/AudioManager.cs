@@ -91,6 +91,11 @@ public class AudioManager : MonoBehaviour
     {
         musicEventInstance.setParameterByName("area", (float) area);
     }
+
+    public void SetSlowTime(float time)
+    {
+        musicEventInstance.setParameterByName("TimeSlow", time);
+    }
     
     public void StopEventInstance(EventInstance eventInstance)
     {

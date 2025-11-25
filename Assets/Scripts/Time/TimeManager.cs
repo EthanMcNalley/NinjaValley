@@ -18,6 +18,9 @@ public class TimeManager : MonoBehaviour
     private GameObject[] anim_objects;
     
     private InputAction timeSlowAction;
+    
+    private MusicState current_musicState = MusicState.NORMAL;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -84,10 +87,20 @@ public class TimeManager : MonoBehaviour
 
         if (time_state == TimeState.NORMAL){
             slowed_amount = 1.0f;
+            if (current_musicState == MusicState.SLOWED)
+            {
+                AudioManager.instance.SetSlowTime(0f);
+                current_musicState = MusicState.NORMAL;
+            }
         }
 
         else{
             slowed_amount = slow_amount;
+            if (current_musicState == MusicState.NORMAL)
+            {
+                AudioManager.instance.SetSlowTime(1f);
+                current_musicState = MusicState.SLOWED;
+            }
         }
 
         for (int i = 0; i < anim_objects.Length; i++){
@@ -96,6 +109,12 @@ public class TimeManager : MonoBehaviour
     }
 
     public enum TimeState{
+        NORMAL,
+        SLOWED
+    }
+
+    public enum MusicState
+    {
         NORMAL,
         SLOWED
     }
