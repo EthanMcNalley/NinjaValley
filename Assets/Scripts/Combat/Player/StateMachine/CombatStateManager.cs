@@ -62,7 +62,7 @@ public class CombatStateManager : MonoBehaviour
         GroundHitboxCollider = GroundAttackHitbox.gameObject.GetComponent<Collider>();
 
         
-        //AttackAnimator = GetComponent<Animator>();
+        AttackAnimator = GetComponent<Animator>();
         
         currentState = Idle;
         currentState.EnterState(this);
