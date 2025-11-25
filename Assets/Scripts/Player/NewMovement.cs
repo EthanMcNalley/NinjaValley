@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class NewMovement : MonoBehaviour
 { 
     public float playerSpeed = 5.0f;
-    public float jumpHeight = 1.5f;
     public float gravityValue = -9.81f;
 
     private CharacterController controller;
@@ -119,30 +118,32 @@ public class NewMovement : MonoBehaviour
         {
             playerVelocity.y = gravityValue;
         }*/
-        Vector3 finalMove;
 
         if (controllable){
-            moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
-        
-            HandleRotation(moveDirection);
-            
-            animator.SetBool("Moving", moveDirection.magnitude > 0.01f & groundedPlayer);
-
-            // Apply gravity
-            if (groundedPlayer && playerVelocity.y <= 0f)
-            {
-                playerVelocity.y = -2f;
-            }
-
-            playerVelocity.y += gravityValue * Time.deltaTime;
-            
-            // Combine horizontal and vertical movement
-            finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
+            EnableMovement();
         }
 
         else{
-            finalMove = (moveDirection * 0) + (playerVelocity.y * Vector3.up);
+            DisableMovement();
         }
+
+        moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
+        
+        HandleRotation(moveDirection);
+        
+        animator.SetBool("Moving", moveDirection.magnitude > 0.01f & groundedPlayer);
+
+        // Apply gravity
+        if (groundedPlayer && playerVelocity.y <= 0f)
+        {
+            playerVelocity.y = -2f;
+        }
+
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        
+        // Combine horizontal and vertical movement
+
+        Vector3 finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
         controller.Move(finalMove * Time.deltaTime);
         
         animator.SetBool("Jump", !groundedPlayer);
