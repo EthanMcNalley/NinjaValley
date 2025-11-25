@@ -59,7 +59,7 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    public void TitleScreenLoading(){
+    public void TotalSceneLoading(){
         SceneManager.LoadScene(persistables_scene);
         LoadScenes();
     }
