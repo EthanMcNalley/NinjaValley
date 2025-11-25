@@ -7,11 +7,14 @@ public class CutsceneBars : MonoBehaviour
     public float active_timer = 0.0f;
     public Animator UI_scroll_animator;
     public NewMovement player;
+    
+    private CutsceneState previousState;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cutscene_state = CutsceneState.INACTIVE;
+        previousState = CutsceneState.INACTIVE;
     }
 
     // Update is called once per frame
@@ -28,15 +31,18 @@ public class CutsceneBars : MonoBehaviour
         if (active_timer > 0){
             active_timer = active_timer - Time.deltaTime;
             cutscene_state = CutsceneState.ACTIVE;
-            player.DisableMovement();
         }
-
         else{
             cutscene_state = CutsceneState.INACTIVE;
-            player.EnableMovement();
+        }
+        
+        if (cutscene_state != previousState)
+        {
+            stateChanged(cutscene_state);
+            previousState = cutscene_state;
         }
 
-        if (cutscene_state == CutsceneState.ACTIVE){
+        /*if (cutscene_state == CutsceneState.ACTIVE){
             cutscene_bars.SetBool("Active", true);
             UI_scroll_animator.SetBool("Fold", true);
         }
@@ -45,6 +51,22 @@ public class CutsceneBars : MonoBehaviour
             cutscene_bars.SetBool("Active", false);
             UI_scroll_animator.SetBool("Fold", false);
             //THIS WILL CAUSE ISSUES LATER ON, AND WILL LIKELY MAKE THE PLAYER CONTROLLABLE EVEN WHEN THEYRE NOT SUPPOSED TO, REMEMBER THIS WHEN THAT HAPPENS
+        }*/
+    }
+    
+    private void stateChanged(CutsceneState newState)
+    {
+        if (newState == CutsceneState.ACTIVE)
+        {
+            player.DisableMovement();
+            cutscene_bars.SetBool("Active", true);
+            UI_scroll_animator.SetBool("Fold", true);
+        }
+        else
+        {
+            player.EnableMovement();
+            cutscene_bars.SetBool("Active", false);
+            UI_scroll_animator.SetBool("Fold", false);
         }
     }
 

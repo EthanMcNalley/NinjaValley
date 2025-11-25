@@ -33,6 +33,7 @@ public class NewMovement : MonoBehaviour
     InputAction moveAction;
     InputAction jumpAction;
     private InputAction lookAction;
+    public bool canMove = true;
 
     private void Awake()
     {
@@ -85,12 +86,14 @@ public class NewMovement : MonoBehaviour
     {
         moveAction.Enable();
         jumpAction.Enable();
+        canMove =  true;
     }
     
     public void DisableMovement()
     {
         moveAction.Disable();
         jumpAction.Disable();
+        canMove =  false;
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx)
