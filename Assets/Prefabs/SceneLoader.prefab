@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8540135371338646463
+--- !u!1 &6344689586306510728
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2655842715588117256}
-  - component: {fileID: 4222612517079071009}
-  - component: {fileID: 4588762989106914142}
-  - component: {fileID: 2566531057417967493}
-  - component: {fileID: 5043902280432559636}
-  - component: {fileID: -3878508725960862985}
+  - component: {fileID: 539834565035764079}
+  - component: {fileID: 13954382883470286}
+  - component: {fileID: 1892872701151257543}
+  - component: {fileID: 5873232567462306386}
+  - component: {fileID: 4471255179434701688}
+  - component: {fileID: 55353284164673532}
   m_Layer: 0
-  m_Name: MusicChangeCollider
+  m_Name: SceneLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2655842715588117256
+--- !u!4 &539834565035764079
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8540135371338646463}
+  m_GameObject: {fileID: 6344689586306510728}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.8, y: -261.8, z: 906.7}
-  m_LocalScale: {x: 45.24, y: 29.936726, z: 5}
+  m_LocalPosition: {x: -17, y: -261.35, z: 627.3}
+  m_LocalScale: {x: 24.423, y: 24.423, z: 24.423}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4222612517079071009
+--- !u!33 &13954382883470286
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8540135371338646463}
+  m_GameObject: {fileID: 6344689586306510728}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4588762989106914142
+--- !u!23 &1892872701151257543
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8540135371338646463}
+  m_GameObject: {fileID: 6344689586306510728}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f8e4224cf539b49e9b36afc5c7ead8ad, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,13 +92,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2566531057417967493
+--- !u!65 &5873232567462306386
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8540135371338646463}
+  m_GameObject: {fileID: 6344689586306510728}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -113,26 +113,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5043902280432559636
+--- !u!114 &4471255179434701688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8540135371338646463}
+  m_GameObject: {fileID: 6344689586306510728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e7f3d4a68d4c89438edc7429cd37161, type: 3}
+  m_Script: {fileID: 11500000, guid: 960d9b882d83749f8ade0773f8f40921, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChangeMusicArea
-  area: 2
---- !u!114 &-3878508725960862985
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
+  scenes_to_load:
+  - m_SceneAsset: {fileID: 102900000, guid: 28701c0edf5244b40b21e6faf47c18c2, type: 3}
+    m_SceneName: MainArea
+  scenes_to_unload:
+  - m_SceneAsset: {fileID: 102900000, guid: 70968522483844ef7bc9987e180911a0, type: 3}
+    m_SceneName: TutorialAreaScene
+  persistables_scene:
+    m_SceneAsset: {fileID: 0}
+    m_SceneName: 
+--- !u!114 &55353284164673532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8540135371338646463}
+  m_GameObject: {fileID: 6344689586306510728}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5365002508c1645c9b917d38015fc632, type: 3}

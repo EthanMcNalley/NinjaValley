@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +11,7 @@ public class PuzzleSwitch : MonoBehaviour
     public Color done_light_color;
     CutsceneBars cutscene_bars;
     public GameObject hit_particle;
+    public EventReference switch_hit_sfx;
     void Start(){
         cutscene_bars = GameObject.FindGameObjectWithTag("UIManager").GetComponent<CutsceneBars>();
     }
@@ -20,6 +22,7 @@ public class PuzzleSwitch : MonoBehaviour
             if (!done){
                 switch_action.Invoke();
                 done = true;
+                AudioManager.instance.PlayOneShot(switch_hit_sfx, transform.position);
             }
 
             if (done){
