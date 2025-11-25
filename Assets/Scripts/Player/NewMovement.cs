@@ -95,19 +95,18 @@ public class NewMovement : MonoBehaviour
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx)
     {
-        if (controllable){
-            Jump();
-        }
+    
+        Jump();
+        
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext ctx)
     {
-        if (controllable){
-            if (playerVelocity.y > 0f)
-            {
-                playerVelocity.y = Mathf.Min(playerVelocity.y, minJumpCutVelocity);
-            }
+        if (playerVelocity.y > 0f)
+        { 
+            playerVelocity.y = Mathf.Min(playerVelocity.y, minJumpCutVelocity);
         }
+        
     }
 
     void Update()
@@ -118,14 +117,6 @@ public class NewMovement : MonoBehaviour
         {
             playerVelocity.y = gravityValue;
         }*/
-
-        if (controllable){
-            EnableMovement();
-        }
-
-        else{
-            DisableMovement();
-        }
 
         moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
         
