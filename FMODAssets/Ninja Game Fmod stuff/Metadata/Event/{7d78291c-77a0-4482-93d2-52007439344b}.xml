@@ -57,11 +57,11 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{dab50db2-5780-4bc9-9ecf-5bae207db819}">
-		<property name="maxVoices">
-			<value>1</value>
+		<property name="minimumDistance">
+			<value>20</value>
 		</property>
 		<property name="maximumDistance">
-			<value>30</value>
+			<value>80</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{0bda5481-2934-458d-8f79-64ada0c5af1e}" />
@@ -82,9 +82,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{29397450-dfaf-4064-9c98-307fa2f75dee}">
-		<relationship name="modulators">
-			<destination>{70be412f-3db1-4513-96b8-62990d2f0081}</destination>
-		</relationship>
 		<relationship name="effectChain">
 			<destination>{3a06b3b4-c196-4821-bf78-e333e47c20d6}</destination>
 		</relationship>
@@ -140,24 +137,10 @@
 			<destination>{0bda5481-2934-458d-8f79-64ada0c5af1e}</destination>
 		</relationship>
 	</object>
-	<object class="ADSRModulator" id="{70be412f-3db1-4513-96b8-62990d2f0081}">
-		<property name="nameOfPropertyBeingModulated">
-			<value>volume</value>
-		</property>
-		<property name="initialValue">
-			<value>-80</value>
-		</property>
-		<property name="attackTime">
-			<value>360</value>
-		</property>
-		<property name="finalValue">
-			<value>-80</value>
-		</property>
-	</object>
 	<object class="MixerBusEffectChain" id="{3a06b3b4-c196-4821-bf78-e333e47c20d6}">
 		<relationship name="effects">
-			<destination>{b0b06317-8f9e-448d-a74f-ff17bf4238cb}</destination>
 			<destination>{e0e1e4e0-31d5-4f85-8a20-80f646f31ced}</destination>
+			<destination>{1750bc2e-d0e3-4326-a4a3-c201379aa25c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{dc751f1f-7e7a-4511-a6af-72bbac7b841c}" />
@@ -168,14 +151,7 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ac89000c-78dd-4a74-b631-f5cdc06d7def}" />
-	<object class="SpatialiserEffect" id="{b0b06317-8f9e-448d-a74f-ff17bf4238cb}">
-		<property name="panBlend">
-			<value>0.5</value>
-		</property>
-		<property name="userStereoSeparation">
-			<value>80.3632584</value>
-		</property>
-	</object>
 	<object class="MixerBusFader" id="{e0e1e4e0-31d5-4f85-8a20-80f646f31ced}" />
+	<object class="SpatialiserEffect" id="{1750bc2e-d0e3-4326-a4a3-c201379aa25c}" />
 	<object class="MixerBusFader" id="{e9e2ab74-8fd3-4d20-8df6-ac7b03b23ebf}" />
 </objects>
