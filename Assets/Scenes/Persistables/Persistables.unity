@@ -3191,6 +3191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CombatStateManager: {fileID: 1897112699}
+  katanaTrail: {fileID: 0}
 --- !u!1 &1139298226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3330,6 +3331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutscene_bars: {fileID: 1139298228}
+  active_timer: 0
+  UI_scroll_animator: {fileID: 0}
 --- !u!114 &1281518394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3500,7 +3503,7 @@ MonoBehaviour:
       Data2: 1324704622
       Data3: -1193753977
       Data4: -861593000
-    Path: event:/JumpTest
+    Path: event:/Player/JumpTest
 --- !u!114 &1897112696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3553,13 +3556,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f2cd6e11ea15f409c172a8e85cef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comboStep: 0
+  characterController: {fileID: 0}
+  healthSystem: {fileID: 0}
+  shadowAssassin: {fileID: 0}
+  movementController: {fileID: 0}
   GroundAttackHitbox: {fileID: 1049858996}
-  AttackAnimation: {fileID: 0}
+  KatanaEnableAnimator: {fileID: 0}
+  AttackAnimator: {fileID: 0}
   GroundHitboxCollider: {fileID: 0}
   currentDamage: 0
+  shadowCharge: 0
   attacking: 0
   stateTime: 0
+  DodgeCoolDown: 1
+  DodgeCoolDownTimer: 0
+  Kunai: {fileID: 0}
+  kunaiPosition: {fileID: 0}
 --- !u!1 &2087478413
 GameObject:
   m_ObjectHideFlags: 0
