@@ -14,7 +14,7 @@ public class NewMovement : MonoBehaviour
     private Transform cam;
     private Vector2 inputVector;
     private Vector3 moveDirection;
-    private Animator animator;
+    public Animator animator;
     public float rotationSpeed = 20f;
     public bool translationDisabled = false;
     
@@ -39,7 +39,7 @@ public class NewMovement : MonoBehaviour
     {
         groundCheck = GetComponent<GroundCheck>();
         controller = gameObject.GetComponent<CharacterController>();
-        animator = gameObject.GetComponent<Animator>();
+        //animator = gameObject.GetComponent<Animator>();
         cam = Camera.main.transform;
 
         if (InputSystem.actions)
@@ -190,9 +190,9 @@ public class NewMovement : MonoBehaviour
 
     private Vector3 StickToSlopes(Vector3 velocity){
         var ray = new Ray(transform.position, Vector3.down);
-        Debug.DrawRay(ray.origin, ray.direction * 1.0f, Color.red);
+        Debug.DrawRay(ray.origin, ray.direction * 2.0f, Color.red);
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 1.0f)){
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 2.0f)){
             Debug.Log("YIPEPE");
             var slope_rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
             var adjusted_velocity = slope_rotation * velocity;
