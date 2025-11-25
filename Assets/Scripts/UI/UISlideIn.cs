@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public float delay;
     public static UIManager instance { get; private set; }
     public static bool activate = false;
-    public Image blur_effect;
+    public Animator blur_effect;
     public float unpause_delay = 0.7f;
     public TimeManager time_manager;
     public Image time_bar;
@@ -167,10 +167,10 @@ public class UIManager : MonoBehaviour
     }
 
     public void FadeIn(){
-        blur_effect.CrossFadeAlpha(1, 0.5f, true);
+        blur_effect.SetBool("Blur", true);
     }
 
     public void FadeOut(){
-        blur_effect.CrossFadeAlpha(0, 0.25f, true);
+        blur_effect.SetBool("Blur", false);
     }
 }
