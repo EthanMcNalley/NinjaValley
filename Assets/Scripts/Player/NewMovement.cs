@@ -8,6 +8,7 @@ public class NewMovement : MonoBehaviour
     public float gravityValue = -9.81f;
 
     private CharacterController controller;
+    private GroundCheck groundCheck;
     private Vector3 playerVelocity;
     [SerializeField]private bool groundedPlayer;
     private Transform cam;
@@ -35,6 +36,7 @@ public class NewMovement : MonoBehaviour
 
     private void Awake()
     {
+        groundCheck = GetComponent<GroundCheck>();
         controller = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponent<Animator>();
         cam = Camera.main.transform;
@@ -109,7 +111,7 @@ public class NewMovement : MonoBehaviour
 
     void Update()
     {
-        groundedPlayer = controller.isGrounded;
+        groundedPlayer = groundCheck.IsGrounded;
         
         /*if (groundedPlayer && playerVelocity.y < 0)
         {

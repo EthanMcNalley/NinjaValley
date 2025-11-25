@@ -1,21 +1,17 @@
+using System;
 using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    public bool is_grounded = true;
+    public Transform groundCheck;
+    public float GroundCheckRadius;
+    public LayerMask groundLayer;
+    [SerializeField] private bool isGrounded;
+    
+    private void Update()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, GroundCheckRadius, (int)groundLayer);
+    }
 
-    void Update(){
-        //Debug.Log(is_grounded);
-    }
-    void OnTriggerEnter(Collider collision){
-        if (collision.gameObject.layer != 3){
-            is_grounded = true;
-        }
-    }
-
-    void OnTriggerExit(Collider collision){
-        if (collision.gameObject.layer != 3){
-            is_grounded = false;
-        }
-    }
+    public bool IsGrounded => isGrounded;
 }

@@ -1407,6 +1407,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856710559}
   m_CullTransparentMesh: 1
+--- !u!1 &866461287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 866461288}
+  m_Layer: 3
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &866461288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866461287}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.536, z: 0.284}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 305660904197117544}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &906732820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,7 +1787,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.06907406, y: 0, z: 0, w: 0.9976115}
-  m_LocalPosition: {x: 0, y: 0, z: 166.16309}
+  m_LocalPosition: {x: 0, y: 0, z: 13.783075}
   m_LocalScale: {x: 0.95238096, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3289,7 +3320,7 @@ Transform:
   m_GameObject: {fileID: 1027097147}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06907406, y: 0, z: 0, w: 0.9976115}
-  m_LocalPosition: {x: -0.49999997, y: 10.656645, z: 166.16309}
+  m_LocalPosition: {x: -0.49999997, y: 10.656645, z: 13.783075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4774,7 +4805,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0458bc026884c4fa5e92ac478768af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  is_grounded: 1
+  groundCheck: {fileID: 0}
+  GroundCheckRadius: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!136 &2087478416
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5212,7 +5247,7 @@ Transform:
   m_GameObject: {fileID: 1114144295919848658}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 1.8299999, z: 189.88}
+  m_LocalPosition: {x: 0.02, y: 1.8299999, z: 37.5}
   m_LocalScale: {x: 0.65, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5220,6 +5255,7 @@ Transform:
   - {fileID: 5136385716622463896}
   - {fileID: 996997261}
   - {fileID: 489424987}
+  - {fileID: 866461288}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &334028548000260954
@@ -5598,6 +5634,7 @@ GameObject:
   - component: {fileID: 1114144295919848663}
   - component: {fileID: 1114144295919848662}
   - component: {fileID: 1114144295919848665}
+  - component: {fileID: 1114144295919848666}
   - component: {fileID: 1114144295919848664}
   m_Layer: 3
   m_Name: 'NinjaChibiNEW '
@@ -5618,10 +5655,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f2cd6e11ea15f409c172a8e85cef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatStateManager
-  characterController: {fileID: 0}
-  healthSystem: {fileID: 0}
-  shadowAssassin: {fileID: 0}
-  movementController: {fileID: 0}
+  characterController: {fileID: 1114144295919848661}
+  healthSystem: {fileID: 1114144295919848662}
+  shadowAssassin: {fileID: 1114144295919848663}
+  movementController: {fileID: 1114144295919848660}
   GroundAttackHitbox: {fileID: 962073177}
   KatanaEnableAnimator: {fileID: 962073180}
   AttackAnimator: {fileID: 1114144295919848664}
@@ -5675,7 +5712,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 7.92
   m_Radius: 1.56
-  m_SlopeLimit: 70
+  m_SlopeLimit: 50
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -5752,6 +5789,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCaller
   ui_manager: {fileID: 0}
+--- !u!114 &1114144295919848666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114144295919848658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0458bc026884c4fa5e92ac478768af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
+  groundCheck: {fileID: 866461288}
+  GroundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1145774470325214564
 GameObject:
   m_ObjectHideFlags: 0

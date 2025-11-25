@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = ground_check.is_grounded;
+        //isGrounded = ground_check.isgrounded;
     }
 
     private void OnDrawGizmos()
