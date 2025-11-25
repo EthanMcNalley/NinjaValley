@@ -5,7 +5,8 @@ public class EnemyHealth : HealthSystem
 {
     public ShadowAssassin shadowAssassin;
     private GameObject player;
-    private float shadowMultiplyPersentage;
+    private Animator animator;
+    private float shadowMultiplyPercentage;
     private bool playerShadowMode;
     private float damageDuringShadow;
     private float damageBurst;
@@ -16,8 +17,9 @@ public class EnemyHealth : HealthSystem
     {
         healthBar = GetComponentInChildren<FloatingHPDisplay>();
         player = GameObject.FindGameObjectWithTag("Player");
+        animator = GetComponent<Animator>();
         shadowAssassin = player.GetComponent<ShadowAssassin>();
-        shadowMultiplyPersentage = shadowAssassin.shadowAssassinDamagePercentage;
+        shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
     }
 
     private void OnEnable()
@@ -32,10 +34,16 @@ public class EnemyHealth : HealthSystem
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
     }
 
+    private void OnDestroy()
+    {
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+    }
+    
     void OnShadowStart()
     {
         playerShadowMode = true;
-        shadowMultiplyPersentage = shadowAssassin.shadowAssassinDamagePercentage;
+        shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
         damageDuringShadow = 0f;
         damageBurst = 0f;
     }
@@ -49,11 +57,15 @@ public class EnemyHealth : HealthSystem
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+        if (animator != null)
+        {
+            animator.SetTrigger("Hit");
+        }
 
         if (playerShadowMode)
         {
             damageDuringShadow += damage;
-            damageBurst = damageDuringShadow * shadowMultiplyPersentage;
+            damageBurst = damageDuringShadow * shadowMultiplyPercentage;
         }
         healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint, damageBurst);
         
