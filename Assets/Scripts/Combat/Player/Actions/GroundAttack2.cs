@@ -3,7 +3,7 @@ using UnityEngine;
 public class GroundAttack2 : CombatState
 {
     public float damage = 2f;
-    float stateDuration = 0.3f;
+    float stateDuration = 0.4f;
     float bufferDuration = 0.7f;
     public float shadowCharge = 20f;
     public override void EnterState(CombatStateManager stateManager)
