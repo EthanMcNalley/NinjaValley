@@ -48,7 +48,10 @@ public class CombatStateManager : MonoBehaviour
     public GameObject Kunai;
     public GameObject kunaiPosition;
 
-    [Header("Shadow Stuff")] public EventReference slashSound;
+    [Header("Shadow Stuff")] 
+    public EventReference slashSound;
+    public EventReference slashSound2;
+    public EventReference slashSound3;
     
     void Start()
     {

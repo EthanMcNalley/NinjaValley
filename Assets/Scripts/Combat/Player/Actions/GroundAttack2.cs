@@ -16,7 +16,7 @@ public class GroundAttack2 : CombatState
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack2");
         
-        AudioManager.instance.PlayOneShot(stateManager.slashSound, stateManager.transform.position);
+        AudioManager.instance.PlayOneShot(stateManager.slashSound2, stateManager.transform.position);
     }
 
     public override void UpdateState(CombatStateManager stateManager)
