@@ -390,6 +390,20 @@
                 "m_Node": {
                     "m_Id": "7091c6682ef04348aa687927948c1727"
                 },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "7fd536924d9e41d7aec9ebdffd0083a2"
+                },
+                "m_SlotId": 4
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "7091c6682ef04348aa687927948c1727"
+                },
                 "m_SlotId": 1
             },
             "m_InputSlot": {
@@ -1224,6 +1238,11 @@
             "id": 2,
             "displayName": "COSINE",
             "referenceName": "COSINE"
+        },
+        {
+            "id": 4,
+            "displayName": "TIME",
+            "referenceName": "TIME"
         }
     ],
     "m_Value": 0,
@@ -1437,6 +1456,30 @@
     "m_SlotType": 0,
     "m_Hidden": false,
     "m_ShaderOutputName": "In",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "3538d24fe71a4d229138b03e3bc1a7f4",
+    "m_Id": 4,
+    "m_DisplayName": "TIME",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "TIME",
     "m_StageCapability": 3,
     "m_Value": {
         "x": 0.0,
@@ -2764,6 +2807,9 @@
         },
         {
             "m_Id": "cf60bafdc6d84754a5f6230ca9bb7a29"
+        },
+        {
+            "m_Id": "3538d24fe71a4d229138b03e3bc1a7f4"
         }
     ],
     "synonyms": [],
