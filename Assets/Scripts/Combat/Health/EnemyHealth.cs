@@ -1,4 +1,5 @@
 using System.Collections;
+using FMODUnity;
 using UnityEngine;
 
 public class EnemyHealth : HealthSystem
@@ -13,7 +14,12 @@ public class EnemyHealth : HealthSystem
     
     public FloatingHPDisplay healthBar;
     public ParticleSystem particles;
+    public ParticleSystem deathParticles;
     private ParticleSystem particlesInstance;
+    
+    [Header("Sounds")]
+    public EventReference hurtSound;
+    public EventReference deathSound;
     
     void Start()
     {
@@ -65,6 +71,7 @@ public class EnemyHealth : HealthSystem
         }
         
         particlesInstance =  Instantiate(particles, transform.position, Quaternion.identity);
+        AudioManager.instance.PlayOneShot(hurtSound, transform.position);
 
         if (playerShadowMode)
         {
@@ -77,6 +84,8 @@ public class EnemyHealth : HealthSystem
 
     protected override void Dead()
     {
+        particlesInstance =  Instantiate(deathParticles, transform.position, Quaternion.identity);
+        AudioManager.instance.PlayOneShot(deathSound, transform.position);
         Destroy(gameObject);
     }
     

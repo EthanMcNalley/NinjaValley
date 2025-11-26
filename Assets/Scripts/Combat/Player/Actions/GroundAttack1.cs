@@ -16,6 +16,8 @@ public class GroundAttack1 : CombatState
         Debug.Log("Melee1");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack1");
+        
+        AudioManager.instance.PlayOneShot(stateManager.slashSound, stateManager.transform.position);
     }
 
     public override void UpdateState(CombatStateManager stateManager)

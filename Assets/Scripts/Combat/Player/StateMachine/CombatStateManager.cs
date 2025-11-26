@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -46,6 +47,8 @@ public class CombatStateManager : MonoBehaviour
     [Header ("Kunai Stuff")]
     public GameObject Kunai;
     public GameObject kunaiPosition;
+
+    [Header("Shadow Stuff")] public EventReference slashSound;
     
     void Start()
     {
