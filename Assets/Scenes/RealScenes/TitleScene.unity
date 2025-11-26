@@ -2399,6 +2399,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1262597827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262597829}
+  - component: {fileID: 1262597828}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1262597828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262597827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a6f4dcc9faeba4ba6f398a330921be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  needMusic: 0
+--- !u!4 &1262597829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262597827}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 576.82806, y: 288.79465, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1291021858
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,6 +3473,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6648584560493563500, guid: 6f85d353cc42749c2baf155493a9c158, type: 3}
+      propertyPath: persistables_scene.m_SceneName
+      value: RealPersistables
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648584560493563500, guid: 6f85d353cc42749c2baf155493a9c158, type: 3}
+      propertyPath: persistables_scene.m_SceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 87fa87c9682035445ba332f3d293787b, type: 3}
+    - target: {fileID: 6648584560493563500, guid: 6f85d353cc42749c2baf155493a9c158, type: 3}
       propertyPath: scenes_to_load.Array.data[0].m_SceneName
       value: TutorialAreaScene
       objectReference: {fileID: 0}
@@ -3464,3 +3517,4 @@ SceneRoots:
   - {fileID: 156039685}
   - {fileID: 1117160136}
   - {fileID: 512889692}
+  - {fileID: 1262597829}

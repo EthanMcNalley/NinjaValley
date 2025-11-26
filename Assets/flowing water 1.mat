@@ -20,15 +20,17 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TitleWater
+  m_Name: flowing water 1
   m_Shader: {fileID: -6465566751694194690, guid: 349c28f8b14c1aa4490ce9e11289345e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ALPHAPREMULTIPLY_ON
   - _APPLY_FLAT_SHADING_NO
   - _APPLY_RIM_YES
   - _ENABLE_WAVES_YES
   - _SPECULAR_SETUP
+  - _SURFACE_TYPE_TRANSPARENT
   - _WATER_TYPE_FLOWING
   m_InvalidKeywords:
   - _APPLY_AMBIENT_NO
@@ -43,11 +45,12 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 2999
   stringTagMap:
-    RenderType: Opaque
+    RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -155,13 +158,13 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Contribution: 0
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _Depth_sample_offset: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
+    - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _ENABLE_WAVES: 0
     - _EnvironmentReflections: 1
     - _Flow_angle: -135
@@ -176,16 +179,16 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
-    - _QueueOffset: 0
+    - _QueueOffset: -1
     - _ReceiveShadows: 1
     - _Reflection_blend: 1
     - _Reflection_intensity: 1
-    - _Rim_glow: -1.3
+    - _Rim_glow: -10
     - _Rim_power: 10
-    - _Ripple_density: 100
-    - _Ripple_egde_sharpness: 0.5
-    - _Ripple_shininess: 2.15
-    - _Ripple_speed: -0.3
+    - _Ripple_density: 50
+    - _Ripple_egde_sharpness: 0.45
+    - _Ripple_shininess: -0.17
+    - _Ripple_speed: -0.5
     - _Shininess: 10
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
@@ -193,15 +196,15 @@ Material:
     - _Spin_speed: 10
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Surface: 0
-    - _Sway_strength: 0.3
-    - _Transparency: 0.38
+    - _Surface: 1
+    - _Sway_strength: 0.01
+    - _Transparency: 0.35
     - _WATER_TYPE: 1
     - _Wave_height: 1
     - _Wave_speed: 0.05
     - _WorkflowMode: 0
     - _ZTest: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     - _ZWriteControl: 0
     - _idk_what_this_siyet: 0
     m_Colors:
@@ -213,10 +216,10 @@ Material:
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
     - _Rim_color: {r: 1, g: 0, b: 0, a: 1}
     - _Ripple_color: {r: 0.58944464, g: 0.6981132, b: 0.6981132, a: 1}
-    - _Ripple_tiling: {r: 1, g: 5, b: 0, a: 0}
+    - _Ripple_tiling: {r: 5, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_color: {r: 1, g: 1, b: 1, a: 0}
-    - _Tiling: {r: 5, g: 5, b: 0, a: 0}
-    - _Wave_tiling: {r: 10, g: 10, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Wave_tiling: {r: 10, g: 500, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
