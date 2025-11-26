@@ -10,6 +10,8 @@ public class GroundAttack3 : CombatState
     {
         stateManager.currentDamage = damage;
         stateManager.shadowCharge = shadowCharge;
+        stateManager.bufferDurationTimer =  bufferDuration;
+        
         Debug.Log("Melee3");
         stateManager.KatanaEnableAnimator.SetTrigger("Attack1");
         stateManager.AttackAnimator.SetTrigger("Attack1");
@@ -17,7 +19,7 @@ public class GroundAttack3 : CombatState
 
     public override void UpdateState(CombatStateManager stateManager)
     {
-        if (stateManager.stateTime >= stateDuration + bufferDuration)
+        if (stateManager.stateTime >= stateDuration + bufferDuration || (stateManager.attacking && stateManager.stateTime >= stateDuration + bufferDuration))
         {
             stateManager.ContinueCombo(stateManager.Melee1);
         }

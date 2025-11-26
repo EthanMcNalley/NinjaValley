@@ -3,13 +3,15 @@ using UnityEngine;
 public class GroundAttack2 : CombatState
 {
     public float damage = 2f;
-    float stateDuration = 0.2f;
+    float stateDuration = 0.3f;
     float bufferDuration = 0.7f;
     public float shadowCharge = 20f;
     public override void EnterState(CombatStateManager stateManager)
     {
         stateManager.currentDamage = damage;
         stateManager.shadowCharge = shadowCharge;
+        stateManager.bufferDurationTimer =  bufferDuration;
+        
         Debug.Log("Melee2");
         stateManager.KatanaEnableAnimator.SetTrigger("Attack1");
         stateManager.AttackAnimator.SetTrigger("Attack2");
@@ -17,7 +19,7 @@ public class GroundAttack2 : CombatState
 
     public override void UpdateState(CombatStateManager stateManager)
     {
-        if (stateManager.stateTime >= (stateDuration + bufferDuration))
+        if (stateManager.stateTime >= (stateDuration + bufferDuration) || (stateManager.attacking && stateManager.stateTime >= stateDuration + bufferDuration))
         {
             stateManager.ContinueCombo(stateManager.Melee3);
         }
