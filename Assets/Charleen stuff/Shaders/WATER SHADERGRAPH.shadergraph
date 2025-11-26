@@ -528,6 +528,9 @@
         },
         {
             "m_Id": "4a4306b8453b4189ae23caf13f86c363"
+        },
+        {
+            "m_Id": "a72ee8304c6b47c9b858ed6d1fd4fbbc"
         }
     ],
     "m_GroupDatas": [],
@@ -1789,6 +1792,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "a72ee8304c6b47c9b858ed6d1fd4fbbc"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "2f18eae5216e4b98b5bb5fe61a00002b"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "a7da04bf656946de86d554cb9bbc7c48"
                 },
                 "m_SlotId": 2
@@ -1977,9 +1994,37 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "2f18eae5216e4b98b5bb5fe61a00002b"
+                    "m_Id": "a72ee8304c6b47c9b858ed6d1fd4fbbc"
+                },
+                "m_SlotId": 2
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "b7341d3840c54963982514667fd50344"
                 },
                 "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a72ee8304c6b47c9b858ed6d1fd4fbbc"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "b7341d3840c54963982514667fd50344"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a72ee8304c6b47c9b858ed6d1fd4fbbc"
+                },
+                "m_SlotId": 4
             }
         },
         {
@@ -8427,7 +8472,7 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -268.0000305175781,
+            "x": -701.0,
             "y": -2343.000244140625,
             "width": 139.0,
             "height": 34.0
@@ -11523,6 +11568,30 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "981373b0dbb849608e6311de86dcf0dc",
+    "m_Id": 4,
+    "m_DisplayName": "Flowing",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "FLOWING",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "98809d8c46d947df882886cb7435df9f",
     "m_Id": 1,
     "m_DisplayName": "B",
@@ -12238,6 +12307,51 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.KeywordNode",
+    "m_ObjectId": "a72ee8304c6b47c9b858ed6d1fd4fbbc",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Water type",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -402.0000305175781,
+            "y": -2343.0,
+            "width": 208.0,
+            "height": 325.9998779296875
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "f13653d9d65744c38d9ad51b0d9e5e07"
+        },
+        {
+            "m_Id": "e4c59b8517d64e3fad8b77dff566ef4d"
+        },
+        {
+            "m_Id": "981373b0dbb849608e6311de86dcf0dc"
+        },
+        {
+            "m_Id": "c39af5583aa34c64a3e28d0879362ff4"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": false,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Keyword": {
+        "m_Id": "4db995292b234cf2acb6221273156742"
     }
 }
 
@@ -13241,7 +13355,7 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -252.9999542236328,
+            "x": -686.0,
             "y": -2309.000244140625,
             "width": 124.0,
             "height": 173.0
@@ -14347,6 +14461,30 @@
     "m_RangeValues": {
         "x": 0.0,
         "y": 1.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "c39af5583aa34c64a3e28d0879362ff4",
+    "m_Id": 1,
+    "m_DisplayName": "Whirlpool",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "WHIRLPOOL",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
     }
 }
 
@@ -16247,6 +16385,30 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "e4c59b8517d64e3fad8b77dff566ef4d",
+    "m_Id": 2,
+    "m_DisplayName": "Still",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "STILL",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "e55a8e48a7884d799393491caebf01ac",
     "m_Name": "Wave control",
@@ -17128,6 +17290,30 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "f13653d9d65744c38d9ad51b0d9e5e07",
+    "m_Id": 0,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
     }
 }
 
