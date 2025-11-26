@@ -25,7 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _APPLY_MOTION_NO
+  - _APPLY_MOTION_YES
   - _APPLY_RIM_YES
   m_InvalidKeywords:
   - _APPLY_AMBIENT_NO
@@ -40,10 +40,11 @@ Material:
   - _APPLY_WATER_A
   - _WATER_TYPE_A
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -156,7 +157,7 @@ Material:
     - _APPLY_BUMP: 1
     - _APPLY_COLOR_CORRECTION: 0
     - _APPLY_FLAT_SHADING: 0
-    - _APPLY_MOTION: 1
+    - _APPLY_MOTION: 0
     - _APPLY_OUTLINE: 0
     - _APPLY_REFLECTION: 0
     - _APPLY_RIM: 0
@@ -173,6 +174,7 @@ Material:
     - _Brightness: 10
     - _BumpScale: 1
     - _Bump_amount: 10
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Contribution: 0
@@ -190,7 +192,8 @@ Material:
     - _Max: 0.25
     - _Metallic: 0
     - _Min: 0.16
-    - _Noise: 16.69
+    - _Motion_speed: 0.03
+    - _Noise: 25
     - _OcclusionStrength: 1
     - _Outline_thickness: 0.1
     - _Parallax: 0.005
@@ -199,8 +202,8 @@ Material:
     - _ReceiveShadows: 1
     - _Reflection_blend: 1
     - _Reflection_intensity: 1
-    - _Rim_glow: -1
-    - _Rim_power: 10
+    - _Rim_glow: -25
+    - _Rim_power: 6.48
     - _Ripple_density: 5
     - _Ripple_egde_sharpness: 0.35
     - _Ripple_shininess: 5
@@ -219,7 +222,9 @@ Material:
     - _Watercolor_tiling: 1
     - _Wave_height: 0
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Base_color: {r: 1, g: 1, b: 1, a: 1}
@@ -228,7 +233,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
     - _Outline_color: {r: 0, g: 0, b: 0, a: 0}
-    - _Rim_color: {r: 1, g: 1, b: 1, a: 1}
+    - _Rim_color: {r: 0, g: 1, b: 1, a: 1}
     - _Ripple_color: {r: 0, g: 1, b: 1, a: 0}
     - _Ripple_tiling: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

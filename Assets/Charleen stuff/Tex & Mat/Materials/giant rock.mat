@@ -27,6 +27,7 @@ Material:
   m_ValidKeywords:
   - _APPLY_MOTION_NO
   - _APPLY_RIM_YES
+  - _SPECULAR_SETUP
   m_InvalidKeywords:
   - _APPLY_AMBIENT_YES
   - _APPLY_BUMP_YES
@@ -44,7 +45,8 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -174,6 +176,7 @@ Material:
     - _Brightness: 10
     - _BumpScale: 1
     - _Bump_amount: 10
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorThreshold: 9.82
@@ -226,7 +229,9 @@ Material:
     - _Watercolor_tiling: 15
     - _Wave_height: 0
     - _WorkflowMode: 0
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Base_color: {r: 0.19384116, g: 0.2178325, b: 0.3396226, a: 1}
