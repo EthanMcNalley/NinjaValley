@@ -7,27 +7,31 @@ public class AttackHitBox : MonoBehaviour
     
     private bool isAttacking = false;
     public GameObject katanaTrail;
+    public Collider katanaHitbox;
     private TrailRenderer katanaTrailRenderer;
 
     private HashSet<GameObject> enemyHitted = new HashSet<GameObject>();
 
     void Start()
     {
+        katanaHitbox = GetComponent<Collider>();
         katanaTrailRenderer = katanaTrail.GetComponent<TrailRenderer>();
     }
     
     //For Animation Event
     public void BeginAttack()
     {
-        isAttacking = true;
-        katanaTrailRenderer.emitting = true;
         enemyHitted.Clear();
+        isAttacking = true;
+        katanaHitbox.enabled = true;
+        katanaTrailRenderer.emitting = true;
     }
 
     //For Animation Event
     public void EndAttack()
     {
         isAttacking = false;
+        katanaHitbox.enabled = false;
         katanaTrailRenderer.emitting = false;
         enemyHitted.Clear();
     }
