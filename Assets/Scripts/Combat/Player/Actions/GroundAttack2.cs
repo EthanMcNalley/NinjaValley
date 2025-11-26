@@ -13,20 +13,26 @@ public class GroundAttack2 : CombatState
         stateManager.bufferDurationTimer =  bufferDuration;
         
         Debug.Log("Melee2");
-        stateManager.KatanaEnableAnimator.SetTrigger("Attack1");
+        stateManager.GroundHitboxCollider.enabled = true;
         stateManager.AttackAnimator.SetTrigger("Attack2");
     }
 
     public override void UpdateState(CombatStateManager stateManager)
     {
-        if (stateManager.stateTime >= (stateDuration + bufferDuration) || (stateManager.attacking && stateManager.stateTime >= stateDuration + bufferDuration))
+        if (stateManager.stateTime >= (stateDuration + bufferDuration) || (stateManager.attacking && stateManager.stateTime >= stateDuration))
         {
             stateManager.ContinueCombo(stateManager.Melee3);
+        }
+        
+        if (stateManager.stateTime >= stateDuration && stateManager.GroundHitboxCollider.enabled)
+        {
+            stateManager.GroundHitboxCollider.enabled = false;
         }
     }
 
     public override void ExitState(CombatStateManager stateManager)
     {
         stateManager.movementController.EnableMovement();
+        stateManager.GroundHitboxCollider.enabled = false;
     }
 }

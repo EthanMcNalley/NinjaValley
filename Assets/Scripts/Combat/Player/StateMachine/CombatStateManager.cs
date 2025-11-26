@@ -23,7 +23,6 @@ public class CombatStateManager : MonoBehaviour
     public ShadowAssassin shadowAssassin;
     public NewMovement movementController;
     public GameObject GroundAttackHitbox;
-    public Animator KatanaEnableAnimator;
     public Animator AttackAnimator;
     public Collider GroundHitboxCollider;
     public float currentDamage;
@@ -58,7 +57,7 @@ public class CombatStateManager : MonoBehaviour
         movementController = GetComponent<NewMovement>();
         healthSystem =  GetComponent<HealthSystem>();
         shadowAssassin = GetComponent<ShadowAssassin>();
-        KatanaEnableAnimator = GroundAttackHitbox.GetComponent<Animator>();
+
         GroundHitboxCollider = GroundAttackHitbox.gameObject.GetComponent<Collider>();
 
         

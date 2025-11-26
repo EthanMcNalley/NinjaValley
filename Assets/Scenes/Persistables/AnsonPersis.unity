@@ -141,32 +141,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.011843984, y: 0.05910709, z: 0.007833688}
   m_Center: {x: 0.003342452, y: -0.03500376, z: 0.0022522018}
---- !u!95 &7558104
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7558102}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e2a4004fb9f39a4fa5d02ec620a050c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7558105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &262297823
 Transform:
   m_ObjectHideFlags: 0
@@ -2344,7 +2322,7 @@ PrefabInstance:
     - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: KatanaEnableAnimator
       value: 
-      objectReference: {fileID: 7558104}
+      objectReference: {fileID: 0}
     - target: {fileID: 1102727899152219041, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -2948,9 +2926,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1937874144441180729, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7558103}
-    - targetCorrespondingSourceObject: {fileID: 1937874144441180729, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7558104}
     - targetCorrespondingSourceObject: {fileID: 1937874144441180729, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7558105}
