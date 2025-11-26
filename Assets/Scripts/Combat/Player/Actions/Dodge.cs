@@ -74,9 +74,7 @@ public class Dodge : CombatState
     
     public override void ExitState(CombatStateManager stateManager)
     {
-        stateManager.movementController.SetNewMoveState(NewMovement.moveState.Walking);
-        stateManager.movementController.SetTranslationDisabled(false);
-        stateManager.movementController.EnableMovement();
+        stateManager.movementController.DodgeEnd();
     }
 
     private Vector3 GetDodgeDir(CombatStateManager stateManager)

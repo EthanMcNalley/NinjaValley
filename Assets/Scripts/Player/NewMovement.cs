@@ -36,6 +36,8 @@ public class NewMovement : MonoBehaviour
     InputAction jumpAction;
     private InputAction lookAction;
     public bool canMove = true;
+    
+    private bool afterDodge;
 
     public enum moveState
     {
@@ -122,6 +124,13 @@ public class NewMovement : MonoBehaviour
         }
         
     }
+    
+    public void DodgeEnd()
+    {
+       afterDodge = true;
+       SetTranslationDisabled(false);
+       EnableMovement();
+    }
 
     void Update()
     {
@@ -139,24 +148,36 @@ public class NewMovement : MonoBehaviour
             playerVelocity.y = -2f;
         }
 
-        if (currentState != prevState)
-        {
-            StateChanged();
-            prevState =  currentState;
-        }
-        
         if (currentState != moveState.Dodging && groundedPlayer && !translationDisabled)
         {
             if (moveDirection.magnitude >= 0.01f)
             {
-                animator.SetBool("Moving", true);
-                currentState = moveState.Walking;
+                // Decide run vs walk:
+                if (afterDodge)
+                {
+                    animator.SetBool("Moving", true);
+                    currentState = moveState.Running;
+                }
+                else
+                {
+                    animator.SetBool("Moving", true);
+                    currentState = moveState.Walking;
+                }
             }
             else
             {
                 animator.SetBool("Moving", false);
                 currentState = moveState.Idle;
+            
+                // Once we stop moving and go Idle, clear the forced-run state
+                afterDodge = false;
             }
+        }
+
+        if (currentState != prevState)
+        {
+            StateChanged();
+            prevState = currentState;
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
