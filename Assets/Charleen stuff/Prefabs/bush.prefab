@@ -97,12 +97,13 @@ GameObject:
   - component: {fileID: 2688351716871322259}
   - component: {fileID: 8712818702803390156}
   - component: {fileID: 5686022294835813834}
+  - component: {fileID: 3341325243298701514}
   m_Layer: 0
   m_Name: bush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2688351716871322259
 Transform:
@@ -152,7 +153,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bd502ab8fd87c0d43b9f19304eea532c, type: 2}
+  - {fileID: 2100000, guid: ccd113b5285e50142923ee20d380e98c, type: 2}
   - {fileID: 2100000, guid: 16799514a6b04c54bad6c9e8522189d2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -175,6 +176,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3341325243298701514
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178025332809566387}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5958362384829529401, guid: 2b8227d7b02a4d4458b132e092ac1203, type: 3}
 --- !u!1 &4874689307425197578
 GameObject:
   m_ObjectHideFlags: 0
