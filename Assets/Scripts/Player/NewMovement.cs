@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class NewMovement : MonoBehaviour
 { 
-    public float playerSpeed = 5.0f;
+    public float playerWalkSpeed = 20.0f;
+    public float playerRunSpeed = 30.0f;
+    private float playerCurrSpeed = 20.0f;
     public float gravityValue = -9.81f;
 
     private CharacterController controller;
@@ -35,12 +37,23 @@ public class NewMovement : MonoBehaviour
     private InputAction lookAction;
     public bool canMove = true;
 
+    public enum moveState
+    {
+        Idle,
+        Walking,
+        Running,
+        Jumping
+    }
+    [SerializeField]private moveState currentState = moveState.Idle;
+    private moveState prevState;
+
     private void Awake()
     {
         groundCheck = GetComponent<GroundCheck>();
         controller = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponent<Animator>();
         cam = Camera.main.transform;
+        currentState = moveState.Idle;
 
         if (InputSystem.actions)
         {
@@ -115,11 +128,6 @@ public class NewMovement : MonoBehaviour
     void Update()
     {
         groundedPlayer = groundCheck.IsGrounded;
-        
-        /*if (groundedPlayer && playerVelocity.y < 0)
-        {
-            playerVelocity.y = gravityValue;
-        }*/
 
         moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
         
@@ -127,17 +135,34 @@ public class NewMovement : MonoBehaviour
         
         animator.SetBool("Moving", moveDirection.magnitude > 0.01f & groundedPlayer);
 
-        // Apply gravity
+        // Apply gravity, also means the player is Idle
         if (groundedPlayer && playerVelocity.y <= 0f)
         {
             playerVelocity.y = -2f;
+        }
+
+        if (moveDirection.magnitude >= 0.01f && groundedPlayer && !translationDisabled)
+        {
+            animator.SetBool("Moving", true);
+            currentState = moveState.Walking;
+        }
+        else if (moveDirection.magnitude < 0.01f && groundedPlayer && !translationDisabled)
+        {
+            animator.SetBool("Moving", false);
+            currentState = moveState.Idle;
+        }
+        
+        if (currentState != prevState)
+        {
+            prevState =  currentState;
+            StateChanged();
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         
         // Combine horizontal and vertical movement
 
-        Vector3 finalMove = (moveDirection * playerSpeed) + (playerVelocity.y * Vector3.up);
+        Vector3 finalMove = (moveDirection * playerCurrSpeed) + (playerVelocity.y * Vector3.up);
         controller.Move(finalMove * Time.deltaTime);
         
         animator.SetBool("Jump", !groundedPlayer);
@@ -199,5 +224,26 @@ public class NewMovement : MonoBehaviour
         }
 
         return velocity;
+    }
+
+    public void SetNewMoveState(moveState newState)
+    {
+        currentState = newState;
+    }
+
+    private void StateChanged()
+    {
+        switch (currentState)
+        {
+            case moveState.Idle:
+                playerCurrSpeed = playerWalkSpeed;
+                break;
+            case moveState.Walking:
+                
+                break;
+            case moveState.Running:
+                playerCurrSpeed = playerRunSpeed;
+                break;
+        }
     }
 }
