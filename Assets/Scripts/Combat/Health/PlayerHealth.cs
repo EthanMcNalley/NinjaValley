@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : HealthSystem
@@ -38,6 +39,6 @@ public class PlayerHealth : HealthSystem
     
     protected override void Dead()
     {
-        
+        SceneManager.LoadScene("GameOverScene");
     }
 }

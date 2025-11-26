@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.30706024
       objectReference: {fileID: 0}
@@ -48,6 +60,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6310916631946434427, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f1f55e7f20064778a8c972fe6e8c6ae, type: 2}
+    - target: {fileID: -107955116091867106, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f1f55e7f20064778a8c972fe6e8c6ae, type: 2}
+    - target: {fileID: 662231308648937992, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f1f55e7f20064778a8c972fe6e8c6ae, type: 2}
     - target: {fileID: 919132149155446097, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
       propertyPath: m_Name
       value: Swaying sign
@@ -57,9 +81,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1856460705491078056, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f1f55e7f20064778a8c972fe6e8c6ae, type: 2}
+    - target: {fileID: 1856460705491078056, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 5a206d7f92fba4c98955ba385c441bdf, type: 2}
+      objectReference: {fileID: 2100000, guid: 9fa97993bcb1d47ada35c7082ca47f50, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -73,7 +101,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5798685076312817924}
+    - targetCorrespondingSourceObject: {fileID: 3907091372267947420, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 552001940086187004}
   m_SourcePrefab: {fileID: 100100000, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+--- !u!1 &6242952250396883604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3907091372267947420, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}
+  m_PrefabInstance: {fileID: 6961347975266696968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &552001940086187004
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6242952250396883604}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0999999, y: 6.260282, z: 6.2098618}
+  m_Center: {x: -0.49999997, y: -0.0000019073486, z: -1.9381334}
 --- !u!1 &7807769267871072857 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4589dcfafd4ce4b48bd3d0d898d4dd62, type: 3}

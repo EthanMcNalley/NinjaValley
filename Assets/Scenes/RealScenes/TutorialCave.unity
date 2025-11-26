@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 37632291}
   - component: {fileID: 37632292}
+  - component: {fileID: 37632293}
   m_Layer: 0
   m_Name: Bars
   m_TagString: Untagged
@@ -178,6 +179,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &37632293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37632290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59471e141b36b458092fb90e684e5593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayOneShotAudio
+  sound_effect:
+    Guid:
+      Data1: -2000587685
+      Data2: 1190159078
+      Data3: 1728605113
+      Data4: 695276201
+    Path: event:/Puzzle/PuzzleSolve
 --- !u!1001 &56186394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1448,7 +1468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6541664478742601609, guid: 3e697fb2fd0104c9f8a032df57959159, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6737120073265196091, guid: 3e697fb2fd0104c9f8a032df57959159, type: 3}
       propertyPath: m_Name
@@ -1539,7 +1559,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1650240776930112905, guid: 3e697fb2fd0104c9f8a032df57959159, type: 3}
       propertyPath: Priority.m_Value
-      value: 196
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4104889104590011530, guid: 3e697fb2fd0104c9f8a032df57959159, type: 3}
       propertyPath: m_LocalScale.x
