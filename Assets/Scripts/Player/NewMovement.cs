@@ -6,7 +6,7 @@ public class NewMovement : MonoBehaviour
 { 
     public float playerWalkSpeed = 20.0f;
     public float playerRunSpeed = 30.0f;
-    private float playerCurrSpeed = 20.0f;
+    [SerializeField]private float playerCurrSpeed = 20.0f;
     public float gravityValue = -9.81f;
 
     private CharacterController controller;
@@ -42,6 +42,7 @@ public class NewMovement : MonoBehaviour
         Idle,
         Walking,
         Running,
+        Dodging,
         Jumping
     }
     [SerializeField]private moveState currentState = moveState.Idle;
@@ -97,23 +98,20 @@ public class NewMovement : MonoBehaviour
 
     public void EnableMovement()
     {
-        moveAction.Enable();
-        jumpAction.Enable();
         canMove =  true;
     }
     
     public void DisableMovement()
     {
-        moveAction.Disable();
-        jumpAction.Disable();
         canMove =  false;
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx)
     {
-    
-        Jump();
-        
+        if (canMove)
+        {
+            Jump();
+        }
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext ctx)
@@ -141,21 +139,24 @@ public class NewMovement : MonoBehaviour
             playerVelocity.y = -2f;
         }
 
-        if (moveDirection.magnitude >= 0.01f && groundedPlayer && !translationDisabled)
-        {
-            animator.SetBool("Moving", true);
-            currentState = moveState.Walking;
-        }
-        else if (moveDirection.magnitude < 0.01f && groundedPlayer && !translationDisabled)
-        {
-            animator.SetBool("Moving", false);
-            currentState = moveState.Idle;
-        }
-        
         if (currentState != prevState)
         {
-            prevState =  currentState;
             StateChanged();
+            prevState =  currentState;
+        }
+        
+        if (currentState != moveState.Dodging && groundedPlayer && !translationDisabled)
+        {
+            if (moveDirection.magnitude >= 0.01f)
+            {
+                animator.SetBool("Moving", true);
+                currentState = moveState.Walking;
+            }
+            else
+            {
+                animator.SetBool("Moving", false);
+                currentState = moveState.Idle;
+            }
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -190,6 +191,8 @@ public class NewMovement : MonoBehaviour
     
     public Vector3 GetInputVector()
     {
+        if (!canMove) return Vector3.zero;
+        
         inputVector = moveAction.ReadValue<Vector2>();
 
         Vector3 camForward = cam.forward;
@@ -243,6 +246,10 @@ public class NewMovement : MonoBehaviour
                 break;
             case moveState.Running:
                 playerCurrSpeed = playerRunSpeed;
+                break;
+            case moveState.Dodging:
+                playerCurrSpeed = playerRunSpeed;
+                SetNewMoveState(moveState.Running);
                 break;
         }
     }

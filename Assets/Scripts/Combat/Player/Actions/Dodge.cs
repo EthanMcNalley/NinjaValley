@@ -20,8 +20,10 @@ public class Dodge : CombatState
         movementDisabled = false;
         isInvincible = true;
         gravity = stateManager.movementController.gravityValue;
+        
         if (stateManager.healthSystem != null) stateManager.healthSystem.SetInvincible(true);
         stateManager.movementController.SetTranslationDisabled(true);
+        stateManager.movementController.SetNewMoveState(NewMovement.moveState.Dodging);
         
         if (dir == Vector3.zero)
         {
@@ -72,6 +74,7 @@ public class Dodge : CombatState
     
     public override void ExitState(CombatStateManager stateManager)
     {
+        stateManager.movementController.SetNewMoveState(NewMovement.moveState.Walking);
         stateManager.movementController.SetTranslationDisabled(false);
         stateManager.movementController.EnableMovement();
     }
