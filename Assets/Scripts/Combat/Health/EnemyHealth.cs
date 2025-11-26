@@ -12,6 +12,8 @@ public class EnemyHealth : HealthSystem
     private float damageBurst;
     
     public FloatingHPDisplay healthBar;
+    public ParticleSystem particles;
+    private ParticleSystem particlesInstance;
     
     void Start()
     {
@@ -61,6 +63,8 @@ public class EnemyHealth : HealthSystem
         {
             animator.SetTrigger("Hit");
         }
+        
+        particlesInstance =  Instantiate(particles, transform.position, Quaternion.identity);
 
         if (playerShadowMode)
         {
