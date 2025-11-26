@@ -1111,10 +1111,9 @@ GameObject:
   - component: {fileID: 8007519912159623186}
   - component: {fileID: 8652518197584277198}
   - component: {fileID: 8022252650795237592}
-  - component: {fileID: 5167449866079255562}
   - component: {fileID: 4171526179893648985}
   m_Layer: 3
-  m_Name: PLayer
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1129,7 +1128,7 @@ Transform:
   m_GameObject: {fileID: 5795020942001037589}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.747412, y: -0.0089998245, z: 27.842178}
+  m_LocalPosition: {x: -2.08, y: 0.65, z: 34.45}
   m_LocalScale: {x: 0.65, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1159,9 +1158,9 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 8
-  m_Radius: 1.6
-  m_SlopeLimit: 15
+  m_Height: 7.92
+  m_Radius: 1.56
+  m_SlopeLimit: 70
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
@@ -1180,13 +1179,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Example
   playerWalkSpeed: 20
   playerRunSpeed: 30
+  playerCurrSpeed: 20
   gravityValue: -60
   groundedPlayer: 0
-  rotationSpeed: 20
+  rotationSpeed: 10
   translationDisabled: 0
   minJumpHeight: 1
-  maxJumpHeight: 6
-  timeToMaxHeight: 0.5
+  maxJumpHeight: 9
+  timeToMaxHeight: 0.6
   lockedIn: 0
   canMove: 1
   currentState: 0
@@ -1225,6 +1225,20 @@ MonoBehaviour:
       Data3: -424993407
       Data4: -957982703
     Path: event:/Player/SwordSwing
+  slashSound2:
+    Guid:
+      Data1: -2135872279
+      Data2: 1173441928
+      Data3: -1466463589
+      Data4: -2043199978
+    Path: event:/Player/SwordSwing 2
+  slashSound3:
+    Guid:
+      Data1: -1053543611
+      Data2: 1318649917
+      Data3: -1640536901
+      Data4: -17587836
+    Path: event:/Player/SwordSwing 3
 --- !u!114 &8007519912159623186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,29 +1294,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   isGrounded: 0
---- !u!136 &5167449866079255562
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5795020942001037589}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.6429758
-  m_Height: 7.642659
-  m_Direction: 1
-  m_Center: {x: 0, y: 3.7615485, z: -0.39900875}
 --- !u!95 &4171526179893648985
 Animator:
   serializedVersion: 7
