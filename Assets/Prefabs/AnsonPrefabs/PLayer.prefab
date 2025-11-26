@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6963057448340178377}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3972450502432248110}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperLeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 851578212085049125}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: thumb2.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7962980626245839861}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: finger.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4856738373166903770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone2.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,6 +158,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2346940642653458694}
   m_LocalEulerAnglesHint: {x: -0.54876226, y: 0.5045691, z: -175.96265}
+--- !u!1 &868248703987832295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1138825404993181857}
+  m_Layer: 3
+  m_Name: KunaiSpawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1138825404993181857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868248703987832295}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 3.28, z: 2.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2202242408957445114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &887778398030463143
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6918788146454882659}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2754749645849342333}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.001_L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1187540573223032540}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Armature.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7072175276853277297}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone1.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,9 +330,11 @@ GameObject:
   - component: {fileID: 3178346288413236108}
   - component: {fileID: 2982677764934087648}
   - component: {fileID: 2322480367599543590}
-  m_Layer: 0
-  m_Name: Cube.001
-  m_TagString: Untagged
+  - component: {fileID: 5275064785342441953}
+  - component: {fileID: 5474360420774602883}
+  m_Layer: 3
+  m_Name: Katana
+  m_TagString: AttackHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,7 +351,8 @@ Transform:
   m_LocalPosition: {x: -0.0015000871, y: 0.0065000425, z: -0.0051000193}
   m_LocalScale: {x: 0.66835135, y: 0.91263264, z: 0.80412513}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7382538633813002744}
   m_Father: {fileID: 4892134857362871552}
   m_LocalEulerAnglesHint: {x: 211.587, y: -103.15201, z: -62.55899}
 --- !u!33 &2982677764934087648
@@ -377,6 +411,41 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5275064785342441953
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937874144441180729}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011843954, y: 0.06357061, z: 0.00783371}
+  m_Center: {x: 0.0032337368, y: -0.03276962, z: 0.0016958317}
+--- !u!114 &5474360420774602883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937874144441180729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63072b12e56806e48bf5b19d87f7c666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackHitBox
+  CombatStateManager: {fileID: 966483641433614254}
+  katanaTrail: {fileID: 3691279813658539465}
 --- !u!1 &2567155513984705522
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6958656932589926842}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeelIK.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2346940642653458694}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeelIK1.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4423266798609807167}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2345373613482751312}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone3.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8730732255795796579}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone_L.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,6 +605,157 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4263323291629502684}
   m_LocalEulerAnglesHint: {x: -5.746901, y: 2.940604, z: -62.12588}
+--- !u!1 &3691279813658539465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7382538633813002744}
+  - component: {fileID: 731741245251127289}
+  m_Layer: 3
+  m_Name: KatanaTrail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7382538633813002744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691279813658539465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.022603067, y: -0.64554197, z: -0.7336987, w: -0.21083361}
+  m_LocalPosition: {x: 0.00722, y: -0.06432, z: 0.00542}
+  m_LocalScale: {x: 0.00954644, y: 0.010184313, z: 0.010993753}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3178346288413236108}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!96 &731741245251127289
+TrailRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691279813658539465}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8c3e41dc2e19d4887b9e12773e7fc737, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Time: 0.3
+  m_PreviewTimeScale: 1
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 0.5
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9629005
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0.23455065, g: 0.23455065, b: 0.23455065, a: 1}
+      key1: {r: 0, g: 0, b: 0, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_MaskInteraction: 0
+  m_Autodestruct: 0
+  m_Emitting: 0
+  m_ApplyActiveColorSpace: 1
 --- !u!1 &3790153198128659194
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1345319685807487742}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone6.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1789351097148583646}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone_L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4817018929382062669}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.001_L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,183 +850,6 @@ Transform:
   - {fileID: 5626124792366230829}
   m_Father: {fileID: 6918788146454882659}
   m_LocalEulerAnglesHint: {x: 64.87221, y: 7.8343277, z: 101.721596}
---- !u!1 &4619297395616166885
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8830775147394362245}
-  - component: {fileID: 2278459671922292594}
-  - component: {fileID: 6979597176968169722}
-  - component: {fileID: 4810594661559715286}
-  - component: {fileID: 7810714954663061680}
-  - component: {fileID: 2108251738324497218}
-  - component: {fileID: 8219075548051514160}
-  m_Layer: 3
-  m_Name: Katana
-  m_TagString: AttackHitBox
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8830775147394362245
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4619297395616166885}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.02910531, y: 0.012600228, z: -0.8327372, w: 0.5527593}
-  m_LocalPosition: {x: -0.1058, y: -0.0104, z: -0.0716}
-  m_LocalScale: {x: 0.003376801, y: 0.0043723024, z: 0.0036828045}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4892134857362871552}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2278459671922292594
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4619297395616166885}
-  m_Mesh: {fileID: 4493585093827132993, guid: 970fa86defb1f4263ab8e277c5359371, type: 3}
---- !u!23 &6979597176968169722
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4619297395616166885}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 507e5bd89a748c84f8e26c976839aebb, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4810594661559715286
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4619297395616166885}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1.1843957, y: 0.78336996, z: 8.122381}
-  m_Center: {x: -0.3157475, y: 0.18672733, z: -2.8443756}
---- !u!114 &7810714954663061680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4619297395616166885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63072b12e56806e48bf5b19d87f7c666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackHitBox
-  CombatStateManager: {fileID: 0}
-  katanaTrail: {fileID: 0}
---- !u!95 &2108251738324497218
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4619297395616166885}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e2a4004fb9f39a4fa5d02ec620a050c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!54 &8219075548051514160
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4619297395616166885}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &4769830910785453173
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +861,7 @@ GameObject:
   - component: {fileID: 7193593534749293429}
   - component: {fileID: 3244270631782633458}
   - component: {fileID: 2849171033025303266}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4263323291629502684}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone_L.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,7 +980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 379102280922466}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.001_L.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -970,7 +1013,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5304722711388383291}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone5.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1001,7 +1044,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7028069859515943126}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,11 +1081,12 @@ GameObject:
   - component: {fileID: 966483641433614254}
   - component: {fileID: 8007519912159623186}
   - component: {fileID: 8652518197584277198}
+  - component: {fileID: 8022252650795237592}
   - component: {fileID: 5167449866079255562}
   - component: {fileID: 4171526179893648985}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PLayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1057,12 +1101,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.747412, y: -0.0089998245, z: 27.842178}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1187540573223032540}
   - {fileID: 7193593534749293429}
   - {fileID: 9000208194499456406}
+  - {fileID: 3033040080371765910}
+  - {fileID: 1138825404993181857}
+  - {fileID: 507007039943629415}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &4579928272344351186
@@ -1104,12 +1151,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Example
   playerWalkSpeed: 20
   playerRunSpeed: 30
-  gravityValue: -30
+  gravityValue: -60
   groundedPlayer: 0
   rotationSpeed: 20
   translationDisabled: 0
   minJumpHeight: 1
-  maxJumpHeight: 3
+  maxJumpHeight: 6
   timeToMaxHeight: 0.5
   lockedIn: 0
   canMove: 1
@@ -1126,14 +1173,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f2cd6e11ea15f409c172a8e85cef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatStateManager
-  characterController: {fileID: 0}
-  healthSystem: {fileID: 0}
-  shadowAssassin: {fileID: 0}
-  movementController: {fileID: 0}
-  GroundAttackHitbox: {fileID: 0}
-  KatanaEnableAnimator: {fileID: 0}
-  AttackAnimator: {fileID: 0}
-  GroundHitboxCollider: {fileID: 0}
+  characterController: {fileID: 4579928272344351186}
+  healthSystem: {fileID: 8652518197584277198}
+  shadowAssassin: {fileID: 8007519912159623186}
+  movementController: {fileID: 7551101314265223699}
+  GroundAttackHitbox: {fileID: 1937874144441180729}
+  playerAnimatior: {fileID: 4171526179893648985}
+  GroundHitboxCollider: {fileID: 5275064785342441953}
   currentDamage: 0
   shadowCharge: 0
   attacking: 0
@@ -1142,7 +1188,7 @@ MonoBehaviour:
   DodgeCoolDown: 1
   DodgeCoolDownTimer: 0
   Kunai: {fileID: 2513444036954186253, guid: 2f25f3108c1be9145ab9e91dda7946ee, type: 3}
-  kunaiPosition: {fileID: 0}
+  kunaiPosition: {fileID: 868248703987832295}
 --- !u!114 &8007519912159623186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,6 +1226,24 @@ MonoBehaviour:
   healthBarSlider: {fileID: 0}
   maxColor: {r: 0, g: 1, b: 0, a: 1}
   minColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &8022252650795237592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795020942001037589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0458bc026884c4fa5e92ac478768af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
+  groundCheck: {fileID: 507007039943629415}
+  GroundCheckRadius: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  isGrounded: 0
 --- !u!136 &5167449866079255562
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1234,7 +1298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3056411276407140962}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: thumb1.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1266,7 +1330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4892134857362871552}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftHand.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1287,7 +1351,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7962980626245839861}
-  - {fileID: 8830775147394362245}
   - {fileID: 3178346288413236108}
   m_Father: {fileID: 379102280922466}
   m_LocalEulerAnglesHint: {x: 7.0160627, y: -12.498303, z: -24.815367}
@@ -1300,7 +1363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5626124792366230829}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperLeftArm.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,6 +1386,37 @@ Transform:
   - {fileID: 379102280922466}
   m_Father: {fileID: 4817018929382062669}
   m_LocalEulerAnglesHint: {x: 9.389805, y: 64.91438, z: 39.773228}
+--- !u!1 &6367542080588289395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3033040080371765910}
+  m_Layer: 3
+  m_Name: Camerafollw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3033040080371765910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367542080588289395}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 4.06, z: -0.38}
+  m_LocalScale: {x: 0.5, y: 0.5999999, z: 0.49999997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2202242408957445114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7197635268280457508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1109692148531778472}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone4.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,6 +1449,37 @@ Transform:
   - {fileID: 5304722711388383291}
   m_Father: {fileID: 2345373613482751312}
   m_LocalEulerAnglesHint: {x: 15.275421, y: -10.284827, z: -5.9931498}
+--- !u!1 &7257105376627738623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 507007039943629415}
+  m_Layer: 3
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &507007039943629415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257105376627738623}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2202242408957445114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7319598187997248677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2411881702437633828}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1400,7 +1525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8310600785351497750}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: thumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1432,7 +1557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6691358469844066123}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1463,7 +1588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4123608329858983876}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1494,7 +1619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8085803216491071703}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: thumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1525,7 +1650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 268806594612126793}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.001_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1557,7 +1682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 355313136102172091}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1588,7 +1713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7916405413665446436}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: finger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1619,7 +1744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3423665596082856307}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1653,7 +1778,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1424843673378304651}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: finger2.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1684,7 +1809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6064749813896398631}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: finger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1716,7 +1841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 339075030404468681}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1751,7 +1876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9000208194499456406}
   - component: {fileID: 8667442017582342198}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NinjaChibi
   m_TagString: Untagged
   m_Icon: {fileID: 0}

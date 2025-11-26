@@ -14,7 +14,7 @@ public class GroundAttack3 : CombatState
         
         Debug.Log("Melee3");
         stateManager.GroundHitboxCollider.enabled = true;
-        stateManager.AttackAnimator.SetTrigger("Attack1");
+        stateManager.playerAnimatior.SetTrigger("Attack1");
     }
 
     public override void UpdateState(CombatStateManager stateManager)
