@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(Vector3.up * jump_power, ForceMode.Impulse);
 
-        if (JumpSound.Path.Length > 0)
+        if (!JumpSound.IsNull)
             AudioManager.instance.PlayOneShot(JumpSound, transform.position);
     }
 
