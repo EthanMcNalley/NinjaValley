@@ -7,18 +7,6 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private SceneField[] scenes_to_unload;
     public SceneField persistables_scene;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")){
