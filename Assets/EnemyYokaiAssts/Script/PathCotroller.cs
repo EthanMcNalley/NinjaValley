@@ -18,6 +18,7 @@ public class PathController : MonoBehaviour
     public Animator animator;
     bool isWalking;
     public float distToPlayer;
+    public float chaseDistance = 10f;
     public GameObject player, target;
     public GameObject hitBox;
     private bool canMove = true, isAttacking = false, isChasing = false;
@@ -106,10 +107,9 @@ public class PathController : MonoBehaviour
         {
             target = player;
         }
-        if (distToPlayer <= 10f)
+        if (distToPlayer <= chaseDistance)
         {
             isChasing = true;
-
         }
 
         else
