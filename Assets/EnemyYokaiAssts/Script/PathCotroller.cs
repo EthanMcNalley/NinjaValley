@@ -68,7 +68,7 @@ public class PathController : MonoBehaviour
     void OnShadowEnd()
     {
         animator.SetFloat("Speed", 1f);
-        agent.speed = movementSpeed / shadowSlow;
+        agent.speed /= shadowSlow;
         agent.angularSpeed /= shadowSlow;
     }
     
