@@ -82,6 +82,7 @@ public class PathController : MonoBehaviour
             agent.destination = target.transform.position;
             animator.SetBool("Moving", true);
         }
+
         if(canMove == false && isChasing == false)
         {
             animator.SetBool("Moving", false);
@@ -152,15 +153,17 @@ public class PathController : MonoBehaviour
     {
         //Debug.Log(other.name);
         if (isChasing == false)
-        {
-            if (other.gameObject.tag == "Point")
-            {
-                canMove = false;
+        {   
+            for (int i = 0; i < patrolPoints.Length; i++){
+                if (other.gameObject == patrolPoints[i])
+                {
+                    canMove = false;
 
+                }
             }
         }
 
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             Attack();
             isAttacking = true;
