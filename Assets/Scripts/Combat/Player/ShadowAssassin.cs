@@ -77,7 +77,7 @@ public class ShadowAssassin : MonoBehaviour
     
     private IEnumerator ShadowAssassinTimer()
     {
-        yield return new WaitForSeconds(shadowAssassinDuration);
+        yield return new WaitForSecondsRealtime(shadowAssassinDuration);
         EndShadowAssassin();
     }
 
@@ -100,8 +100,12 @@ public class ShadowAssassin : MonoBehaviour
     private void EndShadowAssassin()
     {
         shadowActive = false;
+        shadowReady = false;
         currentShadowMeter = 0f;
         //revert any effects like screen and vfx stuff here if we have it...
+        
+        ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
+        shadowBarSlider.value = ratio;
         
         CombatEvents.RaiseShadowAssassinEnded();
     }
