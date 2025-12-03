@@ -108,15 +108,13 @@ public class PathController : MonoBehaviour
         {
             target = player;
         }
+        
         if (distToPlayer <= chaseDistance)
         {
             isChasing = true;
         }
-
         else
         {
-          
-
             isChasing = false;
         }
         //rotateTowardsTarget();
@@ -151,6 +149,12 @@ public class PathController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            Attack();
+            isAttacking = true;
+        }
+        
         //Debug.Log(other.name);
         if (isChasing == false)
         {   
@@ -158,15 +162,8 @@ public class PathController : MonoBehaviour
                 if (other.gameObject == patrolPoints[i])
                 {
                     canMove = false;
-
                 }
             }
-        }
-
-        if (other.CompareTag("Player"))
-        {
-            Attack();
-            isAttacking = true;
         }
     }
 
