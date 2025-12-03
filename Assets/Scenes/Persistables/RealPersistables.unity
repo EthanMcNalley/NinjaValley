@@ -6132,6 +6132,68 @@ Transform:
   - {fileID: 1365822333}
   m_Father: {fileID: 792803657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1882585154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1882585157}
+  - component: {fileID: 1882585156}
+  - component: {fileID: 1882585155}
+  m_Layer: 0
+  m_Name: ShadowAssassinVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1882585155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882585154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26068f3376524cc9b018f0401c16123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1882585156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882585154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: a51b6f9a6aec0411295517eb2ffcd9d9, type: 2}
+--- !u!4 &1882585157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882585154}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 44.488766, y: -76.152, z: 186.22235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1914050719
 GameObject:
   m_ObjectHideFlags: 0
@@ -7679,6 +7741,7 @@ MonoBehaviour:
   shadowReady: 0
   shadowActive: 0
   shadowBarSlider: {fileID: 906732822}
+  volume: {fileID: 0}
 --- !u!95 &1114144295919848664
 Animator:
   serializedVersion: 7
@@ -12487,6 +12550,7 @@ SceneRoots:
   - {fileID: 305660904197117544}
   - {fileID: 385363367}
   - {fileID: 475202061}
+  - {fileID: 1882585157}
   - {fileID: 835845636}
   - {fileID: 178735575}
   - {fileID: 621880240}

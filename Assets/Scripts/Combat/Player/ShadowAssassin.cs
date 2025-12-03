@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CombatStateManager))]
 public class ShadowAssassin : MonoBehaviour
@@ -19,8 +20,12 @@ public class ShadowAssassin : MonoBehaviour
     private Image shadowBarImage;
     private float ratio;
     private float timer;
-    
+
+    private InputAction shadowAction;
     private Coroutine shadowCoroutine;
+    
+    [Header("Visual Stuff")]
+    public GameObject volume;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,27 +35,38 @@ public class ShadowAssassin : MonoBehaviour
             combatStateManager = GetComponent<CombatStateManager>();
         }
         timer = shadowAssassinDuration;
+        
+        ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
+        shadowBarSlider.value = ratio;
+
+        if (InputSystem.actions)
+        {
+            shadowAction = InputSystem.actions.FindAction("Shadow");
+            if (shadowAction != null)
+            {
+                shadowAction.Enable();
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (TimeManager.time_state == TimeManager.TimeState.SLOWED && shadowReady && !shadowActive)
+        if (shadowAction.triggered && shadowReady && !shadowActive)
         {
             EnterShadowAssassin();
         }
-
-        if (shadowActive && TimeManager.time_state == TimeManager.TimeState.NORMAL)
+        
+        /*else if (shadowActive && shadowAction.triggered && TimeManager.time_state == TimeManager.TimeState.SLOWED)
         {
             ExitShadowAssassin();
-        }
+        }*/
 
-        if (TimeManager.time_state == TimeManager.TimeState.SLOWED && shadowActive)
+        if (shadowActive)
         {
             timer -= Time.deltaTime;
             ratio = Mathf.Clamp01( timer / shadowAssassinDuration);
             shadowBarSlider.value = ratio;
-            
         }
         
         /*ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
@@ -59,7 +75,6 @@ public class ShadowAssassin : MonoBehaviour
 
     private void EnterShadowAssassin()
     {
-
         if (!shadowReady || shadowActive)
         {
             return;
@@ -68,6 +83,7 @@ public class ShadowAssassin : MonoBehaviour
         shadowReady = false;
         shadowActive = true;
         timer = shadowAssassinDuration;
+        AudioManager.instance.SetSlowTime(1f);
         
         //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
@@ -101,18 +117,19 @@ public class ShadowAssassin : MonoBehaviour
     {
         shadowActive = false;
         shadowReady = false;
-        currentShadowMeter = 0f;
+        currentShadowMeter = Mathf.Clamp01( timer / shadowAssassinDuration) * 100;
         //revert any effects like screen and vfx stuff here if we have it...
         
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
+        AudioManager.instance.SetSlowTime(0f);
         
         CombatEvents.RaiseShadowAssassinEnded();
     }
 
     public void UpdateShadowMeter(float charge)
     {
-        if (TimeManager.time_state == TimeManager.TimeState.NORMAL)
+        if (!shadowActive)
         {
             currentShadowMeter += charge;
             currentShadowMeter = Mathf.Clamp(currentShadowMeter, 0f, maxShadowMeter);
