@@ -84,6 +84,7 @@ public class ShadowAssassin : MonoBehaviour
         shadowActive = true;
         timer = shadowAssassinDuration;
         AudioManager.instance.SetSlowTime(1f);
+        volume.SetActive(true);
         
         //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
@@ -123,6 +124,7 @@ public class ShadowAssassin : MonoBehaviour
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
         AudioManager.instance.SetSlowTime(0f);
+        volume.SetActive(false);
         
         CombatEvents.RaiseShadowAssassinEnded();
     }
