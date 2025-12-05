@@ -672,7 +672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436900700}
-  - component: {fileID: 1436900701}
+  - component: {fileID: 1436900699}
   m_Layer: 0
   m_Name: ToggleShader
   m_TagString: Untagged
@@ -680,6 +680,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1436900699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436900698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af94d1000fde4e449242d701aa2f47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShaderPassController
+  fullscreenPass: {fileID: -8127255016466692527, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
+  maskPower: 1.96
+  vigPower: 5
+  isShaderEnabled: 1
+  duration: 1
 --- !u!4 &1436900700
 Transform:
   m_ObjectHideFlags: 0
@@ -695,21 +712,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1436900701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436900698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff451e4d5509ca46a8eafc1ac763d3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShaderController
-  shader: {fileID: 2100000, guid: 53d6fe566e8728e4286c1469c7719ddf, type: 2}
-  duration: 0.5
-  elapsedTime: 0
 --- !u!1001 &1555249623
 PrefabInstance:
   m_ObjectHideFlags: 0
