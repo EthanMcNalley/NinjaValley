@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CombatStateManager))]
@@ -26,6 +27,15 @@ public class ShadowAssassin : MonoBehaviour
     
     [Header("Visual Stuff")]
     public GameObject volume;
+    [SerializeField]private ScriptableRendererFeature shadowVisual;
+    
+    [Header("Shader Control")]
+    public Material shader;
+    public float shaderDuration = 1f;
+    public float shaderPower = 2.41f;
+    private float shaderTime;
+    private bool shaderFading;
+    private bool shaderTargetState;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +48,8 @@ public class ShadowAssassin : MonoBehaviour
         
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
+        
+        shadowVisual.SetActive(false);
 
         if (InputSystem.actions)
         {
@@ -84,7 +96,7 @@ public class ShadowAssassin : MonoBehaviour
         shadowActive = true;
         timer = shadowAssassinDuration;
         AudioManager.instance.SetSlowTime(1f);
-        volume.SetActive(true);
+        UpdateVisuals();
         
         //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
@@ -124,7 +136,7 @@ public class ShadowAssassin : MonoBehaviour
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
         AudioManager.instance.SetSlowTime(0f);
-        volume.SetActive(false);
+        UpdateVisuals();
         
         CombatEvents.RaiseShadowAssassinEnded();
     }
@@ -148,5 +160,19 @@ public class ShadowAssassin : MonoBehaviour
         
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
+    }
+
+    private void UpdateVisuals()
+    {
+        if (shadowActive)
+        {
+            volume.SetActive(true);
+            shadowVisual.SetActive(true);
+        }
+        else
+        {
+            volume.SetActive(false);
+            shadowVisual.SetActive(false);
+        }
     }
 }
