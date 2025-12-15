@@ -36,7 +36,7 @@ public class ShadowAssassin : MonoBehaviour
     private float shaderTime;
     private bool shaderFading;
     private bool shaderTargetState;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,6 +59,7 @@ public class ShadowAssassin : MonoBehaviour
                 shadowAction.Enable();
             }
         }
+        
     }
 
     // Update is called once per frame

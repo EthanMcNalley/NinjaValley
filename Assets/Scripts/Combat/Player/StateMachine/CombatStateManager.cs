@@ -1,3 +1,4 @@
+using System.Collections;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -53,6 +54,13 @@ public class CombatStateManager : MonoBehaviour
     public EventReference slashSound2;
     public EventReference slashSound3;
     
+    
+    [Header("Shake")] 
+    public GameObject camera;
+    public ScreenShake screenShake;
+    public float shakeDurationA3 = 0.3f;
+    public AnimationCurve shakeCurveA3;
+
     void Start()
     {
         attackAction = InputSystem.actions.FindAction("Attack");
@@ -63,9 +71,9 @@ public class CombatStateManager : MonoBehaviour
         movementController = GetComponent<NewMovement>();
         healthSystem =  GetComponent<HealthSystem>();
         shadowAssassin = GetComponent<ShadowAssassin>();
-
+        screenShake = camera.GetComponent<ScreenShake>();
+        
         KatanaHitBox = GroundAttackHitbox.gameObject.GetComponent<AttackHitBox>();
-
         
         playerAnimatior = GetComponent<Animator>();
         
@@ -168,5 +176,10 @@ public class CombatStateManager : MonoBehaviour
             comboStep = 0;
             SwitchState(Idle);
         }
+    }
+
+    public void ScreenShake()
+    {
+        screenShake.DoScreenShake(shakeDurationA3, shakeCurveA3);
     }
 }

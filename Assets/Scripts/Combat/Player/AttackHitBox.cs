@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class AttackHitBox : MonoBehaviour
 {
@@ -9,12 +11,15 @@ public class AttackHitBox : MonoBehaviour
     public GameObject katanaTrail;
     public Collider katanaHitbox;
     private TrailRenderer katanaTrailRenderer;
+    private MeshRenderer katanaRenderer;
+    public Material auraMaterial;
 
     private HashSet<GameObject> enemyHitted = new HashSet<GameObject>();
-
+    
     void Start()
     {
         katanaHitbox = GetComponent<Collider>();
+        katanaRenderer = GetComponent<MeshRenderer>();
         katanaTrailRenderer = katanaTrail.GetComponent<TrailRenderer>();
     }
     
@@ -36,7 +41,40 @@ public class AttackHitBox : MonoBehaviour
         enemyHitted.Clear();
     }
     
-    
+    private void OnEnable()
+    {
+        CombatEvents.ShadowAssassinStarted += OnShadowStart;
+        CombatEvents.ShadowAssassinEnded += OnShadowEnd;
+    }
+
+    private void OnDisable()
+    {
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+    }
+
+    private void OnDestroy()
+    {
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+    }
+
+    void OnShadowStart()
+    {
+        Material[] materials = katanaRenderer.materials;
+        Array.Resize(ref materials, materials.Length + 1);
+        materials[^1] = auraMaterial;
+        
+        katanaRenderer.materials = materials;
+    }
+
+    void OnShadowEnd()
+    {
+        Material[] materials = katanaRenderer.materials;
+        Array.Resize(ref materials, materials.Length - 1);
+        
+        katanaRenderer.materials = materials;
+    }
     
     //It's this complicated because somehow if you spin the character so that and sword keeps entering the enemy, you could deal multiple damage with 1 swing
     private void OnTriggerEnter(Collider other)

@@ -1035,6 +1035,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 300112761}
+  - component: {fileID: 300112762}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -1059,6 +1060,25 @@ Transform:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &300112762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300112760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 675ae1ada7372bc49a2c71fb88147896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenShake
+  shakeDuration: 0.3
+  shakeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &307387293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,6 +2699,10 @@ PrefabInstance:
       value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 300112760}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: slashSound2.Path
       value: event:/Player/SwordSwing 2
       objectReference: {fileID: 0}
@@ -2698,13 +2722,109 @@ PrefabInstance:
       propertyPath: slashSound2.Guid.Data4
       value: -2043199978
       objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurveA3.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[1].time
+      value: 0.14928684
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[1].value
+      value: 0.51745164
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[2].value
+      value: -0.0015869141
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurveA3.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurveA3.m_Curve.Array.data[1].time
+      value: 1.0000026
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[0].inSlope
+      value: -3.232357
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[1].inSlope
+      value: -1.3670998
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[2].inSlope
+      value: -0.6101217
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurveA3.m_Curve.Array.data[0].value
+      value: 0.99999964
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurveA3.m_Curve.Array.data[1].value
+      value: 0.00000036333222
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[0].outSlope
+      value: -3.232357
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[1].outSlope
+      value: -1.3670998
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[2].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[2].outSlope
+      value: -0.6101217
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[1].outWeight
+      value: 0.09553012
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 966483641433614254, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shakeCurve.m_Curve.Array.data[2].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.03
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 2.63
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2738,6 +2858,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2322480367599543590, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2322480367599543590, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 50cf017f444566249923130a047be85b, type: 2}
     - target: {fileID: 4579928272344351186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_Height
       value: 7.43
@@ -2750,6 +2878,10 @@ PrefabInstance:
       propertyPath: m_SlopeLimit
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 5474360420774602883, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: auraMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 50cf017f444566249923130a047be85b, type: 2}
     - target: {fileID: 5795020942001037589, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3349,6 +3481,7 @@ MonoBehaviour:
   CombatStateManager: {fileID: 1114144295919848659}
   katanaTrail: {fileID: 1533452259}
   katanaHitbox: {fileID: 0}
+  auraMaterial: {fileID: 0}
 --- !u!65 &962073182
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3516,7 +3649,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.004, y: 11.109646}
+  m_AnchoredPosition: {x: -5.004, y: 12.989645}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963194229
@@ -3754,6 +3887,7 @@ GameObject:
   - component: {fileID: 1027097152}
   - component: {fileID: 1027097151}
   - component: {fileID: 1027097150}
+  - component: {fileID: 1027097155}
   m_Layer: 0
   m_Name: MainCinemachineCamera
   m_TagString: Untagged
@@ -3770,7 +3904,7 @@ Transform:
   m_GameObject: {fileID: 1027097147}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06907374, y: 0, z: 0, w: 0.9976116}
-  m_LocalPosition: {x: -5.004, y: 11.109646, z: 7.211075}
+  m_LocalPosition: {x: -5.004, y: 12.989645, z: 7.211075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3992,6 +4126,30 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!114 &1027097155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027097147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseListener
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1124616892
 GameObject:
   m_ObjectHideFlags: 0
@@ -7662,6 +7820,15 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  camera: {fileID: 0}
+  screenShake: {fileID: 0}
+  shakeDurationA3: 0.3
+  shakeCurveA3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1114144295919848660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7751,6 +7918,9 @@ MonoBehaviour:
   shadowBarSlider: {fileID: 906732822}
   volume: {fileID: 0}
   shadowVisual: {fileID: 0}
+  shader: {fileID: 0}
+  shaderDuration: 1
+  shaderPower: 2.41
 --- !u!95 &1114144295919848664
 Animator:
   serializedVersion: 7

@@ -15,6 +15,7 @@ public class GroundAttack3 : CombatState
         Debug.Log("Melee3");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack1");
+        stateManager.ScreenShake();
         
         AudioManager.instance.PlayOneShot(stateManager.slashSound3, stateManager.transform.position);
     }

@@ -98,6 +98,7 @@ public class EnemyHealth : HealthSystem
 
     void BurstShadowDamage()
     {
+        if (damageBurst ==  0) return;
         currHealthPoint -= damageBurst;
         healthBar.UpdateShadowBar(currHealthPoint, maxHealthPoint);
         
