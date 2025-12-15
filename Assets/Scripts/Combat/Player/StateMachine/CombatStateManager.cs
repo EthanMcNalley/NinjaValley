@@ -48,6 +48,10 @@ public class CombatStateManager : MonoBehaviour
     [Header ("Kunai Stuff")]
     public GameObject Kunai;
     public GameObject kunaiPosition;
+    private float kunaiTimer;
+    public float kunaiChargeCooldown;
+    public float maxKunai = 3;
+    public float currentKunai;
 
     [Header("Shadow Stuff")] 
     public EventReference slashSound;
@@ -92,6 +96,7 @@ public class CombatStateManager : MonoBehaviour
         AttackCheck();
         DodgeCheck();
         KunaiCheck();
+        KunaiRefill();
         currentState.UpdateState(this);
     }
 
@@ -120,12 +125,25 @@ public class CombatStateManager : MonoBehaviour
 
     private void KunaiCheck()
     {
-        //Commented out for now cuz animation is broken
-        // if (kunaiAction.triggered)
-        // {
-        //     AttackAnimator.SetTrigger("Kunai");
-        //     Instantiate(Kunai, kunaiPosition.transform.position, gameObject.transform.rotation);
-        // }
+        if (kunaiAction.triggered && currentKunai > 0)
+        {
+            Instantiate(Kunai, kunaiPosition.transform.position, kunaiPosition.transform.rotation);
+            currentKunai--;
+        }
+    }
+    
+    private void KunaiRefill()
+    {
+        if (currentKunai < maxKunai)
+        {
+            kunaiTimer += Time.deltaTime;
+
+            if (kunaiTimer >= kunaiChargeCooldown)
+            {
+                currentKunai++;
+                kunaiTimer = 0;
+            }
+        }
     }
 
     private void DodgeCheck()
