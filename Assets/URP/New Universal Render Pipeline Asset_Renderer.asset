@@ -53,10 +53,7 @@ MonoBehaviour:
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
-  m_AssetVersion: 3
-  m_PrepassLayerMask:
-    serializedVersion: 2
-    m_Bits: 247
+  m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2
     m_Bits: 503
@@ -88,13 +85,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
-  m_Name: FullScreenPassRendererFeature
+  m_Name: FS Outline
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   injectionPoint: 600
   fetchColorBuffer: 1
   requirements: 0
-  passMaterial: {fileID: -876546973899608171, guid: 57f7771d813eda14794f13999b0eb0f6, type: 3}
+  passMaterial: {fileID: 2100000, guid: 3275cda337632104a9be4c453ad2001b, type: 2}
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
