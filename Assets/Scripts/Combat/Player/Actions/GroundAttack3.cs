@@ -3,7 +3,7 @@ using UnityEngine;
 public class GroundAttack3 : CombatState
 {
     public float damage = 3f;
-    float stateDuration = 0.6f;
+    float stateDuration = 0.65f;
     float bufferDuration = 0.5f;
     public float shadowCharge = 20f;
     public override void EnterState(CombatStateManager stateManager)
@@ -15,7 +15,6 @@ public class GroundAttack3 : CombatState
         Debug.Log("Melee3");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack1");
-        stateManager.ScreenShake();
         
         AudioManager.instance.PlayOneShot(stateManager.slashSound3, stateManager.transform.position);
     }

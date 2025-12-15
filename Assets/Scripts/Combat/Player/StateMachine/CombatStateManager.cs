@@ -57,13 +57,6 @@ public class CombatStateManager : MonoBehaviour
     public EventReference slashSound;
     public EventReference slashSound2;
     public EventReference slashSound3;
-    
-    
-    [Header("Shake")] 
-    public GameObject camera;
-    public ScreenShake screenShake;
-    public float shakeDurationA3 = 0.3f;
-    public AnimationCurve shakeCurveA3;
 
     void Start()
     {
@@ -75,7 +68,6 @@ public class CombatStateManager : MonoBehaviour
         movementController = GetComponent<NewMovement>();
         healthSystem =  GetComponent<HealthSystem>();
         shadowAssassin = GetComponent<ShadowAssassin>();
-        screenShake = camera.GetComponent<ScreenShake>();
         
         KatanaHitBox = GroundAttackHitbox.gameObject.GetComponent<AttackHitBox>();
         
@@ -196,8 +188,4 @@ public class CombatStateManager : MonoBehaviour
         }
     }
 
-    public void ScreenShake()
-    {
-        screenShake.DoScreenShake(shakeDurationA3, shakeCurveA3);
-    }
 }
