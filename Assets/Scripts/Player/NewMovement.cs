@@ -49,6 +49,8 @@ public class NewMovement : MonoBehaviour
     }
     [SerializeField]private moveState currentState = moveState.Idle;
     private moveState prevState;
+    public bool double_jump_able = false;
+    public bool double_jump = false;
 
     private void Awake()
     {
@@ -195,6 +197,10 @@ public class NewMovement : MonoBehaviour
         if (!groundedPlayer) return;
         
         if (playerVelocity.y < 0f) playerVelocity.y = 0f;
+        playerVelocity.y = initialJumpVelocity;
+    }
+
+    private void DoubleJump(){
         playerVelocity.y = initialJumpVelocity;
     }
     

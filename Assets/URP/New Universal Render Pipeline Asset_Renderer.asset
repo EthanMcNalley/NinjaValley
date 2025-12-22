@@ -49,7 +49,9 @@ MonoBehaviour:
   - {fileID: 5399117822597427007}
   - {fileID: 3815014557347079244}
   - {fileID: -4773777824754704723}
-  m_RendererFeatureMap: 2da9b8742003e57b3f6f66cc0d85ed4a4ce49def86a7f134addedb665c22c0bd
+  - {fileID: 8514461114199558292}
+  - {fileID: 5215814769977139641}
+  m_RendererFeatureMap: 2da9b8742003e57b3f6f66cc0d85ed4a4ce49def86a7f134addedb665c22c0bd94c8bd9545712976b921b912e64b6248
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -59,7 +61,7 @@ MonoBehaviour:
     m_Bits: 503
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 511
   m_TransparentLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -95,6 +97,26 @@ MonoBehaviour:
   fetchColorBuffer: 1
   requirements: 0
   passMaterial: {fileID: 2100000, guid: 3275cda337632104a9be4c453ad2001b, type: 2}
+  passIndex: 0
+  bindDepthStencilAttachment: 0
+  m_Version: 1
+--- !u!114 &5215814769977139641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
+  m_Name: FullScreenPassRendererFeature
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.FullScreenPassRendererFeature
+  m_Active: 1
+  injectionPoint: 600
+  fetchColorBuffer: 1
+  requirements: 0
+  passMaterial: {fileID: 2100000, guid: f17f6de8ee0004566bdc11f0f4c75315, type: 2}
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
@@ -140,6 +162,27 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 60
+--- !u!114 &8514461114199558292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1614fc811f8f184697d9bee70ab9fe5, type: 3}
+  m_Name: DecalRendererFeature
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalRendererFeature
+  m_Active: 1
+  m_Settings:
+    technique: 1
+    maxDrawDistance: 1000
+    decalLayers: 0
+    dBufferSettings:
+      surfaceData: 2
+    screenSpaceSettings:
+      normalBlend: 0
 --- !u!114 &8672926561701717477
 MonoBehaviour:
   m_ObjectHideFlags: 0

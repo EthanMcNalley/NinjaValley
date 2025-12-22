@@ -15,6 +15,9 @@ public class TimeManager : MonoBehaviour
     public float refresh_time = 3.0f;
     public float refresh_timer = 0.0f;
     public GameObject volume;
+    public Material time_slow_material;
+    private float time_size = 0.0f;
+    public float material_rate = 3.0f;
     private GameObject[] anim_objects;
     
     private InputAction timeSlowAction;
@@ -44,7 +47,10 @@ public class TimeManager : MonoBehaviour
         // }
 
             if (time_state == TimeState.NORMAL){
-                volume.SetActive(false);
+                //volume.SetActive(false);
+                if (time_size > 0){
+                    time_size = time_size - (Time.deltaTime * material_rate);
+                }
 
                 if (refresh_timer >= refresh_time){
                     if (timeSlowAction.triggered){
@@ -57,7 +63,10 @@ public class TimeManager : MonoBehaviour
             }
 
             else{
-                volume.SetActive(true);
+                if (time_size < 10){
+                    time_size = time_size + (Time.deltaTime * material_rate);
+                }
+                //volume.SetActive(true);
                 // Time.timeScale = slowed_amount;
                 //Debug.Log(time_timer);
 
@@ -74,6 +83,9 @@ public class TimeManager : MonoBehaviour
                     time_state = TimeState.NORMAL;
                 }
             }
+
+            time_slow_material.SetFloat("_WipeSize", time_size);
+
 
         if (time_timer < time_slowed_down){
             time_timer = time_timer + Time.deltaTime;
