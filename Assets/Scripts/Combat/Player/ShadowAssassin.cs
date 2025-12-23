@@ -26,7 +26,6 @@ public class ShadowAssassin : MonoBehaviour
     private Coroutine shadowCoroutine;
     
     [Header("Visual Stuff")]
-    public GameObject volume;
     [SerializeField]private ScriptableRendererFeature shadowVisual;
     
     [Header("Shader Control")]
@@ -36,6 +35,15 @@ public class ShadowAssassin : MonoBehaviour
     private float shaderTime;
     private bool shaderFading;
     private bool shaderTargetState;
+    
+    public Material time_slow_material;
+    private Material instance_material;
+    public FullScreenPassRendererFeature shadowSlowRenderer;
+    public float material_rate = 5.0f;
+    public float max_size = 3.0f;
+    
+    private float time_size = 0.0f;
+    private bool isEffectActive = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,6 +68,11 @@ public class ShadowAssassin : MonoBehaviour
             }
         }
         
+        instance_material = new Material(time_slow_material);
+        time_size = 0f;
+        instance_material.SetFloat("_WipeSize", time_size);
+        
+        shadowSlowRenderer.passMaterial = instance_material;
     }
 
     // Update is called once per frame
@@ -80,6 +93,19 @@ public class ShadowAssassin : MonoBehaviour
             timer -= Time.deltaTime;
             ratio = Mathf.Clamp01( timer / shadowAssassinDuration);
             shadowBarSlider.value = ratio;
+        }
+        
+        if (shadowActive && time_size < max_size)
+        {
+            time_size += Time.deltaTime * material_rate;
+            time_size = Mathf.Min(time_size, max_size);
+            instance_material.SetFloat("_WipeSize", time_size);
+        }
+        else if (!shadowActive && time_size > 0)
+        {
+            time_size -= Time.deltaTime * material_rate;
+            time_size = Mathf.Max(time_size, 0f);
+            instance_material.SetFloat("_WipeSize", time_size);
         }
         
         /*ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
@@ -167,12 +193,10 @@ public class ShadowAssassin : MonoBehaviour
     {
         if (shadowActive)
         {
-            volume.SetActive(true);
             shadowVisual.SetActive(true);
         }
         else
         {
-            volume.SetActive(false);
             shadowVisual.SetActive(false);
         }
     }

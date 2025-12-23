@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TimeSlowing
+  m_Name: ShadowSlow
   m_Shader: {fileID: 4800000, guid: 3960023ee3c424bafb1566032662c07e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -101,10 +101,10 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _HighlightSize: 10.7
-    - _HighlightSpeed: 1
+    - _HighlightSpeed: 8.3
     - _Metallic: 0
-    - _NoiseScale: 9.1
-    - _NoiseStrength: 1.2
+    - _NoiseScale: 20
+    - _NoiseStrength: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -116,7 +116,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Strength: 1.2
     - _Surface: 0
-    - _WipeSize: -0.0013074642
+    - _WipeSize: 0
     - _WipeThickness: 0.16
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
@@ -124,12 +124,12 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EdgeColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EdgeColor: {r: 0.72327036, g: 0.15238701, b: 0.65961945, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HighlightStrength: {r: 0.1, g: 0.25, b: 0, a: 0}
-    - _HighlightThresholds: {r: 0.9, g: 1, b: 0, a: 0}
+    - _HighlightStrength: {r: 0.1, g: 1, b: 0, a: 0}
+    - _HighlightThresholds: {r: 0.9, g: 3, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TintColor: {r: 1, g: 1, b: 1, a: 0}
+    - _TintColor: {r: 1, g: 0, b: 0.9045782, a: 0}
     - _WipeOriginPoint: {r: 0.52, g: 0.43, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

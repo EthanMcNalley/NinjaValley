@@ -16,6 +16,8 @@ public class TimeManager : MonoBehaviour
     public float refresh_timer = 0.0f;
     public GameObject volume;
     public Material time_slow_material;
+    private Material instance_material;
+    public FullScreenPassRendererFeature time_slow_renderer;
     private float time_size = 0.0f;
     public float material_rate = 3.0f;
     private GameObject[] anim_objects;
@@ -37,6 +39,8 @@ public class TimeManager : MonoBehaviour
         }
 
         anim_objects = GameObject.FindGameObjectsWithTag("Test");
+        instance_material = new Material(time_slow_material);
+        time_slow_renderer.passMaterial = instance_material;
     }
 
     // Update is called once per frame
@@ -84,7 +88,7 @@ public class TimeManager : MonoBehaviour
                 }
             }
 
-            time_slow_material.SetFloat("_WipeSize", time_size);
+            instance_material.SetFloat("_WipeSize", time_size);
 
 
         if (time_timer < time_slowed_down){

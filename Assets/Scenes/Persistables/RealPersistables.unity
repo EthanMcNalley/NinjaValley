@@ -2863,6 +2863,10 @@ PrefabInstance:
       value: 113.65368
       objectReference: {fileID: 0}
     - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shader
+      value: 
+      objectReference: {fileID: 2100000, guid: 53d6fe566e8728e4286c1469c7719ddf, type: 2}
+    - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: volume
       value: 
       objectReference: {fileID: 1882585154}
@@ -2874,6 +2878,14 @@ PrefabInstance:
       propertyPath: shadowBarSlider
       value: 
       objectReference: {fileID: 906732822}
+    - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: shadowSlowRenderer
+      value: 
+      objectReference: {fileID: -6553968265851075644, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
+    - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: time_slow_material
+      value: 
+      objectReference: {fileID: 2100000, guid: 7be0a1def9121cf4c964cdcf97043711, type: 2}
     - target: {fileID: 8085803216491071703, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 48.67114
@@ -6678,6 +6690,7 @@ MonoBehaviour:
   refresh_timer: 0
   volume: {fileID: 475202059}
   time_slow_material: {fileID: 2100000, guid: f17f6de8ee0004566bdc11f0f4c75315, type: 2}
+  time_slow_renderer: {fileID: 5215814769977139641, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
   material_rate: 3
 --- !u!4 &207702421522809
 Transform:
@@ -7361,11 +7374,14 @@ MonoBehaviour:
   shadowReady: 0
   shadowActive: 0
   shadowBarSlider: {fileID: 906732822}
-  volume: {fileID: 0}
   shadowVisual: {fileID: 0}
   shader: {fileID: 0}
   shaderDuration: 1
   shaderPower: 2.41
+  time_slow_material: {fileID: 0}
+  shadowSlowRenderer: {fileID: 0}
+  material_rate: 5
+  max_size: 3
 --- !u!95 &1114144295919848664
 Animator:
   serializedVersion: 7

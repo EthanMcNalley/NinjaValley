@@ -1539,7 +1539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2120925378}
-  - component: {fileID: 2120925377}
+  - component: {fileID: 2120925379}
   m_Layer: 0
   m_Name: TestScreenEffect
   m_TagString: Untagged
@@ -1547,22 +1547,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &2120925377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120925376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff451e4d5509ca46a8eafc1ac763d3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShaderController
-  shader: {fileID: 2100000, guid: 53d6fe566e8728e4286c1469c7719ddf, type: 2}
-  duration: 5
-  shaderPower: 2.41
-  elapsedTime: 0
 --- !u!4 &2120925378
 Transform:
   m_ObjectHideFlags: 0
@@ -1578,6 +1562,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2120925379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120925376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6f726ac29b79a4287c79314ef53b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  time_size: 0
+  material_rate: 3
+  time_slow_material: {fileID: 2100000, guid: 7be0a1def9121cf4c964cdcf97043711, type: 2}
+  time_slow_renderer: {fileID: -6553968265851075644, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
 --- !u!1001 &6238838906361094446
 PrefabInstance:
   m_ObjectHideFlags: 0
