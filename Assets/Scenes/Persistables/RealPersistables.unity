@@ -710,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a6f4dcc9faeba4ba6f398a330921be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needMusic: 1
+  needMusic: 0
 --- !u!114 &210892965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2524,15 +2524,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -110.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 77.5
+      value: 34.5
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2675,8 +2675,16 @@ PrefabInstance:
       value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 4579928272344351186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579928272344351186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_SlopeLimit
-      value: 65
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579928272344351186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4817018929382062669, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2815,8 +2823,20 @@ PrefabInstance:
       value: -36.556183
       objectReference: {fileID: 0}
     - target: {fileID: 7551101314265223699, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: slopeLimit
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551101314265223699, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: maxJumpHeight
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551101314265223699, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: slideFriction
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551101314265223699, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: double_jump_able
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7916405413665446436, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2937,7 +2957,6 @@ GameObject:
   m_Component:
   - component: {fileID: 812311761}
   - component: {fileID: 812311758}
-  - component: {fileID: 812311760}
   - component: {fileID: 812311759}
   m_Layer: 0
   m_Name: TestCam
@@ -3041,14 +3060,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &812311760
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812311757}
-  m_Enabled: 1
 --- !u!4 &812311761
 Transform:
   m_ObjectHideFlags: 0
@@ -3681,7 +3692,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.06907406, y: 0, z: 0, w: 0.9976115}
-  m_LocalPosition: {x: 0, y: 0, z: 53.391075}
+  m_LocalPosition: {x: 0, y: 0, z: 10.391077}
   m_LocalScale: {x: 0.95238096, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3690,7 +3701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 7.83, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -110.274, y: 13.759645}
+  m_AnchoredPosition: {x: 0.025999999, y: 10.359646}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963194229
@@ -3946,7 +3957,7 @@ Transform:
   m_GameObject: {fileID: 1027097147}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06907406, y: 0, z: 0, w: 0.9976115}
-  m_LocalPosition: {x: -110.274, y: 13.759645, z: 53.391075}
+  m_LocalPosition: {x: 0.025999999, y: 10.359646, z: 10.391077}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

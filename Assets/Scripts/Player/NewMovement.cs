@@ -186,8 +186,16 @@ public class NewMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         
         // Combine horizontal and vertical movement
-
+        
         Vector3 finalMove = (moveDirection * playerCurrSpeed) + (playerVelocity.y * Vector3.up);
+
+        if (!groundedPlayer && moveDirection.y < 0.001f)
+        {
+
+            finalMove += -transform.forward * 2.5f;
+        }
+
+
         controller.Move(finalMove * Time.deltaTime);
         
         animator.SetBool("Jump", !groundedPlayer);
@@ -251,7 +259,7 @@ public class NewMovement : MonoBehaviour
     }
 
     private Vector3 slope_sticking(Vector3 velocity){
-        var ray = new Ray(transform.position, Vector3.down);
+        var ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f)){
             var slope_rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
