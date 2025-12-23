@@ -63,7 +63,7 @@ public class TimeManager : MonoBehaviour
             }
 
             else{
-                if (time_size < 10){
+                if (time_size < 3){
                     time_size = time_size + (Time.deltaTime * material_rate);
                 }
                 //volume.SetActive(true);
