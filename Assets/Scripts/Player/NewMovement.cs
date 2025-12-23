@@ -148,6 +148,7 @@ public class NewMovement : MonoBehaviour
         if (groundedPlayer && playerVelocity.y <= 0f)
         {
             playerVelocity.y = -2f;
+            double_jump = true;
         }
 
         if (currentState != moveState.Dodging && groundedPlayer && !translationDisabled)
@@ -194,16 +195,24 @@ public class NewMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (!groundedPlayer) return;
+        //Double Jump
+        if (!groundedPlayer){
+            if (double_jump_able && double_jump){
+                playerVelocity.y = initialJumpVelocity;
+                double_jump = false;
+            }   
+        }
         
-        if (playerVelocity.y < 0f) playerVelocity.y = 0f;
-        playerVelocity.y = initialJumpVelocity;
+        //Normal Jump
+        else{
+            if (playerVelocity.y < 0f){
+                playerVelocity.y = 0f;
+            }
+
+            playerVelocity.y = initialJumpVelocity;
+        }
     }
 
-    private void DoubleJump(){
-        playerVelocity.y = initialJumpVelocity;
-    }
-    
     private void HandleRotation(Vector3 moveDir){
         if (moveDir.sqrMagnitude < 0.0001f) return;
         
