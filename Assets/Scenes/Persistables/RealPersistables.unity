@@ -2871,6 +2871,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1882585154}
     - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: vignette
+      value: 
+      objectReference: {fileID: -4773777824754704723, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
+    - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: shadowVisual
       value: 
       objectReference: {fileID: -4773777824754704723, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
@@ -2878,6 +2882,10 @@ PrefabInstance:
       propertyPath: shadowBarSlider
       value: 
       objectReference: {fileID: 906732822}
+    - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: vignette_material
+      value: 
+      objectReference: {fileID: 2100000, guid: 53d6fe566e8728e4286c1469c7719ddf, type: 2}
     - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: shadowSlowRenderer
       value: 
@@ -7379,9 +7387,12 @@ MonoBehaviour:
   shaderDuration: 1
   shaderPower: 2.41
   time_slow_material: {fileID: 0}
+  vignette_material: {fileID: 0}
   shadowSlowRenderer: {fileID: 0}
+  vignette: {fileID: 0}
   material_rate: 5
   max_size: 3
+  fadeSpeed: 2
 --- !u!95 &1114144295919848664
 Animator:
   serializedVersion: 7

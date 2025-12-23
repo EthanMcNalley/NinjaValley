@@ -37,13 +37,18 @@ public class ShadowAssassin : MonoBehaviour
     private bool shaderTargetState;
     
     public Material time_slow_material;
-    private Material instance_material;
+    private Material instance_material_expand;
+    public Material vignette_material;
+    private Material instance_vignette_material;
     public FullScreenPassRendererFeature shadowSlowRenderer;
+    public FullScreenPassRendererFeature vignette;
     public float material_rate = 5.0f;
     public float max_size = 3.0f;
     
     private float time_size = 0.0f;
-    private bool isEffectActive = false;
+    
+    public float fadeSpeed = 2.0f;
+    private float effectStrength = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -68,11 +73,14 @@ public class ShadowAssassin : MonoBehaviour
             }
         }
         
-        instance_material = new Material(time_slow_material);
+        instance_material_expand = new Material(time_slow_material);
         time_size = 0f;
-        instance_material.SetFloat("_WipeSize", time_size);
+        instance_material_expand.SetFloat("_WipeSize", time_size);
         
-        shadowSlowRenderer.passMaterial = instance_material;
+        instance_vignette_material = new Material(vignette_material);
+        
+        shadowSlowRenderer.passMaterial = instance_material_expand;
+        vignette.passMaterial =  instance_vignette_material;
     }
 
     // Update is called once per frame
@@ -94,18 +102,36 @@ public class ShadowAssassin : MonoBehaviour
             ratio = Mathf.Clamp01( timer / shadowAssassinDuration);
             shadowBarSlider.value = ratio;
         }
-        
-        if (shadowActive && time_size < max_size)
+
+        if (shadowActive)
         {
-            time_size += Time.deltaTime * material_rate;
-            time_size = Mathf.Min(time_size, max_size);
-            instance_material.SetFloat("_WipeSize", time_size);
+            if (time_size < max_size)
+            {
+                time_size += Time.deltaTime * material_rate;
+                time_size = Mathf.Min(time_size, max_size);
+                instance_material_expand.SetFloat("_WipeSize", time_size);
+            }
+            
+            if (effectStrength < 1f)
+            {
+                effectStrength += Time.deltaTime * fadeSpeed;
+                instance_vignette_material.SetFloat("_EffectStrength", effectStrength);
+            }
         }
-        else if (!shadowActive && time_size > 0)
+        else 
         {
-            time_size -= Time.deltaTime * material_rate;
-            time_size = Mathf.Max(time_size, 0f);
-            instance_material.SetFloat("_WipeSize", time_size);
+            if (time_size > 0)
+            {
+                time_size -= Time.deltaTime * material_rate;
+                time_size = Mathf.Max(time_size, 0f);
+                instance_material_expand.SetFloat("_WipeSize", time_size);
+            }
+        
+            if (effectStrength > 0)
+            {
+                effectStrength -= Time.deltaTime * fadeSpeed;
+                instance_vignette_material.SetFloat("_EffectStrength", effectStrength);
+            }
         }
         
         /*ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
