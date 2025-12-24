@@ -61,8 +61,6 @@ public class ShadowAssassin : MonoBehaviour
         
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
-        
-        shadowVisual.SetActive(false);
 
         if (InputSystem.actions)
         {
@@ -149,7 +147,6 @@ public class ShadowAssassin : MonoBehaviour
         shadowActive = true;
         timer = shadowAssassinDuration;
         AudioManager.instance.SetSlowTime(1f);
-        UpdateVisuals();
         
         //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
@@ -189,7 +186,6 @@ public class ShadowAssassin : MonoBehaviour
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
         AudioManager.instance.SetSlowTime(0f);
-        UpdateVisuals();
         
         CombatEvents.RaiseShadowAssassinEnded();
     }
@@ -213,17 +209,5 @@ public class ShadowAssassin : MonoBehaviour
         
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
-    }
-
-    private void UpdateVisuals()
-    {
-        if (shadowActive)
-        {
-            shadowVisual.SetActive(true);
-        }
-        else
-        {
-            shadowVisual.SetActive(false);
-        }
     }
 }
