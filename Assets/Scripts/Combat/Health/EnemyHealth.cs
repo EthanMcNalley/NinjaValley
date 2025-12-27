@@ -14,12 +14,16 @@ public class EnemyHealth : HealthSystem
     
     public FloatingHPDisplay healthBar;
     public ParticleSystem particles;
-    public ParticleSystem deathParticles;
+    public ParticleSystem normalDeathParticles;
+    public ParticleSystem executeDeathParticles;
     private ParticleSystem particlesInstance;
     
     [Header("Sounds")]
     public EventReference hurtSound;
     public EventReference deathSound;
+    
+    private bool markedForDeath = false;
+    private bool markedForExecute = false;
     
     void Start()
     {
@@ -60,6 +64,11 @@ public class EnemyHealth : HealthSystem
     {
         playerShadowMode = false;
         BurstShadowDamage();
+
+        if (markedForExecute)
+        {
+            ShadowExecute();
+        }
     }
     
     public override void TakeDamage(float damage)
@@ -78,16 +87,53 @@ public class EnemyHealth : HealthSystem
 
         if (playerShadowMode)
         {
+            markedForDeath = true;
             damageDuringShadow += damage;
             damageBurst = damageDuringShadow * shadowMultiplyPercentage;
         }
-        healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint, damageBurst);
+
+        if ((currHealthPoint - damageBurst) <= 0)
+        {
+            markedForExecute =  true;
+        }
         
+        healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint, damageBurst);
     }
 
     protected override void Dead()
     {
-        particlesInstance =  Instantiate(deathParticles, transform.position, Quaternion.identity);
+        if (playerShadowMode)
+        {
+            markedForExecute = true;
+            FreezeEnemy(true);
+            
+            return;
+        }
+
+        if (markedForExecute)
+        {
+            return;
+        }
+        
+        particlesInstance =  Instantiate(normalDeathParticles, transform.position, Quaternion.identity);
+        if (!deathSound.IsNull)
+        {
+            AudioManager.instance.PlayOneShot(deathSound, transform.position);
+        }
+        Destroy(gameObject);
+    }
+
+    public void FreezeEnemy(bool freeze)
+    {
+        if (animator != null)
+        {
+            animator.speed = freeze ? 0f : 1f;
+        }
+    }
+
+    void ShadowExecute()
+    {
+        particlesInstance =  Instantiate(executeDeathParticles, transform.position, Quaternion.identity);
         if (!deathSound.IsNull)
         {
             AudioManager.instance.PlayOneShot(deathSound, transform.position);
@@ -95,7 +141,6 @@ public class EnemyHealth : HealthSystem
         Destroy(gameObject);
     }
     
-
     void BurstShadowDamage()
     {
         if (damageBurst ==  0) return;
