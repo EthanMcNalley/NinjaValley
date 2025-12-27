@@ -89,7 +89,38 @@ MonoBehaviour:
   maxColor: {r: 0, g: 1, b: 0, a: 1}
   minColor: {r: 1, g: 0, b: 0, a: 1}
   target: {fileID: 5908729893356392855}
-  offset: {x: 0, y: 5.3, z: 0}
+  offset: {x: 0, y: 10, z: 0}
+--- !u!1 &585628645047208959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7618180061304117748}
+  m_Layer: 0
+  m_Name: ParticalTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7618180061304117748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585628645047208959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5908729893356392855}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1347309229948174678
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,16 +544,17 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4174590494272450737}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.36369023, z: 0, w: 0.9315199}
-  m_LocalPosition: {x: -0.1110059, y: 0, z: 0.024047077}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3904093849595844770}
   - {fileID: 6210209362914857987}
   - {fileID: 8673098905706880023}
+  - {fileID: 7618180061304117748}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 42.654, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!195 &6708056796663385793
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -616,7 +648,7 @@ CapsuleCollider:
   m_Radius: 0.87557507
   m_Height: 5.440572
   m_Direction: 1
-  m_Center: {x: 0.14523792, y: 1.8447108, z: 0}
+  m_Center: {x: 0, y: 1.8447108, z: 0}
 --- !u!114 &8883003245325134146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,9 +691,10 @@ MonoBehaviour:
   isInvincible: 0
   shadowAssassin: {fileID: 0}
   healthBar: {fileID: 517779453409854359}
-  particles: {fileID: 5553527035203610251, guid: 6dbeae6864b78f346a3f4618e5b710e5, type: 3}
+  particles: {fileID: 2078010364559804097, guid: cd1bdf111bb4b10419f41a8c44e992ad, type: 3}
   normalDeathParticles: {fileID: 2078010364559804097, guid: cd1bdf111bb4b10419f41a8c44e992ad, type: 3}
   executeDeathParticles: {fileID: 1457491218022708176, guid: 9af9ed126a1a1d3459122f56260621fd, type: 3}
+  particalTransform: {fileID: 585628645047208959}
   hurtSound:
     Guid:
       Data1: 980805730
@@ -736,7 +769,7 @@ RectTransform:
   m_GameObject: {fileID: 4251712191719643000}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.022, y: 0.035, z: 0.022}
+  m_LocalScale: {x: 0.018, y: 0.03, z: 0.018}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5752452729683818797}

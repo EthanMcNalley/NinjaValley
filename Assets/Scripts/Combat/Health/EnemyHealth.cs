@@ -16,6 +16,7 @@ public class EnemyHealth : HealthSystem
     public ParticleSystem particles;
     public ParticleSystem normalDeathParticles;
     public ParticleSystem executeDeathParticles;
+    public GameObject particalTransform;
     private ParticleSystem particlesInstance;
     
     [Header("Sounds")]
@@ -79,7 +80,7 @@ public class EnemyHealth : HealthSystem
             animator.SetTrigger("Hit");
         }
         
-        particlesInstance =  Instantiate(particles, transform.position, Quaternion.identity);
+        particlesInstance =  Instantiate(particles, particalTransform.transform.position, Quaternion.identity);
         if (!hurtSound.IsNull)
         {
             AudioManager.instance.PlayOneShot(hurtSound, transform.position);
@@ -95,6 +96,7 @@ public class EnemyHealth : HealthSystem
         if ((currHealthPoint - damageBurst) <= 0)
         {
             markedForExecute =  true;
+            FreezeEnemy(true);
         }
         
         healthBar.UpdateHealthBar(currHealthPoint, maxHealthPoint, damageBurst);
@@ -115,7 +117,7 @@ public class EnemyHealth : HealthSystem
             return;
         }
         
-        particlesInstance =  Instantiate(normalDeathParticles, transform.position, Quaternion.identity);
+        particlesInstance =  Instantiate(normalDeathParticles, particalTransform.transform.position, Quaternion.identity);
         if (!deathSound.IsNull)
         {
             AudioManager.instance.PlayOneShot(deathSound, transform.position);
@@ -133,7 +135,7 @@ public class EnemyHealth : HealthSystem
 
     void ShadowExecute()
     {
-        particlesInstance =  Instantiate(executeDeathParticles, transform.position, Quaternion.identity);
+        particlesInstance =  Instantiate(executeDeathParticles, particalTransform.transform.position, Quaternion.identity);
         if (!deathSound.IsNull)
         {
             AudioManager.instance.PlayOneShot(deathSound, transform.position);
