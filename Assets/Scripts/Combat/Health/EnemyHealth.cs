@@ -19,6 +19,9 @@ public class EnemyHealth : HealthSystem
     public GameObject particalTransform;
     private ParticleSystem particlesInstance;
     
+    public EnemySoul enemySoul;
+    public GameObject soul;
+    
     [Header("Sounds")]
     public EventReference hurtSound;
     public EventReference deathSound;
@@ -33,6 +36,7 @@ public class EnemyHealth : HealthSystem
         animator = GetComponent<Animator>();
         shadowAssassin = player.GetComponent<ShadowAssassin>();
         shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
+        soul.SetActive(false);
     }
 
     private void OnEnable()
@@ -56,6 +60,9 @@ public class EnemyHealth : HealthSystem
     void OnShadowStart()
     {
         playerShadowMode = true;
+        markedForDeath = false;
+        soul.SetActive(true);
+        enemySoul.SetShadow(true);
         shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
         damageDuringShadow = 0f;
         damageBurst = 0f;
@@ -70,6 +77,10 @@ public class EnemyHealth : HealthSystem
         {
             ShadowExecute();
         }
+        
+        markedForDeath = false;
+        enemySoul.SetShadow(false);
+        soul.SetActive(false);
     }
     
     public override void TakeDamage(float damage)
@@ -88,14 +99,20 @@ public class EnemyHealth : HealthSystem
 
         if (playerShadowMode)
         {
-            markedForDeath = true;
             damageDuringShadow += damage;
             damageBurst = damageDuringShadow * shadowMultiplyPercentage;
+            
+            if (!markedForDeath)
+            {
+                markedForDeath = true;
+                enemySoul.SetMarkedForDeath(true);
+            }
         }
 
         if ((currHealthPoint - damageBurst) <= 0)
         {
             markedForExecute =  true;
+            enemySoul.SetMarkedForExecute(true);
             FreezeEnemy(true);
         }
         
@@ -152,5 +169,12 @@ public class EnemyHealth : HealthSystem
         damageDuringShadow = 0f;
         damageBurst = 0f;
         Debug.Log(this.name+ " took " + damageBurst + " shadow burst damage");
+    }
+
+    
+    
+    void SoulUI()
+    {
+        
     }
 }
