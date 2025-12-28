@@ -166,9 +166,9 @@ public class EnemyHealth : HealthSystem
         currHealthPoint -= damageBurst;
         healthBar.UpdateShadowBar(currHealthPoint, maxHealthPoint);
         
+        Debug.Log(this.name+ " took " + damageBurst + " shadow burst damage");
         damageDuringShadow = 0f;
         damageBurst = 0f;
-        Debug.Log(this.name+ " took " + damageBurst + " shadow burst damage");
     }
 
     
