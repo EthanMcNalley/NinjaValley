@@ -50,6 +50,9 @@
         },
         {
             "m_Id": "013d7a9202624f7ab21dd77c533294ea"
+        },
+        {
+            "m_Id": "39ace207ee53465e9353d9a4d9132aa1"
         }
     ],
     "m_GroupDatas": [
@@ -59,6 +62,20 @@
     ],
     "m_StickyNoteDatas": [],
     "m_Edges": [
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "39ace207ee53465e9353d9a4d9132aa1"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "00f20acc3dce4ea399f991f245c255e5"
+                },
+                "m_SlotId": 0
+            }
+        },
         {
             "m_OutputSlot": {
                 "m_Node": {
@@ -99,20 +116,6 @@
                     "m_Id": "b07bf37e4782426bbaa5a1f489ed5316"
                 },
                 "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "b07bf37e4782426bbaa5a1f489ed5316"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "00f20acc3dce4ea399f991f245c255e5"
-                },
-                "m_SlotId": 0
             }
         },
         {
@@ -414,8 +417,44 @@
     "m_ObjectId": "394692c13c554dda9ef221a070a83c68",
     "m_Title": "FRESNEL",
     "m_Position": {
-        "x": -808.6666870117188,
-        "y": 24.000049591064454
+        "x": -808.6666259765625,
+        "y": 23.99999237060547
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "39ace207ee53465e9353d9a4d9132aa1",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 50.66667556762695,
+            "y": 312.0,
+            "width": 146.6666717529297,
+            "height": 36.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "d92d9cc31f094f92b25baf07aa12103d"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "5d823239537c44adb09d89064b1e5caa"
     }
 }
 
@@ -1002,6 +1041,21 @@
     },
     "m_Labels": [],
     "m_Space": 2
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "d92d9cc31f094f92b25baf07aa12103d",
+    "m_Id": 0,
+    "m_DisplayName": "FresnelAlpha",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {

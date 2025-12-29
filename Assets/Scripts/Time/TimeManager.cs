@@ -23,6 +23,11 @@ public class TimeManager : MonoBehaviour
     private GameObject[] anim_objects;
     
     private InputAction timeSlowAction;
+
+    public GameObject terrainScannerPrefab;
+    public GameObject player;
+    public float scanDurration = 10f;
+    public float scanSize = 500;
     
     private MusicState current_musicState = MusicState.NORMAL;
     
@@ -41,6 +46,8 @@ public class TimeManager : MonoBehaviour
         anim_objects = GameObject.FindGameObjectsWithTag("Test");
         instance_material = new Material(time_slow_material);
         time_slow_renderer.passMaterial = instance_material;
+        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -61,6 +68,7 @@ public class TimeManager : MonoBehaviour
                         time_timer = 0.0f;
                         refresh_timer = 0.0f;
                         time_state = TimeState.SLOWED;
+                        InstantiateTerrainScanner();
                         //Time.fixedDeltaTime = 0.02f * slowed_amount;
                     }
                 }
@@ -122,6 +130,25 @@ public class TimeManager : MonoBehaviour
         for (int i = 0; i < anim_objects.Length; i++){
             anim_objects[i].GetComponent<Animator>().SetFloat("Speed",  slowed_amount);
         }
+    }
+
+    void InstantiateTerrainScanner()
+    {
+        GameObject terrainScanner = Instantiate(terrainScannerPrefab, player.transform.position, Quaternion.identity);
+        ParticleSystem ps = terrainScanner.transform.GetChild(0).GetComponent<ParticleSystem>();
+
+        if (ps != null)
+        {
+            var main = ps.main;
+            main.startLifetime = scanDurration;
+            main.startSize = scanSize;
+        }
+        else
+        {
+            return;
+        }
+        
+        Destroy(terrainScanner, scanDurration + 1);
     }
 
     public enum TimeState{
