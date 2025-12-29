@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using FMODUnity;
 using UnityEngine;
@@ -53,10 +54,12 @@ public class CombatStateManager : MonoBehaviour
     public float maxKunai = 3;
     public float currentKunai;
 
-    [Header("Shadow Stuff")] 
+    [Header("Sound Stuff")] 
     public EventReference slashSound;
     public EventReference slashSound2;
     public EventReference slashSound3;
+    
+    public event Action PlayerAttack;
 
     void Start()
     {
@@ -154,6 +157,7 @@ public class CombatStateManager : MonoBehaviour
         //Reset for new state
         stateTime = 0f;
         state.EnterState(this);
+        RaisePlayerAttack();
     }
 
     public void StartCombo()
@@ -187,5 +191,11 @@ public class CombatStateManager : MonoBehaviour
             SwitchState(Idle);
         }
     }
-
+    
+    public void RaisePlayerAttack()
+    {
+        if (currentState == Idle || currentState == Dodge) return;
+        
+        PlayerAttack?.Invoke();
+    }
 }
