@@ -2906,6 +2906,10 @@ PrefabInstance:
       propertyPath: time_slow_material
       value: 
       objectReference: {fileID: 2100000, guid: 7be0a1def9121cf4c964cdcf97043711, type: 2}
+    - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: terrainScannerPrefab
+      value: 
+      objectReference: {fileID: 5875709519617017709, guid: 8153da836e3ce8d419f2e6e37c3c89b8, type: 3}
     - target: {fileID: 8085803216491071703, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 48.67114
@@ -3036,7 +3040,7 @@ Camera:
   m_Depth: 13
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 40
+    m_Bits: 1064
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -7399,6 +7403,9 @@ MonoBehaviour:
   shadowActive: 0
   shadowBarSlider: {fileID: 906732822}
   shadowVisual: {fileID: 0}
+  terrainScannerPrefab: {fileID: 0}
+  scanDurration: 6
+  scanSize: 700
   shader: {fileID: 0}
   shaderDuration: 1
   shaderPower: 2.41

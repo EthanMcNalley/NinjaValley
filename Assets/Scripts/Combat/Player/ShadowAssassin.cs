@@ -27,6 +27,9 @@ public class ShadowAssassin : MonoBehaviour
     
     [Header("Visual Stuff")]
     [SerializeField]private ScriptableRendererFeature shadowVisual;
+    public GameObject terrainScannerPrefab;
+    public float scanDurration = 6f;
+    public float scanSize = 700;
     
     [Header("Shader Control")]
     public Material shader;
@@ -150,6 +153,7 @@ public class ShadowAssassin : MonoBehaviour
         
         //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
+        InstantiateTerrainScanner();
 
         shadowCoroutine = StartCoroutine(ShadowAssassinTimer());
     }
@@ -209,5 +213,24 @@ public class ShadowAssassin : MonoBehaviour
         
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
+    }
+    
+    void InstantiateTerrainScanner()
+    {
+        GameObject terrainScanner = Instantiate(terrainScannerPrefab, combatStateManager.transform.position, Quaternion.identity);
+        ParticleSystem ps = terrainScanner.transform.GetChild(0).GetComponent<ParticleSystem>();
+
+        if (ps != null)
+        {
+            var main = ps.main;
+            main.startLifetime = scanDurration;
+            main.startSize = scanSize;
+        }
+        else
+        {
+            return;
+        }
+        
+        Destroy(terrainScanner, scanDurration + 1);
     }
 }
