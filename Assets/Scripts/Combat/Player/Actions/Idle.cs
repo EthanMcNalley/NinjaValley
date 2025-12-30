@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Idle : CombatState
 {
-    
+    public AttackData.CombatStateID stateID = AttackData.CombatStateID.Idle;
     public override void EnterState(CombatStateManager stateManager)
     {
+        stateManager.currentStateID = stateID;
         Debug.Log("Idle");
     }
 

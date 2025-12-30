@@ -5,18 +5,26 @@ public struct AttackData
     public readonly float damage;
     public readonly Vector3 position;
     public readonly Quaternion rotation;
-    public readonly CombatState state;
+    public readonly CombatStateID stateID;
 
     public AttackData(
-        int comboStep,
         float damage,
         Vector3 position,
         Quaternion rotation,
-        CombatState state)
+        CombatStateID stateID)
     {
         this.damage = damage;
         this.position = position;
         this.rotation = rotation;
-        this.state = state;
+        this.stateID = stateID;
+    }
+    
+    public enum CombatStateID
+    {
+        GroundAttack1,
+        GroundAttack2,
+        GroundAttack3,
+        Idle,
+        Dodge
     }
 }

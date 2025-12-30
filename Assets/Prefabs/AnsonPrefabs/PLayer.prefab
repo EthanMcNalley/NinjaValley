@@ -448,6 +448,7 @@ MonoBehaviour:
   CombatStateManager: {fileID: 966483641433614254}
   katanaTrail: {fileID: 3691279813658539465}
   katanaHitbox: {fileID: 5275064785342441953}
+  auraMaterial: {fileID: 2100000, guid: 50cf017f444566249923130a047be85b, type: 2}
 --- !u!54 &2658856009424344390
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -634,6 +635,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4263323291629502684}
   m_LocalEulerAnglesHint: {x: -6.729279, y: 3.2106988, z: -52.831085}
+--- !u!1 &3475805997500826191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4453204913140044761}
+  - component: {fileID: 7749958966038999642}
+  m_Layer: 0
+  m_Name: BlobShadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4453204913140044761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475805997500826191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1.5384616, y: 1.4285717, z: 1.4285717}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2202242408957445114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7749958966038999642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475805997500826191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+  m_Material: {fileID: 2100000, guid: 3120d83848dba404eafe57dee55ddc65, type: 2}
+  m_DrawDistance: 1000
+  m_FadeScale: 0.9
+  m_StartAngleFade: 180
+  m_EndAngleFade: 180
+  m_UVScale: {x: 1, y: 1}
+  m_UVBias: {x: 0, y: 0}
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 0
+  m_ScaleMode: 0
+  m_Offset: {x: 0, y: 0, z: 25}
+  m_Size: {x: 3, y: 3, z: 50}
+  m_FadeFactor: 1
+  version: 1
+  m_DecalLayerMask: 1
 --- !u!1 &3691279813658539465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,6 +1199,7 @@ Transform:
   - {fileID: 3033040080371765910}
   - {fileID: 1138825404993181857}
   - {fileID: 507007039943629415}
+  - {fileID: 4453204913140044761}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &4579928272344351186
@@ -1158,13 +1220,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 7.92
+  m_Height: 7.43
   m_Radius: 1.56
-  m_SlopeLimit: 70
+  m_SlopeLimit: 60
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 3.5, z: 0}
+  m_Center: {x: 0, y: 3.7, z: 0}
 --- !u!114 &7551101314265223699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1185,11 +1247,13 @@ MonoBehaviour:
   rotationSpeed: 10
   translationDisabled: 0
   minJumpHeight: 1
-  maxJumpHeight: 9
+  maxJumpHeight: 11
   timeToMaxHeight: 0.6
   lockedIn: 0
   canMove: 1
   currentState: 0
+  double_jump_able: 0
+  double_jump: 0
 --- !u!114 &966483641433614254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1216,8 +1280,11 @@ MonoBehaviour:
   bufferDurationTimer: 1
   DodgeCoolDown: 1
   DodgeCoolDownTimer: 0
-  Kunai: {fileID: 2513444036954186253, guid: 2f25f3108c1be9145ab9e91dda7946ee, type: 3}
+  Kunai: {fileID: 316947733405692594, guid: d9430eb66a8aa644cbbaeb5395f45db1, type: 3}
   kunaiPosition: {fileID: 868248703987832295}
+  kunaiChargeCooldown: 15
+  maxKunai: 3
+  currentKunai: 3
   slashSound:
     Guid:
       Data1: 1293806754
@@ -1258,6 +1325,20 @@ MonoBehaviour:
   shadowReady: 1
   shadowActive: 0
   shadowBarSlider: {fileID: 0}
+  shadowVisual: {fileID: -4773777824754704723, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
+  terrainScannerPrefab: {fileID: 5875709519617017709, guid: 8153da836e3ce8d419f2e6e37c3c89b8, type: 3}
+  scanDurration: 6
+  scanSize: 700
+  shader: {fileID: 2100000, guid: 53d6fe566e8728e4286c1469c7719ddf, type: 2}
+  shaderDuration: 1
+  shaderPower: 2.41
+  time_slow_material: {fileID: 2100000, guid: 7be0a1def9121cf4c964cdcf97043711, type: 2}
+  vignette_material: {fileID: 2100000, guid: 53d6fe566e8728e4286c1469c7719ddf, type: 2}
+  shadowSlowRenderer: {fileID: -6553968265851075644, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
+  vignette: {fileID: -4773777824754704723, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
+  material_rate: 5
+  max_size: 3
+  fadeSpeed: 2
 --- !u!114 &8652518197584277198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,7 +1582,7 @@ Transform:
   m_GameObject: {fileID: 7257105376627738623}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

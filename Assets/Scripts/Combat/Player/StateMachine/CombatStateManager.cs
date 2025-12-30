@@ -28,6 +28,7 @@ public class CombatStateManager : MonoBehaviour
     public GameObject GroundAttackHitbox;
     public Animator playerAnimatior;
     public AttackHitBox KatanaHitBox;
+    public AttackData.CombatStateID currentStateID;
     public float currentDamage;
     public float shadowCharge;
     
@@ -59,7 +60,7 @@ public class CombatStateManager : MonoBehaviour
     public EventReference slashSound2;
     public EventReference slashSound3;
     
-    public event Action PlayerAttack;
+    public event Action<AttackData> PlayerAttack;
 
     void Start()
     {
@@ -195,7 +196,14 @@ public class CombatStateManager : MonoBehaviour
     public void RaisePlayerAttack()
     {
         if (currentState == Idle || currentState == Dodge) return;
+
+        AttackData data = new AttackData(
+            currentDamage,
+            transform.position,
+            transform.rotation,
+            currentStateID
+        );
         
-        PlayerAttack?.Invoke();
+        PlayerAttack?.Invoke(data);
     }
 }

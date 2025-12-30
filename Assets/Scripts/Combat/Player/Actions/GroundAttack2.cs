@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class GroundAttack2 : CombatState
 {
+    public AttackData.CombatStateID stateID = AttackData.CombatStateID.GroundAttack2;
     public float damage = 2f;
     float stateDuration = 0.45f;
     float bufferDuration = 0.7f;
     public float shadowCharge = 20f;
     public override void EnterState(CombatStateManager stateManager)
     {
+        stateManager.currentStateID = stateID;
         stateManager.currentDamage = damage;
         stateManager.shadowCharge = shadowCharge;
         stateManager.bufferDurationTimer =  bufferDuration;
