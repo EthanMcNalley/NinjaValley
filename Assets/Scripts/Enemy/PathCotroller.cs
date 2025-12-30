@@ -27,6 +27,7 @@ public class PathController : MonoBehaviour
     public Transform rotateNode;
     
     public float shadowSlow = 0.1f;
+    private bool attackOnCooldown;
 
     void Start()
     {
@@ -119,6 +120,7 @@ public class PathController : MonoBehaviour
         {
             isChasing = false;
         }
+        
         //rotateTowardsTarget();
     }
 
@@ -134,7 +136,7 @@ public class PathController : MonoBehaviour
 
     public void Attack()
     {
-        animator.SetTrigger("Attack");
+        animator.SetBool("Attack", true);
         agent.speed = 0;
     }
 
@@ -169,10 +171,19 @@ public class PathController : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && !isAttacking)
+        {
+            Attack();
+            isAttacking = true;
+        }
+    }
+
     public void checkAttack()
     {
         isAttacking = false;
         agent.speed = movementSpeed;
-        animator.ResetTrigger("Attack");
+        animator.SetBool("Attack", false);
     }
 }

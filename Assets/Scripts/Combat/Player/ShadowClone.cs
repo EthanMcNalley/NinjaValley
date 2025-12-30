@@ -7,6 +7,7 @@ public class ShadowClone : MonoBehaviour
     private GameObject player;
     private Animator animator;
     public float cloneDuration = 6f;
+    public float damageMultiplier = 0.4f;
     [SerializeField] private float currentDamage;
     public GameObject hitBoxGO;
     private GeneralAttackHitbox hitbox;
@@ -44,6 +45,7 @@ public class ShadowClone : MonoBehaviour
         closestEnemy = FindClosest.FindClosestGameObject(transform.position, enemyDetectRadius, enemyLayer);
         Vector3 dir = (closestEnemy.transform.position - transform.position);
         dir.y = 0f;
+        dir.Normalize();
         transform.rotation = Quaternion.LookRotation(dir);
 
         switch (stateID)
@@ -71,7 +73,7 @@ public class ShadowClone : MonoBehaviour
 
     public void StartAttack()
     {
-        hitbox.BeginAttack(currentDamage);
+        hitbox.BeginAttack(currentDamage * damageMultiplier);
     }
 
     public void EndAttack()
