@@ -7,26 +7,44 @@ public class ShadowClone : MonoBehaviour
     private GameObject player;
     private Animator animator;
     public float cloneDuration = 6f;
+    [SerializeField] private float currentDamage;
+    public GameObject hitBoxGO;
+    private GeneralAttackHitbox hitbox;
+
+    public float enemyDetectRadius = 50f;
+    public LayerMask enemyLayer;
+    private GameObject closestEnemy;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         combatStateManager = player.GetComponent<CombatStateManager>();
         animator = GetComponent<Animator>();
+        hitbox = hitBoxGO.GetComponent<GeneralAttackHitbox>();
+        
         combatStateManager.PlayerAttack += OnPlayerAttack;
     }
     
     void OnDisable()
     {
-        combatStateManager.PlayerAttack -= OnPlayerAttack;
+        if (combatStateManager != null)
+        {
+            combatStateManager.PlayerAttack -= OnPlayerAttack;
+        }
     }
 
     void OnPlayerAttack(AttackData data)
     {
-        float currentDamage = data.damage;
+        currentDamage = data.damage;
         Vector3 position = data.position;
         Quaternion rotation = data.rotation;
         AttackData.CombatStateID stateID = data.stateID;
+
+        closestEnemy = FindClosest.FindClosestGameObject(transform.position, enemyDetectRadius, enemyLayer);
+        Vector3 dir = (closestEnemy.transform.position - transform.position);
+        dir.y = 0f;
+        transform.rotation = Quaternion.LookRotation(dir);
 
         switch (stateID)
         {
@@ -50,8 +68,16 @@ public class ShadowClone : MonoBehaviour
                 break;
         }
     }
-    
 
+    public void StartAttack()
+    {
+        hitbox.BeginAttack(currentDamage);
+    }
+
+    public void EndAttack()
+    {
+        hitbox.EndAttack();
+    }
 
     // Update is called once per frame
     void Update()
