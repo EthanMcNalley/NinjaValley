@@ -2366,10 +2366,30 @@ PrefabInstance:
       propertyPath: shadowBarSlider
       value: 
       objectReference: {fileID: 906732822}
+    - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: characterRenderer
+      value: 
+      objectReference: {fileID: 1709129839}
+    - target: {fileID: 8007519912159623186, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: maskFlareMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 35cb066974784d34885131f82aa1647a, type: 2}
     - target: {fileID: 8652518197584277198, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: healthBarSlider
       value: 
       objectReference: {fileID: 1841325613}
+    - target: {fileID: 8667442017582342198, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667442017582342198, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: 'm_Materials.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 309b05135dd92469da1d3847e790ea36, type: 2}
+    - target: {fileID: 8667442017582342198, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: 'm_Materials.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 35cb066974784d34885131f82aa1647a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4872,6 +4892,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &1709129839 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8667442017582342198, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+  m_PrefabInstance: {fileID: 792803650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1758616301
 GameObject:
   m_ObjectHideFlags: 0
@@ -6628,6 +6653,7 @@ MonoBehaviour:
   GroundAttackHitbox: {fileID: 962073177}
   playerAnimatior: {fileID: 0}
   KatanaHitBox: {fileID: 0}
+  currentStateID: 0
   currentDamage: 0
   shadowCharge: 0
   attacking: 0
@@ -6754,6 +6780,8 @@ MonoBehaviour:
   terrainScannerPrefab: {fileID: 0}
   scanDurration: 6
   scanSize: 700
+  characterRenderer: {fileID: 0}
+  maskFlareMaterial: {fileID: 0}
   shader: {fileID: 0}
   shaderDuration: 1
   shaderPower: 2.41

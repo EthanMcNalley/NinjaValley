@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 
@@ -30,6 +31,10 @@ public class ShadowAssassin : MonoBehaviour
     public GameObject terrainScannerPrefab;
     public float scanDurration = 6f;
     public float scanSize = 700;
+    
+    public SkinnedMeshRenderer characterRenderer;
+    public Material maskFlareMaterial;
+    
     
     [Header("Shader Control")]
     public Material shader;
@@ -151,6 +156,12 @@ public class ShadowAssassin : MonoBehaviour
         timer = shadowAssassinDuration;
         AudioManager.instance.SetSlowTime(1f);
         
+        Material[] materials = characterRenderer.materials;
+        Array.Resize(ref materials, materials.Length + 1);
+        materials[^1] = maskFlareMaterial;
+        
+        characterRenderer.materials = materials;
+        
         //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
         InstantiateTerrainScanner();
@@ -190,6 +201,11 @@ public class ShadowAssassin : MonoBehaviour
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
         AudioManager.instance.SetSlowTime(0f);
+        
+        Material[] materials = characterRenderer.materials;
+        Array.Resize(ref materials, materials.Length - 1);
+        
+        characterRenderer.materials = materials;
         
         CombatEvents.RaiseShadowAssassinEnded();
     }
