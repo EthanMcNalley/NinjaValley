@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -42,6 +43,9 @@ public class CombatStateManager : MonoBehaviour
     private float bufferTime = 0f;
     public float bufferDurationTimer = 1f;
     
+    [Header("VFX Stuff")]
+    public List<SlashVFX>  slashVFX;
+    
     [Header ("Dodge Stuff")]
     public float DodgeCoolDown = 1f;
     public float DodgeCoolDownTimer = 0f;
@@ -76,6 +80,7 @@ public class CombatStateManager : MonoBehaviour
         KatanaHitBox = GroundAttackHitbox.gameObject.GetComponent<AttackHitBox>();
         
         playerAnimatior = GetComponent<Animator>();
+        DisableSlashVFX();
         
         currentState = Idle;
         currentState.EnterState(this);
@@ -205,5 +210,20 @@ public class CombatStateManager : MonoBehaviour
         );
         
         PlayerAttack?.Invoke(data);
+    }
+
+    [Serializable]
+    public class SlashVFX
+    {
+        public GameObject slashVFX;
+        public float delay;
+    }
+
+    void DisableSlashVFX()
+    {
+        foreach (var slash in slashVFX)
+        {
+            slash.slashVFX.SetActive(false);
+        }
     }
 }

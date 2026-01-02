@@ -17,6 +17,7 @@ public class GroundAttack2 : CombatState
         Debug.Log("Melee2");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack2");
+        stateManager.slashVFX[1].slashVFX.SetActive(true);
         
         AudioManager.instance.PlayOneShot(stateManager.slashSound2, stateManager.transform.position);
     }
@@ -36,6 +37,7 @@ public class GroundAttack2 : CombatState
 
     public override void ExitState(CombatStateManager stateManager)
     {
+        stateManager.slashVFX[1].slashVFX.SetActive(false);
         stateManager.movementController.EnableMovement();
         stateManager.KatanaHitBox.EndAttack();
     }
