@@ -84,6 +84,11 @@
 
 		Pass
 		{
+			Stencil{
+				Ref 1
+                Comp NotEqual
+                Pass Keep
+			}
 			HLSLPROGRAM
 			#pragma vertex Vert
 			#pragma fragment frag
