@@ -17,6 +17,9 @@ public class EnemyHealth : HealthSystem
     public ParticleSystem normalDeathParticles;
     public ParticleSystem executeDeathParticles;
     public GameObject particalTransform;
+    public GameObject health_essence;
+    public GameObject shadow_essence;
+    public GameObject essence_spawnpoint;
     private ParticleSystem particlesInstance;
     
     public EnemySoul enemySoul;
@@ -92,6 +95,7 @@ public class EnemyHealth : HealthSystem
         }
         
         particlesInstance =  Instantiate(particles, particalTransform.transform.position, Quaternion.identity);
+        
         if (!hurtSound.IsNull)
         {
             AudioManager.instance.PlayOneShot(hurtSound, transform.position);
@@ -107,6 +111,11 @@ public class EnemyHealth : HealthSystem
                 markedForDeath = true;
                 enemySoul.SetMarkedForDeath(true);
             }
+        }
+
+        else
+        {
+            Instantiate(shadow_essence, essence_spawnpoint.transform.position, Quaternion.identity);
         }
 
         if ((currHealthPoint - damageBurst) <= 0)
@@ -139,6 +148,7 @@ public class EnemyHealth : HealthSystem
         {
             AudioManager.instance.PlayOneShot(deathSound, transform.position);
         }
+        Instantiate(health_essence, essence_spawnpoint.transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

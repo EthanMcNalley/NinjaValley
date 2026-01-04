@@ -16,52 +16,10 @@ MonoBehaviour:
   injectionPoint: 600
   fetchColorBuffer: 1
   requirements: 0
-  passMaterial: {fileID: 0}
+  passMaterial: {fileID: 2100000, guid: e8e3aab2fdc37e84ab4a703a989e29e3, type: 2}
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
---- !u!114 &-5815975429434723570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.RenderObjects
-  m_Active: 1
-  settings:
-    passTag: RenderObjects
-    Event: 600
-    filterSettings:
-      RenderQueueType: 0
-      LayerMask:
-        serializedVersion: 2
-        m_Bits: 8
-      PassNames: []
-    overrideMaterial: {fileID: 0}
-    overrideMaterialPassIndex: 0
-    overrideShader: {fileID: 0}
-    overrideShaderPassIndex: 0
-    overrideMode: 1
-    overrideDepthState: 0
-    depthCompareFunction: 4
-    enableWrite: 1
-    stencilSettings:
-      overrideStencilState: 0
-      stencilReference: 0
-      stencilCompareFunction: 8
-      passOperation: 0
-      failOperation: 0
-      zFailOperation: 0
-    cameraSettings:
-      overrideCamera: 0
-      restoreCamera: 1
-      offset: {x: 0, y: 0, z: 0, w: 0}
-      cameraFieldOfView: 60
 --- !u!114 &-4773777824754704723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,28 +36,10 @@ MonoBehaviour:
   injectionPoint: 600
   fetchColorBuffer: 1
   requirements: 0
-  passMaterial: {fileID: 0}
+  passMaterial: {fileID: 2100000, guid: e8e3aab2fdc37e84ab4a703a989e29e3, type: 2}
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
---- !u!114 &-3405681684652969376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 312420e7960934bbaa47d364e225cd0c, type: 3}
-  m_Name: FreeOutline
-  m_EditorClassIdentifier: LineworkLite::LineworkLite.FreeOutline.FreeOutline
-  m_Active: 1
-  settings: {fileID: 11400000, guid: b2df8e062cb50b14597e91f4b997b978, type: 2}
-  shaders:
-    mask: {fileID: 4800000, guid: 19ae7b440d27f4f9990007afdc74ddaf, type: 3}
-    outline: {fileID: 4800000, guid: fb375234a1509436fa2a7d37f08912f8, type: 3}
-    clear: {fileID: 4800000, guid: b854aa374420b4b47992044f7c9a0719, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +50,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
-  m_Name: Main_Renderer
+  m_Name: New Universal Render Pipeline Asset_Renderer
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
@@ -132,9 +72,7 @@ MonoBehaviour:
   - {fileID: 5215814769977139641}
   - {fileID: -6553968265851075644}
   - {fileID: -4773777824754704723}
-  - {fileID: -3405681684652969376}
-  - {fileID: -5815975429434723570}
-  m_RendererFeatureMap: 2da9b8742003e57b3f6f66cc0d85ed4a4ce49def86a7f13494c8bd9545712976b921b912e64b6248c483c32c96a00ba5addedb665c22c0bd60b234488d96bcd00eb3244a298149af
+  m_RendererFeatureMap: 2da9b8742003e57b3f6f66cc0d85ed4a4ce49def86a7f13494c8bd9545712976b921b912e64b6248c483c32c96a00ba5addedb665c22c0bd
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -199,7 +137,7 @@ MonoBehaviour:
   injectionPoint: 600
   fetchColorBuffer: 1
   requirements: 0
-  passMaterial: {fileID: 0}
+  passMaterial: {fileID: 2100000, guid: f17f6de8ee0004566bdc11f0f4c75315, type: 2}
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
