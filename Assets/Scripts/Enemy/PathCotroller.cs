@@ -21,6 +21,7 @@ public class PathController : MonoBehaviour
     public float chaseDistance = 10f;
     public GameObject player, target;
     public GameObject hitBox;
+    private CombatStateManager combatStateManager;
     private bool canMove = true, isAttacking = false, isChasing = false;
     public GameObject[] patrolPoints;
     public int prevIndex = -1;
@@ -28,6 +29,7 @@ public class PathController : MonoBehaviour
     
     public float shadowSlow = 0.1f;
     private bool attackOnCooldown;
+    public bool dodgeWindow = false;
 
     void Start()
     {
@@ -39,6 +41,7 @@ public class PathController : MonoBehaviour
             
         }
         player = GameObject.FindGameObjectWithTag("Player");
+        combatStateManager = player.GetComponent<CombatStateManager>();
         agent.speed = movementSpeed;
     }
 
@@ -80,7 +83,7 @@ public class PathController : MonoBehaviour
     void Update()
     {
         distToPlayer = Vector3.Distance(player.transform.position, transform.position);
-        if (canMove || isAttacking == false)
+        if (canMove && isAttacking == false) //this changed
         {
             agent.destination = target.transform.position;
             animator.SetBool("Moving", true);
@@ -178,6 +181,24 @@ public class PathController : MonoBehaviour
             Attack();
             isAttacking = true;
         }
+
+        if (other.CompareTag("Player") && dodgeWindow)
+        {
+            combatStateManager.SetPerfectDodgeWindow(true);
+        }
+        
+        if (other.CompareTag("Player") && !dodgeWindow)
+        {
+            combatStateManager.SetPerfectDodgeWindow(false);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            combatStateManager.SetPerfectDodgeWindow(false);
+        }
     }
 
     public void checkAttack()
@@ -185,5 +206,15 @@ public class PathController : MonoBehaviour
         isAttacking = false;
         agent.speed = movementSpeed;
         animator.SetBool("Attack", false);
+    }
+
+    public void DodgeWindowTrue()
+    {
+        dodgeWindow = true;
+    }
+    
+    public void DodgeWindowFalse()
+    {
+        dodgeWindow = false;
     }
 }

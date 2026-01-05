@@ -49,7 +49,10 @@ public class CombatStateManager : MonoBehaviour
     [Header ("Dodge Stuff")]
     public float DodgeCoolDown = 1f;
     public float DodgeCoolDownTimer = 0f;
-    private float lastDodgeTime = 0f;
+    [SerializeField]private bool perfectDodgeWindow = false;
+    public GameObject clone;
+    private bool cloneSpawnedThisDodge = false;
+    
     
     [Header ("Kunai Stuff")]
     public GameObject Kunai;
@@ -149,10 +152,21 @@ public class CombatStateManager : MonoBehaviour
 
     private void DodgeCheck()
     {
+        if (stateTime >= 0.3)
+        {
+            perfectDodgeWindow = false;
+        }
+        
         if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown)
         {
             SwitchState(Dodge);
             DodgeCoolDownTimer = 0f;
+        }
+
+        if (perfectDodgeWindow && !cloneSpawnedThisDodge)
+        {
+            Instantiate(clone, transform.position, transform.rotation);
+            cloneSpawnedThisDodge = true;
         }
     }
 
@@ -162,6 +176,12 @@ public class CombatStateManager : MonoBehaviour
         currentState = state;
         //Reset for new state
         stateTime = 0f;
+        
+        if (state == Dodge)
+        {
+            cloneSpawnedThisDodge = false;
+        }
+        
         state.EnterState(this);
         RaisePlayerAttack();
     }
@@ -173,15 +193,6 @@ public class CombatStateManager : MonoBehaviour
         SwitchState(Melee1);
     }
 
-    public float GetDamage()
-    {
-        return currentDamage;
-    }
-
-    public float GetShadowCharge()
-    {
-        return shadowCharge;
-    }
 
     public void ContinueCombo(CombatState nextState)
     {
@@ -210,6 +221,21 @@ public class CombatStateManager : MonoBehaviour
         );
         
         PlayerAttack?.Invoke(data);
+    }
+    
+    public float GetDamage()
+    {
+        return currentDamage;
+    }
+
+    public float GetShadowCharge()
+    {
+        return shadowCharge;
+    }
+
+    public void SetPerfectDodgeWindow(bool isPerfect)
+    {
+        perfectDodgeWindow = isPerfect;
     }
 
     [Serializable]

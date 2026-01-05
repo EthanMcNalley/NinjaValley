@@ -148,7 +148,7 @@ public class EnemyHealth : HealthSystem
             AudioManager.instance.PlayOneShot(deathSound, transform.position);
         }
         Instantiate(health_essence, essence_spawnpoint.transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        Destroy(gameObject, 0);
     }
 
     public void FreezeEnemy(bool freeze)
@@ -166,7 +166,7 @@ public class EnemyHealth : HealthSystem
         {
             AudioManager.instance.PlayOneShot(deathSound, transform.position);
         }
-        Destroy(gameObject);
+        Destroy(gameObject, 0);
     }
     
     void BurstShadowDamage()
