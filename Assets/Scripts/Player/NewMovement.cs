@@ -13,6 +13,8 @@ public class NewMovement : MonoBehaviour
     private GroundCheck groundCheck;
     private Vector3 playerVelocity;
     [SerializeField]private bool groundedPlayer;
+    public float coyote_time_amount = 0.25f;
+    private float coyote_timer = 0;
     private Transform cam;
     private Vector2 inputVector;
     private Vector3 moveDirection;
@@ -54,6 +56,7 @@ public class NewMovement : MonoBehaviour
 
     private void Awake()
     {
+        coyote_timer = coyote_time_amount;
         groundCheck = GetComponent<GroundCheck>();
         controller = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponent<Animator>();
@@ -136,7 +139,14 @@ public class NewMovement : MonoBehaviour
 
     void Update()
     {
-        groundedPlayer = groundCheck.IsGrounded;
+        if (coyote_timer < coyote_time_amount)
+        {
+            coyote_timer = coyote_timer + Time.deltaTime;
+        }
+
+        else{
+            groundedPlayer = groundCheck.IsGrounded;
+        }
 
         moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
         
@@ -149,6 +159,7 @@ public class NewMovement : MonoBehaviour
         {
             playerVelocity.y = -2f;
             double_jump = true;
+            coyote_timer = 0f;
         }
 
         if (currentState != moveState.Dodging && groundedPlayer && !translationDisabled)
