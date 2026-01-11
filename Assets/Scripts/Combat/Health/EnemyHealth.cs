@@ -21,6 +21,7 @@ public class EnemyHealth : HealthSystem
     public GameObject shadow_essence;
     public GameObject essence_spawnpoint;
     private ParticleSystem particlesInstance;
+    public GameObject executeOutline, cross;
     
     public EnemySoul enemySoul;
     public GameObject soul;
@@ -39,6 +40,8 @@ public class EnemyHealth : HealthSystem
         animator = GetComponent<Animator>();
         shadowAssassin = player.GetComponent<ShadowAssassin>();
         shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
+        cross.SetActive(false);
+        executeOutline.SetActive(false);
         soul.SetActive(false);
     }
 
@@ -121,6 +124,8 @@ public class EnemyHealth : HealthSystem
         {
             markedForExecute =  true;
             enemySoul.SetMarkedForExecute(true);
+            cross.SetActive(true);
+            executeOutline.SetActive(true);
             FreezeEnemy(true);
         }
         
