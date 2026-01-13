@@ -9,7 +9,6 @@ public class CombatStateManager : MonoBehaviour
 {
     public CombatState currentState;
 
-
     // Current stage of the combo
     private int comboStep = 0;
     
@@ -53,6 +52,12 @@ public class CombatStateManager : MonoBehaviour
     public GameObject clone;
     private bool cloneSpawnedThisDodge = false;
     
+    [Header ("Dodge Dash")]
+    [SerializeField]private bool dashToEnemy  = false;
+    public float dashRadius;
+    public LayerMask enemyLayer;
+    public float dashSpeed;
+    
     
     [Header ("Kunai Stuff")]
     public GameObject Kunai;
@@ -83,7 +88,7 @@ public class CombatStateManager : MonoBehaviour
         KatanaHitBox = GroundAttackHitbox.gameObject.GetComponent<AttackHitBox>();
         
         playerAnimatior = GetComponent<Animator>();
-        DisableSlashVFX();
+        //DisableSlashVFX();
         
         currentState = Idle;
         currentState.EnterState(this);
@@ -101,6 +106,9 @@ public class CombatStateManager : MonoBehaviour
         DodgeCheck();
         KunaiCheck();
         KunaiRefill();
+        
+        DashToEnemy();
+        
         currentState.UpdateState(this);
     }
 
@@ -167,6 +175,21 @@ public class CombatStateManager : MonoBehaviour
         {
             Instantiate(clone, transform.position, transform.rotation);
             cloneSpawnedThisDodge = true;
+            dashToEnemy = true;
+        }
+    }
+
+    private void DashToEnemy()
+    {
+        if (dashToEnemy)
+        {
+            GameObject closestEnemy = FindClosest.FindClosestGameObject(transform.position, dashRadius, enemyLayer);
+            
+            if (closestEnemy != null)
+            {
+                characterController.Move(dashSpeed * Time.deltaTime *
+                                         (closestEnemy.transform.position - transform.position).normalized);
+            }
         }
     }
 
@@ -181,6 +204,11 @@ public class CombatStateManager : MonoBehaviour
         {
             cloneSpawnedThisDodge = false;
         }
+
+        /*if (dashToEnemy)
+        {
+            DashToEnemy();
+        }*/
         
         state.EnterState(this);
         RaisePlayerAttack();

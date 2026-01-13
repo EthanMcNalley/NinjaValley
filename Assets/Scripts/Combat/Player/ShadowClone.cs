@@ -27,12 +27,29 @@ public class ShadowClone : MonoBehaviour
         combatStateManager.PlayerAttack += OnPlayerAttack;
     }
     
+    private void OnEnable()
+    {
+        CombatEvents.ShadowAssassinStarted += OnShadowStart;
+    }
+    
     void OnDisable()
     {
         if (combatStateManager != null)
         {
             combatStateManager.PlayerAttack -= OnPlayerAttack;
         }
+        
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+    }
+
+    void OnDestroy()
+    {
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+    }
+
+    void OnShadowStart()
+    {
+        cloneDuration += 6f;
     }
 
     void OnPlayerAttack(AttackData data)
