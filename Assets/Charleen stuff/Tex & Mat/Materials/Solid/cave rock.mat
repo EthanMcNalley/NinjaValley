@@ -30,7 +30,8 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -156,6 +157,7 @@ Material:
     - _Brightness: 10
     - _BumpScale: 1
     - _Bump_amount: 10
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Contribution: 0
@@ -207,19 +209,23 @@ Material:
     - _Watercolor_tiling: 50
     - _Wave_height: 3
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0.19585532, g: 0.28481764, b: 0.086230345, a: 1}
     - _Base_color: {r: 0, g: 0.11006295, b: 0.3301887, a: 1}
     - _Brush_tiling: {r: 0, g: 0.0067, b: 0, a: 0}
     - _Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _First_color: {r: 0.34117648, g: 0.38823533, b: 0.38431376, a: 1}
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
     - _OutlineColour: {r: 0, g: 0, b: 0, a: 0}
     - _Outline_color: {r: 0, g: 0, b: 0, a: 0}
     - _Rim_color: {r: 1, g: 0.6215929, b: 0.6179246, a: 1}
     - _Ripple_color: {r: 0, g: 1, b: 1, a: 0}
     - _Ripple_tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Second_color: {r: 0.34118018, g: 0.38679248, b: 0.3852306, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_color: {r: 1, g: 1, b: 1, a: 0}
     - _Tiling: {r: 5, g: 2, b: 0, a: 0}
