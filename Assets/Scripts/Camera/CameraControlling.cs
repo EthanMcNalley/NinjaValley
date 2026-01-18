@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class CameraControlling : MonoBehaviour
 {
-    public CinemachineCamera cinemachine_camera;
+    public CinemachineOrbitalFollow cinemachine_orbital_follow;
+    public GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cinemachine_camera = GetComponent<CinemachineCamera>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        FacePlayerBack();
     }
 
-    public void ChangeTarget(Transform new_target){
-        cinemachine_camera.Follow = new_target.transform;
+    public void FacePlayerBack(){
+        cinemachine_orbital_follow.HorizontalAxis.Center = player.transform.rotation.eulerAngles.y;
     }
 }
