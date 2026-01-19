@@ -200,9 +200,8 @@ public class NewMovement : MonoBehaviour
         
         Vector3 finalMove = (moveDirection * playerCurrSpeed) + (playerVelocity.y * Vector3.up);
 
-        if (!groundedPlayer && moveDirection.y < 0.001f)
+        if (!groundedPlayer && controller.collisionFlags.HasFlag(CollisionFlags.Sides))
         {
-
             finalMove += -transform.forward * 2.5f;
         }
 
