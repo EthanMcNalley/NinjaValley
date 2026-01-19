@@ -33,7 +33,8 @@ public class CombatStateManager : MonoBehaviour
     public float shadowCharge;
     
     //Input Stuff
-    [Header ("Input Stuff")]
+    [Header("Input Stuff")] 
+    public LockIn lockIn;
     private InputAction attackAction;
     private InputAction dodgeAction;
     private InputAction kunaiAction;
@@ -84,6 +85,7 @@ public class CombatStateManager : MonoBehaviour
         movementController = GetComponent<NewMovement>();
         healthSystem =  GetComponent<HealthSystem>();
         shadowAssassin = GetComponent<ShadowAssassin>();
+        lockIn = GetComponent<LockIn>();
         
         KatanaHitBox = GroundAttackHitbox.gameObject.GetComponent<AttackHitBox>();
         
@@ -102,12 +104,16 @@ public class CombatStateManager : MonoBehaviour
         {
             DodgeCoolDownTimer += Time.deltaTime;
         }
+        
+        
+        
         AttackCheck();
         DodgeCheck();
         KunaiCheck();
         KunaiRefill();
+        LockInCheck();
         
-        DashToEnemy();
+        //DashToEnemy();
         
         currentState.UpdateState(this);
     }
@@ -176,6 +182,14 @@ public class CombatStateManager : MonoBehaviour
             Instantiate(clone, transform.position, transform.rotation);
             cloneSpawnedThisDodge = true;
             dashToEnemy = true;
+        }
+    }
+
+    private void LockInCheck()
+    {
+        if (lockIn.IsLockOn() && currentState != Dodge)
+        {
+            transform.LookAt(lockIn.target.transform);
         }
     }
 

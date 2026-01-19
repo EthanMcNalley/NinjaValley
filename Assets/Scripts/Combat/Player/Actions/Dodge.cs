@@ -4,9 +4,9 @@ public class Dodge : CombatState
 {
     float stateDuration = 0.3f;
     private float dodgeTimer = 0f;
-    private float iframeEndTime = 0.15f;
+    private float iframeEndTime = 0.2f;
     private bool isInvincible = false;
-    private float dodgeSpeed = 50f;
+    private float dodgeSpeed = 60f;
     private float gracePeriod = 0.05f;
     private bool movementDisabled = false;
     private Vector3 dir;

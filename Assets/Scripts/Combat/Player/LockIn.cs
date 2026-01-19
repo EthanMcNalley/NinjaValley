@@ -8,7 +8,7 @@ public class LockIn : MonoBehaviour
     [SerializeField] private CinemachineCamera cinemachineCamera;
     [SerializeField] private LayerMask enemyLayerMask; 
     [SerializeField] private LayerMask interactableLayerMask;
-    private GameObject target;
+    public GameObject target;
     public float lockOnDistance = 50f;
     private InputAction lockOnAction;
     private bool lockOn;
@@ -113,5 +113,10 @@ public class LockIn : MonoBehaviour
         {
             ClearLockOn();
         }
+    }
+
+    public bool IsLockOn()
+    {
+        return lockOn;
     }
 }

@@ -14,7 +14,7 @@ public class GroundAttack1 : CombatState
         stateManager.currentDamage = damage;
         stateManager.shadowCharge = shadowCharge;
         stateManager.bufferDurationTimer =  bufferDuration;
-
+        
         Debug.Log("Melee1");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack1");
