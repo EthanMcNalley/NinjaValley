@@ -4,6 +4,10 @@ public static class FindClosest
 {
     public static GameObject FindClosestGameObject(Vector3 position, float radius, LayerMask layerMask)
     {
+        if (layerMask == 0)
+        {
+            return null;
+        }
         Collider[] hits = Physics.OverlapSphere(position, radius, layerMask);
         
         GameObject closest = null;

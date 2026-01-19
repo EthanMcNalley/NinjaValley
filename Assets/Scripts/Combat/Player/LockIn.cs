@@ -6,16 +6,13 @@ public class LockIn : MonoBehaviour
 {
     [SerializeField] private GameObject lockOnCamera;
     [SerializeField] private CinemachineCamera cinemachineCamera;
-    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private LayerMask enemyLayerMask; 
+    [SerializeField] private LayerMask interactableLayerMask;
+    private GameObject target;
     public float lockOnDistance = 50f;
     private InputAction lockOnAction;
     private bool lockOn;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    /*void Start()
-    {
-        lockOnCamera.SetActive(false);
-        cinemachineCamera = lockOnCamera.GetComponent<CinemachineCamera>();
-    }*/
+    private GameObject lockOnIcon;
 
     void Awake()
     {
@@ -45,37 +42,76 @@ public class LockIn : MonoBehaviour
         
         if (lockOn)
         {
-            LockOn();
+            LockOnFind();
         }
         else
         {
-            lockOnCamera.SetActive(false);
+            ClearLockOn();
+            return;
         }
+
+        if (lockOn && target != null)
+        {
+            LockOn();
+        }
+    }
+
+    void LockOnFind()
+    {
+        target = FindClosest.FindClosestGameObject(this.transform.position, lockOnDistance, enemyLayerMask);
+        if (target != null)
+        {
+            return;
+        }
+        
+        target = FindClosest.FindClosestGameObject(this.transform.position, lockOnDistance, interactableLayerMask);
+        if (target != null)
+        {
+            return;
+        }
+        
+        Debug.Log("No target found");
+        lockOn = false;
     }
 
     void LockOn()
     {
-        GameObject target = FindClosest.FindClosestGameObject(this.transform.position, lockOnDistance, layerMask);
-        if (target == null)
+        lockOnIcon = target.transform.Find("LockOnIcon").gameObject;
+        
+        if (lockOnIcon != null)
         {
-            Debug.Log("No target found");
-            lockOn = false;
-            return;
+            lockOnIcon.SetActive(true);
         }
         
-        cinemachineCamera.LookAt =  target.transform; 
+        cinemachineCamera.LookAt = target.transform; 
         lockOnCamera.SetActive(true);
+    }
+
+    public void ClearLockOn()
+    {
+        lockOnCamera.SetActive(false);
+        if (lockOnIcon != null)
+        {
+            lockOnIcon.gameObject.SetActive(false);
+            lockOnIcon = null;
+        }
+        lockOn = false;
     }
     
     // Update is called once per frame
     void Update()
     {
+        if (!lockOn) return;
+
+        if (target == null)
+        {
+            ClearLockOn();
+            return;
+        }
         
-    }
-    
-    public void DisableLockOn()
-    {
-        lockOn = false;
-        lockOnCamera.SetActive(false);
+        if (!target.activeInHierarchy)
+        {
+            ClearLockOn();
+        }
     }
 }
