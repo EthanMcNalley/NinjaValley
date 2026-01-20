@@ -187,7 +187,9 @@ public class CombatStateManager : MonoBehaviour
 
     private void LockInCheck()
     {
-        if (lockIn.IsLockOn() && currentState != Dodge)
+        if (!lockIn.IsLockOn()) return;
+        
+        if (currentState != Dodge && lockIn.target != null)
         {
             transform.LookAt(lockIn.target.transform);
         }

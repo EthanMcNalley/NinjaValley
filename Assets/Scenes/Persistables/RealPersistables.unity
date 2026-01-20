@@ -4862,9 +4862,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4769830910785453173, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5795020942001037589, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795020942001037589, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7551101314265223699, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: minJumpHeight
@@ -4878,6 +4886,10 @@ PrefabInstance:
       propertyPath: healthBarSlider
       value: 
       objectReference: {fileID: 1121516130}
+    - target: {fileID: 9042807514497223812, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4922,6 +4934,7 @@ MonoBehaviour:
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  target: {fileID: 0}
   lockOnDistance: 30
 --- !u!1 &800679518
 GameObject:
@@ -11559,6 +11572,7 @@ MonoBehaviour:
   currentStateID: 0
   currentDamage: 0
   shadowCharge: 0
+  lockIn: {fileID: 0}
   attacking: 0
   stateTime: 0
   bufferDurationTimer: 1
