@@ -11,6 +11,7 @@ public class NewMovement : MonoBehaviour
 
     private CharacterController controller;
     private GroundCheck groundCheck;
+    private LockIn lockIn;
     private Vector3 playerVelocity;
     [SerializeField]private bool groundedPlayer;
     public float coyote_time_amount = 0.25f;
@@ -60,6 +61,7 @@ public class NewMovement : MonoBehaviour
         groundCheck = GetComponent<GroundCheck>();
         controller = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponent<Animator>();
+        lockIn = GetComponent<LockIn>();
         cam = Camera.main.transform;
         currentState = moveState.Idle;
 
@@ -149,9 +151,12 @@ public class NewMovement : MonoBehaviour
         }
 
         moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
-        
-        HandleRotation(moveDirection);
-        
+
+        if (!lockIn.IsLockOn())
+        {
+            HandleRotation(moveDirection);
+        }
+
         animator.SetBool("Moving", moveDirection.magnitude > 0.01f & groundedPlayer);
 
         // Apply gravity, also means the player is Idle
