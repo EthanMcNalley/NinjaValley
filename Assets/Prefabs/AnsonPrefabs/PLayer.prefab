@@ -1171,6 +1171,7 @@ GameObject:
   - component: {fileID: 966483641433614254}
   - component: {fileID: 8007519912159623186}
   - component: {fileID: 8652518197584277198}
+  - component: {fileID: 346220985570991258}
   - component: {fileID: 8022252650795237592}
   - component: {fileID: 4171526179893648985}
   m_Layer: 3
@@ -1247,7 +1248,7 @@ MonoBehaviour:
   coyote_time_amount: 0.25
   rotationSpeed: 10
   translationDisabled: 0
-  minJumpHeight: 1
+  minJumpHeight: 2
   maxJumpHeight: 11
   timeToMaxHeight: 0.6
   lockedIn: 0
@@ -1277,6 +1278,7 @@ MonoBehaviour:
   currentStateID: 0
   currentDamage: 0
   shadowCharge: 0
+  lockIn: {fileID: 0}
   attacking: 0
   stateTime: 0
   bufferDurationTimer: 1
@@ -1374,6 +1376,28 @@ MonoBehaviour:
   healthBarSlider: {fileID: 0}
   maxColor: {r: 0, g: 1, b: 0, a: 1}
   minColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &346220985570991258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795020942001037589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd08e4efea5e2c44856ae00a23fcf3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LockIn
+  lockOnCamera: {fileID: 0}
+  cinemachineCamera: {fileID: 0}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  target: {fileID: 0}
+  lockOnDistance: 30
 --- !u!114 &8022252650795237592
 MonoBehaviour:
   m_ObjectHideFlags: 0
