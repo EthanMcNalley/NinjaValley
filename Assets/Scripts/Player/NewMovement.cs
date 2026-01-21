@@ -13,6 +13,7 @@ public class NewMovement : MonoBehaviour
     private GroundCheck groundCheck;
     private LockIn lockIn;
     private Vector3 playerVelocity;
+    public float max_fall_speed;
     [SerializeField]private bool groundedPlayer;
     public float coyote_time_amount = 0.25f;
     private float coyote_timer = 0;
@@ -54,6 +55,10 @@ public class NewMovement : MonoBehaviour
     private moveState prevState;
     public bool double_jump_able = false;
     public bool double_jump = false;
+    public GameObject moving_particle;
+    public GameObject landing_particle;
+    private bool play_landing = false;
+    private Vector3 hit_normal;
 
     private void Awake()
     {
@@ -141,13 +146,11 @@ public class NewMovement : MonoBehaviour
 
     void Update()
     {
-        if (coyote_timer < coyote_time_amount)
-        {
-            coyote_timer = coyote_timer + Time.deltaTime;
-        }
+        groundedPlayer = groundCheck.IsGrounded;
 
-        else{
-            groundedPlayer = groundCheck.IsGrounded;
+        if (!play_landing && groundedPlayer)
+        {
+            Instantiate(landing_particle, transform.position, Quaternion.Euler(-90, 0, 0));
         }
 
         moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
@@ -162,9 +165,17 @@ public class NewMovement : MonoBehaviour
         // Apply gravity, also means the player is Idle
         if (groundedPlayer && playerVelocity.y <= 0f)
         {
+            play_landing = true;
             playerVelocity.y = -2f;
             double_jump = true;
             coyote_timer = 0f;
+        }
+
+        else {
+            if (coyote_timer < coyote_time_amount)
+            {
+                coyote_timer = coyote_timer + Time.deltaTime;
+            }
         }
 
         if (currentState != moveState.Dodging && groundedPlayer && !translationDisabled)
@@ -200,6 +211,12 @@ public class NewMovement : MonoBehaviour
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
+
+        //Max Fall Speed
+        if (playerVelocity.y < max_fall_speed)
+        {
+            playerVelocity.y = max_fall_speed;
+        }
         
         // Combine horizontal and vertical movement
         
@@ -218,21 +235,25 @@ public class NewMovement : MonoBehaviour
 
     private void Jump()
     {
-        //Double Jump
-        if (!groundedPlayer){
-            if (double_jump_able && double_jump){
-                playerVelocity.y = initialJumpVelocity;
-                double_jump = false;
-            }   
-        }
+        play_landing = false;
         
         //Normal Jump
-        else{
+        if (groundedPlayer || (coyote_timer < coyote_time_amount)){
+            coyote_timer = coyote_time_amount;
             if (playerVelocity.y < 0f){
                 playerVelocity.y = 0f;
             }
 
             playerVelocity.y = initialJumpVelocity;
+        }
+
+        //Double Jump
+        else{
+            if (double_jump_able && double_jump){
+                playerVelocity.y = initialJumpVelocity;
+                double_jump = false;
+
+            }   
         }
     }
 
@@ -301,7 +322,7 @@ public class NewMovement : MonoBehaviour
                 playerCurrSpeed = playerWalkSpeed;
                 break;
             case moveState.Walking:
-                
+                PlayParticle(moving_particle);
                 break;
             case moveState.Running:
                 playerCurrSpeed = playerRunSpeed;
@@ -311,5 +332,15 @@ public class NewMovement : MonoBehaviour
                 SetNewMoveState(moveState.Running);
                 break;
         }
+    }
+
+    public void PlayParticle(GameObject particle)
+    {
+        Instantiate(particle, transform.position, Quaternion.identity);
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        hit_normal = hit.normal;
     }
 }
