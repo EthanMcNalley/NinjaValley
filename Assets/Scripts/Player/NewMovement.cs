@@ -13,7 +13,6 @@ public class NewMovement : MonoBehaviour
     private GroundCheck groundCheck;
     private LockIn lockIn;
     private Vector3 playerVelocity;
-    public float max_fall_speed;
     [SerializeField]private bool groundedPlayer;
     public float coyote_time_amount = 0.25f;
     private float coyote_timer = 0;
@@ -23,6 +22,7 @@ public class NewMovement : MonoBehaviour
     private Animator animator;
     public float rotationSpeed = 20f;
     public bool translationDisabled = false;
+    public float max_fall_speed = -40.0f;
     
     [Header("Jump")]
     public float minJumpHeight = 0.5f;
@@ -59,6 +59,7 @@ public class NewMovement : MonoBehaviour
     public GameObject landing_particle;
     private bool play_landing = false;
     private Vector3 hit_normal;
+    public float slide_friction;
 
     private void Awake()
     {
@@ -151,7 +152,7 @@ public class NewMovement : MonoBehaviour
         if (!play_landing && groundedPlayer)
         {
             Instantiate(landing_particle, transform.position, Quaternion.Euler(-90, 0, 0));
-        }
+        } 
 
         moveDirection = translationDisabled ? Vector3.zero : GetInputVector();
 
@@ -217,9 +218,12 @@ public class NewMovement : MonoBehaviour
         {
             playerVelocity.y = max_fall_speed;
         }
-        
+
+        if (!groundedPlayer) {
+            moveDirection.x += (1f - hit_normal.y) * hit_normal.x * (1f - slide_friction);
+            moveDirection.z += (1f - hit_normal.y) * hit_normal.z * (1f - slide_friction);
+        }
         // Combine horizontal and vertical movement
-        
         Vector3 finalMove = (moveDirection * playerCurrSpeed) + (playerVelocity.y * Vector3.up);
 
         if (!groundedPlayer && controller.collisionFlags.HasFlag(CollisionFlags.Sides))
