@@ -146,6 +146,7 @@ public class CombatStateManager : MonoBehaviour
         if (kunaiAction.triggered && currentKunai > 0)
         {
             Instantiate(Kunai, kunaiPosition.transform.position, kunaiPosition.transform.rotation);
+            playerAnimatior.SetTrigger("Kunai");
             currentKunai--;
         }
     }
