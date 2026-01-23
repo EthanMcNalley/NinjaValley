@@ -60,9 +60,11 @@ public class NewMovement : MonoBehaviour
     private bool play_landing = false;
     private Vector3 hit_normal;
     public float slide_friction;
+    private UIManager UI_manager;
 
     private void Awake()
     {
+        UI_manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         coyote_timer = coyote_time_amount;
         groundCheck = GetComponent<GroundCheck>();
         controller = gameObject.GetComponent<CharacterController>();
@@ -346,5 +348,16 @@ public class NewMovement : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         hit_normal = hit.normal;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Upgrade upgrade))
+        {
+            if (upgrade.upgrade_type == Upgrade.UpgradeType.TIMESLOW)
+            {
+                
+            }
+        }
     }
 }

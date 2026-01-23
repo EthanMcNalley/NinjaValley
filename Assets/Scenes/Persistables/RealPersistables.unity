@@ -4832,7 +4832,7 @@ PrefabInstance:
       objectReference: {fileID: 1678448497}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4840,7 +4840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 34.5
+      value: 66.54
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6173,8 +6173,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.9649879, y: -0.00000014153736, z: 0.0000005207194, w: 0.26229447}
-  m_LocalPosition: {x: 0, y: 0, z: -29.396275}
+  m_LocalRotation: {x: 0.9985912, y: 0, z: 0, w: -0.053062994}
+  m_LocalPosition: {x: 0, y: 0, z: -42.20671}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6184,7 +6184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 7.83, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.025994778, y: -4.202303}
+  m_AnchoredPosition: {x: -0.14400001, y: -9.607011}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &963194229
@@ -6935,8 +6935,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027097147}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.9649879, y: -0.00000014153736, z: 0.0000005207194, w: 0.26229447}
-  m_LocalPosition: {x: 0.025999999, y: -9.607011, z: -10.166708}
+  m_LocalRotation: {x: 0.9985912, y: 0, z: 0, w: -0.053062994}
+  m_LocalPosition: {x: -0.14400001, y: -9.607011, z: -42.20671}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11616,11 +11616,11 @@ MonoBehaviour:
   playerRunSpeed: 30
   playerCurrSpeed: 20
   gravityValue: -60
-  max_fall_speed: 0
   groundedPlayer: 0
   coyote_time_amount: 0.25
   rotationSpeed: 10
   translationDisabled: 0
+  max_fall_speed: -40
   minJumpHeight: 1
   maxJumpHeight: 9
   timeToMaxHeight: 0.6
@@ -11631,6 +11631,7 @@ MonoBehaviour:
   double_jump: 0
   moving_particle: {fileID: 0}
   landing_particle: {fileID: 0}
+  slide_friction: 0
 --- !u!143 &1114144295919848661
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11674,6 +11675,7 @@ MonoBehaviour:
   healthBarSlider: {fileID: 0}
   maxColor: {r: 0, g: 1, b: 0, a: 1}
   minColor: {r: 1, g: 0, b: 0, a: 1}
+  health_pickup_value: 0
 --- !u!114 &1114144295919848663
 MonoBehaviour:
   m_ObjectHideFlags: 0

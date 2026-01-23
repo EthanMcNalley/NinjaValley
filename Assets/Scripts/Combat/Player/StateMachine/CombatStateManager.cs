@@ -296,4 +296,12 @@ public class CombatStateManager : MonoBehaviour
             slash.slashVFX.SetActive(false);
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ShadowEssence"))
+        {
+            shadowAssassin.UpdateShadowMeter(GetShadowCharge());
+        }
+    }
 }
