@@ -230,7 +230,7 @@ public class NewMovement : MonoBehaviour
 
         if (!groundedPlayer && controller.collisionFlags.HasFlag(CollisionFlags.Sides))
         {
-            finalMove += -transform.forward * 2.5f;
+            finalMove += -transform.forward * 0.5f;
         }
 
 
@@ -348,6 +348,11 @@ public class NewMovement : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         hit_normal = hit.normal;
+    }
+
+    public void MovePlayerExternal(float distance)
+    {
+        
     }
 
     void OnTriggerEnter(Collider other)
