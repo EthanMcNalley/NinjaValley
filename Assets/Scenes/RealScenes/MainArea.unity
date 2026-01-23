@@ -353,6 +353,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1653,6 +1654,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &360002960
 MeshFilter:
@@ -2785,6 +2787,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &622574931
 MeshFilter:
@@ -3059,6 +3062,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3760,6 +3764,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -5951,6 +5956,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraChangeTrigger (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6737120073265196091, guid: 3e697fb2fd0104c9f8a032df57959159, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7774151992367423214, guid: 3e697fb2fd0104c9f8a032df57959159, type: 3}
       propertyPath: increase_size
       value: 0
@@ -6418,6 +6427,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1476014838
 MeshFilter:
@@ -6760,6 +6770,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1580922992
 MeshFilter:
@@ -8098,7 +8109,16 @@ MonoBehaviour:
   shadowAssassin: {fileID: 0}
   healthBar: {fileID: 326946292}
   particles: {fileID: 5553527035203610251, guid: 6dbeae6864b78f346a3f4618e5b710e5, type: 3}
-  deathParticles: {fileID: 5553527035203610251, guid: 21847dd4ee69e6548907c231c1aa9bc5, type: 3}
+  normalDeathParticles: {fileID: 0}
+  executeDeathParticles: {fileID: 0}
+  particalTransform: {fileID: 0}
+  health_essence: {fileID: 0}
+  shadow_essence: {fileID: 0}
+  essence_spawnpoint: {fileID: 0}
+  executeOutline: {fileID: 0}
+  cross: {fileID: 0}
+  enemySoul: {fileID: 0}
+  soul: {fileID: 0}
   hurtSound:
     Guid:
       Data1: 980805730
@@ -8142,6 +8162,7 @@ MonoBehaviour:
   prevIndex: 0
   rotateNode: {fileID: 0}
   shadowSlow: 0.1
+  dodgeWindow: 0
 --- !u!136 &1760050328
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8468,7 +8489,16 @@ MonoBehaviour:
   shadowAssassin: {fileID: 0}
   healthBar: {fileID: 2003909041}
   particles: {fileID: 5553527035203610251, guid: 6dbeae6864b78f346a3f4618e5b710e5, type: 3}
-  deathParticles: {fileID: 5553527035203610251, guid: 21847dd4ee69e6548907c231c1aa9bc5, type: 3}
+  normalDeathParticles: {fileID: 0}
+  executeDeathParticles: {fileID: 0}
+  particalTransform: {fileID: 0}
+  health_essence: {fileID: 0}
+  shadow_essence: {fileID: 0}
+  essence_spawnpoint: {fileID: 0}
+  executeOutline: {fileID: 0}
+  cross: {fileID: 0}
+  enemySoul: {fileID: 0}
+  soul: {fileID: 0}
   hurtSound:
     Guid:
       Data1: 980805730
@@ -8512,6 +8542,7 @@ MonoBehaviour:
   prevIndex: 0
   rotateNode: {fileID: 0}
   shadowSlow: 0.1
+  dodgeWindow: 0
 --- !u!136 &1893530478
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8991,6 +9022,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &2044061543
 MeshFilter:
@@ -10040,6 +10072,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -10555,7 +10588,16 @@ MonoBehaviour:
   shadowAssassin: {fileID: 0}
   healthBar: {fileID: 517779451786151791}
   particles: {fileID: 5553527035203610251, guid: 6dbeae6864b78f346a3f4618e5b710e5, type: 3}
-  deathParticles: {fileID: 5553527035203610251, guid: 21847dd4ee69e6548907c231c1aa9bc5, type: 3}
+  normalDeathParticles: {fileID: 0}
+  executeDeathParticles: {fileID: 0}
+  particalTransform: {fileID: 0}
+  health_essence: {fileID: 0}
+  shadow_essence: {fileID: 0}
+  essence_spawnpoint: {fileID: 0}
+  executeOutline: {fileID: 0}
+  cross: {fileID: 0}
+  enemySoul: {fileID: 0}
+  soul: {fileID: 0}
   hurtSound:
     Guid:
       Data1: 980805730
@@ -10900,6 +10942,7 @@ MonoBehaviour:
   prevIndex: 0
   rotateNode: {fileID: 0}
   shadowSlow: 0.1
+  dodgeWindow: 0
 --- !u!4 &8941404068909927483
 Transform:
   m_ObjectHideFlags: 0

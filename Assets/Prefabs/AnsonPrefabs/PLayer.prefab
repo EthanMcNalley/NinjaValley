@@ -411,6 +411,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &5275064785342441953
 BoxCollider:
@@ -729,7 +730,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &731741245251127289
 TrailRenderer:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -775,6 +776,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Time: 0.3
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -842,7 +844,6 @@ TrailRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
-  m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
@@ -1028,6 +1029,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5129171999029577891
 GameObject:
@@ -1248,6 +1250,7 @@ MonoBehaviour:
   coyote_time_amount: 0.25
   rotationSpeed: 10
   translationDisabled: 0
+  max_fall_speed: -40
   minJumpHeight: 2
   maxJumpHeight: 11
   timeToMaxHeight: 0.6
@@ -1256,6 +1259,9 @@ MonoBehaviour:
   currentState: 0
   double_jump_able: 0
   double_jump: 0
+  moving_particle: {fileID: 5898904861936185772, guid: d24062a7fc87c9c4497f8462d05fa326, type: 3}
+  landing_particle: {fileID: 543724986706576611, guid: 2d24beefa4660fb459a8abd9be993255, type: 3}
+  slide_friction: 0
 --- !u!114 &966483641433614254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,6 +1382,7 @@ MonoBehaviour:
   healthBarSlider: {fileID: 0}
   maxColor: {r: 0, g: 1, b: 0, a: 1}
   minColor: {r: 1, g: 0, b: 0, a: 1}
+  health_pickup_value: 0
 --- !u!114 &346220985570991258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2099,6 +2106,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
