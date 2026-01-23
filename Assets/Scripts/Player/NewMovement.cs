@@ -228,10 +228,10 @@ public class NewMovement : MonoBehaviour
         // Combine horizontal and vertical movement
         Vector3 finalMove = (moveDirection * playerCurrSpeed) + (playerVelocity.y * Vector3.up);
 
-        if (!groundedPlayer && controller.collisionFlags.HasFlag(CollisionFlags.Sides))
+        /*if (!groundedPlayer && controller.collisionFlags.HasFlag(CollisionFlags.Sides))
         {
-            finalMove += -transform.forward * 0.5f;
-        }
+            finalMove += -transform.forward * 0.1f;
+        }*/
 
 
         controller.Move(finalMove * Time.deltaTime);
