@@ -144,15 +144,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OpenTextScrollMenu(){
+    public void OpenTextScrollMenu(string message){
         if (ui_state == UIState.INACTIVE){
+            FadeIn();
+            sign_text.text = message;
             text_scroll_animator.SetBool("Active", true);
             ui_state = UIState.ACTIVE;
+            Time.timeScale = 0.0f;
         }
     }
 
     public void CloseTextScrollMenu(){
         if (ui_state == UIState.ACTIVE){
+            Time.timeScale = 1.0f;
+            FadeOut();
             text_scroll_animator.SetBool("Active", false);
             ui_state = UIState.INACTIVE;
         }

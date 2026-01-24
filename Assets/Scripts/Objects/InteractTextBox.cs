@@ -19,16 +19,11 @@ public class InteractTextBox : MonoBehaviour
         if (inside){
             if (Input.GetKeyDown(KeyCode.Q)){
                 if (UIManager.ui_state == UIManager.UIState.INACTIVE){
-                    UI_manager.OpenTextScrollMenu();
-                    UI_manager.FadeIn();
-                    UI_manager.sign_text.text = text;
-                    Time.timeScale = 0.0f;
+                    UI_manager.OpenTextScrollMenu(text);
                 }
 
                 else{
-                    Time.timeScale = 1.0f;
                     UI_manager.CloseTextScrollMenu();
-                    UI_manager.FadeOut();
                 }
             }
         }

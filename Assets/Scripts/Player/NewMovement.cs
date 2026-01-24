@@ -361,7 +361,13 @@ public class NewMovement : MonoBehaviour
         {
             if (upgrade.upgrade_type == Upgrade.UpgradeType.TIMESLOW)
             {
-                
+                UI_manager.OpenTextScrollMenu("You've absorbed the essence of time! Press E to slow down time.");
+                while(UIManager.ui_state == UIManager.UIState.ACTIVE)
+                {
+                    if (Input.GetKeyDown(KeyCode.Q)){
+                        UI_manager.CloseTextScrollMenu();
+                    }
+                }
             }
         }
     }
