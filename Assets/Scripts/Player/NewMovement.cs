@@ -221,10 +221,13 @@ public class NewMovement : MonoBehaviour
             playerVelocity.y = max_fall_speed;
         }
 
-        if (!groundedPlayer) {
+        Vector3 prev_direction = moveDirection;
+        
+        if (controller.slopeLimit < Vector3.Angle(hit_normal, Vector3.up)) {
             moveDirection.x += (1f - hit_normal.y) * hit_normal.x * (1f - slide_friction);
             moveDirection.z += (1f - hit_normal.y) * hit_normal.z * (1f - slide_friction);
         }
+
         // Combine horizontal and vertical movement
         Vector3 finalMove = (moveDirection * playerCurrSpeed) + (playerVelocity.y * Vector3.up);
 
@@ -348,6 +351,15 @@ public class NewMovement : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         hit_normal = hit.normal;
+        if (controller.slopeLimit > Vector3.Angle(hit_normal, Vector3.up))
+        {
+            Debug.Log("WOOOO");
+        }
+
+        else
+        {
+            Debug.Log("AWWWW");
+        }
     }
 
     public void MovePlayerExternal(float distance)
@@ -362,12 +374,12 @@ public class NewMovement : MonoBehaviour
             if (upgrade.upgrade_type == Upgrade.UpgradeType.TIMESLOW)
             {
                 UI_manager.OpenTextScrollMenu("You've absorbed the essence of time! Press E to slow down time.");
-                while(UIManager.ui_state == UIManager.UIState.ACTIVE)
-                {
-                    if (Input.GetKeyDown(KeyCode.Q)){
-                        UI_manager.CloseTextScrollMenu();
-                    }
-                }
+                // while(UIManager.ui_state == UIManager.UIState.ACTIVE)
+                // {
+                //     if (Input.GetKeyDown(KeyCode.Q)){
+                //         UI_manager.CloseTextScrollMenu();
+                //     }
+                // }
             }
         }
     }
