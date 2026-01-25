@@ -104,27 +104,27 @@ Shader /*ase_name*/ "Hidden/Universal/2D Lit" /*end*/
 			#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/DebugMipmapStreamingMacros.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
-			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/LightingUtility.hlsl"
+			//#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/LightingUtility.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
 
 			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/SurfaceData2D.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Debug/Debugging2D.hlsl"
 
-			#if USE_SHAPE_LIGHT_TYPE_0
-			SHAPE_LIGHT(0)
-			#endif
+			//#if USE_SHAPE_LIGHT_TYPE_0
+			//SHAPE_LIGHT(0)
+			//#endif
 
-			#if USE_SHAPE_LIGHT_TYPE_1
-			SHAPE_LIGHT(1)
-			#endif
+			//#if USE_SHAPE_LIGHT_TYPE_1
+			//SHAPE_LIGHT(1)
+			//#endif
 
-			#if USE_SHAPE_LIGHT_TYPE_2
-			SHAPE_LIGHT(2)
-			#endif
+			//#if USE_SHAPE_LIGHT_TYPE_2
+			//SHAPE_LIGHT(2)
+			//#endif
 
-			#if USE_SHAPE_LIGHT_TYPE_3
-			SHAPE_LIGHT(3)
-			#endif
+			//#if USE_SHAPE_LIGHT_TYPE_3
+			//SHAPE_LIGHT(3)
+			//#endif
 
 			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/CombinedShapeLightShared.hlsl"
 

@@ -377,7 +377,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #else
 				uint surfaceRenderingLayer = LoadSceneRenderingLayer(packedInput.positionCS.xy);
             #endif
-				uint projectorRenderingLayer = uint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
+				uint projectorRenderingLayer = asuint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
 				clip((surfaceRenderingLayer & projectorRenderingLayer) - 0.1);
             #endif
 
@@ -707,7 +707,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #else
 				uint surfaceRenderingLayer = LoadSceneRenderingLayer(packedInput.positionCS.xy);
             #endif
-				uint projectorRenderingLayer = uint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
+				uint projectorRenderingLayer = asuint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
 				clip((surfaceRenderingLayer & projectorRenderingLayer) - 0.1);
             #endif
 
@@ -831,6 +831,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#pragma editor_sync_compilation
 
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
+			#pragma multi_compile_fragment _ _SCREEN_SPACE_IRRADIANCE
 			#pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
 			#pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
             #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
@@ -1185,7 +1186,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #else
 				uint surfaceRenderingLayer = LoadSceneRenderingLayer(packedInput.positionCS.xy);
             #endif
-				uint projectorRenderingLayer = uint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
+				uint projectorRenderingLayer = asuint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
 				clip((surfaceRenderingLayer & projectorRenderingLayer) - 0.1);
             #endif
 
@@ -1677,7 +1678,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #else
 				uint surfaceRenderingLayer = LoadSceneRenderingLayer(packedInput.positionCS.xy);
             #endif
-				uint projectorRenderingLayer = uint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
+				uint projectorRenderingLayer = asuint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
 				clip((surfaceRenderingLayer & projectorRenderingLayer) - 0.1);
             #endif
 
@@ -2136,7 +2137,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #else
 				uint surfaceRenderingLayer = LoadSceneRenderingLayer(packedInput.positionCS.xy);
             #endif
-				uint projectorRenderingLayer = uint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
+				uint projectorRenderingLayer = asuint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
 				clip((surfaceRenderingLayer & projectorRenderingLayer) - 0.1);
             #endif
 
@@ -2484,7 +2485,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #else
 				uint surfaceRenderingLayer = LoadSceneRenderingLayer(packedInput.positionCS.xy);
             #endif
-				uint projectorRenderingLayer = uint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
+				uint projectorRenderingLayer = asuint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
 				clip((surfaceRenderingLayer & projectorRenderingLayer) - 0.1);
             #endif
 
@@ -2578,6 +2579,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#pragma multi_compile _ DIRLIGHTMAP_COMBINED
 			#pragma multi_compile _ USE_LEGACY_LIGHTMAPS
 			#pragma multi_compile _ LIGHTMAP_BICUBIC_SAMPLING
+			#pragma multi_compile _ REFLECTION_PROBE_ROTATION
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
 			#pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
 			#pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
@@ -2968,7 +2970,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #else
 				uint surfaceRenderingLayer = LoadSceneRenderingLayer(packedInput.positionCS.xy);
             #endif
-				uint projectorRenderingLayer = uint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
+				uint projectorRenderingLayer = asuint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
 				clip((surfaceRenderingLayer & projectorRenderingLayer) - 0.1);
             #endif
 
@@ -3080,6 +3082,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#pragma multi_compile _ DIRLIGHTMAP_COMBINED
 			#pragma multi_compile _ USE_LEGACY_LIGHTMAPS
 			#pragma multi_compile _ LIGHTMAP_BICUBIC_SAMPLING
+			#pragma multi_compile _ REFLECTION_PROBE_ROTATION
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
 			#pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
@@ -3468,7 +3471,7 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #else
 				uint surfaceRenderingLayer = LoadSceneRenderingLayer(packedInput.positionCS.xy);
             #endif
-				uint projectorRenderingLayer = uint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
+				uint projectorRenderingLayer = asuint(UNITY_ACCESS_INSTANCED_PROP(Decal, _DecalLayerMaskFromDecal));
 				clip((surfaceRenderingLayer & projectorRenderingLayer) - 0.1);
             #endif
 
