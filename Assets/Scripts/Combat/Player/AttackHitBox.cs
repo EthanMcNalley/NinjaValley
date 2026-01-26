@@ -89,10 +89,10 @@ public class AttackHitBox : MonoBehaviour
         if (enemyHitted.Contains(other.gameObject)) return;
             
         float damage = CombatStateManager.GetDamage();
-        //float charge = CombatStateManager.GetShadowCharge();
+        float charge = CombatStateManager.GetShadowCharge();
             
         enemy.TakeDamage(damage);
-        //CombatStateManager.shadowAssassin.UpdateShadowMeter(charge);
+        CombatStateManager.shadowAssassin.UpdateShadowMeter(charge);
         enemyHitted.Add(other.gameObject);
         
     }
