@@ -175,12 +175,12 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
 
-			#if _RENDER_PASS_ENABLED
-			#define GBUFFER3 0
-			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
-			#endif
+            #if _RENDER_PASS_ENABLED
+            #define GBUFFER3 0
+            FRAMEBUFFER_INPUT_X_FLOAT(GBUFFER3);
+            #define GBUFFER4 1
+            FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
+            #endif
 
 			/*ase_pragma*/
 
@@ -399,7 +399,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#endif
 
 			#if defined(DECAL_RECONSTRUCT_NORMAL)
-				#if defined(_DECAL_NORMAL_BLEND_HIGH)
+				#if defined(_RENDER_PASS_ENABLED)
+					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy, LOAD_FRAMEBUFFER_X_INPUT(GBUFFER3, packedInput.positionCS.xy).x));
+				#elif defined(_DECAL_NORMAL_BLEND_HIGH)
 					half3 normalWS = half3(ReconstructNormalTap9(packedInput.positionCS.xy));
 				#elif defined(_DECAL_NORMAL_BLEND_MEDIUM)
 					half3 normalWS = half3(ReconstructNormalTap5(packedInput.positionCS.xy));
@@ -407,7 +409,11 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy));
 				#endif
 			#elif defined(DECAL_LOAD_NORMAL)
-				half3 normalWS = half3(LoadSceneNormals(packedInput.positionCS.xy));
+				#if defined(_RENDER_PASS_ENABLED)
+				half3 normalWS = normalize(LOAD_FRAMEBUFFER_X_INPUT(GBUFFER2, packedInput.positionCS.xy).rgb);
+				#else
+				half3 normalWS = normalize(LoadSceneNormals(packedInput.positionCS.xy).rgb);
+				#endif
 			#endif
 
 				float2 positionSS = FoveatedRemapNonUniformToLinearCS(packedInput.positionCS.xy) * _ScreenSize.zw;
@@ -535,12 +541,12 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
 
-			#if _RENDER_PASS_ENABLED
-			#define GBUFFER3 0
-			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
-			#endif
+            #if _RENDER_PASS_ENABLED
+            #define GBUFFER3 0
+            FRAMEBUFFER_INPUT_X_FLOAT(GBUFFER3);
+            #define GBUFFER4 1
+            FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
+            #endif
 
 			/*ase_pragma*/
 
@@ -729,7 +735,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#endif
 
 			#if defined(DECAL_RECONSTRUCT_NORMAL)
-				#if defined(_DECAL_NORMAL_BLEND_HIGH)
+				#if defined(_RENDER_PASS_ENABLED)
+					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy, LOAD_FRAMEBUFFER_X_INPUT(GBUFFER3, packedInput.positionCS.xy).x));
+				#elif defined(_DECAL_NORMAL_BLEND_HIGH)
 					half3 normalWS = half3(ReconstructNormalTap9(packedInput.positionCS.xy));
 				#elif defined(_DECAL_NORMAL_BLEND_MEDIUM)
 					half3 normalWS = half3(ReconstructNormalTap5(packedInput.positionCS.xy));
@@ -737,7 +745,11 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy));
 				#endif
 			#elif defined(DECAL_LOAD_NORMAL)
-				half3 normalWS = half3(LoadSceneNormals(packedInput.positionCS.xy));
+				#if defined(_RENDER_PASS_ENABLED)
+				half3 normalWS = normalize(LOAD_FRAMEBUFFER_X_INPUT(GBUFFER2, packedInput.positionCS.xy).rgb);
+				#else
+				half3 normalWS = normalize(LoadSceneNormals(packedInput.positionCS.xy).rgb);
+				#endif
 			#endif
 
 				float2 positionSS = FoveatedRemapNonUniformToLinearCS(packedInput.positionCS.xy) * _ScreenSize.zw;
@@ -880,12 +892,12 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
 
-			#if _RENDER_PASS_ENABLED
-			#define GBUFFER3 0
-			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
-			#endif
+            #if _RENDER_PASS_ENABLED
+            #define GBUFFER3 0
+            FRAMEBUFFER_INPUT_X_FLOAT(GBUFFER3);
+            #define GBUFFER4 1
+            FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
+            #endif
 
 			/*ase_pragma*/
 
@@ -1208,7 +1220,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#endif
 
 			#if defined(DECAL_RECONSTRUCT_NORMAL)
-				#if defined(_DECAL_NORMAL_BLEND_HIGH)
+				#if defined(_RENDER_PASS_ENABLED)
+					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy, LOAD_FRAMEBUFFER_X_INPUT(GBUFFER3, packedInput.positionCS.xy).x));
+				#elif defined(_DECAL_NORMAL_BLEND_HIGH)
 					half3 normalWS = half3(ReconstructNormalTap9(packedInput.positionCS.xy));
 				#elif defined(_DECAL_NORMAL_BLEND_MEDIUM)
 					half3 normalWS = half3(ReconstructNormalTap5(packedInput.positionCS.xy));
@@ -1216,7 +1230,11 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy));
 				#endif
 			#elif defined(DECAL_LOAD_NORMAL)
-				half3 normalWS = half3(LoadSceneNormals(packedInput.positionCS.xy));
+				#if defined(_RENDER_PASS_ENABLED)
+				half3 normalWS = normalize(LOAD_FRAMEBUFFER_X_INPUT(GBUFFER2, packedInput.positionCS.xy).rgb);
+				#else
+				half3 normalWS = normalize(LoadSceneNormals(packedInput.positionCS.xy).rgb);
+				#endif
 			#endif
 
 				float2 positionSS = FoveatedRemapNonUniformToLinearCS(packedInput.positionCS.xy) * _ScreenSize.zw;
@@ -1345,6 +1363,11 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
 			#pragma multi_compile_fragment _ _RENDER_PASS_ENABLED
 
+			//fix for SRP Additional Lighting in Deferred+
+			#pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+			#pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+			#pragma multi_compile _ _CLUSTER_LIGHT_LOOP
+
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Texture.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
@@ -1384,12 +1407,12 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
 
-			#if _RENDER_PASS_ENABLED
-			#define GBUFFER3 0
-			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
-			#endif
+            #if _RENDER_PASS_ENABLED
+            #define GBUFFER3 0
+            FRAMEBUFFER_INPUT_X_FLOAT(GBUFFER3);
+            #define GBUFFER4 1
+            FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
+            #endif
 
 			/*ase_pragma*/
 
@@ -1700,7 +1723,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#endif
 
 			#if defined(DECAL_RECONSTRUCT_NORMAL)
-				#if defined(_DECAL_NORMAL_BLEND_HIGH)
+				#if defined(_RENDER_PASS_ENABLED)
+					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy, LOAD_FRAMEBUFFER_X_INPUT(GBUFFER3, packedInput.positionCS.xy).x));
+				#elif defined(_DECAL_NORMAL_BLEND_HIGH)
 					half3 normalWS = half3(ReconstructNormalTap9(packedInput.positionCS.xy));
 				#elif defined(_DECAL_NORMAL_BLEND_MEDIUM)
 					half3 normalWS = half3(ReconstructNormalTap5(packedInput.positionCS.xy));
@@ -1708,7 +1733,11 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy));
 				#endif
 			#elif defined(DECAL_LOAD_NORMAL)
-				half3 normalWS = half3(LoadSceneNormals(packedInput.positionCS.xy));
+				#if defined(_RENDER_PASS_ENABLED)
+				half3 normalWS = normalize(LOAD_FRAMEBUFFER_X_INPUT(GBUFFER2, packedInput.positionCS.xy).rgb);
+				#else
+				half3 normalWS = normalize(LoadSceneNormals(packedInput.positionCS.xy).rgb);
+				#endif
 			#endif
 
 				float2 positionSS = FoveatedRemapNonUniformToLinearCS(packedInput.positionCS.xy) * _ScreenSize.zw;
@@ -1902,12 +1931,12 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
 
-			#if _RENDER_PASS_ENABLED
-			#define GBUFFER3 0
-			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
-			#endif
+            #if _RENDER_PASS_ENABLED
+            #define GBUFFER3 0
+            FRAMEBUFFER_INPUT_X_FLOAT(GBUFFER3);
+            #define GBUFFER4 1
+            FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
+            #endif
 
             /*ase_pragma*/
 
@@ -2159,7 +2188,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#endif
 
 			#if defined(DECAL_RECONSTRUCT_NORMAL)
-				#if defined(_DECAL_NORMAL_BLEND_HIGH)
+				#if defined(_RENDER_PASS_ENABLED)
+					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy, LOAD_FRAMEBUFFER_X_INPUT(GBUFFER3, packedInput.positionCS.xy).x));
+				#elif defined(_DECAL_NORMAL_BLEND_HIGH)
 					half3 normalWS = half3(ReconstructNormalTap9(packedInput.positionCS.xy));
 				#elif defined(_DECAL_NORMAL_BLEND_MEDIUM)
 					half3 normalWS = half3(ReconstructNormalTap5(packedInput.positionCS.xy));
@@ -2167,7 +2198,11 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy));
 				#endif
 			#elif defined(DECAL_LOAD_NORMAL)
-				half3 normalWS = half3(LoadSceneNormals(packedInput.positionCS.xy));
+				#if defined(_RENDER_PASS_ENABLED)
+				half3 normalWS = normalize(LOAD_FRAMEBUFFER_X_INPUT(GBUFFER2, packedInput.positionCS.xy).rgb);
+				#else
+				half3 normalWS = normalize(LoadSceneNormals(packedInput.positionCS.xy).rgb);
+				#endif
 			#endif
 
 				float2 positionSS = FoveatedRemapNonUniformToLinearCS(packedInput.positionCS.xy) * _ScreenSize.zw;
@@ -2262,12 +2297,12 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
 
-			#if _RENDER_PASS_ENABLED
-			#define GBUFFER3 0
-			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
-			#endif
+            #if _RENDER_PASS_ENABLED
+            #define GBUFFER3 0
+            FRAMEBUFFER_INPUT_X_FLOAT(GBUFFER3);
+            #define GBUFFER4 1
+            FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
+            #endif
 
 			/*ase_pragma*/
 
@@ -2507,7 +2542,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#endif
 
 			#if defined(DECAL_RECONSTRUCT_NORMAL)
-				#if defined(_DECAL_NORMAL_BLEND_HIGH)
+				#if defined(_RENDER_PASS_ENABLED)
+					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy, LOAD_FRAMEBUFFER_X_INPUT(GBUFFER3, packedInput.positionCS.xy).x));
+				#elif defined(_DECAL_NORMAL_BLEND_HIGH)
 					half3 normalWS = half3(ReconstructNormalTap9(packedInput.positionCS.xy));
 				#elif defined(_DECAL_NORMAL_BLEND_MEDIUM)
 					half3 normalWS = half3(ReconstructNormalTap5(packedInput.positionCS.xy));
@@ -2515,7 +2552,11 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy));
 				#endif
 			#elif defined(DECAL_LOAD_NORMAL)
-				half3 normalWS = half3(LoadSceneNormals(packedInput.positionCS.xy));
+				#if defined(_RENDER_PASS_ENABLED)
+				half3 normalWS = normalize(LOAD_FRAMEBUFFER_X_INPUT(GBUFFER2, packedInput.positionCS.xy).rgb);
+				#else
+				half3 normalWS = normalize(LoadSceneNormals(packedInput.positionCS.xy).rgb);
+				#endif
 			#endif
 
 				float2 positionSS = FoveatedRemapNonUniformToLinearCS(packedInput.positionCS.xy) * _ScreenSize.zw;
@@ -2635,12 +2676,12 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
 
-			#if _RENDER_PASS_ENABLED
-			#define GBUFFER3 0
-			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
-			#endif
+            #if _RENDER_PASS_ENABLED
+            #define GBUFFER3 0
+            FRAMEBUFFER_INPUT_X_FLOAT(GBUFFER3);
+            #define GBUFFER4 1
+            FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
+            #endif
 
 			/*ase_pragma*/
 
@@ -2992,7 +3033,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#endif
 
 			#if defined(DECAL_RECONSTRUCT_NORMAL)
-				#if defined(_DECAL_NORMAL_BLEND_HIGH)
+				#if defined(_RENDER_PASS_ENABLED)
+					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy, LOAD_FRAMEBUFFER_X_INPUT(GBUFFER3, packedInput.positionCS.xy).x));
+				#elif defined(_DECAL_NORMAL_BLEND_HIGH)
 					half3 normalWS = half3(ReconstructNormalTap9(packedInput.positionCS.xy));
 				#elif defined(_DECAL_NORMAL_BLEND_MEDIUM)
 					half3 normalWS = half3(ReconstructNormalTap5(packedInput.positionCS.xy));
@@ -3000,7 +3043,11 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy));
 				#endif
 			#elif defined(DECAL_LOAD_NORMAL)
-				half3 normalWS = half3(LoadSceneNormals(packedInput.positionCS.xy));
+				#if defined(_RENDER_PASS_ENABLED)
+				half3 normalWS = normalize(LOAD_FRAMEBUFFER_X_INPUT(GBUFFER2, packedInput.positionCS.xy).rgb);
+				#else
+				half3 normalWS = normalize(LoadSceneNormals(packedInput.positionCS.xy).rgb);
+				#endif
 			#endif
 
 				float2 positionSS = FoveatedRemapNonUniformToLinearCS(packedInput.positionCS.xy) * _ScreenSize.zw;
@@ -3137,12 +3184,12 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
             #endif
 
-			#if _RENDER_PASS_ENABLED
-			#define GBUFFER3 0
-			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
-			#endif
+            #if _RENDER_PASS_ENABLED
+            #define GBUFFER3 0
+            FRAMEBUFFER_INPUT_X_FLOAT(GBUFFER3);
+            #define GBUFFER4 1
+            FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
+            #endif
 
 			/*ase_pragma*/
 
@@ -3493,7 +3540,9 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#endif
 
 			#if defined(DECAL_RECONSTRUCT_NORMAL)
-				#if defined(_DECAL_NORMAL_BLEND_HIGH)
+				#if defined(_RENDER_PASS_ENABLED)
+					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy, LOAD_FRAMEBUFFER_X_INPUT(GBUFFER3, packedInput.positionCS.xy).x));
+				#elif defined(_DECAL_NORMAL_BLEND_HIGH)
 					half3 normalWS = half3(ReconstructNormalTap9(packedInput.positionCS.xy));
 				#elif defined(_DECAL_NORMAL_BLEND_MEDIUM)
 					half3 normalWS = half3(ReconstructNormalTap5(packedInput.positionCS.xy));
@@ -3501,7 +3550,11 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 					half3 normalWS = half3(ReconstructNormalDerivative(packedInput.positionCS.xy));
 				#endif
 			#elif defined(DECAL_LOAD_NORMAL)
-				half3 normalWS = half3(LoadSceneNormals(packedInput.positionCS.xy));
+				#if defined(_RENDER_PASS_ENABLED)
+				half3 normalWS = normalize(LOAD_FRAMEBUFFER_X_INPUT(GBUFFER2, packedInput.positionCS.xy).rgb);
+				#else
+				half3 normalWS = normalize(LoadSceneNormals(packedInput.positionCS.xy).rgb);
+				#endif
 			#endif
 
 				float2 positionSS = FoveatedRemapNonUniformToLinearCS(packedInput.positionCS.xy) * _ScreenSize.zw;
@@ -3622,12 +3675,12 @@ Shader  /*ase_name*/"Hidden/Universal/Decal"/*end*/
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DecalInput.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderVariablesDecal.hlsl"
 
-			#if _RENDER_PASS_ENABLED
-			#define GBUFFER3 0
-			#define GBUFFER4 1
-			FRAMEBUFFER_INPUT_X_HALF(GBUFFER3);
-			FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
-			#endif
+            #if _RENDER_PASS_ENABLED
+            #define GBUFFER3 0
+            FRAMEBUFFER_INPUT_X_FLOAT(GBUFFER3);
+            #define GBUFFER4 1
+            FRAMEBUFFER_INPUT_X_UINT(GBUFFER4);
+            #endif
 
 			/*ase_pragma*/
 

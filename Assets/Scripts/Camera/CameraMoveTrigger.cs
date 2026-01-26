@@ -6,6 +6,7 @@ public class CameraMoveTrigger : MonoBehaviour
     public bool cutscene = false;
     public CinemachineCamera cinemachine_camera;
     CutsceneBars cutscene_bars;
+    public float smoothing_amount = 1.0f;
     void Start(){
         cutscene_bars = GameObject.FindGameObjectWithTag("UIManager").GetComponent<CutsceneBars>();
     }
@@ -17,6 +18,7 @@ public class CameraMoveTrigger : MonoBehaviour
             }
 
             else{
+                CameraControlling.smoothing_amount = smoothing_amount;
                 cinemachine_camera.Priority = 10;
                 transform.localScale = transform.localScale + (Vector3.one * increase_size);
             }
@@ -30,6 +32,7 @@ public class CameraMoveTrigger : MonoBehaviour
             }
 
             else{
+                CameraControlling.smoothing_amount = CameraControlling.original_smoothing_amount;
                 cinemachine_camera.Priority = 0;
                 transform.localScale = transform.localScale - (Vector3.one * increase_size);
             }

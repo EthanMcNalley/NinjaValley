@@ -239,7 +239,14 @@ public class NewMovement : MonoBehaviour
 
         controller.Move(finalMove * Time.deltaTime);
         
-        animator.SetBool("Jump", !groundedPlayer);
+        if (!groundedPlayer){
+            animator.SetFloat("YVelocity", finalMove.y);
+        }
+
+        else
+        {
+            animator.SetFloat("YVelocity", 0);
+        }
     }
 
     private void Jump()
