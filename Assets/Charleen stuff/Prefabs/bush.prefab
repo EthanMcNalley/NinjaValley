@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5699270669896268255}
   - component: {fileID: 7318136706991917162}
   - component: {fileID: 2766396406997374258}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bush leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,6 +61,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,9 +84,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4178025332809566387
 GameObject:
@@ -97,8 +101,8 @@ GameObject:
   - component: {fileID: 2688351716871322259}
   - component: {fileID: 8712818702803390156}
   - component: {fileID: 5686022294835813834}
-  - component: {fileID: 3341325243298701514}
-  m_Layer: 0
+  - component: {fileID: 5603979799996974876}
+  m_Layer: 12
   m_Name: bush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,6 +154,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -171,12 +177,14 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3341325243298701514
-MeshCollider:
+--- !u!136 &5603979799996974876
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -193,10 +201,11 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5958362384829529401, guid: 2b8227d7b02a4d4458b132e092ac1203, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.0026984795
+  m_Height: 0.025317287
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.010071393}
 --- !u!1 &4874689307425197578
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +217,7 @@ GameObject:
   - component: {fileID: 7524160015555110756}
   - component: {fileID: 1191806690384031963}
   - component: {fileID: 7269174492386502480}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bush leaves (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,6 +267,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -279,7 +290,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
