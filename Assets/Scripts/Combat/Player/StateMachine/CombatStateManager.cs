@@ -65,10 +65,10 @@ public class CombatStateManager : MonoBehaviour
     [Header ("Kunai Stuff")]
     public GameObject Kunai;
     public GameObject kunaiPosition;
-    private float kunaiTimer;
+    public float kunaiTimer;
     public float kunaiChargeCooldown;
-    public float maxKunai = 3;
-    public float currentKunai;
+    public int maxKunai = 3;
+    public int currentKunai;
 
     [Header("Sound Stuff")] 
     public EventReference slashSound;
