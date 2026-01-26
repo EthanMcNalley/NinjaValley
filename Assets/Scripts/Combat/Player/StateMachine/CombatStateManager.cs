@@ -42,6 +42,8 @@ public class CombatStateManager : MonoBehaviour
     public float stateTime = 0f;
     private float bufferTime = 0f;
     public float bufferDurationTimer = 1f;
+    public float faceEnemyDistance = 10f;
+    
     
     [Header("VFX Stuff")]
     public List<SlashVFX>  slashVFX;
@@ -235,6 +237,7 @@ public class CombatStateManager : MonoBehaviour
     {
         comboStep = 1;
         attacking = false;
+        FaceEnemy();
         SwitchState(Melee1);
     }
 
@@ -245,6 +248,7 @@ public class CombatStateManager : MonoBehaviour
         {
             attacking = false;
             comboStep++;
+            FaceEnemy();
             SwitchState(nextState);
         }
         else
@@ -252,6 +256,17 @@ public class CombatStateManager : MonoBehaviour
             comboStep = 0;
             SwitchState(Idle);
         }
+    }
+
+    private void FaceEnemy()
+    {
+        GameObject target = FindClosest.FindClosestGameObject(this.transform.position, faceEnemyDistance, enemyLayer);
+        if (target == null)
+        {
+            return;
+        }
+        
+        transform.LookAt(target.transform);
     }
     
     public void RaisePlayerAttack()
