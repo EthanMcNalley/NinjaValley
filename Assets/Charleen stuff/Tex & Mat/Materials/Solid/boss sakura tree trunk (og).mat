@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-369292833445703530
+--- !u!114 &-7272409429714154610
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,47 +20,35 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: boss sakura tree walkway branches
-  m_Shader: {fileID: -6465566751694194690, guid: 2cbf6129e6ee5bc4fb52f8a3a7217bb4, type: 3}
+  m_Name: boss sakura tree trunk (og)
+  m_Shader: {fileID: 4800000, guid: ee7e4c9a5f6364b688a332c67fc32cca, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _APPLY_MOTION_NO
-  - _APPLY_RIM_YES
-  - _SPECULAR_SETUP
-  m_InvalidKeywords:
-  - _APPLY_AMBIENT_NO
-  - _APPLY_BUMP_NO
-  - _APPLY_COLOR_CORRECTION_NO
-  - _APPLY_FLAT_SHADING_NO
-  - _APPLY_OUTLINE_NO
-  - _APPLY_REFLECTION_NO
-  - _APPLY_SPECULAR_NO
-  - _APPLY_TOON_NO
-  - _APPLY_WATERCOLOR_SHADING_NO
   - _NORMALMAP
+  - _SPECULAR_SETUP
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo_diffuse_texture:
-        m_Texture: {fileID: 2800000, guid: cd0d05649745c8441adeea83a71daea2, type: 3}
+        m_Texture: {fileID: 2800000, guid: d70de3b9bf1b8ec4ea4ea3b76dc644d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: d53c871cab58f4a4bae39547bda6ab2a, type: 3}
+        m_Texture: {fileID: 2800000, guid: d70de3b9bf1b8ec4ea4ea3b76dc644d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Base_texture:
-        m_Texture: {fileID: 2800000, guid: d53c871cab58f4a4bae39547bda6ab2a, type: 3}
+        m_Texture: {fileID: 2800000, guid: d70de3b9bf1b8ec4ea4ea3b76dc644d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Brush_texture:
@@ -68,11 +56,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 7b56acb3c874f1c44bc78e181c5aa174, type: 3}
+        m_Texture: {fileID: 2800000, guid: 70d09f94b6b07c340b02c00ae5841c9e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Bump_texture:
         m_Texture: {fileID: 2800000, guid: 9ddd51ec9afda4c3b95efec462787b9c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ClearCoatMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Cubemap:
@@ -100,11 +92,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d53c871cab58f4a4bae39547bda6ab2a, type: 3}
+        m_Texture: {fileID: 2800000, guid: d70de3b9bf1b8ec4ea4ea3b76dc644d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: b44f25dd5667c154ab2e27520284815f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3e9a377542c027945a553c990ee645eb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -157,11 +149,13 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
     - _Blend_amount: 1
     - _Brightness: 5
     - _BumpScale: 1
     - _Bump_amount: 1
     - _CastShadows: 1
+    - _ClearCoat: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Contribution: 0
@@ -189,8 +183,8 @@ Material:
     - _ReceiveShadows: 1
     - _Reflection_blend: 1
     - _Reflection_intensity: 1
-    - _Rim_glow: -0.03
-    - _Rim_power: 5
+    - _Rim_glow: -5
+    - _Rim_power: 10
     - _Shades: 0.32
     - _Shininess: 10
     - _Smoothness: 0
