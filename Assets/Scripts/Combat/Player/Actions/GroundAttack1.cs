@@ -4,7 +4,7 @@ public class GroundAttack1 : CombatState
 {
     public AttackData.CombatStateID stateID = AttackData.CombatStateID.GroundAttack1;
     public float damage = 1f;
-    float stateDuration = 0.4f;
+    float stateDuration = 0.41f;
     float bufferDuration = 0.7f;
     public float shadowCharge = 20f;
 

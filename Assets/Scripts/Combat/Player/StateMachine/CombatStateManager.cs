@@ -107,7 +107,7 @@ public class CombatStateManager : MonoBehaviour
             DodgeCoolDownTimer += Time.deltaTime;
         }
         
-        
+        if (Time.timeScale == 0f) return;
         
         AttackCheck();
         DodgeCheck();

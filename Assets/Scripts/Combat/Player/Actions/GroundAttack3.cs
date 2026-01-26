@@ -38,7 +38,7 @@ public class GroundAttack3 : CombatState
     public override void ExitState(CombatStateManager stateManager)
     {
         //stateManager.slashVFX[0].slashVFX.SetActive(false);
-        stateManager.movementController.EnableMovement();
+        //stateManager.movementController.EnableMovement();
         stateManager.KatanaHitBox.EndAttack();
     }
 }
