@@ -21,28 +21,31 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MainGrass
-  m_Shader: {fileID: -6465566751694194690, guid: e193b5ea4da71b24990b1153a3ca899c, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2cbf6129e6ee5bc4fb52f8a3a7217bb4, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _APPLY_MOTION_YES
+  - _APPLY_RIM_YES
+  - _SPECULAR_SETUP
+  m_InvalidKeywords:
   - _APPLY_AMBIENT_NO
   - _APPLY_BUMP_NO
   - _APPLY_COLOR_CORRECTION_NO
   - _APPLY_FLAT_SHADING_YES
   - _APPLY_OUTLINE_NO
   - _APPLY_REFLECTION_NO
-  - _APPLY_RIM_NO
   - _APPLY_SPECULAR_NO
   - _APPLY_TOON_YES
   - _APPLY_WATERCOLOR_SHADING_NO
-  m_InvalidKeywords:
   - _APPLY_WATER_A
   - _WATER_TYPE_A
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -50,11 +53,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo_diffuse_texture:
-        m_Texture: {fileID: 2800000, guid: 47b946b4c1392324091d07fb7d406c7b, type: 3}
+        m_Texture: {fileID: 2800000, guid: e826cb275af080647b3dc9b325f6f0e2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 47b946b4c1392324091d07fb7d406c7b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Base_texture:
+        m_Texture: {fileID: 2800000, guid: e826cb275af080647b3dc9b325f6f0e2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Brush_texture:
+        m_Texture: {fileID: 2800000, guid: 9a1aacebbee6f294d9df8a51aa9d7404, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -139,6 +150,7 @@ Material:
     - _APPLY_BUMP: 0
     - _APPLY_COLOR_CORRECTION: 0
     - _APPLY_FLAT_SHADING: 1
+    - _APPLY_MOTION: 0
     - _APPLY_OUTLINE: 0
     - _APPLY_REFLECTION: 0
     - _APPLY_RIM: 0
@@ -151,9 +163,11 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _Blend_amount: 2
     - _Brightness: 10
     - _BumpScale: 1
     - _Bump_amount: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Contribution: 0
@@ -168,7 +182,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Max: 0.68
     - _Metallic: 0
+    - _Min: 0.2
+    - _Motion_speed: 0.01
+    - _Noise: 2.16
     - _OcclusionStrength: 1
     - _Outline_thickness: 0.01
     - _Parallax: 0.005
@@ -177,16 +195,18 @@ Material:
     - _ReceiveShadows: 1
     - _Reflection_blend: 1
     - _Reflection_intensity: 1
-    - _Rim_glow: 10
+    - _Rim_glow: -1
     - _Rim_power: 5
     - _Ripple_density: 5
     - _Ripple_egde_sharpness: 0.35
     - _Ripple_shininess: 5
     - _Ripple_speed: 0
+    - _Shades: 0.1
     - _Shininess: 10
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Splat_amount: 10
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
@@ -194,19 +214,24 @@ Material:
     - _Watercolor_blend: 1
     - _Wave_height: 0
     - _WorkflowMode: 0
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Base_color: {r: 0.16867264, g: 0.4433962, b: 0.14012992, a: 1}
-    - _Color: {r: 0.67630833, g: 0.8324821, b: 0.9622642, a: 1}
+    - _Base_color: {r: 0.63704044, g: 0.69182384, b: 0.57651985, a: 1}
+    - _Brush_tiling: {r: 0.003, g: 0.01, b: 0, a: 0}
+    - _Color: {r: 0.23584908, g: 0.23584908, b: 0.21916164, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _First_color: {r: 0.33962262, g: 0.23004133, b: 0.12335349, a: 1}
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
-    - _Rim_color: {r: 0.47450978, g: 1, b: 1, a: 1}
+    - _Rim_color: {r: 0.48820755, g: 0.6006432, b: 0.6509434, a: 1}
     - _Ripple_color: {r: 0, g: 1, b: 1, a: 0}
     - _Ripple_tiling: {r: 0, g: 0, b: 0, a: 0}
+    - _Second_color: {r: 0.63919544, g: 0.7924528, b: 0.70513153, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_color: {r: 1, g: 1, b: 1, a: 0}
-    - _Tiling: {r: 1, g: 5, b: 0, a: 0}
+    - _Tiling: {r: 10, g: 10, b: 0, a: 0}
     - _Watercolor_tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
