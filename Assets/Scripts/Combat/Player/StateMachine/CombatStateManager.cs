@@ -98,7 +98,7 @@ public class CombatStateManager : MonoBehaviour
         KatanaHitBox = GroundAttackHitbox.gameObject.GetComponent<AttackHitBox>();
         
         playerAnimatior = GetComponent<Animator>();
-        //DisableSlashVFX();
+        DisableSlashVFX();
         
         currentState = Idle;
         currentState.EnterState(this);
@@ -183,7 +183,6 @@ public class CombatStateManager : MonoBehaviour
         if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown)
         {
             SwitchState(Dodge);
-            
             DodgeCoolDownTimer = 0f;
         }
 
@@ -317,8 +316,22 @@ public class CombatStateManager : MonoBehaviour
     {
         foreach (var slash in slashVFX)
         {
-            slash.slashVFX.SetActive(false);
+            if (slash.slashVFX != null)
+            {
+                slash.slashVFX.SetActive(false);
+            }
         }
+    }
+
+    public void EnableSlashVFX(SlashVFX slash)
+    {
+        StartCoroutine(SlashCorutine(slash));
+    }
+
+    private IEnumerator SlashCorutine(SlashVFX slash)
+    {
+        yield return new WaitForSeconds(slash.delay);
+        slash.slashVFX.SetActive(true);
     }
 
     void OnTriggerEnter(Collider other)
