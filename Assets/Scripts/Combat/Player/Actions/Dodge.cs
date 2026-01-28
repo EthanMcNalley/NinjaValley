@@ -29,6 +29,8 @@ public class Dodge : CombatState
         {
             dir = stateManager.transform.forward;
         }
+        
+        stateManager.playerAnimatior.SetTrigger("Dash");
     }
 
     public override void UpdateState(CombatStateManager stateManager)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FMODUnity;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -47,6 +48,10 @@ public class CombatStateManager : MonoBehaviour
     
     [Header("VFX Stuff")]
     public List<SlashVFX>  slashVFX;
+
+    [Header("Camera Stuff")] 
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+    [SerializeField] private ScreenShakeSO dodgeScreenShake, ba3ScreenShake;
     
     [Header ("Dodge Stuff")]
     public float DodgeCoolDown = 1f;
@@ -88,6 +93,7 @@ public class CombatStateManager : MonoBehaviour
         healthSystem =  GetComponent<HealthSystem>();
         shadowAssassin = GetComponent<ShadowAssassin>();
         lockIn = GetComponent<LockIn>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         
         KatanaHitBox = GroundAttackHitbox.gameObject.GetComponent<AttackHitBox>();
         
@@ -177,6 +183,7 @@ public class CombatStateManager : MonoBehaviour
         if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown)
         {
             SwitchState(Dodge);
+            CameraShakeManager.instance.ScreenShakeFromProfile(dodgeScreenShake, impulseSource);
             DodgeCoolDownTimer = 0f;
         }
 
