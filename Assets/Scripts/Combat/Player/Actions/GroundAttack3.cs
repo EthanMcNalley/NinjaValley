@@ -20,6 +20,7 @@ public class GroundAttack3 : CombatState
         stateManager.playerAnimatior.SetTrigger("Attack3");
         
         AudioManager.instance.PlayOneShot(stateManager.slashSound3, stateManager.transform.position);
+        CameraShakeManager.instance.ScreenShakeFromProfile(stateManager.ba3ScreenShake, stateManager.impulseSource);
     }
 
     public override void UpdateState(CombatStateManager stateManager)

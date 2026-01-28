@@ -1,3 +1,5 @@
+using Unity.Cinemachine;
+using Unity.Mathematics;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/ScreenShake/New ScreenShake SO")]
@@ -10,6 +12,7 @@ public class ScreenShakeSO : ScriptableObject
     public AnimationCurve impulseCurve;
     
     [Header("Impulse Listener Settings")]
+    public NoiseSettings secondaryNoise;
     public float listenerAmplitude = 1f;
     public float listenerFrequency = 1f;
     public float listenerDuration = 1f;
