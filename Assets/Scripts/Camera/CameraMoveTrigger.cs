@@ -7,8 +7,11 @@ public class CameraMoveTrigger : MonoBehaviour
     public CinemachineCamera cinemachine_camera;
     CutsceneBars cutscene_bars;
     public float smoothing_amount = 1.0f;
+    public bool different_exit_time = false;
+    public float exit_time;
     void Start(){
         cutscene_bars = GameObject.FindGameObjectWithTag("UIManager").GetComponent<CutsceneBars>();
+
     }
     void OnTriggerEnter(Collider collider){
         if (collider.CompareTag("Player")){

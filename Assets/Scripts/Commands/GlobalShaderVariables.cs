@@ -9,5 +9,6 @@ public class GlobalShaderVariables : MonoBehaviour
     {
         Shader.SetGlobalFloat("_UnscaledTime", Time.unscaledTime);
         Shader.SetGlobalFloat("_UnscaledDeltaTime", Time.unscaledDeltaTime);
+        Shader.SetGlobalFloat("_TimeSpeed", TimeManager.slowed_amount);
     }
 }

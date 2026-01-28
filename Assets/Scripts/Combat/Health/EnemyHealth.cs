@@ -117,7 +117,7 @@ public class EnemyHealth : HealthSystem
         }
         else
         {
-            //Instantiate(shadow_essence, essence_spawnpoint.transform.position, Quaternion.identity);
+            Instantiate(shadow_essence, essence_spawnpoint.transform.position, Quaternion.identity);
         }
 
         if ((currHealthPoint - damageBurst) <= 0)
