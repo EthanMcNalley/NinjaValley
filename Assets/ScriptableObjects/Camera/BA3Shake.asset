@@ -10,54 +10,54 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae1183276567e424299239346e56deb3, type: 3}
-  m_Name: PerfectDodgeZoom
+  m_Name: BA3Shake
   m_EditorClassIdentifier: Assembly-CSharp::ScreenShakeSO
-  impulseTime: 0.5
-  impulseForce: 5
-  defaultVelocity: {x: 0, y: 0, z: -1}
+  impulseTime: 0.25
+  impulseForce: 0.3
+  defaultVelocity: {x: -1, y: -1, z: -0.5}
   impulseCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.0027397573
-      value: 0.49919534
-      inSlope: 7.7490606
-      outSlope: 7.7490606
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.11845691
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.13952565
-      value: 0.9320137
-      inSlope: 0.4639823
-      outSlope: 0.4639823
+      time: 0.07065937
+      value: 0.9936746
+      inSlope: -0.6537289
+      outSlope: -0.6537289
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.2820555
+      outWeight: 0.18335989
     - serializedVersion: 3
-      time: 0.7598554
-      value: 1.000767
-      inSlope: 0.0055907536
-      outSlope: 0.0055907536
+      time: 0.2817561
+      value: 0.78006977
+      inSlope: -1.2919241
+      outSlope: -1.2919241
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.5524481
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.9916667
       value: 0.007936478
-      inSlope: -4.387413
-      outSlope: -4.387413
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.14299121
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  secondaryNoise: {fileID: 0}
+  secondaryNoise: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   listenerAmplitude: 1
-  listenerFrequency: 1
-  listenerDuration: 1
+  listenerFrequency: 0.3
+  listenerDuration: 0.5

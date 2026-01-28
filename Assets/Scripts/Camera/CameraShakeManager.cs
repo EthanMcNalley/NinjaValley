@@ -41,6 +41,7 @@ public class CameraShakeManager : MonoBehaviour
         //impulse listener stuff
         foreach (var impulseListener in impulseListeners)
         {
+            impulseListener.ReactionSettings.m_SecondaryNoise = profile.secondaryNoise;
             impulseListener.ReactionSettings.AmplitudeGain = profile.listenerAmplitude;
             impulseListener.ReactionSettings.FrequencyGain = profile.listenerFrequency;
             impulseListener.ReactionSettings.Duration = profile.listenerDuration;

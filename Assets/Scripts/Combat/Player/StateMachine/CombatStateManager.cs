@@ -50,8 +50,8 @@ public class CombatStateManager : MonoBehaviour
     public List<SlashVFX>  slashVFX;
 
     [Header("Camera Stuff")] 
-    [SerializeField] private CinemachineImpulseSource impulseSource;
-    [SerializeField] private ScreenShakeSO dodgeScreenShake, ba3ScreenShake;
+    public CinemachineImpulseSource impulseSource;
+    public ScreenShakeSO dodgeScreenShake, ba3ScreenShake;
     
     [Header ("Dodge Stuff")]
     public float DodgeCoolDown = 1f;
@@ -183,13 +183,14 @@ public class CombatStateManager : MonoBehaviour
         if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown)
         {
             SwitchState(Dodge);
-            CameraShakeManager.instance.ScreenShakeFromProfile(dodgeScreenShake, impulseSource);
+            
             DodgeCoolDownTimer = 0f;
         }
 
         if (perfectDodgeWindow && !cloneSpawnedThisDodge)
         {
             Instantiate(clone, transform.position, transform.rotation);
+            CameraShakeManager.instance.ScreenShakeFromProfile(dodgeScreenShake, impulseSource);
             cloneSpawnedThisDodge = true;
             dashToEnemy = true;
         }
