@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 
 public class AttackHitBox : MonoBehaviour
 {
-    public CombatStateManager CombatStateManager;
+    private GameObject player;
+    public CombatStateManager combatStateManager;
+    public CinemachineImpulseSource impulseSource;
     
     private bool isAttacking = false;
     public GameObject katanaTrail;
@@ -18,9 +21,12 @@ public class AttackHitBox : MonoBehaviour
     
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         katanaHitbox = GetComponent<Collider>();
         katanaRenderer = GetComponent<MeshRenderer>();
         katanaTrailRenderer = katanaTrail.GetComponent<TrailRenderer>();
+        combatStateManager = player.GetComponent<CombatStateManager>();
+        impulseSource = player.GetComponent<CinemachineImpulseSource>();
     }
     
     //For Animation Event
@@ -88,12 +94,16 @@ public class AttackHitBox : MonoBehaviour
                 
         if (enemyHitted.Contains(other.gameObject)) return;
             
-        float damage = CombatStateManager.GetDamage();
-        float charge = CombatStateManager.GetShadowCharge();
+        float damage = combatStateManager.GetDamage();
+        float charge = combatStateManager.GetShadowCharge();
             
         enemy.TakeDamage(damage);
-        CombatStateManager.shadowAssassin.UpdateShadowMeter(charge);
+        combatStateManager.shadowAssassin.UpdateShadowMeter(charge);
         enemyHitted.Add(other.gameObject);
-        
+
+        if (combatStateManager.currentStateID == AttackData.CombatStateID.GroundAttack3)
+        {
+            CameraShakeManager.instance.ScreenShakeFromProfile(combatStateManager.ba3ScreenShake, impulseSource);
+        }
     }
 }

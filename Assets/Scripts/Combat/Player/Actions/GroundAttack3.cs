@@ -13,14 +13,13 @@ public class GroundAttack3 : CombatState
         stateManager.currentDamage = damage;
         stateManager.shadowCharge = shadowCharge;
         stateManager.bufferDurationTimer =  bufferDuration;
-        //stateManager.slashVFX[0].slashVFX.SetActive(true);
         
         Debug.Log("Melee3");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack3");
         
+        
         AudioManager.instance.PlayOneShot(stateManager.slashSound3, stateManager.transform.position);
-        CameraShakeManager.instance.ScreenShakeFromProfile(stateManager.ba3ScreenShake, stateManager.impulseSource);
     }
 
     public override void UpdateState(CombatStateManager stateManager)
@@ -38,7 +37,7 @@ public class GroundAttack3 : CombatState
 
     public override void ExitState(CombatStateManager stateManager)
     {
-        //stateManager.slashVFX[0].slashVFX.SetActive(false);
+        stateManager.slashVFX[2].slashVFX.SetActive(false);
         //stateManager.movementController.EnableMovement();
         stateManager.KatanaHitBox.EndAttack();
     }

@@ -18,7 +18,6 @@ public class GroundAttack1 : CombatState
         Debug.Log("Melee1");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack1");
-        stateManager.EnableSlashVFX(stateManager.slashVFX[0]);
         
         AudioManager.instance.PlayOneShot(stateManager.slashSound, stateManager.transform.position);
     }

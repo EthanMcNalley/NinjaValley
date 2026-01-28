@@ -323,15 +323,9 @@ public class CombatStateManager : MonoBehaviour
         }
     }
 
-    public void EnableSlashVFX(SlashVFX slash)
+    public void EnableSlashVFX(int slash)
     {
-        StartCoroutine(SlashCorutine(slash));
-    }
-
-    private IEnumerator SlashCorutine(SlashVFX slash)
-    {
-        yield return new WaitForSeconds(slash.delay);
-        slash.slashVFX.SetActive(true);
+        slashVFX[slash].slashVFX.SetActive(true);
     }
 
     void OnTriggerEnter(Collider other)
