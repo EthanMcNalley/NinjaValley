@@ -5188,7 +5188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1255338031
 Transform:
   m_ObjectHideFlags: 0
@@ -5225,15 +5225,15 @@ MonoBehaviour:
       Data4: -1951111890
     Path: event:/Environment/River
   Event: 
-  EventPlayTrigger: 1
+  EventPlayTrigger: 11
   EventStopTrigger: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
   Params: []
-  OverrideAttenuation: 1
-  OverrideMinDistance: 20
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
   OverrideMaxDistance: 20
 --- !u!1 &1262597827
 GameObject:
@@ -5455,7 +5455,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311771627}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.018133948, w: 0.9998356}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5464,7 +5464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225.99998, y: -250.31668}
+  m_AnchoredPosition: {x: -92.999954, y: 4051.6833}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311771629
@@ -5877,6 +5877,7 @@ GameObject:
   - component: {fileID: 1512302415}
   - component: {fileID: 1512302416}
   - component: {fileID: 1512302417}
+  - component: {fileID: 1512302418}
   m_Layer: 5
   m_Name: LogoPivot
   m_TagString: Untagged
@@ -5938,6 +5939,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26068f3376524cc9b018f0401c16123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActiveOnStart
+--- !u!114 &1512302418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512302414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33e0f6bc3aa6f64192493eb345025f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySound
+  PlaySoundClip:
+    Guid:
+      Data1: 1976152647
+      Data2: 1179769485
+      Data3: 356415127
+      Data4: -55577652
+    Path: event:/LogoSounds/12.312EndLogo
+  river: {fileID: 1255338030}
 --- !u!1001 &1541264773
 PrefabInstance:
   m_ObjectHideFlags: 0

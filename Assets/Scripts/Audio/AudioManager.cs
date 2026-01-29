@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
     public EventInstance musicEventInstance;
     
     private EventInstance CurrentSound;
-    private PlaySound psound;
+    //private PlaySound psound;
 
     private void Awake()
     {
@@ -103,12 +103,12 @@ public class AudioManager : MonoBehaviour
         eventInstance.release();
     }
     
-    public void DisableSound()
+    /*public void DisableSound()
     {
         psound = GetComponent<PlaySound>();
         EventInstance eventInstance = psound.PlaySoundEvent;
         instance.StopEventInstance(eventInstance);
-    }
+    }*/
     
     public bool IsPlaying(EventInstance instance) {
         PLAYBACK_STATE state;   

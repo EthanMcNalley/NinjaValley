@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
-public class PlaySound : MonoBehaviour
+public class TitleScreenStuff : MonoBehaviour
 {
     public EventReference PlaySoundClip;
     public EventInstance PlaySoundEvent;
+    public GameObject river;
     
-    public void PlayAudio()
+    public void PlayOneShot(string path)
     {
-        PlaySoundEvent = RuntimeManager.CreateInstance(PlaySoundClip);
-        PlaySoundEvent.start();
+        RuntimeManager.PlayOneShot(path);
+    }
+
+    public void SetActiveTrue()
+    {
+        river.SetActive(true);
     }
 
     public void StopAudio()
