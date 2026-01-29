@@ -5,6 +5,7 @@ using FMODUnity;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class CombatStateManager : MonoBehaviour
 {
@@ -59,6 +60,8 @@ public class CombatStateManager : MonoBehaviour
     [SerializeField]private bool perfectDodgeWindow = false;
     public GameObject clone;
     private bool cloneSpawnedThisDodge = false;
+    public Volume dodgeVolume;
+    public float dodgeVolumeFadeSpeed;
     
     [Header ("Dodge Dash")]
     [SerializeField]private bool dashToEnemy  = false;
@@ -99,6 +102,8 @@ public class CombatStateManager : MonoBehaviour
         
         playerAnimatior = GetComponent<Animator>();
         DisableSlashVFX();
+
+        dodgeVolume.weight = 0f;
         
         currentState = Idle;
         currentState.EnterState(this);
@@ -185,15 +190,22 @@ public class CombatStateManager : MonoBehaviour
             SwitchState(Dodge);
             DodgeCoolDownTimer = 0f;
         }
-
+        
+        if (dodgeVolume.weight > 0f)
+        {
+            dodgeVolume.weight = Mathf.MoveTowards(dodgeVolume.weight, 0f, Time.deltaTime * dodgeVolumeFadeSpeed);
+        }
+        
         if (perfectDodgeWindow && !cloneSpawnedThisDodge)
         {
             Instantiate(clone, transform.position, transform.rotation);
             CameraShakeManager.instance.ScreenShakeFromProfile(dodgeScreenShake, impulseSource);
+            dodgeVolume.weight = 1f;
             cloneSpawnedThisDodge = true;
             dashToEnemy = true;
         }
     }
+
 
     private void LockInCheck()
     {
