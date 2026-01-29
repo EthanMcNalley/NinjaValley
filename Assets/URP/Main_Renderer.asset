@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 312420e7960934bbaa47d364e225cd0c, type: 3}
   m_Name: FreeOutline
   m_EditorClassIdentifier: LineworkLite::LineworkLite.FreeOutline.FreeOutline
-  m_Active: 0
+  m_Active: 1
   settings: {fileID: 11400000, guid: b2df8e062cb50b14597e91f4b997b978, type: 2}
   shaders:
     mask: {fileID: 4800000, guid: 19ae7b440d27f4f9990007afdc74ddaf, type: 3}
@@ -91,7 +91,8 @@ MonoBehaviour:
   - {fileID: -4773777824754704723}
   - {fileID: -3405681684652969376}
   - {fileID: 6042002191732304617}
-  m_RendererFeatureMap: 3f6f66cc0d85ed4a4ce49def86a7f13494c8bd9545712976b921b912e64b6248c483c32c96a00ba5addedb665c22c0bd60b234488d96bcd0e9ea5542fb80d953
+  - {fileID: 5004589840248765244}
+  m_RendererFeatureMap: 3f6f66cc0d85ed4a4ce49def86a7f13494c8bd9545712976b921b912e64b6248c483c32c96a00ba5addedb665c22c0bd60b234488d96bcd0e9ea5542fb80d9533c7b8ebaf1df7345
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -101,7 +102,7 @@ MonoBehaviour:
     m_Bits: 6647
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 7671
+    m_Bits: 7679
   m_TransparentLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -115,7 +116,7 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
   m_DepthPrimingMode: 0
-  m_CopyDepthMode: 1
+  m_CopyDepthMode: 0
   m_DepthAttachmentFormat: 0
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
@@ -140,6 +141,48 @@ MonoBehaviour:
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
+--- !u!114 &5004589840248765244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
+  m_Name: RenderObjects
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.RenderObjects
+  m_Active: 1
+  settings:
+    passTag: RenderObjects
+    Event: 600
+    filterSettings:
+      RenderQueueType: 0
+      LayerMask:
+        serializedVersion: 2
+        m_Bits: 8
+      PassNames: []
+    overrideMaterial: {fileID: 0}
+    overrideMaterialPassIndex: 0
+    overrideShader: {fileID: 0}
+    overrideShaderPassIndex: 0
+    overrideMode: 1
+    overrideDepthState: 0
+    depthCompareFunction: 4
+    enableWrite: 1
+    stencilSettings:
+      overrideStencilState: 0
+      stencilReference: 0
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
+    cameraSettings:
+      overrideCamera: 0
+      restoreCamera: 1
+      offset: {x: 0, y: 0, z: 0, w: 0}
+      cameraFieldOfView: 60
 --- !u!114 &5215814769977139641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,17 +215,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
   m_Name: PlayerSilhouette
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     passTag: PlayerSilhouette
-    Event: 300
+    Event: 600
     filterSettings:
-      RenderQueueType: 0
+      RenderQueueType: 1
       LayerMask:
         serializedVersion: 2
         m_Bits: 8
       PassNames: []
-    overrideMaterial: {fileID: 0}
+    overrideMaterial: {fileID: 2100000, guid: 8c185f62a9ee440f6916fe193e8a43e7, type: 2}
     overrideMaterialPassIndex: 0
     overrideShader: {fileID: 0}
     overrideShaderPassIndex: 0
@@ -221,12 +264,12 @@ MonoBehaviour:
     AfterOpaque: 0
     Source: 0
     NormalSamples: 2
-    Intensity: 4.3
+    Intensity: 4.2
     DirectLightingStrength: 1
-    Radius: 2.4
+    Radius: 1.11
     Samples: 1
     BlurQuality: 1
-    Falloff: 167.8
+    Falloff: 167.52
     SampleCount: -1
 --- !u!114 &8514461114199558292
 MonoBehaviour:
@@ -242,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalRendererFeature
   m_Active: 1
   m_Settings:
-    technique: 2
+    technique: 1
     maxDrawDistance: 1000
     decalLayers: 0
     dBufferSettings:
