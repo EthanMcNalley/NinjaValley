@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class TutorialText : MonoBehaviour
 {
+    public TextMeshPro tutorial_text;
+
+    void Start()
+    {
+        tutorial_text.enabled = false;
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log(":)");
-            GetComponent<TextMeshPro>().enabled = true;
-            GetComponent<TextEffect>().StartManualEffect("fadein");
+            tutorial_text.enabled = true;
+            tutorial_text.GetComponent<TextEffect>().StartManualEffect("fadein");
         }
     }
 
@@ -19,7 +25,7 @@ public class TutorialText : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log(":(");
-            GetComponent<TextEffect>().StartManualEffect("fadeout");
+            tutorial_text.GetComponent<TextEffect>().StartManualEffect("fadeout");
         }
     }
 }
