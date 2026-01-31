@@ -284,8 +284,10 @@ public class CombatStateManager : MonoBehaviour
         {
             return;
         }
+        Vector3 direction = (target.transform.position - transform.position).normalized;
+        direction.y = 0;
         
-        transform.LookAt(target.transform);
+        transform.rotation = Quaternion.LookRotation(direction);
     }
     
     public void RaisePlayerAttack()
