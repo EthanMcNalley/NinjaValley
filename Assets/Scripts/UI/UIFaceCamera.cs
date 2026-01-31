@@ -10,7 +10,10 @@ public class UIFaceCamera : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        target = this.transform.root;
+        if (target == null)
+        {
+            target = this.transform.parent.transform;
+        }
     }
 
     // Update is called once per frame
