@@ -231,11 +231,11 @@ public class NewMovement : MonoBehaviour
         // Combine horizontal and vertical movement
         Vector3 finalMove = (moveDirection * playerCurrSpeed) + (playerVelocity.y * Vector3.up);
 
-        if (!groundedPlayer && playerVelocity.y < 0.001f)
+        /*if (!groundedPlayer && playerVelocity.y < 0.001f)
         {
             finalMove += -transform.forward * 3f;
             Debug.Log("Pushing");
-        }
+        }*/
 
         controller.Move(finalMove * Time.deltaTime);
         
