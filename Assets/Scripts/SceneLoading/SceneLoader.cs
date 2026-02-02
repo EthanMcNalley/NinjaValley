@@ -43,8 +43,9 @@ public class SceneLoader : MonoBehaviour
     private IEnumerator Wait(int i)
     {
         Debug.Log(scenes_to_load[i]);
-        yield return SceneManager.LoadSceneAsync(scenes_to_load[i].SceneName, LoadSceneMode.Additive);
-        //yield return new WaitForSecondsRealtime(1f);
+        //yield return SceneManager.LoadSceneAsync(scenes_to_load[i].SceneName, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(scenes_to_load[i].SceneName, LoadSceneMode.Additive);
+        yield return new WaitForSecondsRealtime(1f);
     }
 
     private void UnloadScenes(){

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 
@@ -34,6 +35,8 @@ public class ShadowAssassin : MonoBehaviour
     
     public SkinnedMeshRenderer characterRenderer;
     public Material maskFlareMaterial;
+    
+    public List<GameObject> CloneVFX;
     
     
     [Header("Shader Control")]
@@ -79,6 +82,8 @@ public class ShadowAssassin : MonoBehaviour
             }
         }
         
+        combatStateManager.PlayerAttack += OnPlayerAttack;
+        
         instance_material_expand = new Material(time_slow_material);
         time_size = 0f;
         instance_material_expand.SetFloat("_WipeSize", time_size);
@@ -109,6 +114,14 @@ public class ShadowAssassin : MonoBehaviour
             shadowBarSlider.value = ratio;
         }
 
+        ScreenEffect();
+        
+        /*ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
+        shadowBarSlider.value = ratio;*/
+    }
+
+    private void ScreenEffect()
+    {
         if (shadowActive)
         {
             if (time_size < max_size)
@@ -139,11 +152,8 @@ public class ShadowAssassin : MonoBehaviour
                 instance_vignette_material.SetFloat("_EffectStrength", effectStrength);
             }
         }
-        
-        /*ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
-        shadowBarSlider.value = ratio;*/
     }
-
+    
     private void EnterShadowAssassin()
     {
         if (!shadowReady || shadowActive)
@@ -229,6 +239,17 @@ public class ShadowAssassin : MonoBehaviour
         
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
+    }
+
+    void OnPlayerAttack(AttackData data)
+    {
+        if (data.stateID == AttackData.CombatStateID.GroundAttack3 && shadowActive)
+        {
+            foreach (var clone in CloneVFX)
+            {
+                clone.gameObject.SetActive(true);
+            }
+        }
     }
     
     void InstantiateTerrainScanner()
