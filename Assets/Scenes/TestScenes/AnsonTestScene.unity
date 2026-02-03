@@ -33,9 +33,9 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 256
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -2833,6 +2833,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1311234862294689194, guid: f3e4b558ebc857f48a9dbd18dc30b8fd, type: 3}
+      propertyPath: sinAmplitude
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311234862294689194, guid: f3e4b558ebc857f48a9dbd18dc30b8fd, type: 3}
+      propertyPath: sinFrequency
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2155483637236604958, guid: f3e4b558ebc857f48a9dbd18dc30b8fd, type: 3}
       propertyPath: m_Name
       value: LanturnFireball
@@ -2847,7 +2855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6146861214913672155, guid: f3e4b558ebc857f48a9dbd18dc30b8fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.6
+      value: 39.05
       objectReference: {fileID: 0}
     - target: {fileID: 6146861214913672155, guid: f3e4b558ebc857f48a9dbd18dc30b8fd, type: 3}
       propertyPath: m_LocalRotation.w

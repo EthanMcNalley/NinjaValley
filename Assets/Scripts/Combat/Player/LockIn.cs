@@ -102,7 +102,7 @@ public class LockIn : MonoBehaviour
     void Update()
     {
         if (!lockOn) return;
-
+        
         if (target == null)
         {
             ClearLockOn();
@@ -112,7 +112,16 @@ public class LockIn : MonoBehaviour
         if (!target.activeInHierarchy)
         {
             ClearLockOn();
+            return;
         }
+        
+        float distSq = (transform.position - target.transform.position).sqrMagnitude;
+
+        if (distSq > lockOnDistance)
+        {
+            ClearLockOn();
+        }
+        
     }
 
     public bool IsLockOn()

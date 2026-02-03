@@ -11,7 +11,7 @@ public static class FindClosest
         Collider[] hits = Physics.OverlapSphere(position, radius, layerMask);
         
         GameObject closest = null;
-        float minDistance = float.MaxValue;
+        float minDistance = Mathf.Infinity;
 
         foreach (Collider hit in hits )
         {

@@ -23,6 +23,8 @@ public class NewMovement : MonoBehaviour
     public float rotationSpeed = 20f;
     public bool translationDisabled = false;
     public float max_fall_speed = -40.0f;
+
+    public float stuckRestrict = 0.1f;
     
     [Header("Jump")]
     public float minJumpHeight = 0.5f;
@@ -228,19 +230,32 @@ public class NewMovement : MonoBehaviour
             moveDirection.z += (1f - hit_normal.y) * hit_normal.z * (1f - slide_friction);
         }
 
-        // Combine horizontal and vertical movement
-        Vector3 finalMove = (moveDirection * playerCurrSpeed) + (playerVelocity.y * Vector3.up);
-
+        
         /*if (!groundedPlayer && playerVelocity.y < 0.001f)
         {
             finalMove += -transform.forward * 3f;
             Debug.Log("Pushing");
         }*/
 
-        controller.Move(finalMove * Time.deltaTime);
+        if ((controller.collisionFlags & CollisionFlags.Below) != 0 &&
+            (controller.collisionFlags & CollisionFlags.Sides) != 0 &&
+            !groundedPlayer)
+        {
+            stuckRestrict = 0.1f;
+        }
+        else
+        {
+            stuckRestrict = 1f;
+        }
+        
+        // Combine horizontal and vertical movement
+        Vector3 horizontal = (playerCurrSpeed * stuckRestrict * moveDirection);
+        Vector3 vertical = (playerVelocity.y * Vector3.up);
+        
+        controller.Move(Time.deltaTime * (horizontal + vertical));
         
         if (!groundedPlayer){
-            animator.SetFloat("YVelocity", finalMove.y);
+            animator.SetFloat("YVelocity", vertical.y);
         }
 
         else

@@ -8,6 +8,11 @@ public class LanturnFireball : MonoBehaviour
     public float duration = 10f;
     public float slowSpeed = 5f;
     
+    public float sinAmplitude = 0.5f;
+    public float sinFrequency = 0.5f;
+    
+    private float slowSwingSpeed;
+    
     private Rigidbody fireballRB;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,15 +28,17 @@ public class LanturnFireball : MonoBehaviour
         if (TimeManager.time_state == TimeManager.TimeState.SLOWED)
         {
             fireballSpeed = slowSpeed;
+            slowSwingSpeed = 8f;
         }
         else
         {
             fireballSpeed = startSpeed;
+            slowSwingSpeed = 1f;
         }
         
-      
-        fireballRB.MovePosition(fireballRB.position + fireballSpeed * Time.fixedDeltaTime * transform.forward);
-        //fireballRB.MoveRotation(Mathf.Sin(30f));
+        float offSet = Mathf.Cos(Time.fixedTime * sinFrequency / slowSwingSpeed) * sinAmplitude;
+        
+        fireballRB.MovePosition((fireballRB.position + fireballSpeed * Time.fixedDeltaTime * transform.forward) + (offSet * transform.right));
     }
     
     void OnTriggerEnter(Collider other)
