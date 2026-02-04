@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -114,6 +115,7 @@ public class TimeManager : MonoBehaviour
             if (current_musicState == MusicState.SLOWED)
             {
                 AudioManager.instance.SetSlowTime(0f);
+                //AudioManager.instance.musicEventInstance.setParameterByName("Ticking", 1);
                 current_musicState = MusicState.NORMAL;
             }
         }
@@ -123,6 +125,7 @@ public class TimeManager : MonoBehaviour
             if (current_musicState == MusicState.NORMAL)
             {
                 AudioManager.instance.SetSlowTime(1f);
+                //AudioManager.instance.musicEventInstance.setParameterByName("Ticking", 0);
                 current_musicState = MusicState.SLOWED;
             }
         }

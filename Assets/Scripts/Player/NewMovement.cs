@@ -215,42 +215,46 @@ public class NewMovement : MonoBehaviour
             prevState = currentState;
         }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
+        if (!groundedPlayer)
+        {
+            playerVelocity.y += gravityValue * Time.deltaTime;
+        }
 
         //Max Fall Speed
         if (playerVelocity.y < max_fall_speed)
         {
             playerVelocity.y = max_fall_speed;
         }
-
-        Vector3 prev_direction = moveDirection;
         
-        if (controller.slopeLimit < Vector3.Angle(hit_normal, Vector3.up)) {
+        if (controller.slopeLimit < Vector3.Angle(hit_normal, Vector3.up) && !groundedPlayer) {
             moveDirection.x += (1f - hit_normal.y) * hit_normal.x * (1f - slide_friction);
             moveDirection.z += (1f - hit_normal.y) * hit_normal.z * (1f - slide_friction);
         }
-
         
         /*if (!groundedPlayer && playerVelocity.y < 0.001f)
         {
             finalMove += -transform.forward * 3f;
             Debug.Log("Pushing");
         }*/
-
+        
+        // Combine horizontal and vertical movement
+        Vector3 horizontal = (playerCurrSpeed * moveDirection);
+        Vector3 vertical = (playerVelocity.y * Vector3.up);
+        
         if ((controller.collisionFlags & CollisionFlags.Below) != 0 &&
             (controller.collisionFlags & CollisionFlags.Sides) != 0 &&
             !groundedPlayer)
         {
-            stuckRestrict = 0.1f;
+            //stuckRestrict = 0.1f;
+            Vector3 wallPushDir = hit_normal;
+            wallPushDir.y = 0f;
+            wallPushDir.Normalize();
+
+            horizontal = wallPushDir * 12f;
+            
+            //horizontal = horizontal.normalized * 5f;
+            Debug.Log("Restricting");
         }
-        else
-        {
-            stuckRestrict = 1f;
-        }
-        
-        // Combine horizontal and vertical movement
-        Vector3 horizontal = (playerCurrSpeed * stuckRestrict * moveDirection);
-        Vector3 vertical = (playerVelocity.y * Vector3.up);
         
         controller.Move(Time.deltaTime * (horizontal + vertical));
         

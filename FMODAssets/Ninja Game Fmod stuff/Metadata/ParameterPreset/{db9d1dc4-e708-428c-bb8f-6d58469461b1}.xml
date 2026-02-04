@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{db9d1dc4-e708-428c-bb8f-6d58469461b1}">
+		<property name="name">
+			<value>Ticking Speed</value>
+		</property>
+		<relationship name="folder">
+			<destination>{b3436e5d-f3ac-429f-ae92-6ea37a142ad5}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{ecd342bc-c45b-4b7f-a72f-37fb66babbc0}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{ecd342bc-c45b-4b7f-a72f-37fb66babbc0}">
+		<property name="parameterType">
+			<value>8</value>
+		</property>
+		<property name="minimum">
+			<value>70</value>
+		</property>
+		<property name="maximum">
+			<value>100</value>
+		</property>
+		<property name="initialValue">
+			<value>91</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{fe36a3dc-4bc9-4715-bc34-297e1d55e189}</destination>
+		</relationship>
+	</object>
+	<object class="SeekModulator" id="{fe36a3dc-4bc9-4715-bc34-297e1d55e189}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>cursorPosition</value>
+		</property>
+		<property name="speedAscending">
+			<value>0.35999998450279236</value>
+		</property>
+	</object>
+</objects>

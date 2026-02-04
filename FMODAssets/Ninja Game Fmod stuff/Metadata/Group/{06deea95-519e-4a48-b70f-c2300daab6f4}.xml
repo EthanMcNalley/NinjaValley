@@ -20,8 +20,20 @@
 	<object class="MixerBusEffectChain" id="{fd6c9a66-7e1b-4bfb-8c4c-d0d6f1469fa4}">
 		<relationship name="effects">
 			<destination>{df746cf4-4a8d-4f39-bd98-1368d6f1d13b}</destination>
+			<destination>{e947416b-4d53-44b2-901c-27f70f151152}</destination>
+			<destination>{86fb1de4-02bc-484b-9b9c-5ea0857f8490}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{08018d64-6842-46f1-89bb-e56f85e13034}" />
 	<object class="MixerBusFader" id="{df746cf4-4a8d-4f39-bd98-1368d6f1d13b}" />
+	<object class="ThreeEQEffect" id="{e947416b-4d53-44b2-901c-27f70f151152}">
+		<property name="crossoverSlope">
+			<value>2</value>
+		</property>
+	</object>
+	<object class="PitchShifterEffect" id="{86fb1de4-02bc-484b-9b9c-5ea0857f8490}">
+		<property name="pitch">
+			<value>1</value>
+		</property>
+	</object>
 </objects>

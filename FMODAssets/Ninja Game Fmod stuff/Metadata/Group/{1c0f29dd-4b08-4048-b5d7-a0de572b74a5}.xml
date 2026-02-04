@@ -20,8 +20,36 @@
 	<object class="MixerBusEffectChain" id="{bb69c776-b750-4954-8b58-7972be9893af}">
 		<relationship name="effects">
 			<destination>{c2e1b117-9445-491d-b670-467bbd20a469}</destination>
+			<destination>{96d45c56-e3d3-4e5a-a341-1e9d9a3653f2}</destination>
+			<destination>{980898c2-ed5e-4ecb-be25-f8319d00dfb4}</destination>
+			<destination>{ac525d94-2f45-402f-959c-f6a27a4ff5de}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{96cbb7cb-f7c7-4ad1-871b-addd4d09290a}" />
 	<object class="MixerBusFader" id="{c2e1b117-9445-491d-b670-467bbd20a469}" />
+	<object class="ThreeEQEffect" id="{96d45c56-e3d3-4e5a-a341-1e9d9a3653f2}">
+		<property name="lowCrossover">
+			<value>380</value>
+		</property>
+		<property name="highCrossover">
+			<value>22000</value>
+		</property>
+		<property name="crossoverSlope">
+			<value>2</value>
+		</property>
+		<relationship name="automators">
+			<destination>{11e3347f-8b3c-4528-961d-805bcf3a0132}</destination>
+		</relationship>
+	</object>
+	<object class="PitchShifterEffect" id="{980898c2-ed5e-4ecb-be25-f8319d00dfb4}">
+		<property name="pitch">
+			<value>1</value>
+		</property>
+	</object>
+	<object class="GainEffect" id="{ac525d94-2f45-402f-959c-f6a27a4ff5de}" />
+	<object class="Automator" id="{11e3347f-8b3c-4528-961d-805bcf3a0132}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>midGain</value>
+		</property>
+	</object>
 </objects>
