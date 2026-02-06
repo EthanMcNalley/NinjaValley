@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 623179060873428586}
   - component: {fileID: 4385827080877262401}
   - component: {fileID: 7993193773731772560}
+  - component: {fileID: 8253733000431544171}
   m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
@@ -123,7 +124,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1393569608550037587}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8253733000431544171}
+        m_TargetAssemblyTypeName: PlayOneShots, Assembly-CSharp
+        m_MethodName: PlayTheOneShot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &623179060873428586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +161,18 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: 4f117036644d14453870c88f02f7e4e2, type: 2}
             m_ObjectArgumentAssemblyTypeName: TMPro.TMP_FontAsset, Unity.TextMeshPro
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8253733000431544171}
+          m_TargetAssemblyTypeName: PlayOneShots, Assembly-CSharp
+          m_MethodName: PlayTheOneShot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -203,6 +228,31 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8253733000431544171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228827126573437770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a624bcce29e1c949bae1f04937060c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayOneShots
+  sound_effect:
+  - Guid:
+      Data1: 771575331
+      Data2: 1172955047
+      Data3: 506789035
+      Data4: 1310098749
+    Path: event:/UI/ButtonHover
+  - Guid:
+      Data1: -1475117413
+      Data2: 1185628490
+      Data3: -1775801154
+      Data4: 100703010
+    Path: event:/UI/ButtonClick
 --- !u!1 &8439659484209540297
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +357,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

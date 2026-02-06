@@ -85,6 +85,9 @@ public class CombatStateManager : MonoBehaviour
     
     public event Action<AttackData> PlayerAttack;
 
+    public SkinnedMeshRenderer skinned_renderer;
+    public MeshFilter after_effect_mesh;
+
     void Start()
     {
         attackAction = InputSystem.actions.FindAction("Attack");
@@ -118,6 +121,10 @@ public class CombatStateManager : MonoBehaviour
             DodgeCoolDownTimer += Time.deltaTime;
         }
         
+        //Mesh something = new Mesh();
+        //skinned_renderer.BakeMesh(something);
+
+        //after_effect_mesh.mesh = something;
         if (Time.timeScale == 0f) return;
         
         AttackCheck();

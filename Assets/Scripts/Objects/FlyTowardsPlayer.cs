@@ -13,7 +13,7 @@ public class FlyTowardsPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         Vector3 randomDir = new Vector3(Random.Range(-1f, 1f), Random.Range(diagonalness.x, diagonalness.y), Random.Range(-1f, 1f)).normalized;
         rb.AddForce(randomDir * initial_force, ForceMode.Impulse);
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("PlayerCenter");
     }
 
     // Update is called once per frame
@@ -23,8 +23,8 @@ public class FlyTowardsPlayer : MonoBehaviour
             //starting_speed = starting_speed + acceleration;
             Vector3 dir = (player.transform.position - transform.position).normalized;
             Vector3 new_velocity = dir * speed;
-            Vector3 steering = new_velocity - rb.linearVelocity;
-            rb.AddForce(steering, ForceMode.Acceleration);
+            Vector3 direction = new_velocity - rb.linearVelocity;
+            rb.AddForce(direction, ForceMode.Acceleration);
             
         }
     }
