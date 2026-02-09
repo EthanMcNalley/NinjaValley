@@ -23,7 +23,7 @@ public class BossHPSystem : MonoBehaviour
         }
         if(breakState)
         {
-           currentGauge += time.deltaTime * 5f;
+           currentGauge += Time.deltaTime * 5f;
               if(currentGauge >= maxGauge)
               {
                 currentGauge = maxGauge;
@@ -32,7 +32,7 @@ public class BossHPSystem : MonoBehaviour
         }
         if(currentHP <= 0)
         {
-            gameObject.destroy(gameObject);
+            Destroy(gameObject);
             Debug.Log("Boss Defeated!");
         }
     }

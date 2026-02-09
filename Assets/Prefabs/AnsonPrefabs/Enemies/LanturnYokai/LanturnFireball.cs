@@ -28,7 +28,7 @@ public class LanturnFireball : MonoBehaviour
         if (TimeManager.time_state == TimeManager.TimeState.SLOWED)
         {
             fireballSpeed = slowSpeed;
-            slowSwingSpeed = 8f;
+            slowSwingSpeed = 0.1f;
         }
         else
         {
@@ -36,9 +36,9 @@ public class LanturnFireball : MonoBehaviour
             slowSwingSpeed = 1f;
         }
         
-        float offSet = Mathf.Cos(Time.fixedTime * sinFrequency / slowSwingSpeed) * sinAmplitude;
+        float offSet = Mathf.Cos(Time.fixedTime * sinFrequency) * sinAmplitude;
         
-        fireballRB.MovePosition((fireballRB.position + fireballSpeed * Time.fixedDeltaTime * transform.forward) + (offSet * transform.right));
+        fireballRB.MovePosition((fireballRB.position + fireballSpeed * slowSpeed * Time.fixedDeltaTime * transform.forward) + (offSet * transform.right));
     }
     
     void OnTriggerEnter(Collider other)
