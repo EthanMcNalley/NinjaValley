@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 public class CameraMoveTrigger : MonoBehaviour
 {
+    public int new_priority = 10;
     public float increase_size = 5;
     public bool cutscene = false;
     public CinemachineCamera cinemachine_camera;
@@ -22,7 +23,7 @@ public class CameraMoveTrigger : MonoBehaviour
 
             else{
                 CameraControlling.smoothing_amount = smoothing_amount;
-                cinemachine_camera.Priority = 10;
+                cinemachine_camera.Priority = new_priority;
                 transform.localScale = transform.localScale + (Vector3.one * increase_size);
             }
         }
