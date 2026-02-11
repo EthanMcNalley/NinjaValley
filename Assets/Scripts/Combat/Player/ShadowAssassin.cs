@@ -17,7 +17,7 @@ public class ShadowAssassin : MonoBehaviour
     public float shadowAssassinDamagePercentage = 0.3f;
 
     public bool shadowReady;
-    public bool shadowActive;
+    private bool shadowActive;
     
     public Slider shadowBarSlider;
     private Image shadowBarImage;
@@ -269,5 +269,10 @@ public class ShadowAssassin : MonoBehaviour
         }
         
         Destroy(terrainScanner, scanDurration + 1);
+    }
+
+    public bool getShadowActive()
+    {
+        return shadowActive;
     }
 }
