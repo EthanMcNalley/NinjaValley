@@ -12,7 +12,10 @@ public class VFXEvents : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Data is copied from eventAttribute, so this object can be used again
-        
+        /*if (vfx.aliveParticleCount == 0)
+        {
+            vfx.Stop();
+            Destroy(this.gameObject);
+        }*/
     }
 }
