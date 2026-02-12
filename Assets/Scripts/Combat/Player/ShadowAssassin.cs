@@ -18,6 +18,8 @@ public class ShadowAssassin : MonoBehaviour
 
     public bool shadowReady;
     private bool shadowActive;
+    private bool timeSlowed;
+    private bool inCombat;
     
     public Slider shadowBarSlider;
     private Image shadowBarImage;
@@ -75,7 +77,7 @@ public class ShadowAssassin : MonoBehaviour
 
         if (InputSystem.actions)
         {
-            shadowAction = InputSystem.actions.FindAction("Shadow");
+            shadowAction = InputSystem.actions.FindAction("TimeSlow");
             if (shadowAction != null)
             {
                 shadowAction.Enable();
@@ -94,10 +96,22 @@ public class ShadowAssassin : MonoBehaviour
         vignette.passMaterial =  instance_vignette_material;
     }
 
+    private void OnEnable()
+    {
+        CombatEvents.PlayerInCombat += OnPlayerCombat;
+        CombatEvents.PlayerInCombatEnded += OnPlayerCombatEnded;
+    }
+
+    private void OnDestroy()
+    {
+        CombatEvents.PlayerInCombat -= OnPlayerCombat;
+        CombatEvents.PlayerInCombatEnded -= OnPlayerCombatEnded;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (shadowAction.triggered && shadowReady && !shadowActive)
+        if (shadowAction.triggered && shadowReady && !shadowActive && TimeManager.time_state == TimeManager.TimeState.SLOWED && inCombat)
         {
             EnterShadowAssassin();
         }
@@ -241,7 +255,7 @@ public class ShadowAssassin : MonoBehaviour
         shadowBarSlider.value = ratio;
     }
 
-    void OnPlayerAttack(AttackData data)
+    private void OnPlayerAttack(AttackData data)
     {
         if (data.stateID == AttackData.CombatStateID.GroundAttack3 && shadowActive)
         {
@@ -251,6 +265,9 @@ public class ShadowAssassin : MonoBehaviour
             }
         }
     }
+
+    private void OnPlayerCombat() => inCombat = true;
+    private void OnPlayerCombatEnded() => inCombat = false;
     
     void InstantiateTerrainScanner()
     {

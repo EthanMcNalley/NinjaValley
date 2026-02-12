@@ -10,6 +10,7 @@ public class LanturnFireball : MonoBehaviour
     
     public float sinAmplitude = 0.5f;
     public float sinFrequency = 0.5f;
+    public float phase;
     
     private float slowSwingSpeed;
     

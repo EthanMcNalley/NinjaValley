@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,11 @@ public class TitileOutlineToggle : MonoBehaviour
     {
         SceneManager.activeSceneChanged += SceneManagerActiveSceneChanged;
         outlineRenderer.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.activeSceneChanged -= SceneManagerActiveSceneChanged;
     }
 
     void SceneManagerActiveSceneChanged(Scene from, Scene to)

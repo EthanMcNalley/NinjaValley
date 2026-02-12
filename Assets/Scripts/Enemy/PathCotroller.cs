@@ -16,6 +16,7 @@ public class PathController : MonoBehaviour
     bool isWalking;
     public float distToPlayer;
     public float chaseDistance = 10f;
+    public float chaseIncreaseDistance = 10f;
     public GameObject player, target;
     public GameObject hitBox;
     private CombatStateManager combatStateManager;
@@ -86,7 +87,10 @@ public class PathController : MonoBehaviour
     private void EnterCombat()
     {
         if (inCombat) return;
+        chaseDistance += chaseIncreaseDistance;
         inCombat = true;
+        waitTime = 2.5f;
+        canMove = true;
         
         CombatManager.instance.AddEnemyToCombat();
     }
@@ -94,6 +98,7 @@ public class PathController : MonoBehaviour
     private void ExitCombat()
     {
         if (!inCombat) return;
+        chaseDistance -= chaseIncreaseDistance;
         inCombat = false;
         
         CombatManager.instance.RemoveEnemyFromCombat();

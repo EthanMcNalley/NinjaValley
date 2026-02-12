@@ -6,6 +6,7 @@ public class CombatManager : MonoBehaviour
     public static CombatManager instance { get; private set; }
     
     [SerializeField]private int enemiesInCombat = 0;
+    [SerializeField]private bool playerInCombat;
     //This whole thing is to manage if the player is in combat or not
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class CombatManager : MonoBehaviour
         if (enemiesInCombat == 1)
         {
             CombatEvents.RaisePlayerInCombat();
+            playerInCombat = true;
         }
     }
 
@@ -34,6 +36,7 @@ public class CombatManager : MonoBehaviour
         {
             enemiesInCombat = 0;
             CombatEvents.RaisePlayerInCombatEnded();
+            playerInCombat = false;
         }
     }
 }
