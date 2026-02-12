@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class LockedBars : MonoBehaviour
 {
+    public bool starting_closed = false;
     Animator animator;
     void Start()
     {
         animator = GetComponent<Animator>();
+        animator.SetBool("Active", starting_closed);
     }
     
     public void OpenBars(float delay)
@@ -14,16 +16,17 @@ public class LockedBars : MonoBehaviour
     }
     public void CloseBars(float delay)
     {
+        Debug.Log("Almost");
         Invoke("CloseBar", delay);
     }
 
     void OpenBar()
     {
-        animator.SetBool("Active", true);
+        animator.SetBool("Active", false);
     }
 
     void CloseBar()
     {
-        animator.SetBool("Active", false);
+        animator.SetBool("Active", true);
     }
 }
