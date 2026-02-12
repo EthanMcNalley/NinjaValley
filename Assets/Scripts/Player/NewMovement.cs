@@ -231,12 +231,6 @@ public class NewMovement : MonoBehaviour
             moveDirection.z += (1f - hit_normal.y) * hit_normal.z * (1f - slide_friction);
         }
         
-        /*if (!groundedPlayer && playerVelocity.y < 0.001f)
-        {
-            finalMove += -transform.forward * 3f;
-            Debug.Log("Pushing");
-        }*/
-        
         // Combine horizontal and vertical movement
         Vector3 horizontal = (playerCurrSpeed * moveDirection);
         Vector3 vertical = (playerVelocity.y * Vector3.up);
@@ -250,7 +244,7 @@ public class NewMovement : MonoBehaviour
             wallPushDir.y = 0f;
             wallPushDir.Normalize();
 
-            horizontal = wallPushDir * 12f;
+            horizontal = wallPushDir * 11f;
             
             //horizontal = horizontal.normalized * 5f;
             Debug.Log("Restricting");

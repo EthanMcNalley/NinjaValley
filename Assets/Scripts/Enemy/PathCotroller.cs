@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -22,7 +19,8 @@ public class PathController : MonoBehaviour
     public GameObject player, target;
     public GameObject hitBox;
     private CombatStateManager combatStateManager;
-    private bool canMove = true, isAttacking = false, isChasing = false;
+    private bool canMove = true, isAttacking = false; 
+    [SerializeField]private bool isChasing = false;
     public GameObject[] patrolPoints;
     public int prevIndex = -1;
     public Transform rotateNode;
@@ -30,6 +28,8 @@ public class PathController : MonoBehaviour
     public float shadowSlow = 0.1f;
     private bool attackOnCooldown;
     public bool dodgeWindow = false;
+    
+    private bool inCombat = false;
 
     void Start()
     {
@@ -55,12 +55,16 @@ public class PathController : MonoBehaviour
     {
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+        
+        ExitCombat();
     }
 
     private void OnDestroy()
     {
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+        
+        ExitCombat();
     }
 
     void OnShadowStart()
@@ -79,17 +83,46 @@ public class PathController : MonoBehaviour
         agent.angularSpeed /= shadowSlow;
     }
     
+    private void EnterCombat()
+    {
+        if (inCombat) return;
+        inCombat = true;
+        
+        CombatManager.instance.AddEnemyToCombat();
+    }
+
+    private void ExitCombat()
+    {
+        if (!inCombat) return;
+        inCombat = false;
+        
+        CombatManager.instance.RemoveEnemyFromCombat();
+    }
+    
     // Update is called once per frame
     void Update()
     {
         distToPlayer = Vector3.Distance(player.transform.position, transform.position);
-        if (canMove && isAttacking == false) //this changed
+        bool wasChasing = isChasing;
+        isChasing = distToPlayer <= chaseDistance;
+        
+        if (!wasChasing && isChasing)
+        {
+            target = player;
+        }
+        else if (wasChasing && !isChasing)
+        {
+            target = patrolPoints[prevIndex >= 0 ? prevIndex : 0];
+            agent.ResetPath();
+        }
+        
+        if (canMove && !isAttacking)
         {
             agent.destination = target.transform.position;
             animator.SetBool("Moving", true);
         }
 
-        if(canMove == false && isChasing == false)
+        if(!canMove && !isChasing)
         {
             animator.SetBool("Moving", false);
             waitTime -= Time.deltaTime;
@@ -110,32 +143,27 @@ public class PathController : MonoBehaviour
             }
         }
 
-        else if (canMove == true && isChasing == true)
+        if (!wasChasing && isChasing)
         {
-            target = player;
+            EnterCombat();
         }
-        
-        if (distToPlayer <= chaseDistance)
+        if (wasChasing && !isChasing)
         {
-            isChasing = true;
-        }
-        else
-        {
-            isChasing = false;
+            ExitCombat();
         }
         
         //rotateTowardsTarget();
     }
 
 
-    void rotateTowardsTarget()
+    /*void rotateTowardsTarget()
     {
         float stepSize = RotateSpeed * Time.deltaTime;
 
         Vector3 targetDir = target.transform.position - transform.position;
         Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, stepSize, 0.0f);
         transform.rotation = Quaternion.LookRotation(newDir);
-    }
+    }*/
 
     public void Attack()
     {
@@ -158,15 +186,17 @@ public class PathController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            EnterCombat();
             Attack();
             isAttacking = true;
         }
         
         //Debug.Log(other.name);
-        if (isChasing == false)
+        if (!isChasing && other.CompareTag("Point"))
         {   
+            //canMove = false;
             for (int i = 0; i < patrolPoints.Length; i++){
-                if (other.gameObject == patrolPoints[i])
+                if (other.gameObject == patrolPoints[i] && target == patrolPoints[i])
                 {
                     canMove = false;
                 }

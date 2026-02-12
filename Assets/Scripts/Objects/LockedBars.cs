@@ -8,11 +8,21 @@ public class LockedBars : MonoBehaviour
         animator = GetComponent<Animator>();
     }
     
-    public void OpenBars()
+    public void OpenBars(float delay)
+    {
+        Invoke("OpenBar", delay);
+    }
+    public void CloseBars(float delay)
+    {
+        Invoke("CloseBar", delay);
+    }
+
+    void OpenBar()
     {
         animator.SetBool("Active", true);
     }
-    public void CloseBars()
+
+    void CloseBar()
     {
         animator.SetBool("Active", false);
     }

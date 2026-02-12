@@ -87,6 +87,7 @@ public class CombatStateManager : MonoBehaviour
 
     public SkinnedMeshRenderer skinned_renderer;
     public MeshFilter after_effect_mesh;
+    public GameObject dash_particles;
 
     void Start()
     {
@@ -195,6 +196,7 @@ public class CombatStateManager : MonoBehaviour
         if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown)
         {
             SwitchState(Dodge);
+            dash_particles.SetActive(true);
             DodgeCoolDownTimer = 0f;
         }
         

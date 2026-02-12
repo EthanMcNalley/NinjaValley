@@ -27,6 +27,7 @@ public class TimeManager : MonoBehaviour
 
     public GameObject terrainScannerPrefab;
     public GameObject player;
+    public bool shadowActive;
     public float scanDurration = 10f;
     public float scanSize = 500;
     
@@ -43,12 +44,30 @@ public class TimeManager : MonoBehaviour
         {
             timeSlowAction = InputSystem.actions.FindAction("TimeSlow");
         }
-
+        
         anim_objects = GameObject.FindGameObjectsWithTag("Test");
         instance_material = new Material(time_slow_material);
         time_slow_renderer.passMaterial = instance_material;
         
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+    
+    private void OnEnable()
+    {
+        CombatEvents.ShadowAssassinStarted += OnShadowStart;
+        CombatEvents.ShadowAssassinEnded += OnShadowEnd;
+    }
+
+    private void OnDisable()
+    {
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+    }
+    
+    private void OnDestroy()
+    {
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
     }
 
     // Update is called once per frame
@@ -133,6 +152,16 @@ public class TimeManager : MonoBehaviour
         for (int i = 0; i < anim_objects.Length; i++){
             anim_objects[i].GetComponent<Animator>().SetFloat("Speed",  slowed_amount);
         }
+    }
+
+    void OnShadowStart()
+    {
+        shadowActive = true;
+    }
+
+    void OnShadowEnd()
+    {
+        shadowActive = false;
     }
 
     void InstantiateTerrainScanner()

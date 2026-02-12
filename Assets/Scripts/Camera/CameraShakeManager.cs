@@ -4,7 +4,7 @@ using Unity.Cinemachine;
 
 public class CameraShakeManager : MonoBehaviour
 {
-    public static CameraShakeManager instance;
+    public static CameraShakeManager instance { get; private set; }
     
     private CinemachineImpulseDefinition impulseDefinition;
     
