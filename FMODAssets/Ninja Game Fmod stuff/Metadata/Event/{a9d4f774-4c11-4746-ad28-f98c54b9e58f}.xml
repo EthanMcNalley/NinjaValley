@@ -84,6 +84,9 @@
 		</relationship>
 	</object>
 	<object class="GroupTrack" id="{be2dab94-0eb0-458b-ab15-0aac82f45779}">
+		<relationship name="automationTracks">
+			<destination>{11c41d72-38a3-45d2-a1de-51c777c4bcd3}</destination>
+		</relationship>
 		<relationship name="modules">
 			<destination>{886da169-b924-4c23-9ff8-0fbcc87d050d}</destination>
 			<destination>{ab353549-8fa3-4da7-a510-c37468d0b433}</destination>
@@ -229,7 +232,15 @@
 			<destination>{1237bddb-ade0-4645-b200-765540820b1d}</destination>
 		</relationship>
 	</object>
+	<object class="AutomationTrack" id="{11c41d72-38a3-45d2-a1de-51c777c4bcd3}">
+		<relationship name="automator">
+			<destination>{3f069d55-2a38-478f-8ad8-821129a0b931}</destination>
+		</relationship>
+	</object>
 	<object class="EventSound" id="{886da169-b924-4c23-9ff8-0fbcc87d050d}">
+		<relationship name="automators">
+			<destination>{3f069d55-2a38-478f-8ad8-821129a0b931}</destination>
+		</relationship>
 		<relationship name="modulators">
 			<destination>{10d2bf50-1942-4ea7-80fa-42d245916407}</destination>
 		</relationship>
@@ -404,6 +415,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{cd408723-af8d-4a6a-8d66-dfdb38b8d899}" />
+	<object class="Automator" id="{3f069d55-2a38-478f-8ad8-821129a0b931}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>pitch</value>
+		</property>
+	</object>
 	<object class="ADSRModulator" id="{10d2bf50-1942-4ea7-80fa-42d245916407}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>volume</value>

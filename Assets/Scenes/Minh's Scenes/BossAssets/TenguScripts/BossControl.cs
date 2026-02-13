@@ -14,6 +14,7 @@ public class BossControl : MonoBehaviour
     [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, playerCollision = false;
     public BossHPSystem bossHPSystem;
     public GameObject[] tornadoSpawnPointsPat1, tornadoSpawnPointsPat2;
+    public GameObject vfxEventsRockSpike, vfxEventsGroundStomp;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -131,12 +132,16 @@ public class BossControl : MonoBehaviour
 
     public void SpawnRockSpikeVFX()
     {
-        RockSpikeVFX = Instantiate(RockSpikeVFX, targetPos, Quaternion.identity);
+        //RockSpikeVFX = Instantiate(RockSpikeVFX, targetPos, Quaternion.identity);
+        vfxEventsRockSpike.transform.position = targetPos;
+        vfxEventsRockSpike.gameObject.SetActive(true);
     }
 
     public void SpawnGroundStompVFX()
     {
-        groundStompVFX = Instantiate(groundStompVFX, vfxPos, Quaternion.identity);
+        //groundStompVFX = Instantiate(groundStompVFX, vfxPos, Quaternion.identity);
+        vfxEventsGroundStomp.transform.position = targetPos;
+        vfxEventsGroundStomp.gameObject.SetActive(true);
     }
     public void EnableAirAttackHitBox()
     {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{6945b442-543e-4882-bd86-047980cab4ef}">
+		<property name="name">
+			<value>Ticky</value>
+		</property>
+		<relationship name="folder">
+			<destination>{b3436e5d-f3ac-429f-ae92-6ea37a142ad5}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{54daf2d8-0788-4dee-bfdb-d5d593ddda68}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{54daf2d8-0788-4dee-bfdb-d5d593ddda68}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{03efbd90-993d-4ced-9710-913650565dab}</destination>
+		</relationship>
+	</object>
+	<object class="SeekModulator" id="{03efbd90-993d-4ced-9710-913650565dab}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>cursorPosition</value>
+		</property>
+		<property name="speedAscending">
+			<value>0.25</value>
+		</property>
+	</object>
+</objects>

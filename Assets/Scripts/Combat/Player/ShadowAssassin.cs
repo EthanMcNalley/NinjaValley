@@ -3,8 +3,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using Mono.Cecil;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
+using FMODUnity;
+using EventReference = FMODUnity.EventReference;
 
 [RequireComponent(typeof(CombatStateManager))]
 public class ShadowAssassin : MonoBehaviour
@@ -62,6 +65,8 @@ public class ShadowAssassin : MonoBehaviour
     
     public float fadeSpeed = 2.0f;
     private float effectStrength = 0f;
+
+    [Header("Audio")] public EventReference shadowEnterSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -174,11 +179,13 @@ public class ShadowAssassin : MonoBehaviour
         {
             return;
         }
-            
+        
+        AudioManager.instance.PlayOneShot(shadowEnterSound,  transform.position);
+        
         shadowReady = false;
         shadowActive = true;
         timer = shadowAssassinDuration;
-        AudioManager.instance.SetSlowTime(1f);
+        //AudioManager.instance.SetSlowTime(1f);
         
         Material[] materials = characterRenderer.materials;
         Array.Resize(ref materials, materials.Length + 1);
@@ -195,7 +202,7 @@ public class ShadowAssassin : MonoBehaviour
     
     private IEnumerator ShadowAssassinTimer()
     {
-        yield return new WaitForSecondsRealtime(shadowAssassinDuration);
+        yield return new WaitForSeconds(shadowAssassinDuration);
         EndShadowAssassin();
     }
 
@@ -224,7 +231,7 @@ public class ShadowAssassin : MonoBehaviour
         
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;
-        AudioManager.instance.SetSlowTime(0f);
+        //AudioManager.instance.SetSlowTime(0f);
         
         Material[] materials = characterRenderer.materials;
         Array.Resize(ref materials, materials.Length - 1);
