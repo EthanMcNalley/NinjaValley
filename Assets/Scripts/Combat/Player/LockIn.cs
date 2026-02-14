@@ -11,7 +11,7 @@ public class LockIn : MonoBehaviour
     public GameObject target;
     public float lockOnDistance = 50f;
     private InputAction lockOnAction;
-    private bool lockOn;
+    [SerializeField]private bool lockOn;
     private GameObject lockOnIcon;
 
     void Awake()
@@ -43,16 +43,11 @@ public class LockIn : MonoBehaviour
         if (lockOn)
         {
             LockOnFind();
+            LockOn();
         }
         else
         {
             ClearLockOn();
-            return;
-        }
-
-        if (lockOn && target != null)
-        {
-            LockOn();
         }
     }
 
@@ -76,6 +71,7 @@ public class LockIn : MonoBehaviour
 
     void LockOn()
     {
+        if (target == null) return;
         lockOnIcon = target.transform.Find("LockOnIcon").gameObject;
         
         if (lockOnIcon != null)
@@ -85,6 +81,7 @@ public class LockIn : MonoBehaviour
         
         cinemachineCamera.LookAt = target.transform; 
         lockOnCamera.SetActive(true);
+        Debug.Log("LockOn");
     }
 
     public void ClearLockOn()
@@ -115,9 +112,9 @@ public class LockIn : MonoBehaviour
             return;
         }
         
-        float distSq = (transform.position - target.transform.position).sqrMagnitude;
+        float dist = Vector3.Distance(transform.position, target.transform.position);
 
-        if (distSq > lockOnDistance)
+        if (dist > lockOnDistance)
         {
             ClearLockOn();
         }
