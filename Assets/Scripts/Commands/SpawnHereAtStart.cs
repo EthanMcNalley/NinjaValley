@@ -12,5 +12,6 @@ public class SpawnHereAtStart : MonoBehaviour
         spawn_point = GetComponent<Transform>();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = spawn_point.position;
+        player.transform.rotation = Quaternion.identity;
     }
 }

@@ -59,6 +59,7 @@ public class NewMovement : MonoBehaviour
     public bool double_jump = false;
     public GameObject moving_particle;
     public GameObject landing_particle;
+    public GameObject dash_particle;
     private bool play_landing = false;
     private Vector3 hit_normal;
     public float slide_friction;
@@ -348,12 +349,15 @@ public class NewMovement : MonoBehaviour
         switch (currentState)
         {
             case moveState.Idle:
+                dash_particle.SetActive(false);
                 playerCurrSpeed = playerWalkSpeed;
                 break;
             case moveState.Walking:
+                dash_particle.SetActive(false);
                 PlayParticle(moving_particle);
                 break;
             case moveState.Running:
+                dash_particle.SetActive(true);
                 playerCurrSpeed = playerRunSpeed;
                 break;
             case moveState.Dodging:
