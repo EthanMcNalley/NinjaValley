@@ -45,7 +45,10 @@ public class SceneLoader : MonoBehaviour
         Debug.Log(scenes_to_load[i]);
         //yield return SceneManager.LoadSceneAsync(scenes_to_load[i].SceneName, LoadSceneMode.Additive);
         SceneManager.LoadSceneAsync(scenes_to_load[i].SceneName, LoadSceneMode.Additive);
-        yield return new WaitForSecondsRealtime(1f);
+        while (!SceneManager.GetSceneByName(scenes_to_load[i].SceneName).isLoaded)
+        {
+            yield return null;
+        }
     }
 
     private void UnloadScenes(){
