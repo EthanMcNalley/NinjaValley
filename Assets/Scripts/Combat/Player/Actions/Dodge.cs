@@ -6,11 +6,11 @@ public class Dodge : CombatState
     private float dodgeTimer = 0f;
     private float iframeEndTime = 0.2f;
     private bool isInvincible = false;
-    private float dodgeSpeed = 60f;
+    private float dodgeSpeed = 80f;
     private float gracePeriod = 0.05f;
     private bool movementDisabled = false;
     private Vector3 dir;
-    private float gravity = -30f;
+    //private float gravity = -30f;
     
     public override void EnterState(CombatStateManager stateManager)
     {
@@ -19,11 +19,12 @@ public class Dodge : CombatState
         dodgeTimer = 0f;
         movementDisabled = false;
         isInvincible = true;
-        gravity = stateManager.movementController.gravityValue;
+        //gravity = stateManager.movementController.gravityValue;
         
         if (stateManager.healthSystem != null) stateManager.healthSystem.SetInvincible(true);
-        stateManager.movementController.SetTranslationDisabled(true);
-        stateManager.movementController.SetNewMoveState(NewMovement.moveState.Dodging);
+        stateManager.movementController.DodgeStart();
+        //stateManager.movementController.SetTranslationDisabled(true);
+        //stateManager.movementController.SetNewMoveState(NewMovement.moveState.Dodging);
         
         if (dir == Vector3.zero)
         {
@@ -76,6 +77,7 @@ public class Dodge : CombatState
     
     public override void ExitState(CombatStateManager stateManager)
     {
+        if (stateManager.healthSystem != null) stateManager.healthSystem.SetInvincible(false);
         stateManager.movementController.DodgeEnd();
     }
 

@@ -23,8 +23,12 @@ public class NewMovement : MonoBehaviour
     public float rotationSpeed = 20f;
     public bool translationDisabled = false;
     public float max_fall_speed = -40.0f;
-
-    public float stuckRestrict = 0.1f;
+    
+    [Header("Knockback")]
+    private Vector3 knockbackForce;
+    [SerializeField]private float knockbackDecay = 10f;
+    [SerializeField]private const float defaultKnockbackTime = 0.5f;
+    private float knockbackTimer;
     
     [Header("Jump")]
     public float minJumpHeight = 0.5f;
@@ -118,11 +122,13 @@ public class NewMovement : MonoBehaviour
 
     public void EnableMovement()
     {
+        if (canMove) return;
         canMove =  true;
     }
     
     public void DisableMovement()
     {
+        if (!canMove) return;
         canMove =  false;
     }
 
@@ -141,6 +147,13 @@ public class NewMovement : MonoBehaviour
             playerVelocity.y = Mathf.Min(playerVelocity.y, minJumpCutVelocity);
         }
         
+    }
+
+    public void DodgeStart()
+    {
+        //SetTranslationDisabled(true);
+        SetTranslationDisabled(true);
+        SetNewMoveState(moveState.Dodging);
     }
     
     public void DodgeEnd()
@@ -227,6 +240,24 @@ public class NewMovement : MonoBehaviour
             playerVelocity.y = max_fall_speed;
         }
         
+        //knockback stuff
+        if (knockbackTimer > 0)
+        {
+            knockbackTimer -=  Time.deltaTime;
+            DisableMovement();
+        }
+        else
+        {
+            EnableMovement();
+        }
+        
+        knockbackForce = Vector3.Lerp(knockbackForce, Vector3.zero, knockbackDecay * Time.deltaTime);
+        if (knockbackForce.magnitude <= 0.1f && knockbackForce != Vector3.zero)
+        {
+            knockbackForce = Vector3.zero;
+        }
+        
+        
         if (controller.slopeLimit < Vector3.Angle(hit_normal, Vector3.up) && !groundedPlayer) {
             moveDirection.x += (1f - hit_normal.y) * hit_normal.x * (1f - slide_friction);
             moveDirection.z += (1f - hit_normal.y) * hit_normal.z * (1f - slide_friction);
@@ -251,7 +282,7 @@ public class NewMovement : MonoBehaviour
             Debug.Log("Restricting");
         }
         
-        controller.Move(Time.deltaTime * (horizontal + vertical));
+        controller.Move(Time.deltaTime * (horizontal + vertical) + knockbackForce);
         
         if (!groundedPlayer){
             animator.SetFloat("YVelocity", vertical.y);
@@ -386,9 +417,19 @@ public class NewMovement : MonoBehaviour
         }
     }
 
-    public void MovePlayerExternal(float distance)
+    public void KnockbackPlayer(Vector3 dir, float force)
     {
-        
+        dir = dir.normalized;
+        knockbackTimer = defaultKnockbackTime;
+        knockbackForce = new Vector3(dir.x * force, 4f, dir.z * force);
+    }
+    
+    //with custom height
+    public void KnockbackPlayer(Vector3 dir, float force, float height)
+    {
+        dir = dir.normalized;
+        knockbackTimer = defaultKnockbackTime;
+        knockbackForce = new Vector3(dir.x * force, height, dir.z * force);
     }
 
     void OnTriggerEnter(Collider other)
