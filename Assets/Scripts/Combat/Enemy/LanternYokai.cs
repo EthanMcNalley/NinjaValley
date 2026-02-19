@@ -14,6 +14,7 @@ public class LanternYokai : MonoBehaviour
     private bool inCombat = false;
     
     public float distToPlayer;
+    private bool playerShadow;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,7 +40,7 @@ public class LanternYokai : MonoBehaviour
 
     void LateUpdate()
     {
-        if (inCombat)
+        if (inCombat && !playerShadow) //remove playerShadow maybe if I want to fix this
         {
             AttackCheck();
             transform.LookAt(player.transform,  Vector3.up);
@@ -71,11 +72,14 @@ public class LanternYokai : MonoBehaviour
     void OnShadowStart()
     {
         animator.speed = 0.1f;
+        //fireballTimer += 5f; //idk just add this for now
+        playerShadow = true;
     }
 
     void OnShadowEnd()
     {
         animator.speed = 1f;
+        playerShadow = false;
     }
     
     private void EnterCombat()
