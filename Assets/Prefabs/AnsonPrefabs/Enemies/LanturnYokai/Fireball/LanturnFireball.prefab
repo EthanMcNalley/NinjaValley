@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 5460392981308850340}
   - component: {fileID: 6572391296365023124}
   - component: {fileID: 1311234862294689194}
-  m_Layer: 11
+  - component: {fileID: 6286993441263675577}
+  m_Layer: 0
   m_Name: LanturnFireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,17 +110,17 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8183
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!135 &6572391296365023124
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -154,7 +155,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LanturnFireball
   damage: 10
-  startSpeed: 8
+  startSpeed: 10
   fireballSpeed: 0
-  duration: 10
-  slowSpeed: 1
+  duration: 60
+  slowSpeed: 2
+--- !u!95 &6286993441263675577
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2155483637236604958}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd5d297964b77704c8609e602efad110, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 1
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

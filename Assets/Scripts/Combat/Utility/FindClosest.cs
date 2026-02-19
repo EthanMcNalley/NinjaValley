@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class FindClosest
 {
-    public static GameObject FindClosestGameObject(Vector3 position, float radius, LayerMask layerMask)
+    /*public static GameObject FindClosestGameObject(Vector3 position, float radius, LayerMask layerMask)
     {
         if (layerMask == 0)
         {
@@ -24,6 +24,33 @@ public static class FindClosest
             }
         }
 
+        return closest;
+    }*/
+    
+    private static readonly Collider[] hits = new Collider[32];
+    public static GameObject FindClosestGameObject(Vector3 position, float radius, LayerMask layerMask)
+    {
+        if (layerMask == 0)
+        {
+            return null;
+        }
+        int count = Physics.OverlapSphereNonAlloc(position, radius, hits, layerMask);
+        
+        GameObject closest = null;
+        float minDistance = Mathf.Infinity;
+
+        for (int i = 0; i < count; i++)
+        {
+            var collider = hits[i];
+            if (!collider) continue;
+
+            float distSq = (collider.transform.position - position).sqrMagnitude;
+            if (distSq < minDistance)
+            {
+                minDistance = distSq;
+                closest = collider.gameObject;
+            }
+        }
         return closest;
     }
 }

@@ -8,38 +8,38 @@ public class LanturnFireball : MonoBehaviour
     public float duration = 10f;
     public float slowSpeed = 5f;
     
-    public float sinAmplitude = 0.5f;
-    public float sinFrequency = 0.5f;
-    public float phase;
-    
-    private float slowSwingSpeed;
-    
     private Rigidbody fireballRB;
+    private Animator fireballAnimator;
+    private TimeManager.TimeState timeState;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         fireballRB = GetComponent<Rigidbody>();
+        fireballAnimator = GetComponent<Animator>();
         fireballSpeed = startSpeed;
         Destroy(gameObject, duration);
+    }
+
+    void Update()
+    {
+        if (TimeManager.time_state == TimeManager.TimeState.SLOWED &&  timeState == TimeManager.TimeState.NORMAL)
+        {
+            fireballSpeed = slowSpeed;
+            fireballAnimator.speed = 0.1f;
+            timeState = TimeManager.TimeState.SLOWED;
+        }
+        else if (TimeManager.time_state == TimeManager.TimeState.NORMAL && timeState == TimeManager.TimeState.SLOWED)
+        {
+            fireballSpeed = startSpeed;
+            fireballAnimator.speed = 1f;
+            timeState = TimeManager.TimeState.NORMAL;
+        }
     }
     
     void FixedUpdate()
     {
-        if (TimeManager.time_state == TimeManager.TimeState.SLOWED)
-        {
-            fireballSpeed = slowSpeed;
-            slowSwingSpeed = 0.1f;
-        }
-        else
-        {
-            fireballSpeed = startSpeed;
-            slowSwingSpeed = 1f;
-        }
-        
-        float offSet = Mathf.Cos(Time.fixedTime * sinFrequency) * sinAmplitude;
-        
-        fireballRB.MovePosition((fireballRB.position + fireballSpeed * slowSpeed * Time.fixedDeltaTime * transform.forward) + (offSet * transform.right));
+        fireballRB.MovePosition((fireballRB.position + fireballSpeed * slowSpeed * Time.fixedDeltaTime * transform.forward));
     }
     
     void OnTriggerEnter(Collider other)
