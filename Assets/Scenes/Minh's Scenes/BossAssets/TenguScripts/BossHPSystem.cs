@@ -26,6 +26,7 @@ public class BossHPSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckBreakStatus();
         if (breakState)
         {
             breakTimer -= Time.deltaTime;
@@ -57,7 +58,7 @@ public class BossHPSystem : MonoBehaviour
         if (currentGauge > 0)
         {
             currentGauge -= damage;
-            currentHP -= (damage / 10);
+            currentHP -= (damage / 0.67f);
             if (currentGauge < 0)
             {
                 currentGauge = 0;

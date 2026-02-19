@@ -131,12 +131,17 @@ public class BossControl : MonoBehaviour
 
     public void SpawnRockSpikeVFX()
     {
-        RockSpikeVFX = Instantiate(RockSpikeVFX, targetPos, Quaternion.identity);
+        //RockSpikeVFX = Instantiate(RockSpikeVFX, targetPos, Quaternion.identity);
+        RockSpikeVFX.transform.position = targetPos;
+        RockSpikeVFX.SetActive(true);
+
     }
 
     public void SpawnGroundStompVFX()
     {
-        groundStompVFX = Instantiate(groundStompVFX, vfxPos, Quaternion.identity);
+        //groundStompVFX = Instantiate(groundStompVFX, vfxPos, Quaternion.identity);
+        groundStompVFX.transform.position = vfxPos;
+        groundStompVFX.SetActive(true);
     }
     public void EnableAirAttackHitBox()
     {

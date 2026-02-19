@@ -39,7 +39,7 @@ public class FloatingHPDisplay : MonoBehaviour
         ratio = Mathf.Clamp01(currHealth / maxHealth);
         shadowBar.value = ratio;
     }
-
+    
     void Update()
     {
         transform.rotation = cam.transform.rotation;
