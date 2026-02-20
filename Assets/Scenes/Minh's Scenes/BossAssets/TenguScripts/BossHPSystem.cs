@@ -1,12 +1,10 @@
 using UnityEngine;
 
-public class BossHPSystem : MonoBehaviour
+public class BossHPSystem : HealthSystem
 {
-    [SerializeField] public float maxHP = 100f;
     [SerializeField] public float maxGauge = 50f;
     [SerializeField] public float maxBreakTimer = 10f;
 
-    public float currentHP;
     public float currentGauge;
     public float breakTimer;
     public bool breakState = false;
@@ -16,7 +14,6 @@ public class BossHPSystem : MonoBehaviour
 
     void Start()
     {
-        currentHP = maxHP;
         currentGauge = maxGauge;
         breakTimer = maxBreakTimer;
     }
@@ -47,18 +44,17 @@ public class BossHPSystem : MonoBehaviour
                 breakState = false;
             }
         }*/
-        if (currentHP <= 0)
-        {
-            //Destroy(this.gameObject);
-            Debug.Log("Boss Defeated!");
-        }
+        
     }
-    public void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
+        float outputDamage = damage;
         if (currentGauge > 0)
         {
             currentGauge -= damage;
-            currentHP -= (damage / 0.67f);
+            outputDamage = damage / 0.67f;
+            base.TakeDamage(outputDamage);
+            
             if (currentGauge < 0)
             {
                 currentGauge = 0;
@@ -66,18 +62,12 @@ public class BossHPSystem : MonoBehaviour
         }
         else
         {
-            currentHP -= damage;
-            if (currentHP < 0)
-            {
-                currentHP = 0;
-            }
+            base.TakeDamage(damage);
+
         }
     }
 
-    public float checkHealth()
-    {
-        return currentHP;
-    }
+    
 
     public float checkGauge()
     {
@@ -100,5 +90,10 @@ public class BossHPSystem : MonoBehaviour
                 currentGauge = maxGauge;
             }
         }
+    }
+
+    protected override void Dead()
+    {
+        Debug.Log("Boss Defeated!");
     }
 }

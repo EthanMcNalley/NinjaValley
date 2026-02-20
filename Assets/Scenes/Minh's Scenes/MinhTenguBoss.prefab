@@ -1577,6 +1577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8569787126418747737}
   - component: {fileID: 5201900414237859618}
+  - component: {fileID: 3985443987037686585}
   m_Layer: 0
   m_Name: SpearHitbox
   m_TagString: Untagged
@@ -1620,6 +1621,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.01621921, y: 0.05534484, z: 0.009651345}
   m_Center: {x: -0.007818162, y: -0.009443598, z: -0.0040879427}
+--- !u!114 &3985443987037686585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456992713488765882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05db7e6ec121c6b4ba431611dc835610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossAttackScript
+  damage: 10
 --- !u!1 &1533744816254836528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,7 +2152,6 @@ GameObject:
   - component: {fileID: 1735314239947379110}
   - component: {fileID: 3538017525321487228}
   - component: {fileID: 2114862306719957692}
-  - component: {fileID: 6993387671678206310}
   - component: {fileID: 4319379932645985545}
   m_Layer: 0
   m_Name: MinhTenguBoss
@@ -2285,27 +2298,6 @@ MonoBehaviour:
   currentGauge: 100
   breakTimer: 0
   breakState: 0
---- !u!65 &6993387671678206310
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027219555716833620}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 3.536068, y: 8.693977, z: 3.7469482}
-  m_Center: {x: 0.09439278, y: 3.8469877, z: -0.05493164}
 --- !u!54 &4319379932645985545
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3511,7 +3503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9016909418582691437}
-  - component: {fileID: 1884531539822567555}
+  - component: {fileID: 3129521812460562586}
   m_Layer: 0
   m_Name: RootBone
   m_TagString: Untagged
@@ -3541,8 +3533,8 @@ Transform:
   - {fileID: 7188598515258245131}
   m_Father: {fileID: 8746350856761943331}
   m_LocalEulerAnglesHint: {x: -0.000027320755, y: -90, z: -90}
---- !u!65 &1884531539822567555
-BoxCollider:
+--- !u!136 &3129521812460562586
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3559,9 +3551,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.037831426, y: 0.078572236, z: 0.042974465}
-  m_Center: {x: 0.0012341838, y: 0.038548995, z: -0.0003981447}
+  serializedVersion: 2
+  m_Radius: 0.02
+  m_Height: 0.1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!1 &3680169815565474615
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,6 +5596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2412709320583855476}
   - component: {fileID: 6334332243094853235}
+  - component: {fileID: 6720616041485346653}
   m_Layer: 0
   m_Name: AirAttackHitBox
   m_TagString: Untagged
@@ -5645,6 +5640,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6, y: 5, z: 6}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6720616041485346653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6256020695128945887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05db7e6ec121c6b4ba431611dc835610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossAttackScript
+  damage: 20
 --- !u!1 &6282559962565794584
 GameObject:
   m_ObjectHideFlags: 0
