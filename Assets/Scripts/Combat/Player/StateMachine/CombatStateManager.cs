@@ -206,7 +206,7 @@ public class CombatStateManager : MonoBehaviour
             dodgeVolume.weight = Mathf.MoveTowards(dodgeVolume.weight, 0f, Time.deltaTime * dodgeVolumeFadeSpeed);
         }
         
-        if (perfectDodgeWindow && !cloneSpawnedThisDodge)
+        if (currentState == Dodge && perfectDodgeWindow && !cloneSpawnedThisDodge)
         {
             Instantiate(clone, transform.position, transform.rotation);
             CameraShakeManager.instance.ScreenShakeFromProfile(dodgeScreenShake, impulseSource);
@@ -248,9 +248,13 @@ public class CombatStateManager : MonoBehaviour
         //Reset for new state
         stateTime = 0f;
         
-        if (state == Dodge)
+        if (currentState == Dodge)
         {
             cloneSpawnedThisDodge = false;
+        }
+        else
+        {
+            perfectDodgeWindow = false;
         }
 
         /*if (dashToEnemy)
