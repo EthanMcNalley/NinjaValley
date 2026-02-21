@@ -8,7 +8,8 @@ public class BossAttackScript : MonoBehaviour
     private HealthSystem PlayerHealth;
     private NewMovement newMovement;
     private CombatStateManager combatStateManager;
-    private bool attacked = false, dodgeWindow = false;
+    private bool attacked = false;
+    public bool dodgeWindow = false;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class BossAttackScript : MonoBehaviour
     {
         if (other.CompareTag("Player") && !attacked)
         {
+            if (PlayerHealth.isInvincible) return;
             Vector3 hitDirection = (other.transform.position - transform.position);
             newMovement.KnockbackPlayer(hitDirection,2f,1f);
             PlayerHealth.TakeDamage(damage);

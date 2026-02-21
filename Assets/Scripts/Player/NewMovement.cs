@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -180,6 +181,12 @@ public class NewMovement : MonoBehaviour
         {
             HandleRotation(moveDirection);
         }
+        else //comment out this else for a funny Tengu fly up thing for the player lol, the whole model will flip
+        {
+            Vector3 direction = lockIn.target.transform.position - transform.position;
+            direction.y = 0f;
+            transform.rotation = Quaternion.LookRotation(direction);   
+        }
 
         animator.SetBool("Moving", moveDirection.magnitude > 0.01f & groundedPlayer);
 
@@ -298,6 +305,7 @@ public class NewMovement : MonoBehaviour
             animator.SetFloat("YVelocity", 0);
         }
     }
+
 
     private void Jump()
     {

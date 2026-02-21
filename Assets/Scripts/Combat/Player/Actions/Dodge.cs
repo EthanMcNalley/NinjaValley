@@ -4,7 +4,7 @@ public class Dodge : CombatState
 {
     float stateDuration = 0.3f;
     private float dodgeTimer = 0f;
-    private float iframeEndTime = 0.2f;
+    private float iframeEndTime = 0.29f;
     private bool isInvincible = false;
     private float dodgeSpeed = 80f;
     private float gracePeriod = 0.05f;

@@ -26,22 +26,13 @@ public class PlayerHealth : HealthSystem
     {
         base.TakeDamage(damage);
         
-        hurtVolume.weight = 1f;
-        
-        //StopCoroutine(HurtVolume());
-        //StartCoroutine(HurtVolume());
-    }
-    
-    /*private IEnumerator HurtVolume()
-    {
-        for (float weight = 1f; weight >= 0; weight -=  0.05f)
+        if (isInvincible)
         {
-            hurtVolume.weight = weight;
-            yield return new WaitForSeconds(0.05f);
+            return;
         }
         
-        hurtVolume.weight = 0f;
-    }*/
+        hurtVolume.weight = 1f;
+    }
 
     void Update()
     {
