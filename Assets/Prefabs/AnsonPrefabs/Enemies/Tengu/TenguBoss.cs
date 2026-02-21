@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class TenguBoss : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class TenguBoss : MonoBehaviour
     public float movementSpeed = 5, distToPlayer, attackingMovementSpeed = 0;
     public float normalAttackRange;
     public float bossTimer = 16f, maxTimer = 16f, normalAttackTimer = 5f, normalAttackMaxTimer = 5f,bossCurrentHP, bossCurrentGauge;
-    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, canNormalAttack, playerCollision = false, inCombat;
+    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, canNormalAttack, playerCollision = false, inCombat, justBreak;
     public AnsonBossHp bossHPSystem;
     public GameObject[] tornadoSpawnPointsPat1, tornadoSpawnPointsPat2;
 
@@ -31,6 +33,7 @@ public class TenguBoss : MonoBehaviour
         agent.speed = movementSpeed;
         bossTimer = maxTimer;
         isBreak = false;
+        agent.stoppingDistance = normalAttackRange;
     }
     
     private void OnEnable()
@@ -59,7 +62,6 @@ public class TenguBoss : MonoBehaviour
     void OnShadowStart()
     {
         animator.speed = 0.1f;
-        //fireballTimer += 5f; //idk just add this for now
         //playerShadow = true;
     }
 
@@ -100,7 +102,7 @@ public class TenguBoss : MonoBehaviour
         
         distToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
-        if (!canAttack)
+        if (!canAttack && !isBreak)
         {
             bossTimer -= Time.deltaTime;
             if (!canNormalAttack)
@@ -127,48 +129,53 @@ public class TenguBoss : MonoBehaviour
         {
             isCloseToPlayer = false;
         }
+        
+        bool canMove = !isAttacking && !isBreak;
+        agent.isStopped = !canMove;
 
-
-        if (!isAttacking && !isBreak&& !playerCollision)
+        if (canMove)
         {
             agent.SetDestination(playerPos);
-            animator.SetBool("isRunning", true);
         }
-        else if(!isAttacking && !isBreak && playerCollision)
-        {
-            animator.SetBool("isRunning", false);
-            agent.ResetPath();
-        }
-        if (bossCurrentGauge <= 0 && !isBreak)
+
+        animator.SetBool("isRunning", canMove && agent.velocity.sqrMagnitude > 0.1f);
+        
+        
+        if (justBreak && !isBreak)
         {
             isBreak = true;
             animator.SetTrigger("Break");
-
+            animator.SetBool("BreakStatus", true);
         }
-        else if (bossCurrentGauge > 0)
+        else if (!justBreak && isBreak)
         {
             isBreak = false;
             animator.SetBool("BreakStatus", false);
+            isAttacking = false;
+            normalAttackTimer = 5f;
+            canNormalAttack = false;
+            if (bossTimer < 2f) bossTimer += 3f;
         }
         
         if (isAttacking) { agent.speed = attackingMovementSpeed; }
         else { agent.speed = movementSpeed; }
 
-        if (!isAttacking && isCloseToPlayer && !canAttack && canNormalAttack && bossHPSystem.currentGauge > 0)
+        if (!isAttacking && isCloseToPlayer && !canAttack && canNormalAttack && !isBreak)
         {
             animator.SetTrigger("AttackPat1");
-            canAttack = false;
+            canNormalAttack = false;
             normalAttackTimer = normalAttackMaxTimer;
         }
-        else if (!isAttacking && canAttack && bossHPSystem.currentGauge > 0)
+        else if (!isAttacking && canAttack && !isBreak)
         {
             animator.SetTrigger("AttackPat2");
             canAttack = false;
             bossTimer = maxTimer;
+            if (normalAttackTimer < 2f) normalAttackTimer += 3f;
         }
         
 
-        if (distToPlayer < 100f)
+        if (distToPlayer < 150f)
         {
             EnterCombat();
         }
@@ -176,12 +183,8 @@ public class TenguBoss : MonoBehaviour
         {
             ExitCombat();
         }
-
-        if (bossHPSystem.currentGauge <= 0 && !bossHPSystem.breakState)
-        {
-            bossHPSystem.breakState = true;
-        }
     }
+    
     private void FixedUpdate()
     {
         if (isFlying)
@@ -189,6 +192,12 @@ public class TenguBoss : MonoBehaviour
             AirAttackFollow();
         }
     }
+
+    private void LateUpdate()
+    {
+        justBreak = bossHPSystem.checkBreak();
+    }
+
     public void SpawnTornadoVFX()
     {
         int num = Random.Range(0, 2);

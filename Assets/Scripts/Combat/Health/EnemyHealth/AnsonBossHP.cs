@@ -17,23 +17,13 @@ public class AnsonBossHp : EnemyHealth
     void Start()
     {
         currentGauge = maxGauge;
-        breakTimer = maxBreakTimer;
+        breakTimer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckBreakStatus();
-        if (breakState)
-        {
-            breakTimer -= Time.deltaTime;
-            if (breakTimer <= 0)
-            {
-                breakTimer = maxBreakTimer;
-                breakState = false;
-                currentGauge = maxGauge;
-            }
-        }
     }
     public override void TakeDamage(float damage)
     {
@@ -48,6 +38,7 @@ public class AnsonBossHp : EnemyHealth
             if (currentGauge < 0)
             {
                 currentGauge = 0;
+                breakState = true;
             }
         }
         else
@@ -66,20 +57,31 @@ public class AnsonBossHp : EnemyHealth
         return currentGauge;
     }
 
+    public bool checkBreak()
+    {
+        return breakState;
+    }
+
     public void CheckBreakStatus()
     {
         if (currentGauge <= 0 && !breakState)
         {
             breakState = true;
         }
+        
         if (breakState)
         {
-            breakTimer -= Time.deltaTime;
-            if (breakTimer <= 0)
+            breakTimer += Time.deltaTime;
+            
+            float refill = Mathf.Clamp01(breakTimer / maxBreakTimer) * maxBreakTimer;
+            healthBreakBar.UpdateBreakBar(refill, maxBreakTimer);
+
+            if (breakTimer >= maxBreakTimer)
             {
-                breakTimer = maxBreakTimer;
+                breakTimer = 0;
                 breakState = false;
                 currentGauge = maxGauge;
+                healthBreakBar.UpdateBreakBar(currentGauge, maxGauge);
             }
         }
     }
@@ -87,5 +89,6 @@ public class AnsonBossHp : EnemyHealth
     protected override void Dead()
     {
         Debug.Log("Boss Defeated!");
+        base.Dead();
     }
 }

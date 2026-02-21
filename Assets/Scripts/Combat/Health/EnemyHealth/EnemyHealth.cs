@@ -6,7 +6,7 @@ public class EnemyHealth : HealthSystem
 {
     public ShadowAssassin shadowAssassin;
     private GameObject player;
-    private Animator animator;
+    public Animator animator;
     private float shadowMultiplyPercentage;
     private bool playerShadowMode;
     private float damageDuringShadow;
@@ -26,6 +26,8 @@ public class EnemyHealth : HealthSystem
     public EnemySoul enemySoul;
     public GameObject soul;
     
+    public GameObject baseGameObjectDestroy;
+    
     [Header("Sounds")]
     public EventReference hurtSound;
     public EventReference deathSound;
@@ -38,7 +40,7 @@ public class EnemyHealth : HealthSystem
     {
         healthBar = GetComponentInChildren<EnemyHPUI>();
         player = GameObject.FindGameObjectWithTag("Player");
-        animator = GetComponent<Animator>();
+        if (animator == null) animator = GetComponent<Animator>();
         shadowAssassin = player.GetComponent<ShadowAssassin>();
         shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
         if (cross != null) { cross.SetActive(false);}
@@ -166,7 +168,16 @@ public class EnemyHealth : HealthSystem
             AudioManager.instance.PlayOneShot(deathSound, transform.position);
         }
         Instantiate(health_essence, essence_spawnpoint.transform.position, Quaternion.identity);
-        Destroy(gameObject, 0);
+
+        if (baseGameObjectDestroy != null)
+        {
+            Destroy(baseGameObjectDestroy, 0);
+        }
+        else
+        {
+            Destroy(gameObject, 0);
+        }
+        
     }
 
     public void FreezeEnemy(bool freeze)
