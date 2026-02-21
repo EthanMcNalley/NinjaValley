@@ -193,7 +193,7 @@ public class CombatStateManager : MonoBehaviour
             perfectDodgeWindow = false;
         }
         
-        if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown)
+        if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown && movementController.canMove == true)
         {
             SwitchState(Dodge);
             dash_particles.SetActive(true);

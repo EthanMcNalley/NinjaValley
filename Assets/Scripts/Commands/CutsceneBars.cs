@@ -59,6 +59,7 @@ public class CutsceneBars : MonoBehaviour
         if (newState == CutsceneState.ACTIVE)
         {
             player.DisableMovement();
+            Debug.Log("WDOODO");
             cutscene_bars.SetBool("Active", true);
             UI_scroll_animator.SetBool("Fold", true);
         }

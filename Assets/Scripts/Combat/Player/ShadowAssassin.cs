@@ -298,4 +298,12 @@ public class ShadowAssassin : MonoBehaviour
     {
         return shadowActive;
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ShadowEssence"))
+        {
+            
+        }
+    }
 }

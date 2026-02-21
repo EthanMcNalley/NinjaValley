@@ -29,6 +29,7 @@ public class NewMovement : MonoBehaviour
     [SerializeField]private float knockbackDecay = 10f;
     [SerializeField]private const float defaultKnockbackTime = 0.5f;
     private float knockbackTimer;
+    private bool knocked_back = false;
     
     [Header("Jump")]
     public float minJumpHeight = 0.5f;
@@ -68,6 +69,7 @@ public class NewMovement : MonoBehaviour
     private Vector3 hit_normal;
     public float slide_friction;
     private UIManager UI_manager;
+    public static bool time_able = true;
 
     private void Awake()
     {
@@ -241,14 +243,17 @@ public class NewMovement : MonoBehaviour
         }
         
         //knockback stuff
-        if (knockbackTimer > 0)
-        {
+        if (knockbackTimer < 0){
+            if (knocked_back){
+                EnableMovement();
+                knocked_back = false;
+            } 
+        }
+
+        else{
+            knocked_back = true;
             knockbackTimer -=  Time.deltaTime;
             DisableMovement();
-        }
-        else
-        {
-            EnableMovement();
         }
         
         knockbackForce = Vector3.Lerp(knockbackForce, Vector3.zero, knockbackDecay * Time.deltaTime);
@@ -439,6 +444,7 @@ public class NewMovement : MonoBehaviour
             if (upgrade.upgrade_type == Upgrade.UpgradeType.TIMESLOW)
             {
                 UI_manager.OpenTextScrollMenu("You've absorbed the essence of time! Press E to slow down time.");
+                time_able = true;
                 // while(UIManager.ui_state == UIManager.UIState.ACTIVE)
                 // {
                 //     if (Input.GetKeyDown(KeyCode.Q)){
@@ -446,6 +452,19 @@ public class NewMovement : MonoBehaviour
                 //     }
                 // }
             }
+        }
+
+        if (other.TryGetComponent(out TimeIntangible time_block))
+        {
+            time_able = false;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out TimeIntangible time_block))
+        {
+            time_able = true;
         }
     }
 }

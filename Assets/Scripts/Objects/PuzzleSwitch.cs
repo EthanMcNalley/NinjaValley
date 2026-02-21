@@ -41,4 +41,9 @@ public class PuzzleSwitch : MonoBehaviour
     public void StartSwitchCutscene(float cutscene_time){
         cutscene_bars.ActivateCutscene(cutscene_time);
     }
+
+    public void RefreshSwitch()
+    {
+        done = false;
+    }
 }

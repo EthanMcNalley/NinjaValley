@@ -32,7 +32,7 @@ public class BossControl : MonoBehaviour
     void Update()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        bossCurrentHP = bossHPSystem.checkHealth();
+        //bossCurrentHP = bossHPSystem.checkHealth();
         bossCurrentGauge = bossHPSystem.checkGauge();
         targetPos = new Vector3(playerPos.x, transform.position.y, playerPos.z);
         vfxPos = new Vector3(transform.position.x, 0, transform.position.z);

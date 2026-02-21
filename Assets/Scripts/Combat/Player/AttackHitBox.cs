@@ -98,7 +98,7 @@ public class AttackHitBox : MonoBehaviour
         float charge = combatStateManager.GetShadowCharge();
             
         enemy.TakeDamage(damage);
-        combatStateManager.shadowAssassin.UpdateShadowMeter(charge);
+        //combatStateManager.shadowAssassin.UpdateShadowMeter(charge);
         enemyHitted.Add(other.gameObject);
 
         if (combatStateManager.currentStateID == AttackData.CombatStateID.GroundAttack3)

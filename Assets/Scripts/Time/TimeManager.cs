@@ -97,7 +97,7 @@ public class TimeManager : MonoBehaviour
                 time_size -= Time.deltaTime * material_rate;
             }
 
-            if (refresh_timer >= refresh_time && timeSlowAction.triggered)
+            if (refresh_timer >= refresh_time && timeSlowAction.triggered && NewMovement.time_able)
             {
                 time_timer = 0f;
                 refresh_timer = 0f;
