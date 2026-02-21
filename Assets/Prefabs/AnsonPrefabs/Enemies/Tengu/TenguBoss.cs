@@ -1,4 +1,3 @@
-using System.Xml;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,14 +9,15 @@ public class TenguBoss : MonoBehaviour
     Vector3 playerPos, targetPos, vfxPos;
     private NavMeshAgent agent;
     public float movementSpeed = 5, distToPlayer, attackingMovementSpeed = 0;
-    public float bossTimer = 20f, maxTimer = 20f, bossCurrentHP, bossCurrentGauge;
-    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, playerCollision = false;
-    public AnsonBossHP bossHPSystem;
+    public float normalAttackRange;
+    public float bossTimer = 16f, maxTimer = 16f, normalAttackTimer = 5f, normalAttackMaxTimer = 5f,bossCurrentHP, bossCurrentGauge;
+    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, playerCollision = false, inCombat;
+    public AnsonBossHp bossHPSystem;
     public GameObject[] tornadoSpawnPointsPat1, tornadoSpawnPointsPat2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        bossHPSystem = GetComponent<AnsonBossHP>();
+        //bossHPSystem = GetComponent<AnsonBossHp>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         spearHitbox.SetActive(false);
@@ -25,15 +25,72 @@ public class TenguBoss : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = movementSpeed;
         bossTimer = maxTimer;
+        isBreak = false;
+        
+    }
+    
+    private void OnEnable()
+    {
+        CombatEvents.ShadowAssassinStarted += OnShadowStart;
+        CombatEvents.ShadowAssassinEnded += OnShadowEnd;
+        
+    }
 
+    private void OnDisable()
+    {
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+        
+        ExitCombat();
+    }
+
+    private void OnDestroy()
+    {
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+        
+        ExitCombat();
+    }
+    
+    void OnShadowStart()
+    {
+        animator.speed = 0.1f;
+        //fireballTimer += 5f; //idk just add this for now
+        //playerShadow = true;
+    }
+
+    void OnShadowEnd()
+    {
+        animator.speed = 1f;
+        //playerShadow = false;
+    }
+    
+    private void EnterCombat()
+    {
+        if (inCombat) return;
+        inCombat = true;
+        /*attackRange += attackRangeIncrease;
+        */
+        
+        CombatManager.instance.AddEnemyToCombat();
+    }
+
+    private void ExitCombat()
+    {
+        if (!inCombat) return;
+        inCombat = false;
+        /*attackRange -= attackRangeIncrease;
+        */
+        
+        CombatManager.instance.RemoveEnemyFromCombat();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerPos = player.transform.position;
-        //bossCurrentHP = bossHPSystem.checkHealth();
-        //bossCurrentGauge = bossHPSystem.checkGauge();
+        playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        bossCurrentHP = bossHPSystem.checkHealth();
+        bossCurrentGauge = bossHPSystem.checkGauge();
         targetPos = new Vector3(playerPos.x, transform.position.y, playerPos.z);
         vfxPos = new Vector3(transform.position.x, 0, transform.position.z);
         distToPlayer = Vector3.Distance(player.transform.position, transform.position);
@@ -64,20 +121,30 @@ public class TenguBoss : MonoBehaviour
             isBreak = false;
             animator.SetBool("BreakStatus", false);
         }
+        
         if (isAttacking) { agent.speed = attackingMovementSpeed; }
         else { agent.speed = movementSpeed; }
 
-        if (!isAttacking && isCloseToPlayer && canAttack && bossHPSystem.currentGauge > 0)
-        {
-            animator.SetTrigger("AttackPat1");
-            canAttack = false;
-            bossTimer = 20f;
-        }
-        else if (!isAttacking && !isCloseToPlayer && canAttack && bossHPSystem.currentGauge > 0)
+        if (!isAttacking && canAttack && bossHPSystem.currentGauge > 0)
         {
             animator.SetTrigger("AttackPat2");
             canAttack = false;
-            bossTimer = 20f;
+            bossTimer = maxTimer;
+        }
+        else if (!isAttacking && isCloseToPlayer && canAttack && bossHPSystem.currentGauge > 0)
+        {
+            animator.SetTrigger("AttackPat1");
+            canAttack = false;
+            bossTimer = maxTimer;
+        }
+
+        if (distToPlayer < 100f)
+        {
+            EnterCombat();
+        }
+        else
+        {
+            ExitCombat();
         }
 
         if (bossHPSystem.currentGauge <= 0 && !bossHPSystem.breakState)
@@ -87,7 +154,7 @@ public class TenguBoss : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (distToPlayer <= 7.5f)
+        if (distToPlayer <= normalAttackRange)
         {
             isCloseToPlayer = true;
         }
@@ -95,6 +162,8 @@ public class TenguBoss : MonoBehaviour
         {
             isCloseToPlayer = false;
         }
+        
+        
 
         if (isFlying)
         {
@@ -126,35 +195,46 @@ public class TenguBoss : MonoBehaviour
                 return;
         }
         //TornadoVFX = Instantiate(TornadoVFX, transform.position, Quaternion.identity);
+
     }
 
     public void SpawnRockSpikeVFX()
     {
-        RockSpikeVFX = Instantiate(RockSpikeVFX, targetPos, Quaternion.identity);
+        //RockSpikeVFX = Instantiate(RockSpikeVFX, targetPos, Quaternion.identity);
+        RockSpikeVFX.transform.position = targetPos;
+        RockSpikeVFX.SetActive(true);
+
     }
 
     public void SpawnGroundStompVFX()
     {
-        groundStompVFX = Instantiate(groundStompVFX, vfxPos, Quaternion.identity);
+        //groundStompVFX = Instantiate(groundStompVFX, vfxPos, Quaternion.identity);
+        groundStompVFX.transform.position = vfxPos;
+        groundStompVFX.SetActive(true);
+        Debug.Log("groundStompVFX Spawned");
     }
     public void EnableAirAttackHitBox()
     {
         airAttackHitBox.SetActive(true);
+        Debug.Log("Enabled Air Attack Hitbox");
     }
 
     public void DisableAirAttackHitBox()
     {
         airAttackHitBox.SetActive(false);
+        Debug.Log("Disabled Air Attack Hitbox");
     }
 
     public void EnableSpearHitBox()
     {
         spearHitbox.SetActive(true);
+        Debug.Log("Enabled Spear Attack Hitbox");
     }
 
     public void DisableSpearHitBox()
     {
         spearHitbox.SetActive(false);
+        Debug.Log("Disabled Spear Attack Hitbox");
     }
 
     public void AirAttackFollow()
@@ -175,16 +255,18 @@ public class TenguBoss : MonoBehaviour
     public void EnterBreakState()
     {
         animator.SetBool("BreakStatus", true);
+        Debug.Log("Enter Break State");
     }
 
     public void ExitBreakState()
     {
         animator.SetBool("BreakStatus", false);
+        Debug.Log("Exit Break State");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Enter");
             playerCollision = true;
@@ -193,7 +275,7 @@ public class TenguBoss : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Exit");
             playerCollision = false;

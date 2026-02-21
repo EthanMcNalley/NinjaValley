@@ -9,6 +9,7 @@ public static class CombatEvents
     public static event Action PlayerInCombat;
     public static event Action PlayerInCombatEnded;
     
+    
     public static void RaiseShadowAssassinStarted() => ShadowAssassinStarted?.Invoke();
     public static void RaiseShadowAssassinEnded() => ShadowAssassinEnded?.Invoke();
     public static void RaisePlayerInCombat() => PlayerInCombat?.Invoke();

@@ -411,7 +411,7 @@ public class NewMovement : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         hit_normal = hit.normal;
-        if (controller.slopeLimit > Vector3.Angle(hit_normal, Vector3.up))
+        /*if (controller.slopeLimit > Vector3.Angle(hit_normal, Vector3.up))
         {
             Debug.Log("WOOOO");
         }
@@ -419,7 +419,7 @@ public class NewMovement : MonoBehaviour
         else
         {
             Debug.Log("AWWWW");
-        }
+        }*/
     }
 
     public void KnockbackPlayer(Vector3 dir, float force)

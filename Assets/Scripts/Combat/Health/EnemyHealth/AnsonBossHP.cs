@@ -1,10 +1,12 @@
 using UnityEngine;
 
-public class BossHPSystem : HealthSystem
+public class AnsonBossHp : EnemyHealth
 {
+    [Header ("Boss Stuff")]
     [SerializeField] public float maxGauge = 50f;
     [SerializeField] public float maxBreakTimer = 10f;
 
+    public BossHPUI healthBreakBar;
     public float currentGauge;
     public float breakTimer;
     public bool breakState = false;
@@ -17,8 +19,6 @@ public class BossHPSystem : HealthSystem
         currentGauge = maxGauge;
         breakTimer = maxBreakTimer;
     }
-
-
 
     // Update is called once per frame
     void Update()
@@ -34,17 +34,6 @@ public class BossHPSystem : HealthSystem
                 currentGauge = maxGauge;
             }
         }
-
-        /*if (breakState)
-        {
-            currentGauge += Time.deltaTime * 5f;
-            if (currentGauge >= maxGauge)
-            {
-                currentGauge = maxGauge;
-                breakState = false;
-            }
-        }*/
-        
     }
     public override void TakeDamage(float damage)
     {
@@ -52,6 +41,7 @@ public class BossHPSystem : HealthSystem
         if (currentGauge > 0)
         {
             currentGauge -= damage;
+            healthBreakBar.UpdateBreakBar(currentGauge, maxGauge);
             outputDamage = damage / 0.67f;
             base.TakeDamage(outputDamage);
             
@@ -63,7 +53,6 @@ public class BossHPSystem : HealthSystem
         else
         {
             base.TakeDamage(damage);
-
         }
     }
 

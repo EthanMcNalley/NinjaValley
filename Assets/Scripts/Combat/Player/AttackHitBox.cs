@@ -88,6 +88,8 @@ public class AttackHitBox : MonoBehaviour
         if (!isAttacking) return;
         
         if (!other.gameObject.CompareTag("Enemy")) return;
+        
+        Debug.Log( "hit " + other.gameObject.name);
 
         HealthSystem enemy = other.GetComponent<HealthSystem>();
         if (enemy == null) return;

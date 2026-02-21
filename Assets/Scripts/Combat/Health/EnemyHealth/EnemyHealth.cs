@@ -12,7 +12,7 @@ public class EnemyHealth : HealthSystem
     private float damageDuringShadow;
     private float damageBurst;
     
-    public FloatingHPDisplay healthBar;
+    public EnemyHPUI healthBar;
     public ParticleSystem particles;
     public ParticleSystem normalDeathParticles;
     public ParticleSystem executeDeathParticles;
@@ -32,17 +32,18 @@ public class EnemyHealth : HealthSystem
     
     private bool markedForDeath = false;
     private bool markedForExecute = false;
+    public bool isBoss = false;
     
     void Start()
     {
-        healthBar = GetComponentInChildren<FloatingHPDisplay>();
+        healthBar = GetComponentInChildren<EnemyHPUI>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
         shadowAssassin = player.GetComponent<ShadowAssassin>();
         shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
-        cross.SetActive(false);
-        executeOutline.SetActive(false);
-        soul.SetActive(false);
+        if (cross != null) { cross.SetActive(false);}
+        if (executeOutline != null) { executeOutline.SetActive(false);}
+        if (soul != null) { soul.SetActive(false);}
     }
 
     private void OnEnable()
@@ -65,10 +66,19 @@ public class EnemyHealth : HealthSystem
     
     void OnShadowStart()
     {
+        if (shadowAssassin == null || player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            shadowAssassin = player.GetComponent<ShadowAssassin>();
+        }
+        
         playerShadowMode = true;
         markedForDeath = false;
-        soul.SetActive(true);
-        enemySoul.SetShadow(true);
+        if (soul != null) 
+        {
+            soul.SetActive(true);
+            enemySoul.SetShadow(true);
+        }
         shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
         damageDuringShadow = 0f;
         damageBurst = 0f;
@@ -85,8 +95,11 @@ public class EnemyHealth : HealthSystem
         }
         
         markedForDeath = false;
-        enemySoul.SetShadow(false);
-        soul.SetActive(false);
+        if (soul != null)
+        {
+            enemySoul.SetShadow(false);
+            soul.SetActive(false);
+        }
     }
     
     public override void TakeDamage(float damage)
@@ -112,7 +125,7 @@ public class EnemyHealth : HealthSystem
             if (!markedForDeath)
             {
                 markedForDeath = true;
-                enemySoul.SetMarkedForDeath(true);
+                if (enemySoul != null) {enemySoul.SetMarkedForDeath(true);}
             }
         }
         else
@@ -123,9 +136,9 @@ public class EnemyHealth : HealthSystem
         if ((currHealthPoint - damageBurst) <= 0)
         {
             markedForExecute =  true;
-            enemySoul.SetMarkedForExecute(true);
-            cross.SetActive(true);
-            executeOutline.SetActive(true);
+            if (enemySoul != null) {enemySoul.SetMarkedForExecute(true);}
+            if (cross != null) { cross.SetActive(true); }
+            if (executeOutline != null) { executeOutline.SetActive(true); }
             FreezeEnemy(true);
         }
         
@@ -184,11 +197,9 @@ public class EnemyHealth : HealthSystem
         damageDuringShadow = 0f;
         damageBurst = 0f;
     }
-
     
-    
-    void SoulUI()
+    public float ReturnHealthPoint()
     {
-        
+        return currHealthPoint;
     }
 }

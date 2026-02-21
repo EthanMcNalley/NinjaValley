@@ -414,6 +414,7 @@ MonoBehaviour:
   animator: {fileID: 6566981312143579041}
   distToPlayer: 0
   chaseDistance: 30
+  chaseIncreaseDistance: 10
   player: {fileID: 0}
   target: {fileID: 0}
   hitBox: {fileID: 1678869871940966272}
@@ -465,6 +466,7 @@ MonoBehaviour:
       Data3: -1580284011
       Data4: -1691284758
     Path: event:/Enemies/UmberllaDie
+  isBoss: 0
 --- !u!1 &4228239008754995477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,6 +1004,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 5908729893356392855}
+    - target: {fileID: 3700426844765307249, guid: 013146f232911ab4185bb7d482b88823, type: 3}
+      propertyPath: healthFillImage
+      value: 
+      objectReference: {fileID: 481731522385830267}
     - target: {fileID: 3974014831416243027, guid: 013146f232911ab4185bb7d482b88823, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1112,6 +1118,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3537648115363040394, guid: 013146f232911ab4185bb7d482b88823, type: 3}
   m_PrefabInstance: {fileID: 3779939794842534630}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &481731522385830267 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3664381378903516061, guid: 013146f232911ab4185bb7d482b88823, type: 3}
+  m_PrefabInstance: {fileID: 3779939794842534630}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &517779453409854359 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3700426844765307249, guid: 013146f232911ab4185bb7d482b88823, type: 3}

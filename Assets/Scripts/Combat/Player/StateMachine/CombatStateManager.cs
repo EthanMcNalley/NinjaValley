@@ -49,6 +49,10 @@ public class CombatStateManager : MonoBehaviour
     
     [Header("VFX Stuff")]
     public List<SlashVFX>  slashVFX;
+    
+    public SkinnedMeshRenderer skinned_renderer;
+    public MeshFilter after_effect_mesh;
+    public GameObject dash_particles;
 
     [Header("Camera Stuff")] 
     public CinemachineImpulseSource impulseSource;
@@ -85,9 +89,6 @@ public class CombatStateManager : MonoBehaviour
     
     public event Action<AttackData> PlayerAttack;
 
-    public SkinnedMeshRenderer skinned_renderer;
-    public MeshFilter after_effect_mesh;
-    public GameObject dash_particles;
 
     void Start()
     {
