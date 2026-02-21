@@ -7,13 +7,15 @@ public class BossAttackScript : MonoBehaviour
     private GameObject player;
     private HealthSystem PlayerHealth;
     private NewMovement newMovement;
-    private bool attacked = false;
+    private CombatStateManager combatStateManager;
+    private bool attacked = false, dodgeWindow = false;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         newMovement = player.GetComponent<NewMovement>();
         PlayerHealth = player.GetComponent<HealthSystem>();
+        combatStateManager = player.GetComponent<CombatStateManager>();
     }
 
     void OnDisable()
@@ -30,5 +32,38 @@ public class BossAttackScript : MonoBehaviour
             PlayerHealth.TakeDamage(damage);
             attacked = true;
         }
+        
+        /*if (other.CompareTag("Player") && dodgeWindow)
+        {
+            combatStateManager.SetPerfectDodgeWindow(true);
+        }
+        
+        if (other.CompareTag("Player") && !dodgeWindow)
+        {
+            combatStateManager.SetPerfectDodgeWindow(false);
+        }*/
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && dodgeWindow)
+        {
+            combatStateManager.SetPerfectDodgeWindow(true);
+        }
+        
+        if (other.CompareTag("Player") && !dodgeWindow)
+        {
+            combatStateManager.SetPerfectDodgeWindow(false);
+        }
+    }
+    
+    public void DodgeWindowTrue()
+    {
+        dodgeWindow = true;
+    }
+    
+    public void DodgeWindowFalse()
+    {
+        dodgeWindow = false;
     }
 }

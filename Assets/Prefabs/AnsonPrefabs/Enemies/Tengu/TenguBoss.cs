@@ -11,22 +11,26 @@ public class TenguBoss : MonoBehaviour
     public float movementSpeed = 5, distToPlayer, attackingMovementSpeed = 0;
     public float normalAttackRange;
     public float bossTimer = 16f, maxTimer = 16f, normalAttackTimer = 5f, normalAttackMaxTimer = 5f,bossCurrentHP, bossCurrentGauge;
-    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, playerCollision = false, inCombat;
+    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, canNormalAttack, playerCollision = false, inCombat;
     public AnsonBossHp bossHPSystem;
     public GameObject[] tornadoSpawnPointsPat1, tornadoSpawnPointsPat2;
+
+    public BossAttackScript spearAttackScript, airAttackScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //bossHPSystem = GetComponent<AnsonBossHp>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
+        spearAttackScript = spearHitbox.GetComponent<BossAttackScript>();
+        airAttackScript = airAttackHitBox.GetComponent<BossAttackScript>();
         spearHitbox.SetActive(false);
         airAttackHitBox.SetActive(false);
+        spearAttackScript = spearHitbox.GetComponent<BossAttackScript>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = movementSpeed;
         bossTimer = maxTimer;
         isBreak = false;
-        
     }
     
     private void OnEnable()
@@ -88,16 +92,41 @@ public class TenguBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        playerPos = player.transform.position;
         bossCurrentHP = bossHPSystem.checkHealth();
         bossCurrentGauge = bossHPSystem.checkGauge();
         targetPos = new Vector3(playerPos.x, transform.position.y, playerPos.z);
         vfxPos = new Vector3(transform.position.x, 0, transform.position.z);
+        
         distToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
-        if (!canAttack) { bossTimer -= Time.deltaTime; }
+        if (!canAttack)
+        {
+            bossTimer -= Time.deltaTime;
+            if (!canNormalAttack)
+            {
+                normalAttackTimer -= Time.deltaTime;
+            }
+        }
 
-        if (bossTimer < 0f) { canAttack = true; }
+        if (bossTimer < 0f)
+        {
+            canAttack = true;
+        }
+
+        if (normalAttackTimer < 0f)
+        {
+            canNormalAttack = true;
+        }
+        
+        if (distToPlayer <= normalAttackRange)
+        {
+            isCloseToPlayer = true;
+        }
+        else
+        {
+            isCloseToPlayer = false;
+        }
 
 
         if (!isAttacking && !isBreak&& !playerCollision)
@@ -125,18 +154,19 @@ public class TenguBoss : MonoBehaviour
         if (isAttacking) { agent.speed = attackingMovementSpeed; }
         else { agent.speed = movementSpeed; }
 
-        if (!isAttacking && canAttack && bossHPSystem.currentGauge > 0)
+        if (!isAttacking && isCloseToPlayer && !canAttack && canNormalAttack && bossHPSystem.currentGauge > 0)
+        {
+            animator.SetTrigger("AttackPat1");
+            canAttack = false;
+            normalAttackTimer = normalAttackMaxTimer;
+        }
+        else if (!isAttacking && canAttack && bossHPSystem.currentGauge > 0)
         {
             animator.SetTrigger("AttackPat2");
             canAttack = false;
             bossTimer = maxTimer;
         }
-        else if (!isAttacking && isCloseToPlayer && canAttack && bossHPSystem.currentGauge > 0)
-        {
-            animator.SetTrigger("AttackPat1");
-            canAttack = false;
-            bossTimer = maxTimer;
-        }
+        
 
         if (distToPlayer < 100f)
         {
@@ -154,17 +184,6 @@ public class TenguBoss : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (distToPlayer <= normalAttackRange)
-        {
-            isCloseToPlayer = true;
-        }
-        else
-        {
-            isCloseToPlayer = false;
-        }
-        
-        
-
         if (isFlying)
         {
             AirAttackFollow();
@@ -262,6 +281,18 @@ public class TenguBoss : MonoBehaviour
     {
         animator.SetBool("BreakStatus", false);
         Debug.Log("Exit Break State");
+    }
+
+    public void SetPlayerPerfectDodgeTrue()
+    {
+        spearAttackScript.DodgeWindowTrue();
+        airAttackScript.DodgeWindowTrue();
+    }
+    
+    public void SetPlayerPerfectDodgeFalse()
+    {
+        spearAttackScript.DodgeWindowFalse();
+        airAttackScript.DodgeWindowFalse();
     }
 
     private void OnCollisionEnter(Collision collision)
