@@ -292,6 +292,16 @@ public class TenguBoss : MonoBehaviour
         Debug.Log("Exit Break State");
     }
 
+    public void SetAgentSpeed0()
+    {
+        agent.speed = 0f;
+    }
+
+    public void ResetAgentSpeed()
+    {
+        agent.speed = movementSpeed;
+    }
+
     public void SetPlayerPerfectDodgeTrue()
     {
         spearAttackScript.DodgeWindowTrue();
@@ -322,6 +332,4 @@ public class TenguBoss : MonoBehaviour
         }
 
     }
-
-    
 }

@@ -135,7 +135,7 @@ public class EnemyHealth : HealthSystem
             Instantiate(shadow_essence, essence_spawnpoint.transform.position, Quaternion.identity);
         }
 
-        if ((currHealthPoint - damageBurst) <= 0)
+        if ((currHealthPoint - damageBurst) <= 0 && playerShadowMode)
         {
             markedForExecute =  true;
             if (enemySoul != null) {enemySoul.SetMarkedForExecute(true);}
