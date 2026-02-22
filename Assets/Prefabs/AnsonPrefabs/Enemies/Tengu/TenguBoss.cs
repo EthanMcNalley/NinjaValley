@@ -314,6 +314,11 @@ public class TenguBoss : MonoBehaviour
         airAttackScript.DodgeWindowFalse();
     }
 
+    public void PlaySound(string soundName)
+    {
+        AudioManager.instance.PlayOneShot(soundName, transform.position);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player"))

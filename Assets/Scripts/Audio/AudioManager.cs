@@ -42,6 +42,11 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(clip, position);
     }
     
+    public void PlayOneShot(string clip, Vector3 position)
+    {
+        RuntimeManager.PlayOneShot(clip, position);
+    }
+    
     public IEnumerator PlaySound(EventReference clip, GameObject gameObject, bool waitToEnd)
     {
         CurrentSound = CreateEventInstance(clip);
