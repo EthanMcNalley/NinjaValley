@@ -5,7 +5,7 @@ public class CutsceneBars : MonoBehaviour
     public static CutsceneState cutscene_state;
     public Animator cutscene_bars;
     public float active_timer = 0.0f;
-    public Animator UI_scroll_animator;
+    //public Animator UI_scroll_animator;
     public NewMovement player;
     
     private CutsceneState previousState;

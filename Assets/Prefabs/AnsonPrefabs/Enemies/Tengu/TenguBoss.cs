@@ -13,7 +13,7 @@ public class TenguBoss : MonoBehaviour
     public float movementSpeed = 5, distToPlayer, attackingMovementSpeed = 0;
     public float normalAttackRange;
     public float bossTimer = 16f, maxTimer = 16f, normalAttackTimer = 5f, normalAttackMaxTimer = 5f,bossCurrentHP, bossCurrentGauge;
-    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, canNormalAttack, playerCollision = false, inCombat, justBreak;
+    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, canNormalAttack, playerCollision = false, inCombat, justBreak, dead;
     public AnsonBossHp bossHPSystem;
     public GameObject[] tornadoSpawnPointsPat1, tornadoSpawnPointsPat2;
 
@@ -45,6 +45,9 @@ public class TenguBoss : MonoBehaviour
 
     private void OnDisable()
     {
+        animator.enabled = false;
+        spearHitbox.SetActive(false);
+        
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
         
@@ -53,6 +56,11 @@ public class TenguBoss : MonoBehaviour
 
     private void OnDestroy()
     {
+        dead = true;
+        
+        animator.enabled = false;
+        spearHitbox.SetActive(false);
+        
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
         
@@ -139,7 +147,22 @@ public class TenguBoss : MonoBehaviour
         }
 
         animator.SetBool("isRunning", canMove && agent.velocity.sqrMagnitude > 0.1f);
-        
+
+        if (agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
+        {
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            direction.y = 0;
+
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
+                    targetRotation,
+                    Time.deltaTime * 2f
+                );
+            }
+        }
         
         if (justBreak && !isBreak)
         {
@@ -228,6 +251,7 @@ public class TenguBoss : MonoBehaviour
 
     public void SpawnRockSpikeVFX()
     {
+        if (dead) return;
         //RockSpikeVFX = Instantiate(RockSpikeVFX, targetPos, Quaternion.identity);
         RockSpikeVFX.transform.position = targetPos;
         RockSpikeVFX.SetActive(true);
@@ -236,6 +260,7 @@ public class TenguBoss : MonoBehaviour
 
     public void SpawnGroundStompVFX()
     {
+        if (dead) return;
         //groundStompVFX = Instantiate(groundStompVFX, vfxPos, Quaternion.identity);
         groundStompVFX.transform.position = vfxPos;
         groundStompVFX.SetActive(true);
@@ -243,30 +268,35 @@ public class TenguBoss : MonoBehaviour
     }
     public void EnableAirAttackHitBox()
     {
+        if (dead) return;
         airAttackHitBox.SetActive(true);
         Debug.Log("Enabled Air Attack Hitbox");
     }
 
     public void DisableAirAttackHitBox()
     {
+        if (dead) return;
         airAttackHitBox.SetActive(false);
         Debug.Log("Disabled Air Attack Hitbox");
     }
 
     public void EnableSpearHitBox()
     {
+        if (dead) return;
         spearHitbox.SetActive(true);
         Debug.Log("Enabled Spear Attack Hitbox");
     }
 
     public void DisableSpearHitBox()
     {
+        if (dead) return;
         spearHitbox.SetActive(false);
         Debug.Log("Disabled Spear Attack Hitbox");
     }
 
     public void AirAttackFollow()
     {
+        if (dead) return;
         this.transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * 5f);
     }
 
@@ -304,37 +334,21 @@ public class TenguBoss : MonoBehaviour
 
     public void SetPlayerPerfectDodgeTrue()
     {
+        if (dead) return;
         spearAttackScript.DodgeWindowTrue();
         airAttackScript.DodgeWindowTrue();
     }
     
     public void SetPlayerPerfectDodgeFalse()
     {
+        if (dead) return;
         spearAttackScript.DodgeWindowFalse();
         airAttackScript.DodgeWindowFalse();
     }
 
     public void PlaySound(string soundName)
     {
+        if (dead) return;
         AudioManager.instance.PlayOneShot(soundName, transform.position);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Enter");
-            playerCollision = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Exit");
-            playerCollision = false;
-        }
-
     }
 }

@@ -7,6 +7,7 @@ public class AnsonBossHp : EnemyHealth
     [SerializeField] public float maxBreakTimer = 10f;
 
     public BossHPUI healthBreakBar;
+    public TenguBoss tenguBoss;
     public float currentGauge;
     public float breakTimer;
     public bool breakState = false;
@@ -89,6 +90,7 @@ public class AnsonBossHp : EnemyHealth
     protected override void Dead()
     {
         Debug.Log("Boss Defeated!");
+        tenguBoss.enabled = false;
         base.Dead();
     }
 }
