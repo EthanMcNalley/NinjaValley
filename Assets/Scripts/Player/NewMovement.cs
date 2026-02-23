@@ -419,6 +419,12 @@ public class NewMovement : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         hit_normal = hit.normal;
+
+        // if (hit.gameObject.CompareTag("MovingPlatform"))
+        // {
+        //     transform.parent = hit.transform;
+        // }
+
         /*if (controller.slopeLimit > Vector3.Angle(hit_normal, Vector3.up))
         {
             Debug.Log("WOOOO");
