@@ -24,7 +24,9 @@ public class ShadowAssassin : MonoBehaviour
     private bool inCombat;
     
     public Slider shadowBarSlider;
-    private Image shadowBarImage;
+    public GameObject ninetails, boarder, insignia;
+    private Image ninetailsImage, boarderImage;
+    //private Image shadowBarImage;
     private float ratio;
     private float timer;
 
@@ -88,6 +90,12 @@ public class ShadowAssassin : MonoBehaviour
             }
         }
         
+        ninetailsImage = ninetails.GetComponent<Image>();
+        boarderImage = boarder.GetComponent<Image>();
+        
+        ninetailsImage.fillAmount = 0f;
+        boarderImage.fillAmount = 0f;
+        
         combatStateManager.PlayerAttack += OnPlayerAttack;
         
         instance_material_expand = new Material(time_slow_material);
@@ -98,6 +106,12 @@ public class ShadowAssassin : MonoBehaviour
         
         shadowSlowRenderer.passMaterial = instance_material_expand;
         vignette.passMaterial =  instance_vignette_material;
+        
+        if (currentShadowMeter >= maxShadowMeter)
+        {
+            shadowReady = true;
+            insignia.SetActive(true);
+        }
     }
 
     private void OnEnable()
@@ -129,7 +143,8 @@ public class ShadowAssassin : MonoBehaviour
         {
             timer -= Time.deltaTime;
             ratio = Mathf.Clamp01( timer / shadowAssassinDuration);
-            shadowBarSlider.value = ratio;
+            ninetailsImage.fillAmount = ratio;
+            boarderImage.fillAmount = ratio;
         }
 
         ScreenEffect();
@@ -184,6 +199,8 @@ public class ShadowAssassin : MonoBehaviour
         shadowReady = false;
         shadowActive = true;
         timer = shadowAssassinDuration;
+        insignia.SetActive(false);
+        shadowBarSlider.value = 0f;
         //AudioManager.instance.SetSlowTime(1f);
         
         Material[] materials = characterRenderer.materials;
@@ -195,6 +212,9 @@ public class ShadowAssassin : MonoBehaviour
         //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
         InstantiateTerrainScanner();
+        
+        ninetailsImage.fillAmount = 1f;
+        boarderImage.fillAmount = 1f;
 
         shadowCoroutine = StartCoroutine(ShadowAssassinTimer());
     }
@@ -255,6 +275,11 @@ public class ShadowAssassin : MonoBehaviour
         if (currentShadowMeter >= maxShadowMeter)
         {
             shadowReady = true;
+            insignia.SetActive(true);
+            if (inCombat)
+            {
+                if (!Mathf.Approximately(boarderImage.fillAmount, 1f)) boarderImage.fillAmount = 1f;
+            }
         }
         
         ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
@@ -272,8 +297,21 @@ public class ShadowAssassin : MonoBehaviour
         }
     }
 
-    private void OnPlayerCombat() => inCombat = true;
-    private void OnPlayerCombatEnded() => inCombat = false;
+    private void OnPlayerCombat()
+    {
+        inCombat = true;
+        if (!shadowReady) return;
+        
+        boarderImage.fillAmount = 1f;
+    }
+
+    private void OnPlayerCombatEnded()
+    {
+        inCombat = false;
+        if (shadowActive) return;
+        
+        boarderImage.fillAmount = 0;
+    }
     
     void InstantiateTerrainScanner()
     {

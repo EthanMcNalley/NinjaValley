@@ -61,13 +61,13 @@ public class CutsceneBars : MonoBehaviour
             player.DisableMovement();
             Debug.Log("WDOODO");
             cutscene_bars.SetBool("Active", true);
-            UI_scroll_animator.SetBool("Fold", true);
+            //UI_scroll_animator.SetBool("Fold", true);
         }
         else
         {
             player.EnableMovement();
             cutscene_bars.SetBool("Active", false);
-            UI_scroll_animator.SetBool("Fold", false);
+            //UI_scroll_animator.SetBool("Fold", false);
         }
     }
 
