@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance { get; private set; }
     
     public bool needMusic;
+    public MusicEnum startingMusic = 0;
     
     public EventInstance soundToStop;
     public EventInstance musicEventInstance;
@@ -35,6 +36,7 @@ public class AudioManager : MonoBehaviour
     {
         musicEventInstance = CreateEventInstance(musicEventReference);
         musicEventInstance.start();
+        SetMusicArea(startingMusic);
     }
     
     public void PlayOneShot(EventReference clip, Vector3 position)

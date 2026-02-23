@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7304544860079558281}
   - component: {fileID: 7217200329777537022}
   - component: {fileID: 4913668065941192271}
+  - component: {fileID: 2601335193484042791}
   m_Layer: 0
   m_Name: RockSpikeHitbox
   m_TagString: BossAttackHitbox
@@ -91,6 +92,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossAttackScript
   damage: 10
   dodgeWindow: 0
+--- !u!114 &2601335193484042791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2455949433500279178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 20507469
+      Data2: 1075350397
+      Data3: -827906885
+      Data4: -1463947470
+    Path: event:/Enemies/Tengu/RockBurst
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 50
 --- !u!1 &5565623145096311476
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +152,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 138.30222, y: 0.07433337, z: -70.74052}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 335457567792962342}

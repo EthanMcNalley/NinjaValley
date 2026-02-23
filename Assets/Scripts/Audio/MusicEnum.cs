@@ -4,5 +4,6 @@ public enum MusicEnum
     WaterDrip = 1,
     Area1 = 2,
     Silence = 3,
-    TheMysticalTree = 4
+    TheMysticalTree = 4,
+    Tengu = 5
 }

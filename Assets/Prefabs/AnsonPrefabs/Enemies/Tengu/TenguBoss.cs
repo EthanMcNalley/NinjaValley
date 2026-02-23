@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
+using FMODUnity;
 
 public class TenguBoss : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class TenguBoss : MonoBehaviour
     [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, canNormalAttack, playerCollision = false, inCombat, justBreak, dead;
     public AnsonBossHp bossHPSystem;
     public GameObject[] tornadoSpawnPointsPat1, tornadoSpawnPointsPat2;
+    public GameObject feathersPos;
+    public ParticleSystem feathersvfx;
+    public MusicEnum bossMusic, theTree;
 
     private BossAttackScript spearAttackScript, airAttackScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,6 +45,7 @@ public class TenguBoss : MonoBehaviour
         CombatEvents.ShadowAssassinStarted += OnShadowStart;
         CombatEvents.ShadowAssassinEnded += OnShadowEnd;
         
+        AudioManager.instance.SetMusicArea(bossMusic);
     }
 
     private void OnDisable()
@@ -51,6 +56,7 @@ public class TenguBoss : MonoBehaviour
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
         
+        AudioManager.instance.SetMusicArea(theTree);
         ExitCombat();
     }
 
@@ -64,6 +70,7 @@ public class TenguBoss : MonoBehaviour
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
         
+        AudioManager.instance.SetMusicArea(theTree);
         ExitCombat();
     }
     
@@ -294,6 +301,11 @@ public class TenguBoss : MonoBehaviour
     {
         if (dead) return;
         this.transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * 5f);
+    }
+
+    public void startFeathersVFX()
+    {
+        Instantiate(feathersvfx, feathersPos.transform.position, feathersvfx.transform.rotation);
     }
 
     public void SetIsAttacking()
