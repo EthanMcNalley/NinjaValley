@@ -197,6 +197,7 @@ public class CombatStateManager : MonoBehaviour
         if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown && movementController.canMove == true)
         {
             SwitchState(Dodge);
+            AudioManager.instance.PlayOneShot("event:/Player/Dash", transform.position);
             dash_particles.SetActive(true);
             DodgeCoolDownTimer = 0f;
         }
