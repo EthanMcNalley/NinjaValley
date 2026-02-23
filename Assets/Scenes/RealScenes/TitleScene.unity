@@ -5452,6 +5452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   needMusic: 0
+  startingMusic: 0
 --- !u!4 &1262597829
 Transform:
   m_ObjectHideFlags: 0
@@ -7373,6 +7374,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6648584560493563500, guid: 6f85d353cc42749c2baf155493a9c158, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648584560493563500, guid: 6f85d353cc42749c2baf155493a9c158, type: 3}
       propertyPath: scenes_to_load.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -7411,8 +7416,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8304071379371338591, guid: 6f85d353cc42749c2baf155493a9c158, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 449927002858795522}
   m_SourcePrefab: {fileID: 100100000, guid: 6f85d353cc42749c2baf155493a9c158, type: 3}
+--- !u!1 &449927002858795521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8304071379371338591, guid: 6f85d353cc42749c2baf155493a9c158, type: 3}
+  m_PrefabInstance: {fileID: 449927002858795520}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &449927002858795522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449927002858795521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01c33d40d554f341a4278f6a5d911dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadOneScene
+  load_this_scene:
+    m_SceneAsset: {fileID: 102900000, guid: e1f42d9bc24941e458aa164f35169001, type: 3}
+    m_SceneName: IntroCutscene
 --- !u!4 &543450653396645871
 Transform:
   m_ObjectHideFlags: 0

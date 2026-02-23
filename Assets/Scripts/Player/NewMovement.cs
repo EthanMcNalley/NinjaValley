@@ -466,6 +466,11 @@ public class NewMovement : MonoBehaviour
                 //     }
                 // }
             }
+
+            else if (upgrade.upgrade_type == Upgrade.UpgradeType.HEALTH)
+            {
+                UI_manager.OpenTextScrollMenu("You've absorbed the essence of health! Max HP has increased.");
+            }
         }
 
         if (other.TryGetComponent(out TimeIntangible time_block))
