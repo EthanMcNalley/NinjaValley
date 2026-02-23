@@ -337,6 +337,11 @@ public class ShadowAssassin : MonoBehaviour
         return shadowActive;
     }
 
+    public float getTimer()
+    {
+        return timer;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ShadowEssence"))

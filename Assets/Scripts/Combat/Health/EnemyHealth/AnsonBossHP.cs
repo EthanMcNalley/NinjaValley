@@ -26,6 +26,7 @@ public class AnsonBossHp : EnemyHealth
     {
         CheckBreakStatus();
     }
+    
     public override void TakeDamage(float damage)
     {
         float outputDamage = damage;
@@ -47,7 +48,7 @@ public class AnsonBossHp : EnemyHealth
             base.TakeDamage(damage);
         }
     }
-
+    
     public float checkHealth()
     {
         return currHealthPoint;
@@ -62,12 +63,31 @@ public class AnsonBossHp : EnemyHealth
     {
         return breakState;
     }
+    
+    protected override void OnShadowStart()
+    {
+        base.OnShadowStart();
+        if (breakState)
+        {
+            breakTimer = Mathf.Max(0f, breakTimer - shadowAssassin.shadowAssassinDuration);
+        }
+    }
 
     public void CheckBreakStatus()
     {
         if (currentGauge <= 0 && !breakState)
         {
             breakState = true;
+
+            if (shadowAssassin == null)
+            {
+                shadowAssassin = GameObject.FindGameObjectWithTag("Player").GetComponent<ShadowAssassin>();
+            }
+            
+            if (shadowAssassin.getShadowActive())
+            {
+                breakTimer = Mathf.Max(0f, breakTimer - shadowAssassin.getTimer());
+            }
         }
         
         if (breakState)

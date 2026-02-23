@@ -66,7 +66,7 @@ public class EnemyHealth : HealthSystem
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
     }
     
-    void OnShadowStart()
+    protected virtual void OnShadowStart()
     {
         if (shadowAssassin == null || player == null)
         {
@@ -86,7 +86,7 @@ public class EnemyHealth : HealthSystem
         damageBurst = 0f;
     }
 
-    void OnShadowEnd()
+    protected virtual void OnShadowEnd()
     {
         playerShadowMode = false;
         BurstShadowDamage();

@@ -17,7 +17,7 @@ public class TenguBoss : MonoBehaviour
     public AnsonBossHp bossHPSystem;
     public GameObject[] tornadoSpawnPointsPat1, tornadoSpawnPointsPat2;
 
-    public BossAttackScript spearAttackScript, airAttackScript;
+    private BossAttackScript spearAttackScript, airAttackScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -155,12 +155,8 @@ public class TenguBoss : MonoBehaviour
 
             if (direction != Vector3.zero)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(
-                    transform.rotation,
-                    targetRotation,
-                    Time.deltaTime * 2f
-                );
+                Quaternion rotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 1.3f);
             }
         }
         
