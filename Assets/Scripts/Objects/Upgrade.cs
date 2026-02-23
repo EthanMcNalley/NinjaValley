@@ -5,7 +5,9 @@ public class Upgrade : MonoBehaviour
     public enum UpgradeType
     {
         TIMESLOW,
-        DOUBLEJUMP
+        DOUBLEJUMP,
+        HEALTH,
+        TIMEAMOUNT
     }
 
     public UpgradeType upgrade_type;
