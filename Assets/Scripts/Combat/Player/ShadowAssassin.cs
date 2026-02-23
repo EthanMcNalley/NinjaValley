@@ -167,11 +167,11 @@ public class ShadowAssassin : MonoBehaviour
     {
         if (shadowActive)
         {
-            if (time_size < max_size)
+            if (clear_time_size < max_size)
             {
-                time_size += Time.deltaTime * material_rate;
+                /*time_size += Time.deltaTime * material_rate;
                 time_size = Mathf.Min(time_size, max_size);
-                instance_purple_material_expand.SetFloat("_WipeSize", time_size);
+                instance_purple_material_expand.SetFloat("_WipeSize", time_size);*/
                 clear_time_size += Time.deltaTime * material_rate;
                 clear_time_size = Mathf.Min(clear_time_size, max_size);
                 time_slow_material.SetFloat("_ClearSize", clear_time_size);
@@ -187,11 +187,11 @@ public class ShadowAssassin : MonoBehaviour
         }
         else 
         {
-            if (time_size > 0)
+            if (clear_time_size > 0)
             {
-                time_size -= Time.deltaTime * material_rate;
+                /*time_size -= Time.deltaTime * material_rate;
                 time_size = Mathf.Max(time_size, 0f);
-                instance_purple_material_expand.SetFloat("_WipeSize", time_size);
+                instance_purple_material_expand.SetFloat("_WipeSize", time_size);*/
                 clear_time_size -= Time.deltaTime * material_rate;
                 clear_time_size = Mathf.Max(clear_time_size, 0);
                 time_slow_material.SetFloat("_ClearSize", clear_time_size);
