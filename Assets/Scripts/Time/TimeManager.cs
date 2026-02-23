@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
@@ -48,13 +49,15 @@ public class TimeManager : MonoBehaviour
         }
         
         anim_objects = GameObject.FindGameObjectsWithTag("Test");
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Awake()
+    {
         instance_material = new Material(time_slow_material);
         time_slow_renderer.passMaterial = instance_material;
-        
-        player = GameObject.FindGameObjectWithTag("Player");
-        
     }
-    
+
     private void OnEnable()
     {
         CombatEvents.ShadowAssassinStarted += OnShadowStart;
@@ -250,6 +253,11 @@ public class TimeManager : MonoBehaviour
     public TimeState GetTimeState()
     {
         return time_state;
+    }
+
+    public Material GetMaterial()
+    {
+        return instance_material;
     }
 
     public void SlowTime(){

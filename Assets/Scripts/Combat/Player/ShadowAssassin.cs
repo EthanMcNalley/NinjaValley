@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 using FMODUnity;
+using UnityEngine.Rendering;
 using EventReference = FMODUnity.EventReference;
 
 [RequireComponent(typeof(CombatStateManager))]
 public class ShadowAssassin : MonoBehaviour
 {
     CombatStateManager combatStateManager;
+    public TimeManager timeManager;
     public float currentShadowMeter = 0f;
     public float maxShadowMeter = 100f;
 
@@ -41,6 +43,8 @@ public class ShadowAssassin : MonoBehaviour
     
     public SkinnedMeshRenderer characterRenderer;
     public Material maskFlareMaterial;
+    private Material[] saveMaterials;
+    public Volume shadowVolume;
     
     public List<GameObject> CloneVFX;
     
@@ -53,8 +57,8 @@ public class ShadowAssassin : MonoBehaviour
     private bool shaderFading;
     private bool shaderTargetState;
     
-    public Material time_slow_material;
-    private Material instance_material_expand;
+    public Material purple_time_slow_material;
+    private Material time_slow_material, instance_purple_material_expand;
     public Material vignette_material;
     private Material instance_vignette_material;
     public FullScreenPassRendererFeature shadowSlowRenderer;
@@ -63,6 +67,7 @@ public class ShadowAssassin : MonoBehaviour
     public float max_size = 3.0f;
     
     private float time_size = 0.0f;
+    private float clear_time_size = 0.0f;
     
     public float fadeSpeed = 2.0f;
     private float effectStrength = 0f;
@@ -92,26 +97,31 @@ public class ShadowAssassin : MonoBehaviour
         
         ninetailsImage = ninetails.GetComponent<Image>();
         boarderImage = boarder.GetComponent<Image>();
-        
         ninetailsImage.fillAmount = 0f;
         boarderImage.fillAmount = 0f;
         
         combatStateManager.PlayerAttack += OnPlayerAttack;
+
+        time_slow_material = timeManager.GetMaterial();
+        clear_time_size = 0f;
         
-        instance_material_expand = new Material(time_slow_material);
-        time_size = 0f;
-        instance_material_expand.SetFloat("_WipeSize", time_size);
-        
-        instance_vignette_material = new Material(vignette_material);
-        
-        shadowSlowRenderer.passMaterial = instance_material_expand;
-        vignette.passMaterial =  instance_vignette_material;
+        saveMaterials = (Material[])characterRenderer.materials.Clone();
         
         if (currentShadowMeter >= maxShadowMeter)
         {
             shadowReady = true;
             insignia.SetActive(true);
         }
+    }
+
+    private void Awake()
+    {
+        instance_purple_material_expand = new Material(purple_time_slow_material);
+        instance_purple_material_expand.SetFloat("_WipeSize", time_size);
+        
+        instance_vignette_material = new Material(vignette_material);
+        shadowSlowRenderer.passMaterial = instance_purple_material_expand;
+        vignette.passMaterial =  instance_vignette_material;
     }
 
     private void OnEnable()
@@ -161,7 +171,12 @@ public class ShadowAssassin : MonoBehaviour
             {
                 time_size += Time.deltaTime * material_rate;
                 time_size = Mathf.Min(time_size, max_size);
-                instance_material_expand.SetFloat("_WipeSize", time_size);
+                instance_purple_material_expand.SetFloat("_WipeSize", time_size);
+                clear_time_size += Time.deltaTime * material_rate;
+                clear_time_size = Mathf.Min(clear_time_size, max_size);
+                time_slow_material.SetFloat("_ClearSize", clear_time_size);
+                
+                shadowVolume.weight = Mathf.MoveTowards(shadowVolume.weight, 1f, Time.deltaTime * (material_rate/max_size));
             }
             
             if (effectStrength < 1f)
@@ -176,7 +191,12 @@ public class ShadowAssassin : MonoBehaviour
             {
                 time_size -= Time.deltaTime * material_rate;
                 time_size = Mathf.Max(time_size, 0f);
-                instance_material_expand.SetFloat("_WipeSize", time_size);
+                instance_purple_material_expand.SetFloat("_WipeSize", time_size);
+                clear_time_size -= Time.deltaTime * material_rate;
+                clear_time_size = Mathf.Max(clear_time_size, 0);
+                time_slow_material.SetFloat("_ClearSize", clear_time_size);
+                
+                shadowVolume.weight = Mathf.MoveTowards(shadowVolume.weight, 0f, Time.deltaTime * (material_rate/max_size));
             }
         
             if (effectStrength > 0)
@@ -203,11 +223,9 @@ public class ShadowAssassin : MonoBehaviour
         shadowBarSlider.value = 0f;
         //AudioManager.instance.SetSlowTime(1f);
         
-        Material[] materials = characterRenderer.materials;
-        Array.Resize(ref materials, materials.Length + 1);
-        materials[^1] = maskFlareMaterial;
-        
-        characterRenderer.materials = materials;
+        var Materials = (Material[])saveMaterials.Clone();
+        Materials[^1] = maskFlareMaterial;
+        characterRenderer.materials = Materials;
         
         //Broadcast event so I don't have do something weird with the code for the CombatStateManager
         CombatEvents.RaiseShadowAssassinStarted();
@@ -255,7 +273,7 @@ public class ShadowAssassin : MonoBehaviour
         Material[] materials = characterRenderer.materials;
         Array.Resize(ref materials, materials.Length - 1);
         
-        characterRenderer.materials = materials;
+        characterRenderer.materials = (Material[])saveMaterials.Clone();
         
         CombatEvents.RaiseShadowAssassinEnded();
     }
