@@ -36,4 +36,9 @@ public class CutsceneCamera : MonoBehaviour
         
         GetComponent<CinemachineCamera>().Priority = 0;
     }
+
+    public void EnableAreaText()
+    {
+        AreaText.active = true;
+    }
 }

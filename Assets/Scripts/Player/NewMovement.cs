@@ -459,6 +459,9 @@ public class NewMovement : MonoBehaviour
             {
                 UI_manager.OpenTextScrollMenu("You've absorbed the essence of time! Press E to slow down time.");
                 time_able = true;
+                other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                other.gameObject.GetComponent<Collider>().enabled = false;
+                //other.gameObject.SetActive(false);
                 // while(UIManager.ui_state == UIManager.UIState.ACTIVE)
                 // {
                 //     if (Input.GetKeyDown(KeyCode.Q)){
@@ -470,6 +473,8 @@ public class NewMovement : MonoBehaviour
             else if (upgrade.upgrade_type == Upgrade.UpgradeType.HEALTH)
             {
                 UI_manager.OpenTextScrollMenu("You've absorbed the essence of health! Max HP has increased.");
+                other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                other.gameObject.GetComponent<Collider>().enabled = false;
             }
         }
 

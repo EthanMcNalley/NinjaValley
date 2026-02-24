@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class AreaText : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public static bool active = false;
+    public GameObject text;
 
     // Update is called once per frame
     void Update()
     {
-        
+        text.SetActive(active);
     }
 }

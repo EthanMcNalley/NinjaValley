@@ -11,6 +11,7 @@ public class DeactivateAfterTime : MonoBehaviour
 
     void Deactivate()
     {
+        AreaText.active = false;
         gameObject.SetActive(false);
     }
 }
