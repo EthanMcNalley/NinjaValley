@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class ChangeMusicArea : MonoBehaviour
 {
-    public MusicEnum area;
-    private void OnTriggerEnter(Collider collider)
+    public MusicEnum areaFrontZplus;
+    public MusicEnum areaBackZminus;
+    private void OnTriggerExit(Collider collider)
     {
         if (collider.tag.Equals("Player"))
         {
-            AudioManager.instance.SetMusicArea(area);
+            Vector3 direction = (collider.transform.position - transform.position).normalized;
+            
+            float dot = Vector3.Dot(transform.forward, direction);
+
+            AudioManager.instance.SetMusicArea(dot < 0 ? areaFrontZplus : areaBackZminus);
         }
     }
 }    

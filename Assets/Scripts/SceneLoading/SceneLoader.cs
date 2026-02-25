@@ -48,7 +48,7 @@ public class SceneLoader : MonoBehaviour
         
         asyncOp.allowSceneActivation = false;
 
-        while (asyncOp.progress < 0.5f)
+        while (asyncOp.progress < 0.9f)
         {
             yield return null;
         }
