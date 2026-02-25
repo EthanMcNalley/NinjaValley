@@ -44,11 +44,26 @@ public class SceneLoader : MonoBehaviour
     {
         Debug.Log(scenes_to_load[i]);
         //yield return SceneManager.LoadSceneAsync(scenes_to_load[i].SceneName, LoadSceneMode.Additive);
-        SceneManager.LoadSceneAsync(scenes_to_load[i].SceneName, LoadSceneMode.Additive);
-        while (!SceneManager.GetSceneByName(scenes_to_load[i].SceneName).isLoaded)
+        AsyncOperation asyncOp = SceneManager.LoadSceneAsync(scenes_to_load[i].SceneName, LoadSceneMode.Additive);
+        
+        asyncOp.allowSceneActivation = false;
+
+        while (asyncOp.progress < 0.5f)
         {
             yield return null;
         }
+
+        asyncOp.allowSceneActivation = true;
+        
+        while (!asyncOp.isDone)
+        {
+            yield return null;
+        }
+        
+        /*while (!SceneManager.GetSceneByName(scenes_to_load[i].SceneName).isLoaded)
+        {
+            yield return null;
+        }*/
     }
 
     private void UnloadScenes(){

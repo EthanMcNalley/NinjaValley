@@ -16,6 +16,7 @@ public class VolumeSlider : MonoBehaviour
         
         vca.getVolume(out volume);
         volumeSlider.value = volume;
+        SetVolume(volume);
 
         volumeSlider.onValueChanged.AddListener(SetVolume);
     }

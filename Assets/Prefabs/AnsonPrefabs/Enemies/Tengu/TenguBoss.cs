@@ -145,6 +145,7 @@ public class TenguBoss : MonoBehaviour
             isCloseToPlayer = false;
         }
         
+        
         bool canMove = !isAttacking && !isBreak;
         agent.isStopped = !canMove;
 
@@ -166,6 +167,8 @@ public class TenguBoss : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 1.3f);
             }
         }
+        
+        justBreak = bossHPSystem.checkBreak();
         
         if (justBreak && !isBreak)
         {
@@ -217,11 +220,6 @@ public class TenguBoss : MonoBehaviour
         {
             AirAttackFollow();
         }
-    }
-
-    private void LateUpdate()
-    {
-        justBreak = bossHPSystem.checkBreak();
     }
 
     public void SpawnTornadoVFX()
