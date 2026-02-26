@@ -74,17 +74,16 @@ public class SceneLoader : MonoBehaviour
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(scenes[i].SceneName, LoadSceneMode.Additive);
         
         asyncOp.allowSceneActivation = false;
-
-        while (asyncOp.progress < 0.9f)
-        {
-            yield return null;
-        }
-
-        asyncOp.allowSceneActivation = true;
         
         while (!asyncOp.isDone)
         {
             yield return null;
+            while (asyncOp.progress < 0.9f)
+            {
+                yield return null;
+            }
+
+            asyncOp.allowSceneActivation = true;
         }
         
         /*while (!SceneManager.GetSceneByName(scenes_to_load[i].SceneName).isLoaded)
