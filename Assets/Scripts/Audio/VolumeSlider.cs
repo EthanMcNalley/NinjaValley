@@ -14,15 +14,22 @@ public class VolumeSlider : MonoBehaviour
     {
         vca = RuntimeManager.GetVCA(vcaPath);
         
-        vca.getVolume(out volume);
-        volumeSlider.value = volume;
-        SetVolume(volume);
+        //vca.getVolume(out volume);
 
         volumeSlider.onValueChanged.AddListener(SetVolume);
+        
+        SetVolume(volume);
+        volumeSlider.value = volume;
     }
 
     public void SetVolume(float value)
     {
+        if (value == 0)
+        {
+            vca.setVolume(0);
+            return;
+        }
+        
         float minDb = -30f;
         float maxDb = 0f;
         

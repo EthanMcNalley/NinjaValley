@@ -11,6 +11,7 @@ public class LanturnFireball : MonoBehaviour
     private Rigidbody fireballRB;
     private Animator fireballAnimator;
     private TimeManager.TimeState timeState;
+    private Vector3 forward;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

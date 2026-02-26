@@ -99,8 +99,6 @@ public class ShadowAssassin : MonoBehaviour
         boarderImage = boarder.GetComponent<Image>();
         ninetailsImage.fillAmount = 0f;
         boarderImage.fillAmount = 0f;
-        
-        combatStateManager.PlayerAttack += OnPlayerAttack;
 
         time_slow_material = timeManager.GetMaterial();
         clear_time_size = 0f;
@@ -128,12 +126,14 @@ public class ShadowAssassin : MonoBehaviour
     {
         CombatEvents.PlayerInCombat += OnPlayerCombat;
         CombatEvents.PlayerInCombatEnded += OnPlayerCombatEnded;
+        CombatStateManager.PlayerAttack += OnPlayerAttack;
     }
 
     private void OnDestroy()
     {
         CombatEvents.PlayerInCombat -= OnPlayerCombat;
         CombatEvents.PlayerInCombatEnded -= OnPlayerCombatEnded;
+        CombatStateManager.PlayerAttack -= OnPlayerAttack;
     }
 
     // Update is called once per frame

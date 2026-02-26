@@ -87,7 +87,7 @@ public class CombatStateManager : MonoBehaviour
     public EventReference slashSound2;
     public EventReference slashSound3;
     
-    public event Action<AttackData> PlayerAttack;
+    public static event Action<AttackData> PlayerAttack;
 
 
     void Start()

@@ -113,6 +113,8 @@ public class LanternYokai : MonoBehaviour
     
     public void Shoot()
     {
-        Instantiate(fireBallPrefab, shootPos.transform.position, shootPos.transform.rotation);
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+        Instantiate(fireBallPrefab, shootPos.transform.position, lookRotation);
     }
 }

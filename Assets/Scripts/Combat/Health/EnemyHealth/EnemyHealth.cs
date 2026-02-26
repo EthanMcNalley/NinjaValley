@@ -11,6 +11,7 @@ public class EnemyHealth : HealthSystem
     private bool playerShadowMode;
     private float damageDuringShadow;
     private float damageBurst;
+    private AttackData playerAttackData;
     
     public EnemyHPUI healthBar;
     public ParticleSystem particles;
@@ -35,35 +36,47 @@ public class EnemyHealth : HealthSystem
     private bool markedForDeath = false;
     private bool markedForExecute = false;
     public bool isBoss = false;
-    
-    void Start()
+
+    void Awake()
     {
         healthBar = GetComponentInChildren<EnemyHPUI>();
-        player = GameObject.FindGameObjectWithTag("Player");
         if (animator == null) animator = GetComponent<Animator>();
-        shadowAssassin = player.GetComponent<ShadowAssassin>();
-        shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
         if (cross != null) { cross.SetActive(false);}
         if (executeOutline != null) { executeOutline.SetActive(false);}
         if (soul != null) { soul.SetActive(false);}
+    }
+    
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        shadowAssassin = player.GetComponent<ShadowAssassin>();
+        shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
     }
 
     private void OnEnable()
     {
         CombatEvents.ShadowAssassinStarted += OnShadowStart;
         CombatEvents.ShadowAssassinEnded += OnShadowEnd;
+        CombatStateManager.PlayerAttack += OnPlayerAttack;
     }
 
     private void OnDisable()
     {
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+        CombatStateManager.PlayerAttack -= OnPlayerAttack;
     }
 
     private void OnDestroy()
     {
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+        CombatStateManager.PlayerAttack -= OnPlayerAttack;
+    }
+
+    protected virtual void OnPlayerAttack(AttackData data)
+    {
+        playerAttackData = data;
     }
     
     protected virtual void OnShadowStart()
@@ -130,7 +143,7 @@ public class EnemyHealth : HealthSystem
                 if (enemySoul != null) {enemySoul.SetMarkedForDeath(true);}
             }
         }
-        else
+        else if (!playerShadowMode && playerAttackData.stateID == AttackData.CombatStateID.GroundAttack3)
         {
             Instantiate(shadow_essence, essence_spawnpoint.transform.position, Quaternion.identity);
         }

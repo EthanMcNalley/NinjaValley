@@ -23,20 +23,19 @@ public class ShadowClone : MonoBehaviour
         combatStateManager = player.GetComponent<CombatStateManager>();
         animator = GetComponent<Animator>();
         hitbox = hitBoxGO.GetComponent<GeneralAttackHitbox>();
-        
-        combatStateManager.PlayerAttack += OnPlayerAttack;
     }
     
     private void OnEnable()
     {
         CombatEvents.ShadowAssassinStarted += OnShadowStart;
+        CombatStateManager.PlayerAttack += OnPlayerAttack;
     }
     
     void OnDisable()
     {
         if (combatStateManager != null)
         {
-            combatStateManager.PlayerAttack -= OnPlayerAttack;
+            CombatStateManager.PlayerAttack -= OnPlayerAttack;
         }
         
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
@@ -45,6 +44,7 @@ public class ShadowClone : MonoBehaviour
     void OnDestroy()
     {
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatStateManager.PlayerAttack -= OnPlayerAttack;
     }
 
     void OnShadowStart()
