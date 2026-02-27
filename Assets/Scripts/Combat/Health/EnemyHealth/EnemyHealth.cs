@@ -39,7 +39,7 @@ public class EnemyHealth : HealthSystem
 
     void Awake()
     {
-        healthBar = GetComponentInChildren<EnemyHPUI>();
+        //healthBar = GetComponentInChildren<EnemyHPUI>();
         if (animator == null) animator = GetComponent<Animator>();
         if (cross != null) { cross.SetActive(false);}
         if (executeOutline != null) { executeOutline.SetActive(false);}

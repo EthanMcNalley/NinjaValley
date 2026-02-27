@@ -291,7 +291,7 @@ public class NewMovement : MonoBehaviour
             horizontal = wallPushDir * 11f;
             
             //horizontal = horizontal.normalized * 5f;
-            Debug.Log("Restricting");
+            //Debug.Log("Restricting");
         }
         
         controller.Move(Time.deltaTime * (horizontal + vertical) + knockbackForce);

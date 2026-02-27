@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 using FMODUnity;
 using UnityEngine.Rendering;
-using EventReference = FMODUnity.EventReference;
+//using EventReference = FMODUnity.EventReference;
 
 [RequireComponent(typeof(CombatStateManager))]
 public class ShadowAssassin : MonoBehaviour
@@ -327,8 +327,11 @@ public class ShadowAssassin : MonoBehaviour
     {
         inCombat = false;
         if (shadowActive) return;
-        
-        boarderImage.fillAmount = 0;
+
+        if (boarderImage != null)
+        {
+            boarderImage.fillAmount = 0;
+        }
     }
     
     void InstantiateTerrainScanner()
@@ -360,11 +363,11 @@ public class ShadowAssassin : MonoBehaviour
         return timer;
     }
 
-    void OnTriggerEnter(Collider other)
+    /*void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ShadowEssence"))
         {
             
         }
-    }
+    }*/
 }
