@@ -137,7 +137,7 @@ public class NewMovement : MonoBehaviour
 
     private void OnJumpPerformed(InputAction.CallbackContext ctx)
     {
-        if (canMove)
+        if (canMove && Time.timeScale != 0)
         {
             Jump();
         }
@@ -145,7 +145,7 @@ public class NewMovement : MonoBehaviour
 
     private void OnJumpCanceled(InputAction.CallbackContext ctx)
     {
-        if (playerVelocity.y > 0f)
+        if (playerVelocity.y > 0f && Time.timeScale != 0)
         { 
             playerVelocity.y = Mathf.Min(playerVelocity.y, minJumpCutVelocity);
         }
@@ -170,7 +170,7 @@ public class NewMovement : MonoBehaviour
     {
         groundedPlayer = groundCheck.IsGrounded;
 
-        if (!play_landing && groundedPlayer)
+        if (!play_landing && groundedPlayer && Time.timeScale != 0)
         {
             Instantiate(landing_particle, transform.position, Quaternion.Euler(-90, 0, 0));
         } 
@@ -390,6 +390,7 @@ public class NewMovement : MonoBehaviour
 
     private void StateChanged()
     {
+        if (Time.timeScale == 0) return;
         switch (currentState)
         {
             case moveState.Idle:

@@ -9,7 +9,7 @@ public class TitleScreenStuff : MonoBehaviour
 {
     public EventReference PlaySoundClip;
     public EventInstance PlaySoundEvent;
-    public GameObject river;
+    public GameObject river, titleButtons;
     
     public void PlayOneShot(string path)
     {
@@ -19,6 +19,7 @@ public class TitleScreenStuff : MonoBehaviour
     public void SetActiveTrue()
     {
         river.SetActive(true);
+        titleButtons.SetActive(true);
     }
 
     public void StopAudio()

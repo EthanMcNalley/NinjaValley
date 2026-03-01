@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -39,10 +40,27 @@ public class UIManager : MonoBehaviour
     public Animator text_scroll_animator;
     public TMP_Text sign_text;
 
+    [Header("Buttons")] 
+    public EventSystem eventSystem;
+    public GameObject textScrollButton, mainMenuButton, settingsButton;
+    
+    [Header("Menus")] 
+    public GameObject textScroll, mainMenu, settings;
+    
+    private bool button_pressed = false;
+
     // public enum UIType{
     //     PAUSE
     // }
 
+    void Awake()
+    {
+        if (eventSystem == null)
+        {
+            eventSystem = FindFirstObjectByType<EventSystem>();
+        }
+    }
+    
     void Start()
     {
         blur_effect.gameObject.SetActive(true);
@@ -61,15 +79,21 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pauseAction.triggered){
+        if (pauseAction.triggered && settings_state == SettingsState.INACTIVE){
+            button_pressed = true;
+            
             if (ui_state == UIState.INACTIVE){
                 OpenMenu();
             }
-
             else{
                 CloseMenu();
             }
         }
+        /*else if (pauseAction.triggered && settings_state == SettingsState.ACTIVE)
+        {
+            settings_animator.SetTrigger("SlideOut");
+            settings_state =  SettingsState.INACTIVE;
+        }*/
         
         if (TimeManager.time_state == TimeManager.TimeState.SLOWED){
             time_bar.fillAmount = (time_manager.time_slowed_down - time_manager.time_timer) / time_manager.time_slowed_down;
@@ -112,11 +136,14 @@ public class UIManager : MonoBehaviour
 
     public void OpenMenu(){
         // timer = 0.0f;
+        mainMenu.SetActive(true);
+        eventSystem.SetSelectedGameObject(mainMenuButton);
         Time.timeScale = 0.0f;
         FadeIn();
         ui_state = UIState.ACTIVE;
+        pause_animator.SetBool("Idle", false);
         pause_animator.SetBool("Pause", true);
-        
+        button_pressed = false;
     }
 
     public void CloseMenu(){
@@ -124,30 +151,38 @@ public class UIManager : MonoBehaviour
         if (settings_state == SettingsState.INACTIVE){
             FadeOut();
             ui_state = UIState.INACTIVE;
+            eventSystem.SetSelectedGameObject(null);
+            pause_animator.SetBool("Idle", false);
             pause_animator.SetBool("Pause", false);
             ResetTime();
         }
+        else{
+            mainMenu.SetActive(true);
+            eventSystem.SetSelectedGameObject(mainMenuButton);
+            settings_state = SettingsState.INACTIVE;
+            settings_animator.SetTrigger("SlideOut");
+        }
+        button_pressed = false;
         //Invoke("ResetTime", unpause_delay);
     }
 
     public void SettingsMenu(){
         if (ui_state == UIState.ACTIVE){
             if (settings_state == SettingsState.INACTIVE){
+                mainMenu.SetActive(false);
                 settings_state = SettingsState.ACTIVE;
                 settings_animator.SetBool("Settings", true);
-            }
-
-            else{
-                settings_state = SettingsState.INACTIVE;
-                settings_animator.SetBool("Settings", false);
             }
         }
     }
 
     public void OpenTextScrollMenu(string message){
-        if (ui_state == UIState.INACTIVE){
+        if (ui_state == UIState.INACTIVE)
+        {
+            textScroll.SetActive(true);
             FadeIn();
             sign_text.text = message;
+            eventSystem.SetSelectedGameObject(textScrollButton);
             text_scroll_animator.SetBool("Active", true);
             ui_state = UIState.ACTIVE;
             Time.timeScale = 0.0f;
@@ -177,5 +212,11 @@ public class UIManager : MonoBehaviour
 
     public void FadeOut(){
         blur_effect.SetBool("Blur", false);
+    }
+    public void TextScrollFalse() => textScroll.SetActive(false);
+
+    public void SetSettingsState(bool state)
+    {
+        settings_state = state? SettingsState.ACTIVE : SettingsState.INACTIVE;
     }
 }

@@ -17,6 +17,9 @@ public class AudioManager : MonoBehaviour
     public EventInstance musicEventInstance;
     
     private EventInstance CurrentSound;
+    public string masterVCAPath;
+    public VCA vca;
+    public float initialVolume;
     //private PlaySound psound;
 
     private void Awake()
@@ -29,6 +32,12 @@ public class AudioManager : MonoBehaviour
         if (needMusic)
         {
             InitializeMusic(FmodEvents.instance.music);
+        }
+        
+        vca = RuntimeManager.GetVCA(masterVCAPath);
+        if (vca.isValid())
+        {
+            vca.setVolume(initialVolume);
         }
     }
 
