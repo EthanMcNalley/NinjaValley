@@ -90,6 +90,7 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0) return;
         // if(volume.profile)){
         //     original_saturation_value = adjustments.saturation.value;
         // }

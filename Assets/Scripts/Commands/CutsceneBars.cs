@@ -7,6 +7,7 @@ public class CutsceneBars : MonoBehaviour
     public float active_timer = 0.0f;
     //public Animator UI_scroll_animator;
     public NewMovement player;
+    public CanvasGroup hud;
     
     private CutsceneState previousState;
 
@@ -31,9 +32,17 @@ public class CutsceneBars : MonoBehaviour
         if (active_timer > 0){
             active_timer = active_timer - Time.deltaTime;
             cutscene_state = CutsceneState.ACTIVE;
+            if (hud.alpha > 0)
+            {
+                hud.alpha = Mathf.MoveTowards(hud.alpha, 0, 2f * Time.deltaTime);
+            }
         }
         else{
             cutscene_state = CutsceneState.INACTIVE;
+            if (hud.alpha < 1)
+            {
+                hud.alpha = Mathf.MoveTowards(hud.alpha, 1, 1.5f * Time.deltaTime);
+            }
         }
         
         if (cutscene_state != previousState)

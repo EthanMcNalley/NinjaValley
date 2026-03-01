@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -69,7 +68,6 @@ public class SceneLoader : MonoBehaviour
     
     private IEnumerator Wait(int i, SceneField[] scenes)
     {
-        Debug.Log(scenes[i]);
         //yield return SceneManager.LoadSceneAsync(scenes_to_load[i].SceneName, LoadSceneMode.Additive);
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(scenes[i].SceneName, LoadSceneMode.Additive);
         

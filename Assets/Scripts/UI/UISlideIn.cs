@@ -43,9 +43,10 @@ public class UIManager : MonoBehaviour
     [Header("Buttons")] 
     public EventSystem eventSystem;
     public GameObject textScrollButton, mainMenuButton, settingsButton;
-    
+
     [Header("Menus")] 
-    public GameObject textScroll, mainMenu, settings;
+    public GameObject textScroll;
+    public GameObject mainMenu, settings;
     
     private bool button_pressed = false;
 
@@ -79,10 +80,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pauseAction.triggered && settings_state == SettingsState.INACTIVE){
+        if (pauseAction.triggered){
             button_pressed = true;
             
-            if (ui_state == UIState.INACTIVE){
+            if (ui_state == UIState.INACTIVE  && settings_state == SettingsState.INACTIVE){
                 OpenMenu();
             }
             else{
@@ -158,6 +159,8 @@ public class UIManager : MonoBehaviour
         }
         else{
             mainMenu.SetActive(true);
+            pause_animator.SetBool("Idle", true);
+            pause_animator.SetBool("Pause", true);
             eventSystem.SetSelectedGameObject(mainMenuButton);
             settings_state = SettingsState.INACTIVE;
             settings_animator.SetTrigger("SlideOut");
