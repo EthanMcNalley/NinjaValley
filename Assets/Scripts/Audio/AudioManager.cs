@@ -34,6 +34,8 @@ public class AudioManager : MonoBehaviour
             InitializeMusic(FmodEvents.instance.music);
         }
         
+        
+        if (string.IsNullOrEmpty(masterVCAPath)) return;
         vca = RuntimeManager.GetVCA(masterVCAPath);
         if (vca.isValid())
         {

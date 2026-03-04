@@ -9,9 +9,9 @@ public class LanternYokai : MonoBehaviour
     public float attackRange = 50f;
     public float attackRangeIncrease = 15f;
     public float fireballCooldown = 3f;
-    private float fireballTimer;
+    public float fireballTimer;
     public GameObject shootPos;
-    private bool inCombat = false;
+    private bool inCombat = false, isShadow;
     
     public float distToPlayer;
     private bool playerShadow;
@@ -72,13 +72,14 @@ public class LanternYokai : MonoBehaviour
     void OnShadowStart()
     {
         animator.speed = 0.1f;
-        //fireballTimer += 5f; //idk just add this for now
+        isShadow = true;
         playerShadow = true;
     }
 
     void OnShadowEnd()
     {
         animator.speed = 1f;
+        isShadow = false;
         playerShadow = false;
     }
     
@@ -102,7 +103,7 @@ public class LanternYokai : MonoBehaviour
 
     private void AttackCheck()
     {
-        fireballTimer -= Time.deltaTime;
+        fireballTimer -= isShadow? Time.deltaTime: Time.deltaTime * 0.1f;
 
         if (fireballTimer <= 0f)
         {

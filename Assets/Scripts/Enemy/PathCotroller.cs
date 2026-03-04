@@ -31,15 +31,15 @@ public class PathController : MonoBehaviour
     public bool dodgeWindow = false;
     
     private bool inCombat = false;
+    public bool tutorial;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        if (patrolPoints != null)
+        if (patrolPoints.Length > 0)
         {
             target = patrolPoints[0];
-            
         }
         player = GameObject.FindGameObjectWithTag("Player");
         combatStateManager = player.GetComponent<CombatStateManager>();
@@ -115,13 +115,13 @@ public class PathController : MonoBehaviour
         {
             target = player;
         }
-        else if (wasChasing && !isChasing)
+        else if (wasChasing && !isChasing && patrolPoints.Length > 0)
         {
             target = patrolPoints[prevIndex >= 0 ? prevIndex : 0];
             agent.ResetPath();
         }
         
-        if (canMove && !isAttacking)
+        if (canMove && !isAttacking && patrolPoints.Length > 0)
         {
             agent.destination = target.transform.position;
             animator.SetBool("Moving", true);
@@ -131,7 +131,7 @@ public class PathController : MonoBehaviour
         {
             animator.SetBool("Moving", false);
             waitTime -= Time.deltaTime;
-            if (waitTime <= 0)
+            if (waitTime <= 0 && patrolPoints.Length > 0)
             {
                 int a = Random.Range(0, patrolPoints.Length);
 
@@ -189,7 +189,7 @@ public class PathController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !tutorial)
         {
             EnterCombat();
             Attack();
@@ -197,7 +197,7 @@ public class PathController : MonoBehaviour
         }
         
         //Debug.Log(other.name);
-        if (!isChasing && other.CompareTag("Point"))
+        if (!isChasing && other.CompareTag("Point") && patrolPoints.Length > 0)
         {   
             //canMove = false;
             for (int i = 0; i < patrolPoints.Length; i++){
@@ -211,7 +211,7 @@ public class PathController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && !isAttacking)
+        if (other.CompareTag("Player") && !isAttacking && !tutorial)
         {
             Attack();
             isAttacking = true;
@@ -251,5 +251,10 @@ public class PathController : MonoBehaviour
     public void DodgeWindowFalse()
     {
         dodgeWindow = false;
+    }
+
+    public void SetIsChasing()
+    {
+        isChasing = true;
     }
 }
