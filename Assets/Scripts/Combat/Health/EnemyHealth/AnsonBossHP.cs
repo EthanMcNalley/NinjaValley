@@ -12,6 +12,8 @@ public class AnsonBossHp : EnemyHealth
     public float breakTimer;
     public bool breakState = false;
     private bool initialized = false;
+
+    public float healthSpawnThreshold = 0.2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -35,6 +37,7 @@ public class AnsonBossHp : EnemyHealth
             currentGauge -= damage;
             healthBreakBar.UpdateBreakBar(currentGauge, maxGauge);
             outputDamage = damage / 0.67f;
+            CheckThreshold(outputDamage);
             base.TakeDamage(outputDamage);
             
             if (currentGauge < 0)
@@ -45,23 +48,22 @@ public class AnsonBossHp : EnemyHealth
         }
         else
         {
+            CheckThreshold(damage);
             base.TakeDamage(damage);
         }
-    }
-    
-    public float checkHealth()
-    {
-        return currHealthPoint;
+        
     }
 
-    public float checkGauge()
+    private void CheckThreshold(float damage)
     {
-        return currentGauge;
-    }
-
-    public bool checkBreak()
-    {
-        return breakState;
+        int prevThresholdCount = Mathf.FloorToInt((1f - (currHealthPoint / maxHealthPoint)) / healthSpawnThreshold);
+        int currThresholdCount = Mathf.FloorToInt((1f - ((currHealthPoint - damage) / maxHealthPoint)) / healthSpawnThreshold);
+        
+        //probably not needed since there is almost no possibility of the player going over several thresholds...
+        for (int i = prevThresholdCount; i < currThresholdCount; i++)
+        {
+            Instantiate(health_essence, essence_spawnpoint.transform.position, Quaternion.identity);
+        }
     }
     
     protected override void OnShadowStart()
@@ -73,7 +75,7 @@ public class AnsonBossHp : EnemyHealth
         }
     }
 
-    public void CheckBreakStatus()
+    private void CheckBreakStatus()
     {
         if (currentGauge <= 0 && !breakState)
         {
@@ -112,5 +114,20 @@ public class AnsonBossHp : EnemyHealth
         Debug.Log("Boss Defeated!");
         tenguBoss.enabled = false;
         base.Dead();
+    }
+        
+    public float checkHealth()
+    {
+        return currHealthPoint;
+    }
+
+    public float checkGauge()
+    {
+        return currentGauge;
+    }
+
+    public bool checkBreak()
+    {
+        return breakState;
     }
 }

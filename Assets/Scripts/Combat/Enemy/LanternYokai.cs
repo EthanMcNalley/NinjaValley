@@ -21,6 +21,7 @@ public class LanternYokai : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
+        isShadow = false;
     }
 
     // Update is called once per frame
@@ -103,7 +104,7 @@ public class LanternYokai : MonoBehaviour
 
     private void AttackCheck()
     {
-        fireballTimer -= isShadow? Time.deltaTime: Time.deltaTime * 0.1f;
+        fireballTimer -= !isShadow? Time.deltaTime: Time.deltaTime * 0.1f;
 
         if (fireballTimer <= 0f)
         {

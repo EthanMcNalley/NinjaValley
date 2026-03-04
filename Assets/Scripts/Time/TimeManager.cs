@@ -120,8 +120,8 @@ public class TimeManager : MonoBehaviour
             {
                 time_state = TimeState.NORMAL;
             }
-            //only allow manual cancel when not in combat and shadow assassin
-            if (!playerInCombat && !shadowActive && timeSlowAction.triggered)
+            //only allow manual cancel when not in shadow assassin
+            if (!shadowActive && timeSlowAction.triggered)
             {
                 refresh_timer = time_slowed_down - time_timer;
                 time_timer = time_slowed_down;
