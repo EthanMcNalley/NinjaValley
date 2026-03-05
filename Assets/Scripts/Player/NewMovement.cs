@@ -477,6 +477,16 @@ public class NewMovement : MonoBehaviour
                 other.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 other.gameObject.GetComponent<Collider>().enabled = false;
             }
+
+            else if (upgrade.upgrade_type == Upgrade.UpgradeType.DOUBLEJUMP)
+            {
+                UI_manager.OpenTextScrollMenu("You've absorbed the essence of the wind! You can now use the Tengu's power to double jump!.");
+                double_jump_able = true;
+                other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                other.gameObject.GetComponent<Collider>().enabled = false;
+            }
+            
+            AudioManager.instance.PlayOneShot("event:/Puzzle/Jingl", transform.position);
         }
 
         if (other.TryGetComponent(out TimeIntangible time_block))

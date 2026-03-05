@@ -6,6 +6,8 @@ public class PuzzleSwitch : MonoBehaviour
 {
     public UnityEvent switch_action;
     public bool done = false;
+    public Material base_material;
+    public Color base_color;
     public Material done_material;
     public Light done_light;
     public Color done_light_color;
@@ -14,6 +16,15 @@ public class PuzzleSwitch : MonoBehaviour
     public EventReference switch_hit_sfx;
     void Start(){
         cutscene_bars = GameObject.FindGameObjectWithTag("UIManager").GetComponent<CutsceneBars>();
+    }
+
+    void Update()
+    {
+        if (!done)
+        {
+            GetComponent<MeshRenderer>().material = base_material;
+            done_light.color = base_color;
+        }
     }
     public void OnTriggerEnter(Collider collider)
     {

@@ -8,14 +8,15 @@ public class TutorialText : MonoBehaviour
 
     void Start()
     {
-        tutorial_text.enabled = false;
+        //tutorial_text.enabled = false;
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log(":)");
-            tutorial_text.enabled = true;
+            //tutorial_text.enabled = true;
+            tutorial_text.color = Color.white;
             tutorial_text.GetComponent<TextEffect>().StartManualEffect("fadein");
         }
     }
@@ -28,4 +29,15 @@ public class TutorialText : MonoBehaviour
             tutorial_text.GetComponent<TextEffect>().StartManualEffect("fadeout");
         }
     }
+
+    public void Invisible()
+    {
+        tutorial_text.color = Color.clear;
+    }
+
+    public void Visible()
+    {
+        tutorial_text.color = Color.white;
+    }
+    
 }

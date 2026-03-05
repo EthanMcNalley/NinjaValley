@@ -7,6 +7,8 @@ public class DoEvent : MonoBehaviour
 
     public void DoThisEvent()
     {
-        the_event.Invoke();
+        if (the_event != null){
+            the_event.Invoke();
+        }
     }
 }

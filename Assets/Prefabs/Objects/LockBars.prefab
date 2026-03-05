@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2098133880510521593}
   - component: {fileID: 8758493647419931349}
   - component: {fileID: 3496020323839715447}
-  - component: {fileID: 2362450565070284507}
+  - component: {fileID: 1335390384394690629}
   m_Layer: 0
   m_Name: LockBars
   m_TagString: Untagged
@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b88f19dd8324e8f428ce5d2dac12b349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LockedBars
+  starting_closed: 0
 --- !u!95 &3496020323839715447
 Animator:
   serializedVersion: 7
@@ -73,7 +74,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2362450565070284507
+--- !u!114 &1335390384394690629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,16 +83,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 4603585339070022841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59471e141b36b458092fb90e684e5593, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a624bcce29e1c949bae1f04937060c2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayOneShotAudio
+  m_EditorClassIdentifier: Assembly-CSharp::PlayOneShots
   sound_effect:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+  - Guid:
+      Data1: -1727372250
+      Data2: 1132667504
+      Data3: -1985344864
+      Data4: 1482101252
+    Path: event:/Environment/GateRiseChanged
+  - Guid:
+      Data1: 1493741116
+      Data2: 1197533080
+      Data3: 80655548
+      Data4: -744032155
+    Path: event:/Environment/GateImpact
+  - Guid:
+      Data1: -2000587685
+      Data2: 1190159078
+      Data3: 1728605113
+      Data4: 695276201
+    Path: event:/Puzzle/PuzzleSolve
 --- !u!1001 &11435404313575886
 PrefabInstance:
   m_ObjectHideFlags: 0
