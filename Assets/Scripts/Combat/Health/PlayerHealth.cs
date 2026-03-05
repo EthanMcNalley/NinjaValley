@@ -50,6 +50,7 @@ public class PlayerHealth : HealthSystem
     
     protected override void Dead()
     {
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("GameOverScene");
     }
 

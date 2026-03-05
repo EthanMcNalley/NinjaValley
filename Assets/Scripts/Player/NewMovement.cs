@@ -59,7 +59,8 @@ public class NewMovement : MonoBehaviour
         Dodging,
         Jumping
     }
-    [SerializeField]private moveState currentState = moveState.Idle;
+    public static Vector3 last_grounded_position;
+    [SerializeField] private moveState currentState = moveState.Idle;
     private moveState prevState;
     public bool double_jump_able = false;
     public bool double_jump = false;
@@ -197,6 +198,7 @@ public class NewMovement : MonoBehaviour
             playerVelocity.y = -2f;
             double_jump = true;
             coyote_timer = 0f;
+            last_grounded_position = transform.position;
         }
 
         else {

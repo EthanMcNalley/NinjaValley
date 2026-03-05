@@ -142,7 +142,7 @@ public class CombatStateManager : MonoBehaviour
 
     private void AttackCheck()
     {
-        if (attackAction.triggered)
+        if (attackAction.triggered && movementController.canMove)
         {
             attacking = true;
         }
@@ -165,7 +165,7 @@ public class CombatStateManager : MonoBehaviour
 
     private void KunaiCheck()
     {
-        if (kunaiAction.triggered && currentKunai > 0)
+        if (kunaiAction.triggered && currentKunai > 0 && movementController.canMove)
         {
             Instantiate(Kunai, kunaiPosition.transform.position, kunaiPosition.transform.rotation);
             playerAnimatior.SetTrigger("Kunai");
@@ -194,7 +194,7 @@ public class CombatStateManager : MonoBehaviour
             perfectDodgeWindow = false;
         }
         
-        if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown && movementController.canMove == true)
+        if (dodgeAction.triggered && DodgeCoolDownTimer >= DodgeCoolDown && movementController.canMove)
         {
             SwitchState(Dodge);
             AudioManager.instance.PlayOneShot("event:/Player/Dash", transform.position);
