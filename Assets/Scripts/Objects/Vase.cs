@@ -1,20 +1,17 @@
+using Mono.Cecil;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class Bush : MonoBehaviour
+public class Vase : MonoBehaviour
 {
-    Material mat;
     Animator animator;
+    public GameObject essence;
+    public FMODUnity.EventReference breakSound;
     void Start()
     {
         if (TryGetComponent<Animator>(out animator))
         {
             animator = GetComponent<Animator>();
-        }
-
-        if (TryGetComponent<Renderer>(out Renderer renderer))
-        {
-            mat = GetComponent<Renderer>().material;
         }
     }
     
@@ -26,8 +23,11 @@ public class Bush : MonoBehaviour
             {
                 animator.SetTrigger("Damage");
             }
+            
+            if (essence != null) Instantiate(essence, transform.position, transform.rotation);
+            AudioManager.instance.PlayOneShot(breakSound, transform.position);
 
-            Destroy(gameObject, 1f);
+            gameObject.SetActive(false);
         }
     }
 }
