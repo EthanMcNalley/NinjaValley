@@ -453,6 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671535592}
   - component: {fileID: 671535591}
+  - component: {fileID: 671535595}
   - component: {fileID: 671535593}
   - component: {fileID: 671535594}
   m_Layer: 0
@@ -492,7 +493,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
@@ -547,6 +548,18 @@ MonoBehaviour:
   persistables_scene:
     m_SceneAsset: {fileID: 102900000, guid: 87fa87c9682035445ba332f3d293787b, type: 3}
     m_SceneName: RealPersistables
+--- !u!114 &671535595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671535590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba36f90b29e7cdd46921f315a1019276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScriptUsageVideoPlayback
 --- !u!1 &1313011022
 GameObject:
   m_ObjectHideFlags: 0
