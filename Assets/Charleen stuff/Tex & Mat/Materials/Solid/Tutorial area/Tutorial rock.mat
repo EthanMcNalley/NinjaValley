@@ -27,7 +27,6 @@ Material:
   m_ValidKeywords:
   - _APPLY_MOTION_YES
   - _APPLY_RIM_YES
-  - _ENABLE_EDGE_FADE_NO
   - _SPECULAR_SETUP
   m_InvalidKeywords:
   - _APPLY_AMBIENT_NO
@@ -44,7 +43,7 @@ Material:
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses:
@@ -172,7 +171,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _Blend_amount: 1
+    - _Blend_amount: 0.6
     - _Brightness: 10
     - _BumpScale: 1
     - _Bump_amount: 10
@@ -182,16 +181,12 @@ Material:
     - _Contribution: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DISSOLVE: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _ENABLE_EDGE_FADE: 1
     - _EnvironmentReflections: 1
     - _Fade_distance: 0
-    - _Fade_threshold_1: 0
-    - _Fade_threshold_2: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -201,7 +196,6 @@ Material:
     - _Motion_speed: 0.003
     - _Noise: -0.2
     - _OcclusionStrength: 1
-    - _OutlineSize: 0.04
     - _Outline_thickness: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -209,8 +203,8 @@ Material:
     - _ReceiveShadows: 1
     - _Reflection_blend: 1
     - _Reflection_intensity: 0.1
-    - _Rim_glow: -50
-    - _Rim_power: 5
+    - _Rim_glow: -459.66
+    - _Rim_power: 10
     - _Ripple_density: 5
     - _Ripple_egde_sharpness: 0.35
     - _Ripple_shininess: 5
@@ -231,7 +225,7 @@ Material:
     - _WorkflowMode: 0
     - _ZTest: 4
     - _ZWrite: 1
-    - _ZWriteControl: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Base_color: {r: 1, g: 1, b: 1, a: 1}
@@ -240,7 +234,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _First_color: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
-    - _OutlineColor: {r: 1, g: 0, b: 0, a: 1}
     - _Outline_color: {r: 0, g: 0, b: 0, a: 0}
     - _Rim_color: {r: 0.28850785, g: 0.24697399, b: 0.6981132, a: 1}
     - _Ripple_color: {r: 0, g: 1, b: 1, a: 0}
