@@ -4010,6 +4010,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 962269210}
     - target: {fileID: 346220985570991258, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: lockOnDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 346220985570991258, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: cinemachineCamera
       value: 
       objectReference: {fileID: 962269211}
@@ -11917,7 +11921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a6f4dcc9faeba4ba6f398a330921be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needMusic: 0
+  needMusic: 1
   startingMusic: 0
   masterVCAPath: vca:/VCAMaster
   initialVolume: 0.8

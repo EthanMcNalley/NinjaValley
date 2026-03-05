@@ -5,5 +5,6 @@ public enum MusicEnum
     Area1 = 2,
     Silence = 3,
     TheMysticalTree = 4,
-    Tengu = 5
+    Tengu = 5,
+    Wind = 6
 }
