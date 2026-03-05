@@ -25,16 +25,18 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _SURFACE_TYPE_TRANSPARENT
+  m_InvalidKeywords:
   - _JIGGLEAXIS_A
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2001
+  m_CustomRenderQueue: 3001
   stringTagMap:
-    RenderType: Opaque
+    RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
+  - DepthOnly
   - SHADOWCASTER
   m_LockedProperties: 
   m_SavedProperties:
@@ -49,7 +51,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Base_texture:
-        m_Texture: {fileID: 2800000, guid: 37e6f91f3efb0954cbdce254638862ea, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -138,7 +140,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _Blend: 0
+    - _Blend: 2
     - _BlendModePreserveSpecular: 1
     - _Brightness: 10
     - _BumpScale: 1
@@ -152,8 +154,8 @@ Material:
     - _Depth_sample_offset: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
+    - _DstBlend: 1
+    - _DstBlendAlpha: 1
     - _ENABLE_WAVES: 0
     - _Edge_blend: 0
     - _EnvironmentReflections: 1
@@ -175,8 +177,10 @@ Material:
     - _Max_flow_speed: 6
     - _Metallic: 0
     - _Min_flow_speed: 0.0067
+    - _Movement_speed: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _Puff_density: 0.06
     - _QueueControl: 0
     - _QueueOffset: 1
     - _ReceiveShadows: 1
@@ -193,9 +197,9 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Spin_speed: 0
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _SrcBlendAlpha: 1
-    - _Surface: 0
+    - _Surface: 1
     - _Sway_strength: 0
     - _Transparency: 1
     - _WATER_TYPE: 0
@@ -203,7 +207,7 @@ Material:
     - _Wave_speed: 8.93
     - _WorkflowMode: 0
     - _ZTest: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     - _ZWriteControl: 0
     - _idk_what_this_siyet: 1
     m_Colors:
