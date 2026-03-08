@@ -70,7 +70,7 @@ public class CombatStateManager : MonoBehaviour
     [Header ("Dodge Dash")]
     [SerializeField]private bool dashToEnemy  = false;
     public float dashRadius;
-    public LayerMask enemyLayer;
+    public LayerMask enemyLayer, interactableLayer;
     public float dashSpeed;
     
     
@@ -297,8 +297,11 @@ public class CombatStateManager : MonoBehaviour
         GameObject target = FindClosest.FindClosestGameObject(this.transform.position, faceEnemyDistance, enemyLayer);
         if (target == null)
         {
-            return;
+            target = FindClosest.FindClosestGameObject(this.transform.position, faceEnemyDistance, interactableLayer);
         }
+        
+        if  (target == null) return;
+        
         Vector3 direction = (target.transform.position - transform.position).normalized;
         direction.y = 0;
         
