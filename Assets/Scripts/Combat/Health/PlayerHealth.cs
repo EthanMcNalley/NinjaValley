@@ -24,13 +24,17 @@ public class PlayerHealth : HealthSystem
     
     public override void TakeDamage(float damage)
     {
-        base.TakeDamage(damage);
-        
+        TakeDamage(damage, DamageSource.Other);
+    }
+
+    public override void TakeDamage(float damage, DamageSource source)
+    {
         if (isInvincible)
         {
             return;
         }
-        
+
+        base.TakeDamage(damage, source);
         hurtVolume.weight = 1f;
     }
 
@@ -60,12 +64,7 @@ public class PlayerHealth : HealthSystem
         {
             if (currHealthPoint < maxHealthPoint)
             {
-                currHealthPoint = currHealthPoint + health_pickup_value;
-
-                if (currHealthPoint > maxHealthPoint)
-                {
-                    currHealthPoint = maxHealthPoint;
-                }
+                currHealthPoint = Mathf.Clamp(currHealthPoint + health_pickup_value,0, maxHealthPoint);
             } 
         }
     }

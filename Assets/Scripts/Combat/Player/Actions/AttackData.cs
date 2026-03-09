@@ -25,6 +25,9 @@ public struct AttackData
         GroundAttack2,
         GroundAttack3,
         Idle,
-        Dodge
+        Dodge,
+        CloneGroundAttack1,
+        CloneGroundAttack2,
+        CloneGroundAttack3
     }
 }

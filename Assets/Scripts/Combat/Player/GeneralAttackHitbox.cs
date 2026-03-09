@@ -34,7 +34,7 @@ public class GeneralAttackHitbox : MonoBehaviour
                 
         if (enemyHitted.Contains(other.gameObject)) return;
             
-        enemy.TakeDamage(damage);
+        enemy.TakeDamage(damage, HealthSystem.DamageSource.ShadowClone);
         enemyHitted.Add(other.gameObject);
         
     }

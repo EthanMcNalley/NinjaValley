@@ -15,7 +15,7 @@ public class GroundAttack1 : CombatState
         //stateManager.shadowCharge = shadowCharge;
         stateManager.bufferDurationTimer =  bufferDuration;
         
-        Debug.Log("Melee1");
+        //Debug.Log("Melee1");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack1");
         
@@ -61,7 +61,7 @@ public class GroundAttack2 : CombatState
         //stateManager.shadowCharge = shadowCharge;
         stateManager.bufferDurationTimer =  bufferDuration;
         
-        Debug.Log("Melee2");
+        //Debug.Log("Melee2");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack2");
         
@@ -108,7 +108,7 @@ public class GroundAttack3 : CombatState
         stateManager.shadowCharge = shadowCharge;
         stateManager.bufferDurationTimer =  bufferDuration;
         
-        Debug.Log("Melee3");
+        //Debug.Log("Melee3");
         stateManager.KatanaHitBox.BeginAttack();
         stateManager.playerAnimatior.SetTrigger("Attack3");
         

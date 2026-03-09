@@ -116,10 +116,15 @@ public class EnemyHealth : HealthSystem
             soul.SetActive(false);
         }
     }
-    
+
     public override void TakeDamage(float damage)
     {
-        base.TakeDamage(damage);
+        base.TakeDamage(damage, DamageSource.Other);
+    }
+    
+    public override void TakeDamage(float damage, DamageSource source)
+    {
+        base.TakeDamage(damage, source);
         if (animator != null)
         {
             animator.SetTrigger("Hit");
@@ -143,7 +148,7 @@ public class EnemyHealth : HealthSystem
                 if (enemySoul != null) {enemySoul.SetMarkedForDeath(true);}
             }
         }
-        else if (!playerShadowMode && playerAttackData.stateID == AttackData.CombatStateID.GroundAttack3)
+        else if (!playerShadowMode && playerAttackData.stateID == AttackData.CombatStateID.GroundAttack3 && source == DamageSource.Player)
         {
             Instantiate(shadow_essence, essence_spawnpoint.transform.position, Quaternion.identity);
         }
