@@ -20,6 +20,11 @@ public abstract class HealthSystem : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
+        TakeDamage(damage, DamageSource.Other);
+    }    
+    
+    public virtual void TakeDamage(float damage, DamageSource damageSource)
+    {
         if (isInvincible)
         {
             return;
@@ -36,4 +41,11 @@ public abstract class HealthSystem : MonoBehaviour
     }
 
     protected abstract void Dead();
+    
+    public enum DamageSource
+    {
+        Player,
+        ShadowClone,
+        Other
+    }
 }

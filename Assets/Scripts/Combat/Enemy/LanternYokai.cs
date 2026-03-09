@@ -104,7 +104,7 @@ public class LanternYokai : MonoBehaviour
 
     private void AttackCheck()
     {
-        fireballTimer -= !isShadow? Time.deltaTime: Time.deltaTime * 0.1f;
+        fireballTimer -= TimeManager.time_state == TimeManager.TimeState.NORMAL? Time.deltaTime: Time.deltaTime * 0.1f;
 
         if (fireballTimer <= 0f)
         {

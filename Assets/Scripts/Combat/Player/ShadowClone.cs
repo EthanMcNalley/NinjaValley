@@ -55,8 +55,8 @@ public class ShadowClone : MonoBehaviour
     void OnPlayerAttack(AttackData data)
     {
         currentDamage = data.damage;
-        Vector3 position = data.position;
-        Quaternion rotation = data.rotation;
+        //Vector3 position = data.position;
+        //Quaternion rotation = data.rotation;
         AttackData.CombatStateID stateID = data.stateID;
 
         closestEnemy = FindClosest.FindClosestGameObject(transform.position, enemyDetectRadius, enemyLayer);
@@ -72,22 +72,22 @@ public class ShadowClone : MonoBehaviour
         switch (stateID)
         {
             case AttackData.CombatStateID.GroundAttack1:
-                Debug.Log("Clone GroundAttack1");
+                //Debug.Log("Clone GroundAttack1");
                 animator.SetTrigger("Attack1");
                 break;
 
             case AttackData.CombatStateID.GroundAttack2:
-                Debug.Log("Clone GroundAttack2");
+                //Debug.Log("Clone GroundAttack2");
                 animator.SetTrigger("Attack2");
                 break;
 
             case AttackData.CombatStateID.GroundAttack3:
-                Debug.Log("Clone GroundAttack3");
-                animator.SetTrigger("Attack1");
+                //Debug.Log("Clone GroundAttack3");
+                animator.SetTrigger("Attack3");
                 break;
 
             default:
-                Debug.Log("Clone fail to find attack state");
+                //Debug.Log("Clone fail to find attack state");
                 break;
         }
     }

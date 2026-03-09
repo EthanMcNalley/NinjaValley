@@ -147,7 +147,7 @@ public class CombatStateManager : MonoBehaviour
             attacking = true;
         }
 
-        if (bufferTime > bufferDurationTimer)
+        if (attacking && bufferTime > bufferDurationTimer)
         {
             bufferTime = 0f;
             attacking = false;
