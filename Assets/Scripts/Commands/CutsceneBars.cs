@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class CutsceneBars : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class CutsceneBars : MonoBehaviour
     private CutsceneState previousState;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         cutscene_state = CutsceneState.INACTIVE;
         previousState = CutsceneState.INACTIVE;
@@ -74,6 +75,7 @@ public class CutsceneBars : MonoBehaviour
         }
         else
         {
+            CameraUtility.instance.InstantRecenter();
             player.EnableMovement();
             cutscene_bars.SetBool("Active", false);
             //UI_scroll_animator.SetBool("Fold", false);

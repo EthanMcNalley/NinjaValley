@@ -41,9 +41,9 @@ using UnityEditor;
 
 public class ScriptUsageVideoPlayback : MonoBehaviour
 {
-    private const int LATENCY_MS = 50; /* Some devices will require higher latency to avoid glitches */
-    private const int DRIFT_MS = 1;
-    private const float DRIFT_CORRECTION_PERCENTAGE = 0.5f;
+    private const int LATENCY_MS = 100; /* Some devices will require higher latency to avoid glitches */
+    private const int DRIFT_MS = 2;
+    private const float DRIFT_CORRECTION_PERCENTAGE = 0.25f;
 
     private VideoPlayer mVideoPlayer;
     private AudioSampleProvider mProvider;

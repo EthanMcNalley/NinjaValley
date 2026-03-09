@@ -23,7 +23,7 @@ public class LockIn : MonoBehaviour
             lockOnAction = InputSystem.actions.FindAction("LockIn");
         }
     }
-
+    
     void OnEnable()
     {
         lockOnAction.Enable();
@@ -86,6 +86,7 @@ public class LockIn : MonoBehaviour
 
     public void ClearLockOn()
     {
+        CameraUtility.instance.InstantRecenter();
         lockOnCamera.SetActive(false);
         if (lockOnIcon != null)
         {

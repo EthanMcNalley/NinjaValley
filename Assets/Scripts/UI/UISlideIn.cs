@@ -33,8 +33,8 @@ public class UIManager : MonoBehaviour
         ACTIVE
     }
     public GameObject cam;
-    public Slider cam_sensitivity_slider_x;
-    public Slider cam_sensitivity_slider_y;
+    /*public Slider cam_sensitivity_slider_x;
+    public Slider cam_sensitivity_slider_y;*/
     public Animator pause_animator;
     public Animator settings_animator;
     public Animator text_scroll_animator;
@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour
         //     }
         // }
     }
-    public void ChangeSensitivityX(){
+    /*public void ChangeSensitivityX(){
         foreach (var controller in cam.GetComponent<CinemachineInputAxisController>().Controllers){
             if (controller.Name == "Gain"){
                 controller.Input.Gain = cam_sensitivity_slider_x.value;
@@ -133,7 +133,7 @@ public class UIManager : MonoBehaviour
                 controller.Input.Gain = cam_sensitivity_slider_y.value * -1;
             }
         }
-    }
+    }*/
 
     public void OpenMenu(){
         // timer = 0.0f;
