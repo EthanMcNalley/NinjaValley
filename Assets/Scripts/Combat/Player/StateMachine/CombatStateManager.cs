@@ -42,6 +42,7 @@ public class CombatStateManager : MonoBehaviour
     private InputAction kunaiAction;
     public bool attacking = false;
     public float stateTime = 0f;
+    public float currentStateDuration = 0f;
     private float bufferTime = 0f;
     public float bufferDurationTimer = 1f;
     public float faceEnemyDistance = 10f;
@@ -138,6 +139,8 @@ public class CombatStateManager : MonoBehaviour
         //DashToEnemy();
         
         currentState.UpdateState(this);
+        
+        
     }
 
     private void AttackCheck()
@@ -280,6 +283,7 @@ public class CombatStateManager : MonoBehaviour
     {
         if (attacking && nextState != null)
         {
+            Debug.Log(stateTime);
             attacking = false;
             comboStep++;
             FaceEnemy();
@@ -287,6 +291,7 @@ public class CombatStateManager : MonoBehaviour
         }
         else
         {
+            Debug.Log(stateTime);
             comboStep = 0;
             SwitchState(Idle);
         }

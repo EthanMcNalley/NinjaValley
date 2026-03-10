@@ -12,6 +12,7 @@ public class GroundAttack1 : CombatState
     {
         stateManager.currentStateID = stateID;
         stateManager.currentDamage = damage;
+        stateManager.currentStateDuration = stateDuration;
         //stateManager.shadowCharge = shadowCharge;
         stateManager.bufferDurationTimer =  bufferDuration;
         
@@ -58,6 +59,7 @@ public class GroundAttack2 : CombatState
     {
         stateManager.currentStateID = stateID;
         stateManager.currentDamage = damage;
+        stateManager.currentStateDuration = stateDuration;
         //stateManager.shadowCharge = shadowCharge;
         stateManager.bufferDurationTimer =  bufferDuration;
         
@@ -105,6 +107,7 @@ public class GroundAttack3 : CombatState
     {
         stateManager.currentStateID = stateID;
         stateManager.currentDamage = damage;
+        stateManager.currentStateDuration = stateDuration;
         stateManager.shadowCharge = shadowCharge;
         stateManager.bufferDurationTimer =  bufferDuration;
         
@@ -122,7 +125,7 @@ public class GroundAttack3 : CombatState
         {
             stateManager.ContinueCombo(stateManager.Melee1);
         }
-
+        
         if (stateManager.stateTime >= stateDuration && stateManager.KatanaHitBox.katanaHitbox.enabled)
         {
             stateManager.KatanaHitBox.EndAttack();
