@@ -209,6 +209,9 @@
         },
         {
             "m_Id": "30f0f8e931204027be3506cb782f5665"
+        },
+        {
+            "m_Id": "d6d43c4d60f340d69ab52d739f87df42"
         }
     ],
     "m_GroupDatas": [
@@ -869,6 +872,20 @@
                     "m_Id": "b43eb455ee8e4fa4a19e9636a0d21054"
                 },
                 "m_SlotId": 2
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "b43eb455ee8e4fa4a19e9636a0d21054"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "d6d43c4d60f340d69ab52d739f87df42"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -2399,8 +2416,8 @@
     "m_ObjectId": "396185737c404ccc8e8652c9c4e21767",
     "m_Title": "Border right",
     "m_Position": {
-        "x": -1618.0,
-        "y": 805.0
+        "x": -1618.000244140625,
+        "y": 805.0001220703125
     }
 }
 
@@ -3283,8 +3300,8 @@
     "m_ObjectId": "60a68a11ac2641b5847179b37b3618b6",
     "m_Title": "Border to top",
     "m_Position": {
-        "x": -1610.000244140625,
-        "y": 1441.0001220703125
+        "x": -1610.0006103515625,
+        "y": 1441.000244140625
     }
 }
 
@@ -3329,6 +3346,29 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "62a35cd3996a48bf993ad1d7b59d11f7",
+    "m_Id": 1,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -4764,7 +4804,7 @@
     "m_ObjectId": "9e77edfc44f7459fae79384583fe63fc",
     "m_Title": "Border to bottom",
     "m_Position": {
-        "x": -1602.0,
+        "x": -1602.00048828125,
         "y": 1991.0001220703125
     }
 }
@@ -6141,6 +6181,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "c855ceb9143a4908bf972b7f8a81f531",
+    "m_Id": 0,
+    "m_DisplayName": "In",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "In",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "c9f145e6b3744a13ad13ea984f6f149f",
     "m_Id": 0,
@@ -6438,6 +6501,55 @@
         "x": 0.0,
         "y": 0.0
     }
+}
+
+{
+    "m_SGVersion": 2,
+    "m_Type": "UnityEditor.ShaderGraph.TransformNode",
+    "m_ObjectId": "d6d43c4d60f340d69ab52d739f87df42",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Transform",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -4268.0,
+            "y": -116.0,
+            "width": 212.0,
+            "height": 339.0000305175781
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "c855ceb9143a4908bf972b7f8a81f531"
+        },
+        {
+            "m_Id": "62a35cd3996a48bf993ad1d7b59d11f7"
+        }
+    ],
+    "synonyms": [
+        "world",
+        "tangent",
+        "object",
+        "view",
+        "screen",
+        "convert"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Conversion": {
+        "from": 5,
+        "to": 1
+    },
+    "m_ConversionType": 2,
+    "m_Normalize": true
 }
 
 {
@@ -7188,8 +7300,8 @@
     "m_ObjectId": "f0eae363c3984f3c93e874a6d4156df6",
     "m_Title": "Border to left",
     "m_Position": {
-        "x": -1616.0,
-        "y": 141.0
+        "x": -1616.00048828125,
+        "y": 141.00003051757813
     }
 }
 

@@ -50,6 +50,7 @@ Material:
     RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
+  - SHADOWCASTER
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -153,7 +154,7 @@ Material:
     - _Brightness: 10
     - _BumpScale: 1
     - _Bump_amount: 1
-    - _CastShadows: 1
+    - _CastShadows: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Contribution: 0
@@ -168,9 +169,9 @@ Material:
     - _Edge_blend: -0.1
     - _EnvironmentReflections: 1
     - _Flow_angle: 88.61
-    - _Flow_speed: -0.025
+    - _Flow_speed: 0.025
     - _Foam_distance: 18.4
-    - _Foam_speed: -0.0067
+    - _Foam_speed: 0.0067
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -202,8 +203,8 @@ Material:
     - _Sway_strength: 0.0067
     - _Transparency: 0.5
     - _WATER_TYPE: 1
-    - _Wave_height: 0.0006
-    - _Wave_speed: 10.67
+    - _Wave_height: 1
+    - _Wave_speed: 1
     - _WorkflowMode: 0
     - _ZTest: 4
     - _ZWrite: 1
@@ -225,6 +226,6 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_color: {r: 1, g: 1, b: 1, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Wave_tiling: {r: 10, g: 10, b: 0, a: 0}
+    - _Wave_tiling: {r: 10, g: 500, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
