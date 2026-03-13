@@ -112,7 +112,10 @@ public class AnsonBossHp : EnemyHealth
     protected override void Dead()
     {
         Debug.Log("Boss Defeated!");
-        tenguBoss.enabled = false;
+        if (tenguBoss != null)
+        {
+            tenguBoss.enabled = false;
+        }
         base.Dead();
     }
         
