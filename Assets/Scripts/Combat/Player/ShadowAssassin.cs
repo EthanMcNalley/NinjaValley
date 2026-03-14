@@ -158,6 +158,13 @@ public class ShadowAssassin : MonoBehaviour
         }
 
         ScreenEffect();
+
+        if (inCombat && shadowReady)
+        {
+            Color c = boarderImage.color;
+            c.a = Mathf.PingPong(Time.time, 1f);
+            boarderImage.color = c;
+        }
         
         /*ratio = Mathf.Clamp01(currentShadowMeter / maxShadowMeter);
         shadowBarSlider.value = ratio;*/
