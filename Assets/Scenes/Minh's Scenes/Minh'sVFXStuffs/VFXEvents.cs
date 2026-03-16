@@ -3,7 +3,7 @@ using UnityEngine.VFX;
 public class VFXEvents : MonoBehaviour
 {
     public VisualEffect vfx;
-    public float vfxTimer = 0f, vfxMaxTimer = 5f;
+    public float vfxTimer = 0f, vfxMaxTimer = 6f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnEnable()
     {

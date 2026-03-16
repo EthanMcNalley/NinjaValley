@@ -104,7 +104,7 @@ public class NineTailFoxScript : MonoBehaviour
 
     }
 
-    public void SpawnRockSpikeVFX()
+    public void ActivateBeamVFX()
     {
         //RockSpikeVFX.transform.position = targetPos;
         //RockSpikeVFX.SetActive(true);
