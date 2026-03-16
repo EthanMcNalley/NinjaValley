@@ -29,7 +29,7 @@ public class NewMovement : MonoBehaviour
     private Vector3 knockbackForce;
     [SerializeField]private float knockbackDecay = 10f;
     [SerializeField]private const float defaultKnockbackTime = 0.5f;
-    private float knockbackTimer;
+    private float knockbackTimer = -1f;
     private bool knocked_back = false;
     
     [Header("Jump")]

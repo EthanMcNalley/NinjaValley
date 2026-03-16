@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FinalBossPhase1 : BossManager
@@ -18,6 +17,9 @@ public class FinalBossPhase1 : BossManager
     public PoopAttack[] poopAttacks3;
     private bool firstPoopAttack = true;
     [SerializeField]private PoopAttack lastPoopAttack;
+    
+    //portal stuff
+    public GameObject[] portals;
     
     protected override void Start()
     {
@@ -76,8 +78,29 @@ public class FinalBossPhase1 : BossManager
         lastPoopAttack = selected;
         return selected;
     }
+
+    void PortalUsed(PortalFinal portal)
+    {
+        
+    }
+    
     //misc stuff
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+                
+        PortalFinal.OnPlayerTeleported += PortalUsed;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        
+        PortalFinal.OnPlayerTeleported -= PortalUsed;
+    }
 }
+
+
 
 [System.Serializable]
 public class PoopAttack
