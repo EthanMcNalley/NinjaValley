@@ -2008,6 +2008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371351372}
   - component: {fileID: 371351371}
+  - component: {fileID: 371351373}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: Untagged
@@ -2042,6 +2043,7 @@ MonoBehaviour:
   playerInCombat: 0
   scanDurration: 6
   scanSize: 500
+  time_layers: {fileID: 371351373}
 --- !u!4 &371351372
 Transform:
   m_ObjectHideFlags: 0
@@ -2057,6 +2059,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 257888348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371351373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371351370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142274f5f32a2484d9869a4d10029d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeLayers
+  renderer_data: {fileID: 11400000, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
+  render_objects: {fileID: 5004589840248765244, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
+  default_layers:
+    serializedVersion: 2
+    m_Bits: 8
+  time_slow_layers:
+    serializedVersion: 2
+    m_Bits: 2056
 --- !u!1 &375010517
 GameObject:
   m_ObjectHideFlags: 0

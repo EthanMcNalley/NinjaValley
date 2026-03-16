@@ -14,6 +14,7 @@ Material:
   m_ValidKeywords:
   - _APPLY_MOTION_NO
   - _APPLY_RIM_YES
+  - _ENABLE_EDGE_FADE_NO
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -88,27 +89,32 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _Blend_amount: 0.59
+    - _Blend_amount: 4.02
     - _Brightness: 2
     - _Bump_amount: 0
     - _CastShadows: 1
     - _Contribution: 0
     - _Cull: 2
+    - _DISSOLVE: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _ENABLE_EDGE_FADE: 1
     - _Fade_distance: 15
+    - _Fade_threshold_1: 0
+    - _Fade_threshold_2: 0
     - _Max: 1
     - _Min: 0.2
     - _Motion_speed: 0.03
     - _Noise: 0.05
+    - _OutlineSize: 0.04
     - _Outline_thickness: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Reflection_blend: 1
     - _Reflection_intensity: 0.03
-    - _Rim_glow: 0.22
-    - _Rim_power: 6.41
+    - _Rim_glow: -1.12
+    - _Rim_power: 4.8
     - _Shades: 0.32
     - _Shininess: 10
     - _Splat_amount: 25
@@ -126,8 +132,9 @@ Material:
     - _Color: {r: 0.10188681, g: 0.10188681, b: 0.10188681, a: 1}
     - _First_color: {r: 1, g: 1, b: 1, a: 1}
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
-    - _Rim_color: {r: 0.97484463, g: 1, b: 0.7377358, a: 1}
-    - _Second_color: {r: 1, g: 0.8132075, b: 0.8132075, a: 1}
+    - _OutlineColor: {r: 1, g: 0, b: 0, a: 1}
+    - _Rim_color: {r: 1, g: 1, b: 1, a: 1}
+    - _Second_color: {r: 1, g: 0.7148565, b: 0, a: 1}
     - _Specular_color: {r: 1, g: 1, b: 1, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Watercolor_tiling: {r: 1, g: 1, b: 0, a: 0}

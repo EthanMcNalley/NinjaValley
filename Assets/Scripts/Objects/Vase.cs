@@ -1,11 +1,10 @@
 using UnityEngine;
-
-[RequireComponent(typeof(Collider))]
+using FMODUnity;
 public class Vase : MonoBehaviour
 {
     Animator animator;
     public GameObject essence;
-    public FMODUnity.EventReference breakSound;
+    public EventReference breakSound;
     void Start()
     {
         if (TryGetComponent<Animator>(out animator))

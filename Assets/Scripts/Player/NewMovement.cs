@@ -72,6 +72,7 @@ public class NewMovement : MonoBehaviour
     public float slide_friction;
     private UIManager UI_manager;
     public static bool time_able = true;
+    public MeshRenderer player_renderer;
 
     private void Awake()
     {

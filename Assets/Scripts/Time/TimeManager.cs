@@ -33,6 +33,7 @@ public class TimeManager : MonoBehaviour
     public bool shadowActive, playerInCombat;
     public float scanDurration = 10f;
     public float scanSize = 500;
+    public TimeLayers time_layers;
     
     private MusicState current_musicState = MusicState.NORMAL;
     
@@ -103,6 +104,7 @@ public class TimeManager : MonoBehaviour
 
             if (refresh_timer >= refresh_time && timeSlowAction.triggered && NewMovement.time_able)
             {
+                time_layers.ChangeToTimeSlow();
                 time_timer = 0f;
                 refresh_timer = 0f;
                 time_state = TimeState.SLOWED;
@@ -118,11 +120,13 @@ public class TimeManager : MonoBehaviour
             //when duration ends
             if (time_timer >= time_slowed_down)
             {
+                time_layers.ChangeToDefault();
                 time_state = TimeState.NORMAL;
             }
             //only allow manual cancel when not in shadow assassin
             if (!shadowActive && timeSlowAction.triggered)
             {
+                time_layers.ChangeToDefault();
                 refresh_timer = time_slowed_down - time_timer;
                 time_timer = time_slowed_down;
                 time_state = TimeState.NORMAL;
