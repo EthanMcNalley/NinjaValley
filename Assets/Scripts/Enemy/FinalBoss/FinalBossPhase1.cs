@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FinalBossPhase1 : BossManager
@@ -16,10 +17,17 @@ public class FinalBossPhase1 : BossManager
     public PoopAttack[] poopAttacks2;
     public PoopAttack[] poopAttacks3;
     private bool firstPoopAttack = true;
-    [SerializeField]private PoopAttack lastPoopAttack;
+    private PoopAttack lastPoopAttack;
     
     //portal stuff
     public GameObject[] portals;
+    [SerializeField]private GameObject lastPortal;
+    public PortalIndicatorUI portalIndicatorUI;
+    public List<Color> avaliablePortalColors;
+    public List<Color> neededPortalColors;
+    
+    //normal attacks
+    private int normalAttacked;
     
     protected override void Start()
     {
@@ -79,9 +87,47 @@ public class FinalBossPhase1 : BossManager
         return selected;
     }
 
+    public List<Color> NeededPortalColors()
+    {
+        neededPortalColors.Clear();
+        
+        float hp = bossHpSystem.checkHealthPercent();
+        int colorNeeded = 0;
+        
+        if (hp > 0.7f)
+        {
+            colorNeeded = 1;
+        }
+        else if (hp > 0.35f)
+        {
+            colorNeeded = 2;
+        }
+        else
+        {
+            colorNeeded = 3;
+        }
+        
+        List<Color> shuffled = new List<Color>(avaliablePortalColors);
+        for (int i = shuffled.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (shuffled[i], shuffled[j]) = (shuffled[j], shuffled[i]);
+        }
+        
+        for (int i = 0; i < colorNeeded; i++)
+        {
+            neededPortalColors.Add(shuffled[i]);
+        }
+
+        portalIndicatorUI.SetRequiredPortals(neededPortalColors);
+
+        return neededPortalColors;
+    }
+
     void PortalUsed(PortalFinal portal)
     {
-        
+        lastPortal = portal.gameObject;
+        portalIndicatorUI.MarkPortalComplete(portal.portalColor);
     }
     
     //misc stuff

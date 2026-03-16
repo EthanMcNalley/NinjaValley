@@ -33,8 +33,8 @@ public class BossIdle : BossState
 public class BossPhase1NormalAttack : BossState
 {
     public BossAttackType BossStateType = BossAttackType.Phase1NormalAttack;
-    public float stateTime = 6.7f;
-    private float currentStateTime = 6.7f;
+    public float stateTime = 4f;
+    private float currentStateTime = 4f;
     private FinalBossPhase1 boss;
 
     public override void EnterState(BossManager bossManager)
@@ -47,6 +47,10 @@ public class BossPhase1NormalAttack : BossState
     public override void UpdateState(BossManager bossManager)
     {
         currentStateTime -= Time.deltaTime;
+        if (currentStateTime <= 0)
+        {
+            boss.ChoseAttack();
+        }
     }
     
     public override void ExitState(BossManager bossManager)
@@ -104,17 +108,25 @@ public class BossPhase1DoorWordAttack : BossState
     {
         boss =  bossManager as FinalBossPhase1;
         currentStateTime = stateTime;
+        boss.NeededPortalColors();
         //Animation here
     }
 
     public override void UpdateState(BossManager bossManager)
     {
         currentStateTime -= Time.deltaTime;
+        if (currentStateTime <= 0 || boss.portalIndicatorUI.cleared)
+        {
+            boss.ChoseAttack();
+        }
     }
     
     public override void ExitState(BossManager bossManager)
     {
-        
+        if (boss.portalIndicatorUI.cleared)
+        {
+            //DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+        }
     }
 }
 

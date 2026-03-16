@@ -8,6 +8,7 @@ public class PortalFinal : MonoBehaviour
     public float offset = 5f;
 
     private bool playerIsOverLapping;
+    public Color portalColor;
     
     public static event Action<PortalFinal> OnPlayerTeleported;
     
