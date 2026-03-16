@@ -31,14 +31,20 @@ public class AnsonBossHp : EnemyHealth
     
     public override void TakeDamage(float damage)
     {
+        TakeDamage(damage, DamageSource.Other);
+    }
+    
+    public override void TakeDamage(float damage, DamageSource source)
+    {
         float outputDamage = damage;
+        Debug.Log("Damage dealt using AnsonBossHP");
         if (currentGauge > 0)
         {
             currentGauge -= damage;
             healthBreakBar.UpdateBreakBar(currentGauge, maxGauge);
             outputDamage = damage / 0.67f;
             CheckThreshold(outputDamage);
-            base.TakeDamage(outputDamage);
+            base.TakeDamage(outputDamage, source);
             
             if (currentGauge < 0)
             {
@@ -49,7 +55,7 @@ public class AnsonBossHp : EnemyHealth
         else
         {
             CheckThreshold(damage);
-            base.TakeDamage(damage);
+            base.TakeDamage(damage, source);
         }
         
     }
@@ -132,5 +138,10 @@ public class AnsonBossHp : EnemyHealth
     public bool checkBreak()
     {
         return breakState;
+    }
+    
+    public float checkHealthPercent()
+    {
+        return currHealthPoint / maxHealthPoint;
     }
 }
