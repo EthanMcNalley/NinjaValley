@@ -4,6 +4,7 @@ public class BossManager : MonoBehaviour
 {
     public Animator animator;
     public GameObject player;
+    public HealthSystem playerHealth;
     public AnsonBossHp bossHpSystem;
     public bool inCombat;
     public bool isDead;
@@ -17,6 +18,7 @@ public class BossManager : MonoBehaviour
     {
         currentState?.EnterState(this);
         player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = player.GetComponent<HealthSystem>();
     }
     
     protected virtual void Update()

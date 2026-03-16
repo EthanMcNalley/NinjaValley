@@ -22,6 +22,7 @@ public class FinalBossPhase1 : BossManager
     //portal stuff
     public GameObject[] portals;
     [SerializeField]private GameObject lastPortal;
+    public GameObject portalTopIndicator;
     public PortalIndicatorUI portalIndicatorUI;
     public List<Color> avaliablePortalColors;
     public List<Color> neededPortalColors;
@@ -48,7 +49,14 @@ public class FinalBossPhase1 : BossManager
         
     public void ChoseAttack()
     {
-        SwitchState(bossPhase1TileAttack);
+        if (currentState == bossPhase1TileAttack || currentState == bossIdle || currentState == bossBreak)
+        {
+            SwitchState(bossPhase1DoorWordAttack);
+        }
+        else if (currentState == bossPhase1DoorWordAttack)
+        {
+            SwitchState(bossPhase1TileAttack);
+        }
     }
     
     
@@ -126,6 +134,7 @@ public class FinalBossPhase1 : BossManager
 
     void PortalUsed(PortalFinal portal)
     {
+        if (currentState != bossPhase1DoorWordAttack) return;
         lastPortal = portal.gameObject;
         portalIndicatorUI.MarkPortalComplete(portal.portalColor);
     }
