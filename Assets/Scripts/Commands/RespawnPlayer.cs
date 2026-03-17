@@ -7,7 +7,8 @@ public class RespawnPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(Respawning(other));
+            other.transform.position = NewMovement.last_grounded_position;
+            // StartCoroutine(Respawning(other));
         }
     }
 
@@ -16,7 +17,7 @@ public class RespawnPlayer : MonoBehaviour
         player.GetComponent<NewMovement>().DisableMovement();
         yield return new WaitForSeconds(1.0f);
         player.GetComponent<NewMovement>().player_renderer.enabled = false;
-        player.transform.position = NewMovement.last_grounded_position;
+        // player.transform.position = NewMovement.last_grounded_position;
         yield return new WaitForSeconds(1.0f);
         player.GetComponent<NewMovement>().player_renderer.enabled = false;
     }

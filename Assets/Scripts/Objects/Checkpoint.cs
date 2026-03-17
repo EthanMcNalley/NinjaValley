@@ -29,10 +29,7 @@ public class Checkpoint : MonoBehaviour
 
             if (first_checkpoint)
             {
-                if (GetComponent<MeshRenderer>().material == inactive_material)
-                {
                     UI_manager.OpenTextScrollMenu("Checkpoint Bell Activated! You will respawn here upon death.");
-                }
             }
 
             first_checkpoint = false;
@@ -40,8 +37,6 @@ public class Checkpoint : MonoBehaviour
             GetComponent<MeshRenderer>().material = active_material;
             
             AudioManager.instance.PlayOneShot(bell_sound, transform.position);
-
-            gameObject.SetActive(false);
         }
     }
 }

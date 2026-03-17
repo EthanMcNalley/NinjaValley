@@ -27,7 +27,8 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -82,19 +83,35 @@ Material:
     - _APPLY_SPECULAR: 0
     - _APPLY_TOON: 1
     - _APPLY_WATERCOLOR_SHADING: 0
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
     - _Brightness: 5
     - _Bump_amount: 1.4
+    - _CastShadows: 1
     - _Contribution: 0
+    - _Cull: 2
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
     - _Fade_distance: 15
     - _Outline_thickness: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _Reflection_blend: 1
     - _Reflection_intensity: 1
     - _Rim_glow: 10
     - _Rim_power: 5
     - _Shininess: 10
+    - _SrcBlend: 1
+    - _SrcBlendAlpha: 1
+    - _Surface: 0
     - _Watercolor_blend: 1
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _Base_color: {r: 0.8867924, g: 0.824928, b: 0.64083296, a: 1}
     - _Offset: {r: 1, g: 1, b: 0, a: 0}
