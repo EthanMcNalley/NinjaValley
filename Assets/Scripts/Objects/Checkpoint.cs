@@ -1,6 +1,5 @@
 using UnityEngine;
 using FMODUnity;
-using UnityEditor.ShaderGraph.Internal;
 
 public class Checkpoint : MonoBehaviour
 {
