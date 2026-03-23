@@ -34,7 +34,7 @@ public class TimeManager : MonoBehaviour
     public float scanDurration = 10f;
     public float scanSize = 500;
     public TimeLayers time_layers;
-    
+    private NewMovement player_control;
     private MusicState current_musicState = MusicState.NORMAL;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,6 +51,7 @@ public class TimeManager : MonoBehaviour
         
         anim_objects = GameObject.FindGameObjectsWithTag("Test");
         player = GameObject.FindGameObjectWithTag("Player");
+        player_control = player.GetComponent<NewMovement>();
     }
 
     private void Awake()
@@ -102,7 +103,7 @@ public class TimeManager : MonoBehaviour
                 time_size -= Time.deltaTime * material_rate;
             }
 
-            if (refresh_timer >= refresh_time && timeSlowAction.triggered && NewMovement.time_able)
+            if (refresh_timer >= refresh_time && timeSlowAction.triggered && NewMovement.time_able && player_control.canMove)
             {
                 time_layers.ChangeToTimeSlow();
                 time_timer = 0f;
@@ -118,13 +119,13 @@ public class TimeManager : MonoBehaviour
                 time_size += Time.deltaTime * material_rate;
             }
             //when duration ends
-            if (time_timer >= time_slowed_down)
+            if (time_timer >= time_slowed_down || CutsceneBars.cutscene_state == CutsceneBars.CutsceneState.ACTIVE)
             {
-                time_layers.ChangeToDefault();
+                time_layers.ChangeToDefault() ;
                 time_state = TimeState.NORMAL;
             }
             //only allow manual cancel when not in shadow assassin
-            if (!shadowActive && timeSlowAction.triggered)
+            if ((!shadowActive && timeSlowAction.triggered) || CutsceneBars.cutscene_state == CutsceneBars.CutsceneState.ACTIVE)
             {
                 time_layers.ChangeToDefault();
                 refresh_timer = time_slowed_down - time_timer;

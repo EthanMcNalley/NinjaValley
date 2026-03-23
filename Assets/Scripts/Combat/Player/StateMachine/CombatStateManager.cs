@@ -145,7 +145,7 @@ public class CombatStateManager : MonoBehaviour
 
     private void AttackCheck()
     {
-        if (attackAction.triggered && movementController.canMove)
+        if (attackAction.triggered && CutsceneBars.cutscene_state == CutsceneBars.CutsceneState.INACTIVE)
         {
             attacking = true;
         }

@@ -35,6 +35,7 @@ public class CutsceneBars : MonoBehaviour
             cutscene_state = CutsceneState.ACTIVE;
             if (hud.alpha > 0)
             {
+                player.DisableMovement();
                 hud.alpha = Mathf.MoveTowards(hud.alpha, 0, 2f * Time.deltaTime);
             }
         }

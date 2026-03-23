@@ -9,7 +9,12 @@ public class GroundCheck : MonoBehaviour
     public LayerMask child_ground_layer;
     [SerializeField] private bool isGrounded;
     public GameObject parent_reset;
-    
+    private Vector3 starting_scale;
+
+    void Start()
+    {
+        starting_scale = transform.localScale;
+    }
     private void Update()
     {
         Collider[] child_ground = Physics.OverlapSphere(groundCheck.position, GroundCheckRadius, child_ground_layer, QueryTriggerInteraction.Ignore);
@@ -26,6 +31,7 @@ public class GroundCheck : MonoBehaviour
         {
             transform.parent = parent_reset.transform;
             transform.parent = null;
+            transform.localScale = starting_scale;
         }
 
         for (int i = 0; i < groundLayer.Length; i++)

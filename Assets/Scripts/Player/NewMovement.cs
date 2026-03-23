@@ -461,7 +461,7 @@ public class NewMovement : MonoBehaviour
         {
             if (upgrade.upgrade_type == Upgrade.UpgradeType.TIMESLOW)
             {
-                UI_manager.OpenTextScrollMenu("You've absorbed the essence of time! Press E to slow down time.");
+                UI_manager.OpenTextScrollMenu("You've absorbed the essence of time! Press E to slow down time. By itself. cannot slow down enemies");
                 time_able = true;
                 other.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 other.gameObject.GetComponent<Collider>().enabled = false;
