@@ -73,6 +73,7 @@ public class NewMovement : MonoBehaviour
     private UIManager UI_manager;
     public static bool time_able = true;
     public SkinnedMeshRenderer player_renderer;
+    public ShadowAssassin shadow_assassin;
 
     private void Awake()
     {
@@ -485,6 +486,14 @@ public class NewMovement : MonoBehaviour
             {
                 UI_manager.OpenTextScrollMenu("You've absorbed the essence of the wind! You can now use the Tengu's power to double jump!.");
                 double_jump_able = true;
+                other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                other.gameObject.GetComponent<Collider>().enabled = false;
+            }
+
+            else if (upgrade.upgrade_type == Upgrade.UpgradeType.SHADOW)
+            {
+                UI_manager.OpenTextScrollMenu("You've absorbed the essence of the shadows! Your shadow assassin powers will last for slightly longer!.");
+                shadow_assassin.shadowAssassinDuration += 1.0f;
                 other.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 other.gameObject.GetComponent<Collider>().enabled = false;
             }

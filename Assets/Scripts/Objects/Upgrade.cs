@@ -7,7 +7,8 @@ public class Upgrade : MonoBehaviour
         TIMESLOW,
         DOUBLEJUMP,
         HEALTH,
-        TIMEAMOUNT
+        TIMEAMOUNT,
+        SHADOW
     }
 
     public UpgradeType upgrade_type;

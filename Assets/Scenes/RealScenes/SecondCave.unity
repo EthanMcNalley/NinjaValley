@@ -735,19 +735,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 239678521549599157, guid: a217e56974719754ebedd97095d31a09, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 239678521549599157, guid: a217e56974719754ebedd97095d31a09, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 887944624700170586, guid: a217e56974719754ebedd97095d31a09, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 887944624700170586, guid: a217e56974719754ebedd97095d31a09, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3463333187160382981, guid: a217e56974719754ebedd97095d31a09, type: 3}
       propertyPath: m_Enabled
@@ -763,7 +763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5908729893356392855, guid: a217e56974719754ebedd97095d31a09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.69999695
+      value: -0.69994736
       objectReference: {fileID: 0}
     - target: {fileID: 5908729893356392855, guid: a217e56974719754ebedd97095d31a09, type: 3}
       propertyPath: m_LocalPosition.y
@@ -771,7 +771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5908729893356392855, guid: a217e56974719754ebedd97095d31a09, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -113.100006
+      value: -113.09997
       objectReference: {fileID: 0}
     - target: {fileID: 5908729893356392855, guid: a217e56974719754ebedd97095d31a09, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2099,7 +2099,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroupActivate
   objects:
   - {fileID: 473879007}
+  - {fileID: 1869648696}
+  - {fileID: 1075115720}
   delay_times:
+  - 4
+  - 4
   - 4
 --- !u!1 &942777494
 GameObject:
@@ -2628,6 +2632,11 @@ PrefabInstance:
 --- !u!4 &1075115719 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1101072326459141503, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+  m_PrefabInstance: {fileID: 1075115718}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1075115720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7657981112848032388, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
   m_PrefabInstance: {fileID: 1075115718}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1086207234
@@ -4068,6 +4077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1869648697}
   - component: {fileID: 1869648698}
+  - component: {fileID: 1869648699}
   m_Layer: 0
   m_Name: Swaying sign (1)
   m_TagString: Untagged
@@ -4117,6 +4127,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1869648699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869648696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b14642470d49d041ab083942eff0ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SmokeSpawn
+  smoke_puff: {fileID: 7433560725545908634, guid: e48fc7c5d85ec714da768e7a9db251a6, type: 3}
 --- !u!1001 &1873470213
 PrefabInstance:
   m_ObjectHideFlags: 0
