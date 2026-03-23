@@ -14,7 +14,7 @@ public class CameraSensitifity : MonoBehaviour
     [SerializeField] private CinemachineInputAxisController inputAxis;
     [SerializeField] private Slider xSlider;
     [SerializeField] private Slider ySlider;
-    private float controllerMuti = 1f;
+    [SerializeField] private float controllerMuti = 1f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

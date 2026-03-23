@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Unity.Cinemachine;
 
 public class PortalFinal : MonoBehaviour
 {
@@ -11,10 +12,14 @@ public class PortalFinal : MonoBehaviour
     public Color portalColor;
     
     public static event Action<PortalFinal> OnPlayerTeleported;
+    private CinemachineBrain cinemachineBrain;
+    private NewMovement movement;
     
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        cinemachineBrain = Camera.main.GetComponent<CinemachineBrain>();
+        movement = player.GetComponent<NewMovement>();
     }
 
     void LateUpdate()
@@ -29,11 +34,14 @@ public class PortalFinal : MonoBehaviour
             if (dotProduct < 0f)
             {
                 OnPlayerTeleported?.Invoke(this);
-                float rotationDiff = -Quaternion.Angle(transform.rotation, otherPortal.rotation);
-                rotationDiff += 180f; //maybe not needed
-                player.Rotate(Vector3.up, rotationDiff);
                 
-                Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
+                Quaternion rotationDiff = otherPortal.rotation * Quaternion.Inverse(transform.rotation);
+                rotationDiff *= Quaternion.Euler(0f, 180f, 0f); //maybe not needed
+                
+                player.rotation = rotationDiff * player.rotation;
+                
+                Vector3 positionOffset = rotationDiff * portalToPlayer;
+                
                 player.position = otherPortal.position + positionOffset - otherPortal.forward * offset;
                 
                 playerIsOverLapping = false;

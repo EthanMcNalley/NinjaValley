@@ -62,8 +62,8 @@ public class BossPhase1NormalAttack : BossState
 public class BossPhase1TileAttack : BossState
 {
     public BossAttackType BossStateType = BossAttackType.Phase1TileAttack;
-    public float stateTime = 8f;
-    private float currentStateTime = 8f;
+    public float stateTime = 10f;
+    private float currentStateTime = 10f;
     public bool attackAnimationTriggered;
     private PoopAttack currentPoopAttack;
     private FinalBossPhase1 boss;
@@ -199,3 +199,5 @@ public enum BossAttackType
     Phase1DoorWordAttack,
     Break
 }
+
+

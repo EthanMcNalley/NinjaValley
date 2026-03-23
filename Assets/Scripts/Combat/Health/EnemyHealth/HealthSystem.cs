@@ -25,7 +25,7 @@ public abstract class HealthSystem : MonoBehaviour
     
     public virtual void TakeDamage(float damage, DamageSource damageSource)
     {
-        if (isInvincible)
+        if (isInvincible || damage <= 0f)
         {
             return;
         }
