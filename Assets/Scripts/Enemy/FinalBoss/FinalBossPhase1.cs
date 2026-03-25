@@ -10,8 +10,7 @@ public class FinalBossPhase1 : BossManager
     BossState bossPhase1DoorWordAttack = new BossPhase1DoorWordAttack();
     BossState bossBreak = new BossBreak();
     
-    //Normal Attack
-    
+    [Header("Poop Attacks")]
     //poopAttack stuff (floor rising ink blobs)
     public PoopAttack[] poopAttacks1;
     public PoopAttack[] poopAttacks2;
@@ -19,6 +18,7 @@ public class FinalBossPhase1 : BossManager
     private bool firstPoopAttack = true;
     private PoopAttack lastPoopAttack;
     
+    [Header("Portal")]
     //portal stuff
     public GameObject[] portals;
     [SerializeField]private GameObject lastPortal;
@@ -27,8 +27,11 @@ public class FinalBossPhase1 : BossManager
     public List<Color> avaliablePortalColors;
     public List<Color> neededPortalColors;
     
+    [Header("Normal Attack")]
     //normal attacks
-    private int normalAttacked;
+    public int normalAttacked;
+    [SerializeField] private GameObject normalAttackPrefab;
+    [SerializeField] private Vector3 normalAttackOffset;
     
     protected override void Start()
     {
@@ -45,17 +48,26 @@ public class FinalBossPhase1 : BossManager
 
         base.Update();
     }
-    
-        
+
+
     public void ChoseAttack()
     {
-        if (currentState == bossPhase1TileAttack || currentState == bossIdle || currentState == bossBreak)
+        if (currentState != bossIdle)
         {
-            SwitchState(bossPhase1DoorWordAttack);
+            SwitchState(bossIdle);
         }
         else if (currentState == bossPhase1DoorWordAttack)
         {
             SwitchState(bossPhase1TileAttack);
+        }
+        else if (normalAttacked < 2)
+        {
+            SwitchState(bossPhase1NormalAttack);
+        }
+        else if (currentState == bossPhase1TileAttack || currentState == bossIdle || currentState == bossBreak)
+        {
+            normalAttacked = 0;
+            SwitchState(bossPhase1DoorWordAttack);
         }
     }
     
@@ -137,6 +149,16 @@ public class FinalBossPhase1 : BossManager
         if (currentState != bossPhase1DoorWordAttack) return;
         lastPortal = portal.gameObject;
         portalIndicatorUI.MarkPortalComplete(portal.portalColor);
+    }
+
+    public void InstantiateNormalAttack()
+    {
+        Instantiate(normalAttackPrefab, player.transform.position + normalAttackOffset, Quaternion.identity);
+    }
+
+    public void PhaseTransition()
+    {
+        
     }
     
     //misc stuff

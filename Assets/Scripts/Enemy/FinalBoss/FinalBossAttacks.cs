@@ -41,6 +41,8 @@ public class BossPhase1NormalAttack : BossState
     {
         boss =  bossManager as FinalBossPhase1;
         currentStateTime = boss.bossHpSystem.maxBreakTimer;
+        boss.normalAttacked++;
+        boss.InstantiateNormalAttack();
         //Animation here
     }
 
@@ -128,7 +130,7 @@ public class BossPhase1DoorWordAttack : BossState
     {
         if (!boss.portalIndicatorUI.cleared)
         {
-            boss.playerHealth.TakeDamage(20f);
+            boss.playerHealth.TakeDamage(30f);
         }
         boss.portalTopIndicator.SetActive(false);
         boss.portalIndicatorUI.ClearPortals();
@@ -146,6 +148,7 @@ public class BossBreak : BossState
     {
         boss =  bossManager as FinalBossPhase1;
         currentStateTime = stateTime;
+        boss.normalAttacked = 0;
         //Animation here
 
     }

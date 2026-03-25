@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 
 public class AnsonBossHp : EnemyHealth
 {
@@ -8,12 +9,14 @@ public class AnsonBossHp : EnemyHealth
 
     public BossHPUI healthBreakBar;
     public TenguBoss tenguBoss;
+    public FinalBossPhase1 finalBossPhase1;
     public float currentGauge;
     public float breakTimer;
     public bool breakState = false;
     private bool initialized = false;
 
     public float healthSpawnThreshold = 0.2f;
+    public bool bossDead = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -117,12 +120,19 @@ public class AnsonBossHp : EnemyHealth
 
     protected override void Dead()
     {
-        Debug.Log("Boss Defeated!");
+        //Debug.Log("Boss Defeated!");
         if (tenguBoss != null)
         {
+            bossDead = true;
             tenguBoss.enabled = false;
+            base.Dead();
+            tenguBoss.gameObject.SetActive(false);
         }
-        base.Dead();
+        else if  (finalBossPhase1 != null)
+        {
+            bossDead = true;
+            finalBossPhase1.PhaseTransition();
+        }
     }
         
     public float checkHealth()

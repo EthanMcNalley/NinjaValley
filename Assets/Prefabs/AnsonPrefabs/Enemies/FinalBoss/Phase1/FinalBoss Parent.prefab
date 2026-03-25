@@ -470,7 +470,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 3ba24f35f6a44e446a13b9ef2a721a16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -583,15 +583,17 @@ MonoBehaviour:
       Data3: -1580284011
       Data4: -1691284758
     Path: event:/Enemies/UmberllaDie
-  isBoss: 0
+  isBoss: 1
   maxGauge: 50
   maxBreakTimer: 6.7
   healthBreakBar: {fileID: 6069813385591642838}
   tenguBoss: {fileID: 0}
+  finalBossPhase1: {fileID: 3145527197870719738}
   currentGauge: 50
   breakTimer: 0
   breakState: 0
   healthSpawnThreshold: 0.2
+  bossDead: 0
 --- !u!1 &1166740533320816983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,6 +1385,9 @@ MonoBehaviour:
   - {r: 0, g: 0.105882354, b: 1, a: 1}
   - {r: 1, g: 0.70980394, b: 0, a: 1}
   neededPortalColors: []
+  normalAttacked: 0
+  normalAttackPrefab: {fileID: 6079968040456699971, guid: 41166f703ced18c4a86f706b311e606b, type: 3}
+  normalAttackOffset: {x: 0, y: 19, z: 0}
 --- !u!1 &5946907287128580447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,6 +1635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   indicatorPrefab: {fileID: 7211557646219418253, guid: 0a309ae3b73dff44497c626358b42ea9, type: 3}
   indicatorContainer: {fileID: 883382607791731691}
+  activeIndicators: []
   cleared: 0
 --- !u!1001 &610168453310343537
 PrefabInstance:

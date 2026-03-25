@@ -186,11 +186,11 @@ public class EnemyHealth : HealthSystem
         }
         Instantiate(health_essence, essence_spawnpoint.transform.position, Quaternion.identity);
 
-        if (baseGameObjectDestroy != null)
+        if (baseGameObjectDestroy != null && !isBoss)
         {
             Destroy(baseGameObjectDestroy, 0);
         }
-        else
+        else if (!isBoss)
         {
             Destroy(gameObject, 0);
         }
