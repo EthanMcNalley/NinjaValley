@@ -8,6 +8,13 @@ public class GroundCheck : MonoBehaviour
     public LayerMask[] groundLayer;
     public LayerMask child_ground_layer;
     [SerializeField] private bool isGrounded;
+    public enum GroundType
+    {
+        WATER,
+        GROUND,
+        HARD
+    }
+    public GroundType ground_type;
     public GameObject parent_reset;
     private Vector3 starting_scale;
 
@@ -15,6 +22,23 @@ public class GroundCheck : MonoBehaviour
     {
         starting_scale = transform.localScale;
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            ground_type = GroundType.WATER;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            ground_type = GroundType.GROUND;
+        }
+    }
+
     private void Update()
     {
         Collider[] child_ground = Physics.OverlapSphere(groundCheck.position, GroundCheckRadius, child_ground_layer, QueryTriggerInteraction.Ignore);
@@ -38,8 +62,19 @@ public class GroundCheck : MonoBehaviour
         {
             Collider[] grounds = Physics.OverlapSphere(groundCheck.position, GroundCheckRadius, groundLayer[i], QueryTriggerInteraction.Ignore);
             isGrounded = grounds.Length > 0;
+
             if (isGrounded)
             {
+                if (grounds[i].CompareTag("Wood"))
+                {
+                    ground_type = GroundType.HARD;
+                }
+
+                else if (grounds[i].CompareTag("Ground"))
+                {
+                    ground_type = GroundType.GROUND;
+                }
+
                 break;
             }   
         }
@@ -47,7 +82,7 @@ public class GroundCheck : MonoBehaviour
 
     }
 
-     void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.darkBlue;
         Gizmos.DrawWireSphere(groundCheck.position, GroundCheckRadius);
