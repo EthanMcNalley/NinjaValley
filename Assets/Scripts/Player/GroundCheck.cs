@@ -65,7 +65,7 @@ public class GroundCheck : MonoBehaviour
 
             if (isGrounded)
             {
-                if (grounds[i].CompareTag("Wood"))
+                if (grounds[i].CompareTag("Hard"))
                 {
                     ground_type = GroundType.HARD;
                 }
