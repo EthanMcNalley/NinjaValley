@@ -65,12 +65,12 @@ public class GroundCheck : MonoBehaviour
 
             if (isGrounded)
             {
-                if (grounds[i].CompareTag("Hard"))
+                if (grounds[i].CompareTag("Hard") && ground_type != GroundType.WATER)
                 {
                     ground_type = GroundType.HARD;
                 }
 
-                else if (grounds[i].CompareTag("Ground"))
+                else
                 {
                     ground_type = GroundType.GROUND;
                 }
