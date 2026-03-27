@@ -10,7 +10,6 @@ public class GroupActivate : MonoBehaviour
     {
         for (int i = 0; i < objects.Length; i++)
         {
-            temp_object = i;
             Invoke("InvokeActivate", delay_times[temp_object]);
         }
     }
