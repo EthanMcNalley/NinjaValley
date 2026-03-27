@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4456854095368074517}
   - component: {fileID: 2282369365466716446}
   - component: {fileID: 1775176883723648996}
+  - component: {fileID: 2396280725213442887}
   m_Layer: 0
   m_Name: SpawnSmokeNEW
   m_TagString: Untagged
@@ -4912,3 +4913,23 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!114 &2396280725213442887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7433560725545908634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59471e141b36b458092fb90e684e5593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayOneShotAudio
+  play_on_awake: 1
+  sound_effect:
+    Guid:
+      Data1: 1789406187
+      Data2: 1180708548
+      Data3: -44454271
+      Data4: -1400901225
+    Path: event:/Environment/Poof

@@ -12,6 +12,7 @@ public class SceneLoader : MonoBehaviour
     public SceneField persistables_scene;
 
     private HashSet<String> skipScenes;
+    public bool direction_check = true;
     
     void Awake()
     {
@@ -25,18 +26,26 @@ public class SceneLoader : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player")){
-            Vector3 direction = (other.transform.position - transform.position).normalized;
-            float dot = Vector3.Dot(transform.forward, direction);
+            if (direction_check){
+                Vector3 direction = (other.transform.position - transform.position).normalized;
+                float dot = Vector3.Dot(transform.forward, direction);
 
-            if (dot > 0)
+                if (dot > 0)
+                {
+                    UnloadScenes(scenes_to_unload);
+                    LoadScenes(scenes_to_load);
+                }
+                else
+                {
+                    UnloadScenes(scenes_to_load);
+                    LoadScenes(scenes_to_unload);
+                }
+            }
+
+            else
             {
                 UnloadScenes(scenes_to_unload);
                 LoadScenes(scenes_to_load);
-            }
-            else
-            {
-                UnloadScenes(scenes_to_load);
-                LoadScenes(scenes_to_unload);
             }
         }
     }

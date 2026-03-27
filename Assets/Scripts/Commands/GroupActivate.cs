@@ -6,10 +6,13 @@ public class GroupActivate : MonoBehaviour
     public GameObject[] objects;
     public float[] delay_times;
     int temp_object;
-    public void ActivateWithDelay(int object_index)
+    public void ActivateWithDelay()
     {
-        temp_object = object_index;
-        Invoke("InvokeActivate", delay_times[object_index]);
+        for (int i = 0; i < objects.Length; i++)
+        {
+            temp_object = i;
+            Invoke("InvokeActivate", delay_times[temp_object]);
+        }
     }
 
     void InvokeActivate()

@@ -20,6 +20,7 @@ public class TenguBoss : MonoBehaviour
     public GameObject feathersPos;
     public ParticleSystem feathersvfx;
     public MusicEnum bossMusic, theTree;
+    public GameObject death_spawn;
 
     private BossAttackScript spearAttackScript, airAttackScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,6 +39,7 @@ public class TenguBoss : MonoBehaviour
         bossTimer = maxTimer;
         isBreak = false;
         agent.stoppingDistance = normalAttackRange;
+        death_spawn.SetActive(false);
     }
     
     private void OnEnable()
@@ -57,6 +59,7 @@ public class TenguBoss : MonoBehaviour
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
         
         AudioManager.instance.SetMusicArea(theTree);
+        death_spawn.SetActive(true);
         ExitCombat();
     }
 
@@ -71,6 +74,7 @@ public class TenguBoss : MonoBehaviour
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
         
         AudioManager.instance.SetMusicArea(theTree);
+        death_spawn.SetActive(true);
         ExitCombat();
     }
     
