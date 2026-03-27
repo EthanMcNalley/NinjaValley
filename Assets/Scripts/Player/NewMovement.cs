@@ -303,7 +303,6 @@ public class NewMovement : MonoBehaviour
         if (!groundedPlayer){
             animator.SetFloat("YVelocity", vertical.y);
         }
-
         else
         {
             animator.SetFloat("YVelocity", 0);
@@ -454,6 +453,16 @@ public class NewMovement : MonoBehaviour
         dir = dir.normalized;
         knockbackTimer = defaultKnockbackTime;
         knockbackForce = new Vector3(dir.x * force, height, dir.z * force);
+    }
+
+    public bool IsMoving()
+    {
+        return (moveDirection.magnitude > 0.01f);
+    }
+
+    public bool IsRunning()
+    {
+        return currentState == moveState.Running;
     }
 
     void OnTriggerEnter(Collider other)

@@ -20,7 +20,9 @@ public class AudioManager : MonoBehaviour
     public string masterVCAPath;
     public VCA vca;
     public float initialVolume;
-    //private PlaySound psound;
+    
+    //footstep stuff
+    public EventInstance footstepEventInstance;
 
     private void Awake()
     {
@@ -33,6 +35,8 @@ public class AudioManager : MonoBehaviour
         {
             InitializeMusic(FmodEvents.instance.music);
         }
+        
+        InitializeFootstep(FmodEvents.instance.footstep);
         
         
         if (string.IsNullOrEmpty(masterVCAPath)) return;
@@ -48,6 +52,13 @@ public class AudioManager : MonoBehaviour
         musicEventInstance = CreateEventInstance(musicEventReference);
         musicEventInstance.start();
         SetMusicArea(startingMusic);
+    }
+    
+    private void InitializeFootstep(EventReference eventReference)
+    {
+        footstepEventInstance = CreateEventInstance(eventReference);
+        //footstepEventInstance.start();
+        //SetMusicArea(startingMusic);
     }
     
     public void PlayOneShot(EventReference clip, Vector3 position)
@@ -113,6 +124,16 @@ public class AudioManager : MonoBehaviour
     public void SetSlowTime(float time)
     {
         musicEventInstance.setParameterByName("TimeSlow", time);
+    }
+    
+    public void SetFootstepArea(GroundCheck.GroundType area)
+    {
+        footstepEventInstance.setParameterByName("Ground", (float)area);
+    }
+
+    public void SetFootstepRunning(int running)
+    {
+        footstepEventInstance.setParameterByName("Running", running);
     }
     
     public void StopEventInstance(EventInstance eventInstance)
