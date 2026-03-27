@@ -60,13 +60,12 @@ public class FinalBossPhase1 : BossManager
         {
             SwitchState(bossPhase1TileAttack);
         }
-        else if (normalAttacked < 2)
+        else if (normalAttacked < 1)
         {
             SwitchState(bossPhase1NormalAttack);
         }
         else if (currentState == bossPhase1TileAttack || currentState == bossIdle || currentState == bossBreak)
         {
-            normalAttacked = 0;
             SwitchState(bossPhase1DoorWordAttack);
         }
     }

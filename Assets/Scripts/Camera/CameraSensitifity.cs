@@ -1,10 +1,7 @@
-using System;
 using UnityEngine;
 using Unity.Cinemachine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using System.Collections;
-using System.Linq;
 using UnityEngine.InputSystem.LowLevel;
 
 
@@ -64,6 +61,6 @@ public class CameraSensitifity : MonoBehaviour
     
     void SetGainY(float value)
     {
-        inputAxis.Controllers[1].Input.Gain = value * controllerMuti;
+        inputAxis.Controllers[1].Input.Gain = -value * controllerMuti;
     }
 }
