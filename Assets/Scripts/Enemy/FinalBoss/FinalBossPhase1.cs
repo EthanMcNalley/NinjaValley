@@ -32,6 +32,8 @@ public class FinalBossPhase1 : BossManager
     public int normalAttacked;
     [SerializeField] private GameObject normalAttackPrefab;
     [SerializeField] private Vector3 normalAttackOffset;
+
+    private bool attackAlternate;
     
     protected override void Start()
     {
@@ -49,23 +51,25 @@ public class FinalBossPhase1 : BossManager
         base.Update();
     }
 
-
     public void ChoseAttack()
     {
         if (currentState != bossIdle)
         {
             SwitchState(bossIdle);
         }
-        else if (currentState == bossPhase1DoorWordAttack)
-        {
-            SwitchState(bossPhase1TileAttack);
-        }
         else if (normalAttacked < 1)
         {
             SwitchState(bossPhase1NormalAttack);
         }
+        else if (!attackAlternate)
+        {
+            attackAlternate = true;
+            SwitchState(bossPhase1TileAttack);
+        }
         else if (currentState == bossPhase1TileAttack || currentState == bossIdle || currentState == bossBreak)
         {
+            normalAttacked = 0;
+            attackAlternate = false;
             SwitchState(bossPhase1DoorWordAttack);
         }
     }
@@ -157,7 +161,7 @@ public class FinalBossPhase1 : BossManager
 
     public void PhaseTransition()
     {
-        
+        Debug.Log("Phase Transition");
     }
     
     //misc stuff
