@@ -15,11 +15,13 @@ public class PlayerHealth : HealthSystem
     public float fadeSpeed = 1f;
     private float ratio;
     private float adjustedRatio;
+    public Volume death_volume;
 
     void Start()
     {
         healthFillImage = healthBarSlider.fillRect.GetComponent<Image>();
         hurtVolume.weight = 0f;
+        death_volume.weight = 0.0f;
     }
     
     public override void TakeDamage(float damage)
@@ -55,7 +57,12 @@ public class PlayerHealth : HealthSystem
     protected override void Dead()
     {
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene("GameOverScene");
+        death_volume.GetComponent<Animator>().SetBool("Death", true);
+        //SceneManager.LoadScene("GameOverScene");
+    }
+
+    IEnumerator Die(){
+        yield return new WaitForSecondsRealtime(1.0f);
     }
 
     void OnTriggerEnter(Collider other)

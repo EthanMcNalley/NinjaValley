@@ -5,12 +5,14 @@ using FMODUnity;
 using FMOD.Studio;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using UnityEngine.AI;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance { get; private set; }
     
     public bool needMusic;
+    public bool need_footsteps = true;
     public MusicEnum startingMusic = 0;
     
     public EventInstance soundToStop;
@@ -36,8 +38,10 @@ public class AudioManager : MonoBehaviour
             InitializeMusic(FmodEvents.instance.music);
         }
         
-        InitializeFootstep(FmodEvents.instance.footstep);
-        
+        if (need_footsteps)
+        {
+            InitializeFootstep(FmodEvents.instance.footstep);   
+        }
         
         if (string.IsNullOrEmpty(masterVCAPath)) return;
         vca = RuntimeManager.GetVCA(masterVCAPath);

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -64,6 +65,7 @@ public class NewMovement : MonoBehaviour
     private moveState prevState;
     public bool double_jump_able = false;
     public bool double_jump = false;
+    public GameObject poof_particle;
     public GameObject moving_particle;
     public GameObject landing_particle;
     public GameObject dash_particle;
@@ -73,6 +75,7 @@ public class NewMovement : MonoBehaviour
     private UIManager UI_manager;
     public static bool time_able = true;
     public SkinnedMeshRenderer player_renderer;
+    public MeshRenderer[] other_renderers;
     public ShadowAssassin shadow_assassin;
 
     private void Awake()
@@ -522,5 +525,40 @@ public class NewMovement : MonoBehaviour
         {
             time_able = true;
         }
+    }
+
+    public IEnumerator PoofUnpoof(Transform new_position){
+
+        player_renderer.enabled = false;
+
+        for (int i = 0; i < other_renderers.Length; i++)
+        {
+            other_renderers[i].enabled = false;
+        }
+
+        DisableMovement();
+
+        Instantiate(poof_particle, transform.position, Quaternion.identity);
+
+        controller.detectCollisions = false;
+        
+        yield return new WaitForSeconds(1.0f);
+
+        controller.detectCollisions = true;
+
+        transform.position = new_position.position;
+        
+        yield return new WaitForSeconds(1.0f);
+
+        Instantiate(poof_particle, transform.position, Quaternion.identity);
+
+        player_renderer.enabled = true;
+
+        for (int i = 0; i < other_renderers.Length; i++)
+        {
+            other_renderers[i].enabled = true;
+        }
+
+        EnableMovement();
     }
 }
