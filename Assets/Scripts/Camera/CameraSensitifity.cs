@@ -12,6 +12,8 @@ public class CameraSensitifity : MonoBehaviour
     [SerializeField] private Slider xSlider;
     [SerializeField] private Slider ySlider;
     [SerializeField] private float controllerMuti = 1f;
+    [SerializeField] private Toggle invertYToggle;
+    private bool invertY;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +22,8 @@ public class CameraSensitifity : MonoBehaviour
         ySlider.value = inputAxis.Controllers[1].Input.Gain;
         xSlider.onValueChanged.AddListener(SetGainX);
         ySlider.onValueChanged.AddListener(SetGainY);
+        invertY = invertYToggle.isOn;
+        invertYToggle.onValueChanged.AddListener(SetInvertY);
     }
 
     void OnEnable()
@@ -34,24 +38,36 @@ public class CameraSensitifity : MonoBehaviour
 
     void OnDeviceChange(InputEventPtr eventPtr, InputDevice device)
     {
+        if (!eventPtr.IsA<StateEvent>() && !eventPtr.IsA<DeltaStateEvent>()) return;
+    
+        // checking if input has changed
+        bool hasActivity = false;
+        foreach (var control in device.allControls)
+        {
+            if (!control.synthetic && !control.noisy && control.IsActuated(0.1f))
+            {
+                hasActivity = true;
+                break;
+            }
+        }
+    
+        if (!hasActivity) return;
+
         switch (device)
         {
             case Mouse:
+            case Keyboard:
                 controllerMuti = 1f;
-                SetGainX(xSlider.value);
-                SetGainY(ySlider.value);
                 break;
             case Gamepad:
                 controllerMuti = 60f;
-                SetGainX(xSlider.value);
-                SetGainY(ySlider.value);
                 break;
             default:
                 controllerMuti = 1f;
-                SetGainX(xSlider.value);
-                SetGainY(ySlider.value);
                 break;
         }
+        SetGainX(xSlider.value);
+        SetGainY(ySlider.value);
     }
 
     void SetGainX(float value)
@@ -61,6 +77,13 @@ public class CameraSensitifity : MonoBehaviour
     
     void SetGainY(float value)
     {
-        inputAxis.Controllers[1].Input.Gain = -value * controllerMuti;
+        int invert = invertY ? 1 : -1;
+        inputAxis.Controllers[1].Input.Gain = invert * value * controllerMuti;
+    }
+    
+    void SetInvertY(bool value)
+    {
+        invertY = value;
+        SetGainY(ySlider.value);
     }
 }

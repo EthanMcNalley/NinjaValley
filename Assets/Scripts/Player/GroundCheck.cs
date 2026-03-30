@@ -77,7 +77,7 @@ public class GroundCheck : MonoBehaviour
         }
         
         //pulled this out, footstep sound stuff
-        if (isGrounded && playerMovement.IsMoving())
+        if (isGrounded && playerMovement.IsMoving() && Time.timeScale != 0)
         {
             PLAYBACK_STATE state;
             AudioManager.instance.footstepEventInstance.getPlaybackState(out state);

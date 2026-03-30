@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.Cinemachine;
@@ -15,6 +16,8 @@ public class AttackHitBox : MonoBehaviour
     private TrailRenderer katanaTrailRenderer;
     private MeshRenderer katanaRenderer;
     public Material auraMaterial;
+    
+    public float hitStopAnimatorSpeed = 0.1f;
 
     private HashSet<GameObject> enemyHitted = new HashSet<GameObject>();
     
@@ -96,15 +99,28 @@ public class AttackHitBox : MonoBehaviour
         if (enemyHitted.Contains(other.gameObject)) return;
             
         float damage = combatStateManager.GetDamage();
-        float charge = combatStateManager.GetShadowCharge();
+        //float charge = combatStateManager.GetShadowCharge();
             
         enemy.TakeDamage(damage, HealthSystem.DamageSource.Player);
         //combatStateManager.shadowAssassin.UpdateShadowMeter(charge);
         enemyHitted.Add(other.gameObject);
 
+        if (combatStateManager.playerAnimatior.speed >= 1)
+        {
+            StartCoroutine(HitStop());
+        }
+
         if (combatStateManager.currentStateID == AttackData.CombatStateID.GroundAttack3)
         {
             CameraShakeManager.instance.ScreenShakeFromProfile(combatStateManager.ba3ScreenShake, impulseSource);
         }
+    }
+
+    private IEnumerator HitStop()
+    {
+        Debug.Log("HitStop");
+        combatStateManager.playerAnimatior.speed = hitStopAnimatorSpeed;
+        yield return new WaitForSecondsRealtime(0.05f);
+        combatStateManager.playerAnimatior.speed = 1;
     }
 }

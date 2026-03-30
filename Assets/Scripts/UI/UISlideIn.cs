@@ -179,6 +179,7 @@ public class UIManager : MonoBehaviour
                 mainMenu.SetActive(false);
                 settings_state = SettingsState.ACTIVE;
                 settings_animator.SetBool("Settings", true);
+                eventSystem.SetSelectedGameObject(settingsButton);
             }
         }
     }
