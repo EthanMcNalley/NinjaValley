@@ -15,6 +15,8 @@ public class CameraSensitifity : MonoBehaviour
     [SerializeField] private Toggle invertYToggle;
     private bool invertY;
     
+    public static event System.Action<bool> OnControllerChanged;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -58,9 +60,11 @@ public class CameraSensitifity : MonoBehaviour
             case Mouse:
             case Keyboard:
                 controllerMuti = 1f;
+                OnControllerChanged?.Invoke(false);
                 break;
             case Gamepad:
                 controllerMuti = 60f;
+                OnControllerChanged?.Invoke(true);
                 break;
             default:
                 controllerMuti = 1f;

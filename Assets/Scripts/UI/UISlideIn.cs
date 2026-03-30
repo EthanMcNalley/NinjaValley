@@ -1,10 +1,7 @@
 using TMPro;
-using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -49,6 +46,8 @@ public class UIManager : MonoBehaviour
     [Header("Menus")] 
     public GameObject textScroll;
     public GameObject mainMenu, settings;
+    private Vector2 lastMousePosition;
+    private bool isUsingGamepad = false;
     
     private bool button_pressed = false;
 
@@ -78,6 +77,9 @@ public class UIManager : MonoBehaviour
             pauseAction = InputSystem.actions.FindAction("Menu");
         }
     }
+    
+    void OnEnable() => CameraSensitifity.OnControllerChanged += HandleControllerChanged;
+    void OnDisable() => CameraSensitifity.OnControllerChanged -= HandleControllerChanged;
 
     // Update is called once per frame
     void Update()
@@ -138,6 +140,26 @@ public class UIManager : MonoBehaviour
             }
         }
     }*/
+    
+    void HandleControllerChanged(bool isGamepad)
+    {
+        if (isGamepad == isUsingGamepad) return; //to not reset every frame
+        isUsingGamepad = isGamepad;
+        
+
+        if (isUsingGamepad && settings_state == SettingsState.ACTIVE && eventSystem.currentSelectedGameObject ==null)
+        {
+            eventSystem.SetSelectedGameObject(settingsButton);
+        }
+        else if (isUsingGamepad && ui_state == UIState.ACTIVE && eventSystem.currentSelectedGameObject ==null)
+        {
+            eventSystem.SetSelectedGameObject(mainMenuButton);
+        }
+        else
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
+    }
 
     public void OpenMenu(){
         // timer = 0.0f;
