@@ -1,3 +1,4 @@
+using System.Collections;
 using EasyTextEffects;
 using TMPro;
 using UnityEngine;
@@ -9,15 +10,13 @@ public class TutorialText : MonoBehaviour
     void Start()
     {
         //tutorial_text.enabled = false;
+        Invisible();
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log(":)");
-            //tutorial_text.enabled = true;
-            tutorial_text.color = Color.white;
-            tutorial_text.GetComponent<TextEffect>().StartManualEffect("fadein");
+            StartCoroutine(Visible());
         }
     }
 
@@ -25,7 +24,6 @@ public class TutorialText : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log(":(");
             tutorial_text.GetComponent<TextEffect>().StartManualEffect("fadeout");
         }
     }
@@ -35,8 +33,12 @@ public class TutorialText : MonoBehaviour
         tutorial_text.color = Color.clear;
     }
 
-    public void Visible()
+    IEnumerator Visible()
     {
+        tutorial_text.GetComponent<TextEffect>().StartManualEffect("fadein");
+
+        yield return new WaitForEndOfFrame();
+
         tutorial_text.color = Color.white;
     }
     

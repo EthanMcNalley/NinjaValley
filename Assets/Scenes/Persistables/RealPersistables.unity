@@ -2294,6 +2294,7 @@ MonoBehaviour:
   volume: {fileID: 324606518}
   time_slow_material: {fileID: 2100000, guid: a232499b7b48166429068078c27df10c, type: 2}
   time_slow_renderer: {fileID: 5215814769977139641, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
+  enemy_renderer: {fileID: 1466546705408602239, guid: b6c18337916cf40f2b0e0ccf4b656eea, type: 2}
   material_rate: 3
   terrainScannerPrefab: {fileID: 5875709519617017709, guid: b6b74db0da161f543b688f44de30e2db, type: 3}
   player: {fileID: 598838391}
@@ -2301,7 +2302,6 @@ MonoBehaviour:
   playerInCombat: 0
   scanDurration: 6
   scanSize: 500
-  time_layers: {fileID: 371351373}
 --- !u!4 &371351372
 Transform:
   m_ObjectHideFlags: 0
@@ -5402,7 +5402,7 @@ PrefabInstance:
       objectReference: {fileID: 598838403}
     - target: {fileID: 7551101314265223699, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: coyote_time_amount
-      value: 12.61
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7551101314265223699, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: other_renderers.Array.size

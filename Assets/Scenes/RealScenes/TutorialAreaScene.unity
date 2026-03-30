@@ -15941,6 +15941,42 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -5.6085
       objectReference: {fileID: 0}
+    - target: {fileID: 6238476751138205778, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+      propertyPath: globalEffects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238476751138205778, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+      propertyPath: globalEffects.Array.data[2].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: 01d437ab8d1a1c14f997f7de29f5eba7, type: 2}
+    - target: {fileID: 6238476751138205778, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+      propertyPath: globalEffects.Array.data[2].triggerWhen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238476751138205778, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+      propertyPath: globalEffects.Array.data[1].onEffectCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238476751138205778, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+      propertyPath: globalEffects.Array.data[1].onEffectCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238476751138205778, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+      propertyPath: globalEffects.Array.data[1].onEffectCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2059726720}
+    - target: {fileID: 6238476751138205778, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+      propertyPath: globalEffects.Array.data[1].onEffectCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Invisible
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238476751138205778, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+      propertyPath: globalEffects.Array.data[1].onEffectCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TutorialText, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238476751138205778, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+      propertyPath: globalEffects.Array.data[1].onEffectCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7657981112848032388, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
       propertyPath: m_Name
       value: TutorialText
@@ -18517,6 +18553,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018332855}
   m_Mesh: {fileID: -5228807220042954272, guid: f056f75034322c84d843539a106a006c, type: 3}
+--- !u!114 &2059726720 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2387816766952547747, guid: 2302d4825b2fa9f4ea084f1755057efd, type: 3}
+  m_PrefabInstance: {fileID: 1726380899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6934a3e1b7665b3478006e8f3d897f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialText
 --- !u!1 &2075024790
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,9 @@ public class TestScreenEffect : MonoBehaviour
         if (expanding) {
             time_size += Time.deltaTime * material_rate;
             if (time_size >= 3f) expanding = false;
-        } else {
+        } 
+        
+        else {
             time_size -= Time.deltaTime * material_rate;
             if (time_size <= 0f) expanding = true;
         }

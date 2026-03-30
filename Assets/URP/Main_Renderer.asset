@@ -1,23 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8182522723998219340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9377bada70366419aa6301068e988aa4, type: 3}
-  m_Name: EdgeDetection
-  m_EditorClassIdentifier: Linework::Linework.EdgeDetection.EdgeDetection
-  m_Active: 0
-  settings: {fileID: 11400000, guid: a3ea055e5c7a4e9438f8d00a3d77e0a8, type: 2}
-  shaders:
-    section: {fileID: 4800000, guid: 555b69c4bab64af2aab316a4335ad6be, type: 3}
-    sectionMask: {fileID: 4800000, guid: 66bb1bcc44054ea3bf6082c4d4e9edf9, type: 3}
-    outline: {fileID: 4800000, guid: 0049e25744c864ee4916fc340cf7957f, type: 3}
 --- !u!114 &-7443546540556248535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,27 +40,6 @@ MonoBehaviour:
   passIndex: 0
   bindDepthStencilAttachment: 0
   m_Version: 1
---- !u!114 &-5471697049680113823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca9c9142e824574f8b0205bd5b9a4e9, type: 3}
-  m_Name: RFO
-  m_EditorClassIdentifier: Assembly-CSharp::RFO
-  m_Active: 0
-  settings:
-    outlineMaterial: {fileID: 2100000, guid: 0276afe3a036cf84db435b5ba23b2161, type: 2}
-    targetLayerMask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    outlineColor: {r: 0, g: 0, b: 0, a: 1}
-    outlineWidth: 4.74
-    useSeparableAxisMethod: 0
 --- !u!114 &-4773777824754704723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,11 +113,9 @@ MonoBehaviour:
   - {fileID: 6042002191732304617}
   - {fileID: 5004589840248765244}
   - {fileID: -7443546540556248535}
-  - {fileID: -5471697049680113823}
   - {fileID: 1466546705408602239}
-  - {fileID: -8182522723998219340}
   - {fileID: 559128007524013674}
-  m_RendererFeatureMap: 3f6f66cc0d85ed4a4ce49def86a7f13494c8bd9545712976b921b912e64b6248c483c32c96a00ba5addedb665c22c0bd60b234488d96bcd0e9ea5542fb80d9533c7b8ebaf1df7345299a0ee5db35b398618f430b86a010b47f30665e75385a14b4438675efd6718e6ad670e0f56bc207
+  m_RendererFeatureMap: 3f6f66cc0d85ed4a4ce49def86a7f13494c8bd9545712976b921b912e64b6248c483c32c96a00ba5addedb665c22c0bd60b234488d96bcd0e9ea5542fb80d9533c7b8ebaf1df7345299a0ee5db35b3987f30665e75385a146ad670e0f56bc207
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -215,17 +174,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Name: EnemyRender
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.RenderObjects
-  m_Active: 0
+  m_Active: 1
   settings:
-    passTag: RenderObjects
-    Event: 300
+    passTag: EnemyRender
+    Event: 600
     filterSettings:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 512
+        m_Bits: 2048
       PassNames: []
     overrideMaterial: {fileID: 0}
     overrideMaterialPassIndex: 0

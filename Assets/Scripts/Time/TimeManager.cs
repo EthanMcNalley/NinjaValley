@@ -22,6 +22,7 @@ public class TimeManager : MonoBehaviour
     public Material time_slow_material;
     private Material instance_material;
     public FullScreenPassRendererFeature time_slow_renderer;
+    public RenderObjects enemy_renderer;
     private float time_size = 0.0f;
     public float material_rate = 3.0f;
     private GameObject[] anim_objects;
@@ -33,7 +34,6 @@ public class TimeManager : MonoBehaviour
     public bool shadowActive, playerInCombat;
     public float scanDurration = 10f;
     public float scanSize = 500;
-    public TimeLayers time_layers;
     private NewMovement player_control;
     private MusicState current_musicState = MusicState.NORMAL;
     
@@ -56,6 +56,7 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
+        enemy_renderer.SetActive(false);
         instance_material = new Material(time_slow_material);
         time_slow_renderer.passMaterial = instance_material;
     }
@@ -105,10 +106,19 @@ public class TimeManager : MonoBehaviour
 
             if (refresh_timer >= refresh_time && timeSlowAction.triggered && NewMovement.time_able && player_control.canMove)
             {
-                time_layers.ChangeToTimeSlow();
                 time_timer = 0f;
                 refresh_timer = 0f;
                 time_state = TimeState.SLOWED;
+
+                if (!shadowActive){
+                    enemy_renderer.SetActive(true);
+                }
+
+                else
+                {
+                    enemy_renderer.SetActive(false);
+                }
+    
                 InstantiateTerrainScanner();
             }
         }
@@ -121,13 +131,13 @@ public class TimeManager : MonoBehaviour
             //when duration ends
             if (time_timer >= time_slowed_down || CutsceneBars.cutscene_state == CutsceneBars.CutsceneState.ACTIVE)
             {
-                time_layers.ChangeToDefault() ;
+                enemy_renderer.SetActive(false);
                 time_state = TimeState.NORMAL;
             }
             //only allow manual cancel when not in shadow assassin
             if ((!shadowActive && timeSlowAction.triggered) || CutsceneBars.cutscene_state == CutsceneBars.CutsceneState.ACTIVE)
             {
-                time_layers.ChangeToDefault();
+                enemy_renderer.SetActive(false);
                 refresh_timer = time_slowed_down - time_timer;
                 time_timer = time_slowed_down;
                 time_state = TimeState.NORMAL;
