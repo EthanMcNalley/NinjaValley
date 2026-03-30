@@ -23,8 +23,8 @@ public class GlobalShaderVariables : MonoBehaviour
         }
 
         Shader.SetGlobalFloat("_DissolveAmount", dissolve_time);
+        Shader.SetGlobalFloat("_TimeSpeed", TimeManager.slowed_amount);
         Shader.SetGlobalFloat("_UnscaledTime", Time.unscaledTime);
         Shader.SetGlobalFloat("_UnscaledDeltaTime", Time.unscaledDeltaTime);
-        Shader.SetGlobalFloat("_TimeSpeed", TimeManager.slowed_amount);
     }
 }

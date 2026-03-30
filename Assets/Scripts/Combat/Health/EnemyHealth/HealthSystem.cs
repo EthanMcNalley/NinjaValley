@@ -5,7 +5,7 @@ public abstract class HealthSystem : MonoBehaviour
 {
     public float maxHealthPoint = 10f;
     public float currHealthPoint = 10f;
-    private bool isDead = false;
+    protected bool isDead = false;
 
     public bool isInvincible;
 

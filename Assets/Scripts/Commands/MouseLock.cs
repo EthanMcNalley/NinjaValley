@@ -19,7 +19,7 @@ public class MouseLock : MonoBehaviour
         }
 #endif
         
-        if (UIManager.ui_state == UIManager.UIState.ACTIVE){
+        if (UIManager.ui_state == UIManager.UIState.ACTIVE || NewMovement.is_dead){
             Cursor.lockState = CursorLockMode.None;
         }
 

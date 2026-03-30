@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -15,10 +16,12 @@ public class PlayerHealth : HealthSystem
     public float fadeSpeed = 1f;
     private float ratio;
     private float adjustedRatio;
-    public Volume death_volume;
+    [SerializeField] Volume death_volume;
+    [SerializeField] GameObject game_over_UI;
 
     void Start()
     {
+        game_over_UI.SetActive(false);
         healthFillImage = healthBarSlider.fillRect.GetComponent<Image>();
         hurtVolume.weight = 0f;
         death_volume.weight = 0.0f;
@@ -56,13 +59,16 @@ public class PlayerHealth : HealthSystem
     
     protected override void Dead()
     {
-        Cursor.lockState = CursorLockMode.None;
-        death_volume.GetComponent<Animator>().SetBool("Death", true);
+        NewMovement.is_dead = isDead;
+        StartCoroutine(Die());
         //SceneManager.LoadScene("GameOverScene");
     }
 
     IEnumerator Die(){
-        yield return new WaitForSecondsRealtime(1.0f);
+        death_volume.GetComponent<Animator>().SetTrigger("Death");
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(2.0f);
+        game_over_UI.SetActive(true);
     }
 
     void OnTriggerEnter(Collider other)

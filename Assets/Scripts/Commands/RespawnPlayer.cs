@@ -3,11 +3,21 @@ using UnityEngine;
 
 public class RespawnPlayer : MonoBehaviour
 {
+    public bool revive = false;
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            other.transform.position = NewMovement.last_grounded_position;
+            if (!revive)
+            {
+                other.transform.position = NewMovement.last_grounded_position;
+            }
+
+            else
+            {
+                other.transform.position = NewMovement.revive_position;
+                gameObject.SetActive(false);
+            }
             // StartCoroutine(Respawning(other));
         }
     }

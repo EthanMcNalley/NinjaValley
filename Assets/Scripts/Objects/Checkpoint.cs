@@ -1,5 +1,6 @@
 using UnityEngine;
 using FMODUnity;
+using Unity.VisualScripting;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Checkpoint : MonoBehaviour
     public EventReference bell_sound;
     private UIManager UI_manager;
     public static bool first_checkpoint = true;
+    [SerializeField] Transform revive_position;
     void Start()
     {
         UI_manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
@@ -28,8 +30,10 @@ public class Checkpoint : MonoBehaviour
 
             if (first_checkpoint)
             {
-                    UI_manager.OpenTextScrollMenu("Checkpoint Bell Activated! You will respawn here upon death.");
+                UI_manager.OpenTextScrollMenu("Checkpoint Bell Activated! You will respawn here upon death.");
             }
+
+            NewMovement.revive_position = revive_position.position;
 
             first_checkpoint = false;
 

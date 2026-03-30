@@ -1,5 +1,6 @@
 using TMPro;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -23,6 +24,7 @@ public class UIManager : MonoBehaviour
     public Image time_bar;
     public float fill_rate = 0.001f;
     private InputAction pauseAction;
+    [SerializeField] NewMovement player;
     public enum UIState{
         INACTIVE,
         ACTIVE
@@ -81,13 +83,15 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         if (pauseAction.triggered){
-            button_pressed = true;
+            if(player.canMove){
+                button_pressed = true;
             
-            if (ui_state == UIState.INACTIVE  && settings_state == SettingsState.INACTIVE){
-                OpenMenu();
-            }
-            else{
-                CloseMenu();
+                if (ui_state == UIState.INACTIVE  && settings_state == SettingsState.INACTIVE){
+                    OpenMenu();
+                }
+                else{
+                    CloseMenu();
+                }
             }
         }
         /*else if (pauseAction.triggered && settings_state == SettingsState.ACTIVE)

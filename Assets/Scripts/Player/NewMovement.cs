@@ -61,6 +61,9 @@ public class NewMovement : MonoBehaviour
         Jumping
     }
     public static Vector3 last_grounded_position;
+    public static Vector3 revive_position;
+    public static bool is_dead = false;
+    [SerializeField] GameObject revive_trigger;
     [SerializeField] private moveState currentState = moveState.Idle;
     private moveState prevState;
     public bool double_jump_able = false;
@@ -77,6 +80,7 @@ public class NewMovement : MonoBehaviour
     public SkinnedMeshRenderer player_renderer;
     public MeshRenderer[] other_renderers;
     public ShadowAssassin shadow_assassin;
+    [SerializeField] PlayerHealth player_health;
 
     private void Awake()
     {
@@ -310,6 +314,7 @@ public class NewMovement : MonoBehaviour
         {
             animator.SetFloat("YVelocity", 0);
         }
+
     }
 
 
@@ -490,6 +495,7 @@ public class NewMovement : MonoBehaviour
             else if (upgrade.upgrade_type == Upgrade.UpgradeType.HEALTH)
             {
                 UI_manager.OpenTextScrollMenu("You've absorbed the essence of health! Max HP has increased.");
+                player_health.maxHealthPoint += 1.0f;
                 other.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 other.gameObject.GetComponent<Collider>().enabled = false;
             }
@@ -560,5 +566,13 @@ public class NewMovement : MonoBehaviour
         }
 
         EnableMovement();
+    }
+
+    public void Revive()
+    {
+        Time.timeScale = 1.0f;
+        is_dead = false;
+        player_health.currHealthPoint = player_health.maxHealthPoint;
+        revive_trigger.SetActive(true);
     }
 }
