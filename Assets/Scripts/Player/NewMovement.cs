@@ -81,6 +81,7 @@ public class NewMovement : MonoBehaviour
     public MeshRenderer[] other_renderers;
     public ShadowAssassin shadow_assassin;
     [SerializeField] PlayerHealth player_health;
+    [SerializeField] Transform player_center;
 
     private void Awake()
     {
@@ -533,8 +534,10 @@ public class NewMovement : MonoBehaviour
         }
     }
 
-    public IEnumerator PoofUnpoof(Transform new_position){
-
+    public IEnumerator PoofUnpoof(NewMovement player, Vector3 new_pos){
+        float original_gravity = gravityValue;
+        gravityValue = 0.0f;
+        playerVelocity.y = 0.0f;
         player_renderer.enabled = false;
 
         for (int i = 0; i < other_renderers.Length; i++)
@@ -544,7 +547,7 @@ public class NewMovement : MonoBehaviour
 
         DisableMovement();
 
-        Instantiate(poof_particle, transform.position, Quaternion.identity);
+        Instantiate(poof_particle, transform.position, Quaternion.Euler(-90, 0, 0));
 
         controller.detectCollisions = false;
         
@@ -552,11 +555,15 @@ public class NewMovement : MonoBehaviour
 
         controller.detectCollisions = true;
 
-        transform.position = new_position.position;
+        gravityValue = original_gravity;
+
+        player.transform.position = new_pos;
         
         yield return new WaitForSeconds(1.0f);
 
-        Instantiate(poof_particle, transform.position, Quaternion.identity);
+        Instantiate(poof_particle, player_center.position, Quaternion.Euler(-90, 0, 0));
+
+        yield return new WaitForEndOfFrame();
 
         player_renderer.enabled = true;
 

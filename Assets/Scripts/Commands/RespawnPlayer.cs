@@ -10,7 +10,8 @@ public class RespawnPlayer : MonoBehaviour
         {
             if (!revive)
             {
-                other.transform.position = NewMovement.last_grounded_position;
+                StartCoroutine(other.GetComponent<NewMovement>().PoofUnpoof(other.GetComponent<NewMovement>(), NewMovement.last_grounded_position));
+                //other.transform.position = NewMovement.last_grounded_position;
             }
 
             else
