@@ -99,7 +99,7 @@ public class GroundAttack3 : CombatState
 {
     private AttackData.CombatStateID stateID = AttackData.CombatStateID.GroundAttack3;
     private float damage = 3f;
-    float stateDuration = 0.65f;
+    float stateDuration = 0.73f;
     float bufferDuration = 0.5f;
     private float shadowCharge = 20f;
     

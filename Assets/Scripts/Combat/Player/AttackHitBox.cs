@@ -18,6 +18,7 @@ public class AttackHitBox : MonoBehaviour
     public Material auraMaterial;
     
     public float hitStopAnimatorSpeed = 0.1f;
+    public float hitStopDuration = 0.075f;
 
     private HashSet<GameObject> enemyHitted = new HashSet<GameObject>();
     
@@ -105,10 +106,12 @@ public class AttackHitBox : MonoBehaviour
         //combatStateManager.shadowAssassin.UpdateShadowMeter(charge);
         enemyHitted.Add(other.gameObject);
 
-        if (combatStateManager.playerAnimatior.speed >= 1)
+        StartCoroutine(HitStop());
+        
+        /*if (combatStateManager.playerAnimatior.speed >= 1)
         {
             StartCoroutine(HitStop());
-        }
+        }*/
 
         if (combatStateManager.currentStateID == AttackData.CombatStateID.GroundAttack3)
         {
@@ -119,8 +122,9 @@ public class AttackHitBox : MonoBehaviour
     private IEnumerator HitStop()
     {
         Debug.Log("HitStop");
+        yield return new WaitForSecondsRealtime(0.03f);
         combatStateManager.playerAnimatior.speed = hitStopAnimatorSpeed;
-        yield return new WaitForSecondsRealtime(0.05f);
+        yield return new WaitForSecondsRealtime(hitStopDuration);
         combatStateManager.playerAnimatior.speed = 1;
     }
 }

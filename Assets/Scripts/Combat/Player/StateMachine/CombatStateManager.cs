@@ -283,7 +283,7 @@ public class CombatStateManager : MonoBehaviour
     {
         if (attacking && nextState != null)
         {
-            Debug.Log(stateTime);
+            //Debug.Log(stateTime);
             attacking = false;
             comboStep++;
             FaceEnemy();
@@ -291,7 +291,7 @@ public class CombatStateManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(stateTime);
+            //Debug.Log(stateTime);
             comboStep = 0;
             SwitchState(Idle);
         }

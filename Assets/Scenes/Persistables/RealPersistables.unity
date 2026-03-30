@@ -1145,7 +1145,7 @@ Transform:
   m_GameObject: {fileID: 245145286}
   serializedVersion: 2
   m_LocalRotation: {x: 0.9986312, y: 0, z: 0, w: -0.052305374}
-  m_LocalPosition: {x: 9.8797, y: -80.63047, z: -1.6368785}
+  m_LocalPosition: {x: 2.1076694, y: -13.843693, z: 43.151093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3180,6 +3180,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a624bcce29e1c949bae1f04937060c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayOneShots
+--- !u!114 &481479730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1915910640777989163, guid: 2e01150dbbde80a4eb9f755bee9e17bc, type: 3}
+  m_PrefabInstance: {fileID: 481479722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481479724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &481496510
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,12 +3719,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 481479730}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 481479730}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5019,15 +5030,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9
+      value: 1.9200001
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 63.3
+      value: 2.460001
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30.6
+      value: -10.199997
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5060,6 +5071,14 @@ PrefabInstance:
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522813256472002665, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: hitStopDuration
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522813256472002665, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
+      propertyPath: hitStopAnimatorSpeed
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2788104022645172764, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5875,7 +5894,6 @@ GameObject:
   - component: {fileID: 660532811}
   - component: {fileID: 660532812}
   - component: {fileID: 660532816}
-  - component: {fileID: 660532817}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -5997,20 +6015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetActive
   gm: {fileID: 1525124497}
---- !u!114 &660532817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660532810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9133feeb3f9db94693d5905d5734cbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ActiveSelect
-  eventSystem: {fileID: 1983633035}
-  selectButton: {fileID: 265483773}
 --- !u!1 &678768954
 GameObject:
   m_ObjectHideFlags: 0
@@ -7100,7 +7104,7 @@ Transform:
   m_GameObject: {fileID: 926555554}
   serializedVersion: 2
   m_LocalRotation: {x: 0.9986312, y: 0, z: 0, w: -0.052305374}
-  m_LocalPosition: {x: 9.8797, y: -80.63047, z: -1.6368785}
+  m_LocalPosition: {x: 2.1076694, y: -13.843693, z: 43.151093}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

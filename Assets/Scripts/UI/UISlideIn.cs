@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -145,7 +146,8 @@ public class UIManager : MonoBehaviour
     {
         if (isGamepad == isUsingGamepad) return; //to not reset every frame
         isUsingGamepad = isGamepad;
-        
+
+        Cursor.visible = !isUsingGamepad;
 
         if (isUsingGamepad && settings_state == SettingsState.ACTIVE && eventSystem.currentSelectedGameObject ==null)
         {
