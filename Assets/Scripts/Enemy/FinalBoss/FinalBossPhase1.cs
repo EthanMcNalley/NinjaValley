@@ -1,14 +1,21 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.Rendering;
+using Random = UnityEngine.Random;
 
 public class FinalBossPhase1 : BossManager
 {
     public Animator tileAttackAnimator;
+    public GameObject hpCanvus;
     public BossState bossIdle = new BossIdle();
     BossState bossPhase1NormalAttack = new BossPhase1NormalAttack();
     BossState bossPhase1TileAttack = new BossPhase1TileAttack();
     BossState bossPhase1DoorWordAttack = new BossPhase1DoorWordAttack();
     BossState bossBreak = new BossBreak();
+    private BossState bossPhaseTransition = new BossPhaseTransition();
     
     [Header("Poop Attacks")]
     //poopAttack stuff (floor rising ink blobs)
@@ -33,12 +40,24 @@ public class FinalBossPhase1 : BossManager
     [SerializeField] private GameObject normalAttackPrefab;
     [SerializeField] private Vector3 normalAttackOffset;
 
+    [Header("Music&Sounds")] 
+    public MusicEnum bossPhase1Music;
+    public MusicEnum silent;
+    
+    [Header("PhaseTransition")]
+    public bool phaseTransition;
+    public bool teleportPlayer;
+    public Volume transitionVolume;
+    [SerializeField] private float transitionTime;
+    [SerializeField] private Transform phaseTransitionPosition;
+
     private bool attackAlternate;
     
     protected override void Start()
     {
         currentState = bossIdle;
         base.Start();
+        //StartCoroutine(VolumeChange());
     }
     
     protected override void Update()
@@ -162,13 +181,42 @@ public class FinalBossPhase1 : BossManager
     public void PhaseTransition()
     {
         Debug.Log("Phase Transition");
+        phaseTransition = true;
+        hpCanvus.SetActive(false);
+        AudioManager.instance.SetMusicArea(silent);
+        StartCoroutine(VolumeChange());
+
     }
-    
+
+    IEnumerator VolumeChange()
+    {
+        var volume = Instantiate(transitionVolume, transform.position, Quaternion.identity);
+
+        while (volume.weight < 1)
+        {
+            volume.weight = Mathf.MoveTowards(volume.weight, 1, Time.deltaTime * transitionTime);
+            yield return null;
+        }
+        
+        teleportPlayer = true;
+    }
+
+    private void LateUpdate()
+    {
+        if (phaseTransition && teleportPlayer)
+        {
+            Debug.Log("Player Teleported");
+            teleportPlayer = false;
+            player.transform.position = phaseTransitionPosition.position;
+        }
+    }
+
+
     //misc stuff
     protected override void OnEnable()
     {
         base.OnEnable();
-                
+        AudioManager.instance.SetMusicArea(bossPhase1Music);
         PortalFinal.OnPlayerTeleported += PortalUsed;
     }
 

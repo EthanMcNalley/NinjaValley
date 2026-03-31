@@ -40,13 +40,14 @@ public class PortalIndicatorUI : MonoBehaviour
             Image img = indicator.GetComponent<Image>();
             if (img.color == portalColor)
             {
+                activeIndicators.Remove(indicator);
                 Destroy(indicator);
                 destroyed = true;
                 break;
             }
         }
 
-        if (activeIndicators.Count > 0 && destroyed)
+        if (activeIndicators.Count == 0 && destroyed)
         {
             cleared = true;
         }

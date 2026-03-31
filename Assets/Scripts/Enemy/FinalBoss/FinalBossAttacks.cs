@@ -168,6 +168,30 @@ public class BossBreak : BossState
     }
 }
 
+public class BossPhaseTransition : BossState
+{
+    //public BossAttackType BossStateType = BossAttackType.Phase1DoorWordAttack;
+    public float stateTime = 60f;
+    private float currentStateTime = 60f;
+    private FinalBossPhase1 boss;
+
+    public override void EnterState(BossManager bossManager)
+    {
+        boss =  bossManager as FinalBossPhase1;
+        currentStateTime = stateTime;
+        //PLAY BREAK ANIMATION THEN WAVEY
+    }
+
+    public override void UpdateState(BossManager bossManager)
+    {
+        currentStateTime -= Time.deltaTime;
+    }
+    
+    public override void ExitState(BossManager bossManager)
+    {
+        
+    }
+}
 
 public class Temp : BossState
 {

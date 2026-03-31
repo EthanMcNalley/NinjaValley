@@ -98,20 +98,26 @@ public class AttackHitBox : MonoBehaviour
         if (enemy == null) return;
                 
         if (enemyHitted.Contains(other.gameObject)) return;
+        
+        enemyHitted.Add(other.gameObject);
             
         float damage = combatStateManager.GetDamage();
         //float charge = combatStateManager.GetShadowCharge();
             
-        enemy.TakeDamage(damage, HealthSystem.DamageSource.Player);
+        //enemy.TakeDamage(damage, HealthSystem.DamageSource.Player);
         //combatStateManager.shadowAssassin.UpdateShadowMeter(charge);
-        enemyHitted.Add(other.gameObject);
-
-        StartCoroutine(HitStop());
         
-        /*if (combatStateManager.playerAnimatior.speed >= 1)
+
+        //StartCoroutine(HitStop());
+        
+        if (combatStateManager.playerAnimatior.speed >= 1)
         {
-            StartCoroutine(HitStop());
-        }*/
+            StartCoroutine(HitStop(enemy, damage));
+        }
+        else
+        {
+            enemy.TakeDamage(damage, HealthSystem.DamageSource.Player);
+        }
 
         if (combatStateManager.currentStateID == AttackData.CombatStateID.GroundAttack3)
         {
@@ -119,10 +125,11 @@ public class AttackHitBox : MonoBehaviour
         }
     }
 
-    private IEnumerator HitStop()
+    private IEnumerator HitStop(HealthSystem enemy, float damage)
     {
         Debug.Log("HitStop");
         yield return new WaitForSecondsRealtime(0.03f);
+        enemy.TakeDamage(damage, HealthSystem.DamageSource.Player);
         combatStateManager.playerAnimatior.speed = hitStopAnimatorSpeed;
         yield return new WaitForSecondsRealtime(hitStopDuration);
         combatStateManager.playerAnimatior.speed = 1;
