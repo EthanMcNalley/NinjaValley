@@ -109,21 +109,23 @@ public class TimeManager : MonoBehaviour
                 time_timer = 0f;
                 refresh_timer = 0f;
                 time_state = TimeState.SLOWED;
-
-                if (!shadowActive){
-                    enemy_renderer.SetActive(true);
-                }
-
-                else
-                {
-                    enemy_renderer.SetActive(false);
-                }
+                enemy_renderer.SetActive(false);
     
                 InstantiateTerrainScanner();
             }
         }
         else if (time_state == TimeState.SLOWED)
         {
+            if (!shadowActive)
+            {
+                enemy_renderer.SetActive(true);
+            }
+
+            else
+            {
+                enemy_renderer.SetActive(false);
+            }
+
             if (time_size < 3f)
             {
                 time_size += Time.deltaTime * material_rate;
@@ -142,6 +144,8 @@ public class TimeManager : MonoBehaviour
                 time_timer = time_slowed_down;
                 time_state = TimeState.NORMAL;
             }
+
+
         }
         
             /*if (time_state == TimeState.NORMAL){

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Cinemachine;
+using System.Collections;
 public class CameraMoveTrigger : MonoBehaviour
 {
     public int new_priority = 10;
@@ -28,7 +29,11 @@ public class CameraMoveTrigger : MonoBehaviour
             }
         }
     }
-
+    IEnumerator WaitToSwitch()
+    {
+        yield return new WaitForSeconds(0.1f);
+        cinemachine_camera.Priority = new_priority;
+    }
     void OnTriggerExit(Collider collider){
         if (collider.CompareTag("Player")){
             if (cutscene){
@@ -36,7 +41,16 @@ public class CameraMoveTrigger : MonoBehaviour
             }
 
             else{
-                CameraControlling.smoothing_amount = CameraControlling.original_smoothing_amount;
+                if (different_exit_time)
+                {
+                    CameraControlling.smoothing_amount = exit_time;
+                }
+
+                else
+                {
+                    CameraControlling.smoothing_amount = CameraControlling.original_smoothing_amount;
+                }
+                
                 cinemachine_camera.Priority = 0;
                 transform.localScale = transform.localScale - (Vector3.one * increase_size);
             }
