@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
+using FMODUnity;
 
 public class TimeManager : MonoBehaviour
 {
@@ -36,6 +32,9 @@ public class TimeManager : MonoBehaviour
     public float scanSize = 500;
     private NewMovement player_control;
     private MusicState current_musicState = MusicState.NORMAL;
+    private float soundTimer = 0f;
+    private bool ableToPlaySound = true;
+    public EventReference timeSlowSfx;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -94,6 +93,16 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         if (Time.timeScale == 0) return;
+
+        if (soundTimer <= 3f && !ableToPlaySound)
+        {
+            soundTimer += Time.deltaTime;
+        }
+        else if (soundTimer >= 3f && !ableToPlaySound)
+        {
+            ableToPlaySound = true;
+        }
+        
         // if(volume.profile)){
         //     original_saturation_value = adjustments.saturation.value;
         // }
@@ -230,6 +239,12 @@ public class TimeManager : MonoBehaviour
             if (current_musicState == MusicState.NORMAL)
             {
                 AudioManager.instance.SetSlowTime(1f);
+                if (ableToPlaySound)
+                {
+                    ableToPlaySound = false;
+                    soundTimer = 0;
+                    AudioManager.instance.PlayOneShot(timeSlowSfx, transform.position);
+                }
                 //AudioManager.instance.musicEventInstance.setParameterByName("Ticking", 0);
                 current_musicState = MusicState.SLOWED;
             }

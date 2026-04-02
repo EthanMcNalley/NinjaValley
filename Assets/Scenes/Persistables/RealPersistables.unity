@@ -1145,7 +1145,7 @@ Transform:
   m_GameObject: {fileID: 245145286}
   serializedVersion: 2
   m_LocalRotation: {x: 0.9986312, y: 0, z: 0, w: -0.052305352}
-  m_LocalPosition: {x: -873.03613, y: 261.9756, z: -1766.7002}
+  m_LocalPosition: {x: 0, y: -11.143241, z: 31.954103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2301,6 +2301,13 @@ MonoBehaviour:
   playerInCombat: 0
   scanDurration: 6
   scanSize: 500
+  timeSlowSfx:
+    Guid:
+      Data1: 1571436217
+      Data2: 1086532708
+      Data3: 2066343553
+      Data4: 1651397693
+    Path: event:/Player/Dio
 --- !u!4 &371351372
 Transform:
   m_ObjectHideFlags: 0
@@ -5009,15 +5016,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -795.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -248.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1638.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2202242408957445114, guid: c7cde8a57b879d945b043c47a374f00c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7083,7 +7090,7 @@ Transform:
   m_GameObject: {fileID: 926555554}
   serializedVersion: 2
   m_LocalRotation: {x: 0.9986312, y: 0, z: 0, w: -0.052305352}
-  m_LocalPosition: {x: -873.03613, y: 261.9756, z: -1766.7002}
+  m_LocalPosition: {x: 0, y: -11.143241, z: 31.954103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13864,7 +13871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   needMusic: 1
   need_footsteps: 1
-  startingMusic: 0
+  startingMusic: 4
   masterVCAPath: vca:/VCAMaster
   initialVolume: 0.8
 --- !u!1 &1975093641
