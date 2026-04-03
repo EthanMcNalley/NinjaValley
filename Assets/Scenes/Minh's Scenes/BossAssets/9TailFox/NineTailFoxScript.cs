@@ -12,6 +12,7 @@ public class NineTailFoxScript : MonoBehaviour
     public float bossTimer = 20f, maxTimer = 20f, bossCurrentHP, bossCurrentGauge;
     [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, playerCollision = false;
     public BossHPSystem bossHPSystem;
+    private ParticleSystem tenguLand;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -106,8 +107,7 @@ public class NineTailFoxScript : MonoBehaviour
 
     public void ActivateBeamVFX()
     {
-        //RockSpikeVFX.transform.position = targetPos;
-        //RockSpikeVFX.SetActive(true);
+        BeamVFX.SetActive(true);
 
     }
 
@@ -159,6 +159,11 @@ public class NineTailFoxScript : MonoBehaviour
     public void SetIsFlying()
     {
         isFlying = !isFlying;
+    }
+
+    public void playLandingEffect()
+    {
+        tenguLand.Play();
     }
 
     public void EnterBreakState()
