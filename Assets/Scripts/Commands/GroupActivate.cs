@@ -5,17 +5,17 @@ public class GroupActivate : MonoBehaviour
 {
     public GameObject[] objects;
     public float[] delay_times;
-    int temp_object;
     public void ActivateWithDelay()
     {
         for (int i = 0; i < objects.Length; i++)
         {
-            Invoke("InvokeActivate", delay_times[temp_object]);
+            StartCoroutine(Activate(objects[i], delay_times[i]));
         }
     }
 
-    void InvokeActivate()
+    IEnumerator Activate(GameObject game_object, float delay)
     {
-        objects[temp_object].SetActive(true);
+        yield return new WaitForSeconds(delay);
+        game_object.SetActive(true);
     }
 }

@@ -82,9 +82,11 @@ public class NewMovement : MonoBehaviour
     public ShadowAssassin shadow_assassin;
     [SerializeField] PlayerHealth player_health;
     [SerializeField] Transform player_center;
+    float original_gravity;
 
     private void Awake()
     {
+        original_gravity = gravityValue;
         UI_manager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         coyote_timer = coyote_time_amount;
         groundCheck = GetComponent<GroundCheck>();
@@ -535,7 +537,6 @@ public class NewMovement : MonoBehaviour
     }
 
     public IEnumerator PoofUnpoof(NewMovement player, Vector3 new_pos){
-        float original_gravity = gravityValue;
         gravityValue = 0.0f;
         playerVelocity.y = 0.0f;
         player_renderer.enabled = false;
