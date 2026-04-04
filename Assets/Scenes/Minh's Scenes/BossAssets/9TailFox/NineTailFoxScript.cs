@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class NineTailFoxScript : MonoBehaviour
 {
     Animator animator;
-    [SerializeField] GameObject BeamVFX,HowlingVFX, groundStompVFX;
+    [SerializeField] GameObject BeamVFX, groundStompVFX;
     [SerializeField] GameObject beamHitbox,howlingHitbox, airAttackHitBox, player;
     Vector3 playerPos, targetPos, vfxPos;
     private NavMeshAgent agent;
@@ -12,7 +12,8 @@ public class NineTailFoxScript : MonoBehaviour
     public float bossTimer = 20f, maxTimer = 20f, bossCurrentHP, bossCurrentGauge;
     [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, playerCollision = false;
     public BossHPSystem bossHPSystem;
-    private ParticleSystem tenguLand;
+    public ParticleSystem howlingEffect;
+    float speed = 5f, rotationSpeed = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,6 +25,7 @@ public class NineTailFoxScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = movementSpeed;
         bossTimer = maxTimer;
+        BeamVFX.SetActive(false);
 
     }
 
@@ -44,13 +46,14 @@ public class NineTailFoxScript : MonoBehaviour
 
         if (!isAttacking && !isBreak && !playerCollision)
         {
-            agent.SetDestination(playerPos);
+            //agent.SetDestination(GameObject.FindGameObjectWithTag("Player").transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             animator.SetBool("isWalking", true);
         }
         else if (!isAttacking && !isBreak && playerCollision)
         {
             animator.SetBool("isWalking", false);
-            agent.ResetPath();
+            //agent.ResetPath();
         }
         if (bossCurrentGauge <= 0 && !isBreak)
         {
@@ -63,8 +66,19 @@ public class NineTailFoxScript : MonoBehaviour
             isBreak = false;
             animator.SetBool("IsBreak", false);
         }
-        if (isAttacking) { agent.speed = attackingMovementSpeed; }
-        else { agent.speed = movementSpeed; }
+        if (isAttacking) 
+        {
+            //agent.speed = attackingMovementSpeed;
+            speed = 0f;
+            rotationSpeed = 0f;
+            
+        }
+        else 
+        {
+            //agent.speed = movementSpeed; 
+            speed = 5;
+            rotationSpeed = 10f;
+        }
 
         if (!isAttacking && isCloseToPlayer && canAttack && bossHPSystem.currentGauge > 0)
         {
@@ -86,7 +100,15 @@ public class NineTailFoxScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (distToPlayer <= 1f)
+        Vector3 direction = playerPos - transform.position;
+        direction.y = 0f;
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation,  rotationSpeed * Time.deltaTime);
+        }
+
+            if (distToPlayer <= 2f)
         {
             isCloseToPlayer = true;
         }
@@ -111,6 +133,11 @@ public class NineTailFoxScript : MonoBehaviour
 
     }
 
+    public void DeactivateBeamVFX()
+    {
+        BeamVFX.SetActive(false);
+    }
+
     public void checkingHitBoxWhenPlay()
     {
         beamHitbox.SetActive(false);
@@ -131,6 +158,7 @@ public class NineTailFoxScript : MonoBehaviour
     public void EnableHowlingHitBox()
     {
         howlingHitbox.SetActive(true);
+        howlingEffect.Play();
     }
     public void DisableHowlingHitBox()
     {
@@ -148,7 +176,9 @@ public class NineTailFoxScript : MonoBehaviour
 
     public void AirAttackFollow()
     {
-        this.transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * 5f);
+        
+        //this.transform.position = Vector3.Lerp(this.transform.position, targetPos, Time.deltaTime * 5f);
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, 15f * Time.deltaTime);
     }
 
     public void SetIsAttacking()
@@ -159,11 +189,6 @@ public class NineTailFoxScript : MonoBehaviour
     public void SetIsFlying()
     {
         isFlying = !isFlying;
-    }
-
-    public void playLandingEffect()
-    {
-        tenguLand.Play();
     }
 
     public void EnterBreakState()
