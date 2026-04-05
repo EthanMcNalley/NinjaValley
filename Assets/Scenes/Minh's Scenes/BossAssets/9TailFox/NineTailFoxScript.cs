@@ -10,14 +10,17 @@ public class NineTailFoxScript : MonoBehaviour
     private NavMeshAgent agent;
     public float movementSpeed = 5, distToPlayer, attackingMovementSpeed = 0;
     public float bossTimer = 20f, maxTimer = 20f, bossCurrentHP, bossCurrentGauge;
-    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, playerCollision = false;
-    public BossHPSystem bossHPSystem;
+    [SerializeField] bool isCloseToPlayer = false, isFlying = false, isAttacking = false, isBreak = false, canAttack = false, playerCollision = false, inCombat, justBreak, dead;
+    public AnsonBossHp bossHPSystem;
     public ParticleSystem howlingEffect;
     float speed = 5f, rotationSpeed = 10f;
+    public MusicEnum bossFoxMusic, finalArea;
+    public GameObject death_spawn;
+    private BossAttackScript beamAttackScript, howlingAttackScript, airAttackScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        bossHPSystem = GetComponent<BossHPSystem>();
+        bossHPSystem = GetComponent<AnsonBossHp>();
         checkingHitBoxWhenPlay();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
@@ -33,7 +36,7 @@ public class NineTailFoxScript : MonoBehaviour
     void Update()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        //bossCurrentHP = bossHPSystem.checkHealth();
+        bossCurrentHP = bossHPSystem.checkHealth();
         bossCurrentGauge = bossHPSystem.checkGauge();
         targetPos = new Vector3(playerPos.x, transform.position.y, playerPos.z);
         vfxPos = new Vector3(transform.position.x, 0, transform.position.z);
@@ -55,16 +58,20 @@ public class NineTailFoxScript : MonoBehaviour
             animator.SetBool("isWalking", false);
             //agent.ResetPath();
         }
-        if (bossCurrentGauge <= 0 && !isBreak)
+        if (justBreak && !isBreak)
         {
             isBreak = true;
             animator.SetTrigger("Break");
-
+            animator.SetBool("BreakStatus", true);
         }
-        else if (bossCurrentGauge > 0)
+        else if (!justBreak && isBreak)
         {
             isBreak = false;
-            animator.SetBool("IsBreak", false);
+            animator.SetBool("BreakStatus", false);
+            isAttacking = false;
+            //normalAttackTimer = 5f;
+            //canNormalAttack = false;
+            if (bossTimer < 2f) bossTimer += 3f;
         }
         if (isAttacking) 
         {
@@ -96,6 +103,15 @@ public class NineTailFoxScript : MonoBehaviour
         if (bossHPSystem.currentGauge <= 0 && !bossHPSystem.breakState)
         {
             bossHPSystem.breakState = true;
+        }
+
+        if (distToPlayer < 150f)
+        {
+            EnterCombat();
+        }
+        else
+        {
+            ExitCombat();
         }
     }
     private void FixedUpdate()
@@ -219,6 +235,96 @@ public class NineTailFoxScript : MonoBehaviour
         }
 
     }
+
+
+    private void OnEnable()
+    {
+        CombatEvents.ShadowAssassinStarted += OnShadowStart;
+        CombatEvents.ShadowAssassinEnded += OnShadowEnd;
+
+        AudioManager.instance.SetMusicArea(bossFoxMusic);
+    }
+
+    private void OnDisable()
+    {
+        animator.enabled = false;
+
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+
+        AudioManager.instance.SetMusicArea(finalArea);
+        death_spawn.SetActive(true);
+        ExitCombat();
+    }
+
+    private void OnDestroy()
+    {
+        dead = true;
+
+        animator.enabled = false;
+
+        CombatEvents.ShadowAssassinStarted -= OnShadowStart;
+        CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
+
+        AudioManager.instance.SetMusicArea(finalArea);
+        death_spawn.SetActive(true);
+        ExitCombat();
+    }
+
+    void OnShadowStart()
+    {
+        animator.speed = 0.1f;
+        //playerShadow = true;
+    }
+
+    void OnShadowEnd()
+    {
+        animator.speed = 1f;
+        //playerShadow = false;
+    }
+
+    private void EnterCombat()
+    {
+        if (inCombat) return;
+        inCombat = true;
+        /*attackRange += attackRangeIncrease;
+        */
+
+        CombatManager.instance.AddEnemyToCombat();
+    }
+
+    private void ExitCombat()
+    {
+        if (!inCombat) return;
+        inCombat = false;
+        /*attackRange -= attackRangeIncrease;
+        */
+
+        CombatManager.instance.RemoveEnemyFromCombat();
+    }
+    public void SetPlayerPerfectDodgeTrue()
+    {
+        if (dead) return;
+        beamAttackScript.DodgeWindowTrue();
+        howlingAttackScript.DodgeWindowTrue();
+        airAttackScript.DodgeWindowTrue();
+    }
+
+    public void SetPlayerPerfectDodgeFalse()
+    {
+        if (dead) return;
+        beamAttackScript.DodgeWindowFalse();
+        howlingAttackScript.DodgeWindowFalse();
+        airAttackScript.DodgeWindowFalse();
+    }
+
+    public void PlaySound(string soundName)
+    {
+        if (dead) return;
+        AudioManager.instance.PlayOneShot(soundName, transform.position);
+    }
+
+
 
 
 }
