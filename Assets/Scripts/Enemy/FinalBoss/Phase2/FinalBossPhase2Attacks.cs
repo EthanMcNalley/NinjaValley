@@ -5,7 +5,7 @@ using UnityEngine;
 // -------------------------------------------------------
 public class BossPhase2Idle : BossState
 {
-    public float stateTime = 3f;
+    public float stateTime = 5f;
     private float currentStateTime;
     private FinalBossPhase2 boss;
 
@@ -19,9 +19,12 @@ public class BossPhase2Idle : BossState
 
     public override void UpdateState(BossManager bossManager)
     {
+        boss = bossManager as FinalBossPhase2;
         // Move toward player
         Vector3 targetPos = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
         boss.transform.position = Vector3.MoveTowards(boss.transform.position, targetPos, boss.moveSpeed * Time.deltaTime);
+        
+        boss.animator.SetBool("isWalking", boss.distToPlayer >= 5f);
 
         currentStateTime -= Time.deltaTime;
         if (currentStateTime <= 0)
@@ -33,6 +36,7 @@ public class BossPhase2Idle : BossState
     public override void ExitState(BossManager bossManager)
     {
         // Animation: stop walk
+        boss.animator.SetBool("isWalking", false);
     }
 }
 
@@ -49,7 +53,7 @@ public class BossPhase2BeamAttack : BossState
     {
         boss = bossManager as FinalBossPhase2;
         currentStateTime = stateTime;
-        // Animation: trigger Attack2 (beam)
+        boss.animator.SetTrigger("Attack");
         Debug.Log("Phase2 Beam Attack");
     }
 
@@ -163,6 +167,8 @@ public class BossPhase2Break : BossState
         currentStateTime = stateTime;
         boss.normalAttacked = 0;
         // Animation: break
+        bossManager.animator.SetBool("IsBreak", true);
+        bossManager.animator.SetTrigger("Break");
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -174,7 +180,10 @@ public class BossPhase2Break : BossState
         }
     }
 
-    public override void ExitState(BossManager bossManager) { }
+    public override void ExitState(BossManager bossManager)
+    {
+        bossManager.animator.SetBool("IsBreak", false);
+    }
 }
 
 // -------------------------------------------------------

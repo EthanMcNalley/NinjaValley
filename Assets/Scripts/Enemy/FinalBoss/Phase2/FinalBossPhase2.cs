@@ -41,6 +41,10 @@ public class FinalBossPhase2 : BossManager
         beamHitbox.SetActive(false);
         howlingHitbox.SetActive(false);
         airAttackHitBox.SetActive(false);
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     protected override void Update()
@@ -140,7 +144,7 @@ public class FinalBossPhase2 : BossManager
     protected override void OnEnable()
     {
         base.OnEnable();
-        AudioManager.instance.SetMusicArea(bossPhase2Music);
+        //AudioManager.instance.SetMusicArea(bossPhase2Music);
         CombatEvents.ShadowAssassinStarted += OnShadowStart;
         CombatEvents.ShadowAssassinEnded += OnShadowEnd;
     }

@@ -150,8 +150,8 @@ public class BossPhase1Break : BossState
         currentStateTime = stateTime;
         boss.normalAttacked = 0;
         //Animation here
-        bossManager.animator.SetBool("Break", true);
-
+        bossManager.animator.SetBool("Breaking", true);
+        bossManager.animator.SetTrigger("Break");
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -165,7 +165,7 @@ public class BossPhase1Break : BossState
     
     public override void ExitState(BossManager bossManager)
     {
-        bossManager.animator.SetBool("Break", false);
+        bossManager.animator.SetBool("Breaking", false);
     }
 }
 
