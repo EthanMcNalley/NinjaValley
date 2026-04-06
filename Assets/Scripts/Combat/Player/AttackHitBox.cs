@@ -128,7 +128,7 @@ public class AttackHitBox : MonoBehaviour
     private IEnumerator HitStop(HealthSystem enemy, float damage)
     {
         Debug.Log("HitStop");
-        yield return new WaitForSecondsRealtime(0.03f);
+        //yield return new WaitForSecondsRealtime(0.03f);
         enemy.TakeDamage(damage, HealthSystem.DamageSource.Player);
         combatStateManager.playerAnimatior.speed = hitStopAnimatorSpeed;
         yield return new WaitForSecondsRealtime(hitStopDuration);

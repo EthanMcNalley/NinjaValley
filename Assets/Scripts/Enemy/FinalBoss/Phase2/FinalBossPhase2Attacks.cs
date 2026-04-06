@@ -1,0 +1,202 @@
+using UnityEngine;
+
+// -------------------------------------------------------
+// IDLE — moves toward player, then picks next attack
+// -------------------------------------------------------
+public class BossPhase2Idle : BossState
+{
+    public float stateTime = 3f;
+    private float currentStateTime;
+    private FinalBossPhase2 boss;
+
+    public override void EnterState(BossManager bossManager)
+    {
+        boss = bossManager as FinalBossPhase2;
+        currentStateTime = stateTime;
+        // Animation: walk
+        Debug.Log("Phase2 Boss Idle");
+    }
+
+    public override void UpdateState(BossManager bossManager)
+    {
+        // Move toward player
+        Vector3 targetPos = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
+        boss.transform.position = Vector3.MoveTowards(boss.transform.position, targetPos, boss.moveSpeed * Time.deltaTime);
+
+        currentStateTime -= Time.deltaTime;
+        if (currentStateTime <= 0)
+        {
+            boss.ChoseAttack();
+        }
+    }
+
+    public override void ExitState(BossManager bossManager)
+    {
+        // Animation: stop walk
+    }
+}
+
+// -------------------------------------------------------
+// BEAM ATTACK — ranged, plays beam VFX
+// -------------------------------------------------------
+public class BossPhase2BeamAttack : BossState
+{
+    public float stateTime = 4f;
+    private float currentStateTime;
+    private FinalBossPhase2 boss;
+
+    public override void EnterState(BossManager bossManager)
+    {
+        boss = bossManager as FinalBossPhase2;
+        currentStateTime = stateTime;
+        // Animation: trigger Attack2 (beam)
+        Debug.Log("Phase2 Beam Attack");
+    }
+
+    public override void UpdateState(BossManager bossManager)
+    {
+        currentStateTime -= Time.deltaTime;
+        if (currentStateTime <= 0)
+        {
+            boss.ChoseAttack();
+        }
+    }
+
+    public override void ExitState(BossManager bossManager)
+    {
+        boss.DeactivateBeamVFX();
+        boss.DisableBeamHitBox();
+    }
+}
+
+// -------------------------------------------------------
+// HOWLING ATTACK — close AoE
+// -------------------------------------------------------
+public class BossPhase2HowlingAttack : BossState
+{
+    public float stateTime = 4f;
+    private float currentStateTime;
+    private FinalBossPhase2 boss;
+
+    public override void EnterState(BossManager bossManager)
+    {
+        boss = bossManager as FinalBossPhase2;
+        currentStateTime = stateTime;
+        // Animation: trigger Attack1 (howling)
+        Debug.Log("Phase2 Howling Attack");
+    }
+
+    public override void UpdateState(BossManager bossManager)
+    {
+        currentStateTime -= Time.deltaTime;
+        if (currentStateTime <= 0)
+        {
+            boss.ChoseAttack();
+        }
+    }
+
+    public override void ExitState(BossManager bossManager)
+    {
+        boss.DisableHowlingHitBox();
+    }
+}
+
+// -------------------------------------------------------
+// AIR ATTACK — flies toward player then slams
+// -------------------------------------------------------
+public class BossPhase2AirAttack : BossState
+{
+    public float stateTime = 6f;
+    private float currentStateTime;
+    private bool isFlying;
+    private FinalBossPhase2 boss;
+
+    public override void EnterState(BossManager bossManager)
+    {
+        boss = bossManager as FinalBossPhase2;
+        currentStateTime = stateTime;
+        isFlying = true;
+        // Animation: trigger air attack
+        Debug.Log("Phase2 Air Attack");
+    }
+
+    public override void UpdateState(BossManager bossManager)
+    {
+        if (isFlying)
+        {
+            // Follow player in air until close
+            Vector3 targetPos = new Vector3(boss.player.transform.position.x, boss.transform.position.y, boss.player.transform.position.z);
+            boss.transform.position = Vector3.MoveTowards(boss.transform.position, targetPos, 15f * Time.deltaTime);
+
+            if (boss.distToPlayer <= 2f)
+            {
+                isFlying = false;
+                // Animation: trigger slam
+            }
+        }
+
+        currentStateTime -= Time.deltaTime;
+        if (currentStateTime <= 0)
+        {
+            boss.ChoseAttack();
+        }
+    }
+
+    public override void ExitState(BossManager bossManager)
+    {
+        boss.DisableAirAttackHitBox();
+    }
+}
+
+// -------------------------------------------------------
+// BREAK
+// -------------------------------------------------------
+public class BossPhase2Break : BossState
+{
+    public float stateTime = 6.7f;
+    private float currentStateTime;
+    private FinalBossPhase2 boss;
+
+    public override void EnterState(BossManager bossManager)
+    {
+        boss = bossManager as FinalBossPhase2;
+        currentStateTime = stateTime;
+        boss.normalAttacked = 0;
+        // Animation: break
+    }
+
+    public override void UpdateState(BossManager bossManager)
+    {
+        currentStateTime -= Time.deltaTime;
+        if (currentStateTime <= 0)
+        {
+            boss.SwitchState(boss.bossIdle);
+        }
+    }
+
+    public override void ExitState(BossManager bossManager) { }
+}
+
+// -------------------------------------------------------
+// PHASE TRANSITION (game ending)
+// -------------------------------------------------------
+public class BossPhase2Transition : BossState
+{
+    public float stateTime = 60f;
+    private float currentStateTime;
+    private FinalBossPhase2 boss;
+
+    public override void EnterState(BossManager bossManager)
+    {
+        boss = bossManager as FinalBossPhase2;
+        currentStateTime = stateTime;
+        // Animation: death/wave cutscene
+    }
+
+    public override void UpdateState(BossManager bossManager)
+    {
+        currentStateTime -= Time.deltaTime;
+    }
+
+    public override void ExitState(BossManager bossManager) { }
+}

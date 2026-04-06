@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class BossIdle : BossState
+public class BossPhase1Idle : BossState
 {
-    public BossAttackType BossAttackType =  BossAttackType.Idle;
     public float stateTime = 3f;
     private float currentStateTime = 3f;
     private FinalBossPhase1 boss;
@@ -32,7 +31,6 @@ public class BossIdle : BossState
 
 public class BossPhase1NormalAttack : BossState
 {
-    public BossAttackType BossStateType = BossAttackType.Phase1NormalAttack;
     public float stateTime = 4f;
     private float currentStateTime = 4f;
     private FinalBossPhase1 boss;
@@ -44,6 +42,7 @@ public class BossPhase1NormalAttack : BossState
         boss.normalAttacked++;
         boss.InstantiateNormalAttack();
         //Animation here
+        bossManager.animator.SetTrigger("Basic");
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -57,13 +56,12 @@ public class BossPhase1NormalAttack : BossState
     
     public override void ExitState(BossManager bossManager)
     {
-        
+        bossManager.animator.ResetTrigger("Basic");
     }
 }
 
 public class BossPhase1TileAttack : BossState
 {
-    public BossAttackType BossStateType = BossAttackType.Phase1TileAttack;
     public float stateTime = 10f;
     private float currentStateTime = 10f;
     public bool attackAnimationTriggered;
@@ -79,6 +77,7 @@ public class BossPhase1TileAttack : BossState
         currentPoopAttack = boss.poopAttackPatternSelector();
         currentPoopAttack.pointing.SetActive(true);
         //Animation here
+        bossManager.animator.SetTrigger("Poop");
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -96,13 +95,13 @@ public class BossPhase1TileAttack : BossState
         Debug.Log("Exit tile attack");
         currentPoopAttack.pointing.SetActive(false);
         boss.tileAttackAnimator.SetTrigger("Poop" + currentPoopAttack.thePoop);
+        bossManager.animator.ResetTrigger("Poop");
     }
 
 }
 
 public class BossPhase1DoorWordAttack : BossState
 {
-    public BossAttackType BossStateType = BossAttackType.Phase1DoorWordAttack;
     public float stateTime = 30f;
     private float currentStateTime = 30f;
     private FinalBossPhase1 boss;
@@ -115,6 +114,7 @@ public class BossPhase1DoorWordAttack : BossState
         boss.portalIndicatorUI.ClearPortals();
         boss.NeededPortalColors();
         //Animation here
+        bossManager.animator.SetBool("Portal", true);
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -134,12 +134,12 @@ public class BossPhase1DoorWordAttack : BossState
         }
         boss.portalTopIndicator.SetActive(false);
         boss.portalIndicatorUI.ClearPortals();
+        bossManager.animator.SetBool("Portal", false);
     }
 }
 
-public class BossBreak : BossState
+public class BossPhase1Break : BossState
 {
-    public BossAttackType BossStateType = BossAttackType.Break;
     public float stateTime = 6.7f;
     private float currentStateTime = 6.7f;
     private FinalBossPhase1 boss;
@@ -150,6 +150,7 @@ public class BossBreak : BossState
         currentStateTime = stateTime;
         boss.normalAttacked = 0;
         //Animation here
+        bossManager.animator.SetBool("Break", true);
 
     }
 
@@ -164,11 +165,11 @@ public class BossBreak : BossState
     
     public override void ExitState(BossManager bossManager)
     {
-        
+        bossManager.animator.SetBool("Break", false);
     }
 }
 
-public class BossPhaseTransition : BossState
+public class BossPhase1Transition : BossState
 {
     //public BossAttackType BossStateType = BossAttackType.Phase1DoorWordAttack;
     public float stateTime = 60f;
@@ -180,6 +181,7 @@ public class BossPhaseTransition : BossState
         boss =  bossManager as FinalBossPhase1;
         currentStateTime = stateTime;
         //PLAY BREAK ANIMATION THEN WAVEY
+        bossManager.animator.SetBool("Break", true);
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -189,7 +191,7 @@ public class BossPhaseTransition : BossState
     
     public override void ExitState(BossManager bossManager)
     {
-        
+        bossManager.animator.SetBool("Break", false);
     }
 }
 
@@ -216,15 +218,6 @@ public class Temp : BossState
     {
         
     }
-}
-
-public enum BossAttackType
-{
-    Idle,
-    Phase1NormalAttack,
-    Phase1TileAttack,
-    Phase1DoorWordAttack,
-    Break
 }
 
 

@@ -33,7 +33,7 @@ RectTransform:
   m_Father: {fileID: 6047464571302593327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -551,8 +551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9554be36a9ff945bfd7ea6061cd114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnsonBossHp
-  maxHealthPoint: 250
-  currHealthPoint: 250
+  maxHealthPoint: 300
+  currHealthPoint: 300
   isInvincible: 0
   shadowAssassin: {fileID: 0}
   animator: {fileID: 3850993633852659059}
@@ -584,12 +584,12 @@ MonoBehaviour:
       Data4: -1691284758
     Path: event:/Enemies/UmberllaDie
   isBoss: 1
-  maxGauge: 50
+  maxGauge: 120
   maxBreakTimer: 6.7
   healthBreakBar: {fileID: 6069813385591642838}
   tenguBoss: {fileID: 0}
   finalBossPhase1: {fileID: 3145527197870719738}
-  currentGauge: 50
+  currentGauge: 120
   breakTimer: 0
   breakState: 0
   healthSpawnThreshold: 0.2
@@ -627,7 +627,7 @@ RectTransform:
   m_Father: {fileID: 1453810652589087544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1257,7 +1257,7 @@ RectTransform:
   m_Father: {fileID: 6283971243840224603}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1315,7 +1315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6564558974652355895
 Transform:
   m_ObjectHideFlags: 0
@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41e2880978eaa349a1a887a153e50e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinalBossPhase1
-  animator: {fileID: 0}
+  animator: {fileID: 3850993633852659059}
   player: {fileID: 0}
   playerHealth: {fileID: 0}
   bossHpSystem: {fileID: 7920214015314784933}
@@ -1354,6 +1354,7 @@ MonoBehaviour:
   agroDistance: 200
   currentStateTime: 0
   tileAttackAnimator: {fileID: 0}
+  hpCanvus: {fileID: 3563994497871310540}
   poopAttacks1:
   - pointing: {fileID: 0}
     thePoop: 1
@@ -1388,6 +1389,13 @@ MonoBehaviour:
   normalAttacked: 0
   normalAttackPrefab: {fileID: 6079968040456699971, guid: 41166f703ced18c4a86f706b311e606b, type: 3}
   normalAttackOffset: {x: 0, y: 19, z: 0}
+  bossPhase1Music: 5
+  silent: 3
+  phaseTransition: 0
+  teleportPlayer: 0
+  transitionVolume: {fileID: 3516349033283543574, guid: 8660c43cb927e5d4eb496d21a2188eca, type: 3}
+  transitionTime: 0.4
+  phaseTransitionPosition: {fileID: 0}
 --- !u!1 &5946907287128580447
 GameObject:
   m_ObjectHideFlags: 0

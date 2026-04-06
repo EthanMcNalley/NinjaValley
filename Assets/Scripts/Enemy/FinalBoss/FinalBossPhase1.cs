@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
@@ -10,12 +9,12 @@ public class FinalBossPhase1 : BossManager
 {
     public Animator tileAttackAnimator;
     public GameObject hpCanvus;
-    public BossState bossIdle = new BossIdle();
+    public BossState bossIdle = new BossPhase1Idle();
     BossState bossPhase1NormalAttack = new BossPhase1NormalAttack();
     BossState bossPhase1TileAttack = new BossPhase1TileAttack();
     BossState bossPhase1DoorWordAttack = new BossPhase1DoorWordAttack();
-    BossState bossBreak = new BossBreak();
-    private BossState bossPhaseTransition = new BossPhaseTransition();
+    BossState bossBreak = new BossPhase1Break();
+    private BossState bossPhaseTransition = new BossPhase1Transition();
     
     [Header("Poop Attacks")]
     //poopAttack stuff (floor rising ink blobs)
