@@ -201,7 +201,7 @@ public class FinalBossPhase1 : BossManager
         
         yield return new WaitForSeconds(3f);
         
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("TitleScene");
         
         //teleportPlayer = true;
     }
