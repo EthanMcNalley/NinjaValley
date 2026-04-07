@@ -17,6 +17,9 @@ public class AnsonBossHp : EnemyHealth
 
     public float healthSpawnThreshold = 0.2f;
     public bool bossDead = false;
+
+    public float defaultdamageMod = 0.67f;
+    public float damageMod = 0.67f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -43,9 +46,9 @@ public class AnsonBossHp : EnemyHealth
         Debug.Log("Damage dealt using AnsonBossHP");
         if (currentGauge > 0)
         {
-            currentGauge -= damage;
+            currentGauge -= damage * damageMod;
             healthBreakBar.UpdateBreakBar(currentGauge, maxGauge);
-            outputDamage = damage / 0.67f;
+            outputDamage = damage * damageMod;
             CheckThreshold(outputDamage);
             base.TakeDamage(outputDamage, source);
             

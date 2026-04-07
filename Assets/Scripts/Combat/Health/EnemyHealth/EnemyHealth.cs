@@ -1,5 +1,6 @@
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EnemyHealth : HealthSystem
 {
@@ -13,14 +14,14 @@ public class EnemyHealth : HealthSystem
     private AttackData playerAttackData;
     
     public EnemyHPUI healthBar;
-    public ParticleSystem particles;
-    public ParticleSystem normalDeathParticles;
-    public ParticleSystem executeDeathParticles;
+    public VisualEffect particles;
+    public VisualEffect normalDeathParticles;
+    public VisualEffect executeDeathParticles;
     public GameObject particalTransform;
     public GameObject health_essence;
     public GameObject shadow_essence;
     public GameObject essence_spawnpoint;
-    private ParticleSystem particlesInstance;
+    private VisualEffect particlesInstance;
     public GameObject executeOutline, cross;
     
     public EnemySoul enemySoul;

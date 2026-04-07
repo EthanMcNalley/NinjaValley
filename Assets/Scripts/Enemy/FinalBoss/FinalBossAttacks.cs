@@ -69,8 +69,8 @@ public class BossPhase1NormalAttack : BossState
 
 public class BossPhase1TileAttack : BossState
 {
-    public float stateTime = 10f;
-    private float currentStateTime = 10f;
+    public float stateTime = 12f;
+    private float currentStateTime = 12f;
     public bool attackAnimationTriggered;
     private PoopAttack currentPoopAttack;
     private FinalBossPhase1 boss;
@@ -126,6 +126,8 @@ public class BossPhase1DoorWordAttack : BossState
         {
             animator.SetBool("Open", true);
         }
+
+        boss.bossHpSystem.damageMod = 0.2f;
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -151,6 +153,8 @@ public class BossPhase1DoorWordAttack : BossState
         {
             animator.SetBool("Open", false);
         }
+        
+        boss.bossHpSystem.damageMod = boss.bossHpSystem.defaultdamageMod;
     }
 }
 

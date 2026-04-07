@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class FinalBossPhase1 : BossManager
@@ -161,7 +162,7 @@ public class FinalBossPhase1 : BossManager
             neededPortalColors.Add(shuffled[i]);
         }
 
-        portalIndicatorUI.SetRequiredPortals(neededPortalColors);
+        portalIndicatorUI.SetRequiredPortals(neededPortalColors, avaliablePortalColors);
 
         return neededPortalColors;
     }
@@ -198,7 +199,11 @@ public class FinalBossPhase1 : BossManager
             yield return null;
         }
         
-        teleportPlayer = true;
+        yield return new WaitForSeconds(3f);
+        
+        SceneManager.LoadScene(0);
+        
+        //teleportPlayer = true;
     }
 
     private void LateUpdate()

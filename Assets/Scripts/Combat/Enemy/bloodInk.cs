@@ -8,6 +8,7 @@ public class bloodInk : MonoBehaviour
     void Start()
     {
         bloodInkFX = GetComponent<VisualEffect>();
+        Destroy(gameObject, 10f);
     }
 
     // Update is called once per frame
@@ -20,6 +21,11 @@ public class bloodInk : MonoBehaviour
         else
         {
             bloodInkFX.playRate = 1f;
+        }
+
+        if (bloodInkFX.aliveParticleCount == 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

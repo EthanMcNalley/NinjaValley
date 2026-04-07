@@ -25,7 +25,7 @@ public class Kunai : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             HealthSystem enemy = other.GetComponent<HealthSystem>();
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, HealthSystem.DamageSource.Player);
             
             Destroy(gameObject);
         }
