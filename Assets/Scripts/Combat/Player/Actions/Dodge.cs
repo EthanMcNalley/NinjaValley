@@ -14,7 +14,7 @@ public class Dodge : CombatState
     
     public override void EnterState(CombatStateManager stateManager)
     {
-        Debug.Log("Dodge");
+        //Debug.Log("Dodge");
         dir = GetDodgeDir(stateManager);
         dodgeTimer = 0f;
         movementDisabled = false;

@@ -150,7 +150,7 @@ public class Idle : CombatState
     public override void EnterState(CombatStateManager stateManager)
     {
         stateManager.currentStateID = stateID;
-        Debug.Log("Idle");
+        //Debug.Log("Idle");
     }
 
     public override void UpdateState(CombatStateManager stateManager)

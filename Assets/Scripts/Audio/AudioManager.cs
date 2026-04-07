@@ -129,7 +129,8 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicArea(MusicEnum area)
     {
-        musicEventInstance.setParameterByName("area", (float) area);
+        musicEventInstance.setParameterByName("area", (int) area);
+        Debug.Log(musicEventInstance.isValid());
     }
 
     public void SetSlowTime(float time)
