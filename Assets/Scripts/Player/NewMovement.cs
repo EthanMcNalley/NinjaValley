@@ -509,6 +509,7 @@ public class NewMovement : MonoBehaviour
                 double_jump_able = true;
                 other.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 other.gameObject.GetComponent<Collider>().enabled = false;
+                other.gameObject.GetComponent<Upgrade>().SpawnOnCollect();
             }
 
             else if (upgrade.upgrade_type == Upgrade.UpgradeType.SHADOW)

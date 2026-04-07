@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
+    public GameObject spawn_object;
     public enum UpgradeType
     {
         TIMESLOW,
@@ -12,4 +13,14 @@ public class Upgrade : MonoBehaviour
     }
 
     public UpgradeType upgrade_type;
+
+    public void SpawnOnCollect()
+    {
+        if (spawn_object != null)
+        {
+            spawn_object.SetActive(true);
+        }
+    }
 }
+
+

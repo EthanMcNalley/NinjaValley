@@ -12,6 +12,7 @@ public class CameraMoveTrigger : MonoBehaviour
     public bool different_exit_time = false;
     public float exit_time;
     Vector3 original_scale;
+    [SerializeField] bool no_damp = false;
     void Start(){
         cutscene_bars = GameObject.FindGameObjectWithTag("UIManager").GetComponent<CutsceneBars>();
         original_scale = transform.localScale;
