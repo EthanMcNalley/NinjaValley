@@ -21,6 +21,13 @@ public class BossPhase1Idle : BossState
         {
             boss.ChoseAttack();
         }
+        
+        Vector3 dir = boss.player.transform.position - boss.transform.position;
+        dir.y = 0f;
+        if (dir.sqrMagnitude < 0.001f) return;
+
+        Quaternion target = Quaternion.LookRotation(dir) * Quaternion.Euler(0f, -90f, 0f);
+        boss.transform.rotation = Quaternion.Lerp(boss.transform.rotation, target, Time.deltaTime * 5);
     }
     
     public override void ExitState(BossManager bossManager)
