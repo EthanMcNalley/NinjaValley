@@ -23,7 +23,7 @@ public class FinalBossPhase1 : BossManager
     public PoopAttack[] poopAttacks3;
     private bool firstPoopAttack = true;
     private PoopAttack lastPoopAttack;
-    
+
     [Header("Portal")]
     //portal stuff
     public GameObject[] portals;
@@ -32,6 +32,7 @@ public class FinalBossPhase1 : BossManager
     public PortalIndicatorUI portalIndicatorUI;
     public List<Color> avaliablePortalColors;
     public List<Color> neededPortalColors;
+    public Animator[] slidingDoorAnimator;
     
     [Header("Normal Attack")]
     //normal attacks
