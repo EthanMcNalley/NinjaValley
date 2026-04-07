@@ -176,6 +176,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4471255179434701688, guid: c4aa2cc481e914fdcaf406538141b592, type: 3}
+      propertyPath: scenes_to_unload.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471255179434701688, guid: c4aa2cc481e914fdcaf406538141b592, type: 3}
       propertyPath: scenes_to_load.Array.data[0].m_SceneName
       value: FirstArea
       objectReference: {fileID: 0}
@@ -378,6 +382,7 @@ MonoBehaviour:
   smoothing_amount: 1
   different_exit_time: 0
   exit_time: 0
+  no_damp: 0
 --- !u!65 &171588610
 BoxCollider:
   m_ObjectHideFlags: 0

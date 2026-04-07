@@ -110,6 +110,9 @@
         },
         {
             "m_Id": "577933e6a84e4598bcb780320a6f1bfa"
+        },
+        {
+            "m_Id": "212b52bc8b3042ce87c3dd0c6b398579"
         }
     ],
     "m_GroupDatas": [],
@@ -141,6 +144,20 @@
                     "m_Id": "9a708287afe24d8d95d25485dde4dec0"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "212b52bc8b3042ce87c3dd0c6b398579"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "b5630d0d67c042819a7d4f06eeb2dc01"
+                },
+                "m_SlotId": 1
             }
         },
         {
@@ -208,9 +225,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "b5630d0d67c042819a7d4f06eeb2dc01"
+                    "m_Id": "212b52bc8b3042ce87c3dd0c6b398579"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 731080801
             }
         },
         {
@@ -673,6 +690,51 @@
         -1374116589,
         -1312178681,
         -1545863772
+    ],
+    "m_Dropdowns": [],
+    "m_DropdownSelectedEntries": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.SubGraphNode",
+    "m_ObjectId": "212b52bc8b3042ce87c3dd0c6b398579",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Time Slow Check",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1382.0,
+            "y": -850.0,
+            "width": 260.6666259765625,
+            "height": 281.3333740234375
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "5986c04087084d7a8fd1ffbd06b9b2fd"
+        },
+        {
+            "m_Id": "f46875c3f5744a2297674fad119eba9f"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedSubGraph": "{\n    \"subGraph\": {\n        \"fileID\": -5475051401550479605,\n        \"guid\": \"492ec59afd43d9c4a861ef983b158aec\",\n        \"type\": 3\n    }\n}",
+    "m_PropertyGuids": [
+        "f18fc2a4-0383-48b8-9d74-80e6dbdd2474"
+    ],
+    "m_PropertyIds": [
+        731080801
     ],
     "m_Dropdowns": [],
     "m_DropdownSelectedEntries": []
@@ -1209,6 +1271,22 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "5986c04087084d7a8fd1ffbd06b9b2fd",
+    "m_Id": 731080801,
+    "m_DisplayName": "OriginalSpeed",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "_OriginalSpeed",
+    "m_StageCapability": 3,
+    "m_Value": 1.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.ColorRGBMaterialSlot",
     "m_ObjectId": "5b12f2b409ac4fd1b4ac235ecd40ed14",
     "m_Id": 0,
@@ -1283,10 +1361,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1314.0,
-            "y": -836.0,
-            "width": 166.0,
-            "height": 34.0
+            "x": -1597.3333740234375,
+            "y": -781.9999389648438,
+            "width": 166.6666259765625,
+            "height": 36.0
         }
     },
     "m_Slots": [
@@ -2764,6 +2842,22 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "f46875c3f5744a2297674fad119eba9f",
+    "m_Id": 1,
+    "m_DisplayName": "CorrectedSpeed",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "CorrectedSpeed",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "f5cfa67e89d04b5fb9e1afb611b7b70d",
     "m_Id": 1,
@@ -2859,10 +2953,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1272.0,
-            "y": -1009.0,
-            "width": 124.0,
-            "height": 173.0
+            "x": -1376.666748046875,
+            "y": -1118.0,
+            "width": 125.3333740234375,
+            "height": 174.6666259765625
         }
     },
     "m_Slots": [
