@@ -6,5 +6,8 @@ public enum MusicEnum
     Silence = 3,
     TheMysticalTree = 4,
     Tengu = 5,
-    Wind = 6
+    Wind = 6,
+    MovingCastle = 7,
+    FinalBoss1 = 8,
+    FinalBoss2 = 9,
 }
