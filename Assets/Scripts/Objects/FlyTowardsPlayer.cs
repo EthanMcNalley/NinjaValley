@@ -11,8 +11,8 @@ public class FlyTowardsPlayer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Vector3 randomDir = new Vector3(Random.Range(-1f, 1f), Random.Range(diagonalness.x, diagonalness.y), Random.Range(-1f, 1f)).normalized;
-        rb.AddForce(randomDir * initial_force, ForceMode.Impulse);
+        Vector3 direction = new Vector3(Random.Range(-1f, 1f), Random.Range(diagonalness.x, diagonalness.y), Random.Range(-1f, 1f)).normalized;
+        rb.AddForce(direction * initial_force, ForceMode.Impulse);
         player = GameObject.FindGameObjectWithTag("PlayerCenter");
     }
 
