@@ -25,9 +25,11 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ALPHAPREMULTIPLY_ON
   - _APPLY_MOTION_YES
   - _APPLY_RIM_YES
   - _ENABLE_EDGE_FADE_YES
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords:
   - _APPLY_AMBIENT_NO
   - _APPLY_BUMP_YES
@@ -45,7 +47,7 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
   stringTagMap:
-    RenderType: Opaque
+    RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -65,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Base_texture:
-        m_Texture: {fileID: 2800000, guid: 7130c16fd8005b546b111d341310a9a4, type: 3}
+        m_Texture: {fileID: 2800000, guid: e477163a653bf6246954b3fea8ea8875, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Brush_texture:
@@ -171,7 +173,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _Blend_amount: -1.03
+    - _Blend_amount: 0.05
     - _Brightness: 10
     - _BumpScale: 1
     - _Bump_amount: 10
@@ -179,13 +181,13 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Contribution: 0
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DISSOLVE: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
+    - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _ENABLE_EDGE_FADE: 0
     - _EnvironmentReflections: 1
     - _Fade_distance: 15
@@ -203,7 +205,7 @@ Material:
     - _OutlineSize: 0.04
     - _Outline_thickness: 0.1
     - _Parallax: 0.005
-    - _QueueControl: 0
+    - _QueueControl: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Reflection_blend: 1
@@ -222,7 +224,7 @@ Material:
     - _Splat_amount: 67
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Surface: 0
+    - _Surface: 1
     - _WATER_TYPE: 0
     - _Watercolor_blend: 0
     - _Watercolor_tiling: 1
@@ -230,7 +232,7 @@ Material:
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
-    - _ZWriteControl: 0
+    - _ZWriteControl: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Base_color: {r: 1, g: 1, b: 1, a: 1}
@@ -244,7 +246,7 @@ Material:
     - _Rim_color: {r: 1, g: 1, b: 1, a: 1}
     - _Ripple_color: {r: 0, g: 1, b: 1, a: 0}
     - _Ripple_tiling: {r: 0, g: 0, b: 0, a: 0}
-    - _Second_color: {r: 1, g: 1, b: 1, a: 1}
+    - _Second_color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_color: {r: 1, g: 1, b: 1, a: 0}
     - _Tiling: {r: 0.3, g: 0.3, b: 0, a: 0}
