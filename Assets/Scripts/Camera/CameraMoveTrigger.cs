@@ -30,13 +30,14 @@ public class CameraMoveTrigger : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider collider){
-        if (collider.CompareTag("Player")){
-            CameraControlling.smoothing_amount = smoothing_amount;
-            cinemachine_camera.Priority = new_priority;
-            transform.localScale = transform.localScale + (Vector3.one * increase_size);
-        }
-    }
+    // void OnTriggerStay(Collider collider){
+    //     if (collider.CompareTag("Player")){
+    //         CameraControlling.smoothing_amount = smoothing_amount;
+    //         cinemachine_camera.Priority = new_priority;
+    //         transform.localScale = transform.localScale + (Vector3.one * increase_size);
+    //     }
+    // }
+
     IEnumerator WaitToSwitch()
     {
         yield return new WaitForSeconds(0.1f);
