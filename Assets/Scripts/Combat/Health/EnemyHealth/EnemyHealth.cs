@@ -53,14 +53,14 @@ public class EnemyHealth : HealthSystem
         shadowMultiplyPercentage = shadowAssassin.shadowAssassinDamagePercentage;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         CombatEvents.ShadowAssassinStarted += OnShadowStart;
         CombatEvents.ShadowAssassinEnded += OnShadowEnd;
         CombatStateManager.PlayerAttack += OnPlayerAttack;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         CombatEvents.ShadowAssassinStarted -= OnShadowStart;
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;

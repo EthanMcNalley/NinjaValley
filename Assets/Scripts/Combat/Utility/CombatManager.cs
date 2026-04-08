@@ -39,4 +39,22 @@ public class CombatManager : MonoBehaviour
             playerInCombat = false;
         }
     }
+
+    public void ResetBoss()
+    {
+        var boss = GameObject.FindGameObjectWithTag("Temp");
+
+        if (boss.transform.Find("AnsonTenguBoss").name == "AnsonTenguBoss")
+        {
+            boss.transform.Find("AnsonTenguBoss").gameObject.SetActive(false);
+            return;
+        }
+
+        boss = GameObject.Find("FoxGirlRigging");
+
+        if (boss.name == "FoxGirlRigging")
+        {
+            boss.SetActive(false);
+        }
+    }
 }

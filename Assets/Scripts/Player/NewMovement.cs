@@ -72,6 +72,7 @@ public class NewMovement : MonoBehaviour
     public GameObject moving_particle;
     public GameObject landing_particle;
     public GameObject dash_particle;
+    public GameObject double_jump_particle;
     private bool play_landing = false;
     private Vector3 hit_normal;
     public float slide_friction;
@@ -338,6 +339,7 @@ public class NewMovement : MonoBehaviour
         //Double Jump
         else{
             if (double_jump_able && double_jump){
+                Instantiate(double_jump_particle, transform.position, Quaternion.Euler(-90, 0, 0));
                 playerVelocity.y = initialJumpVelocity;
                 double_jump = false;
 

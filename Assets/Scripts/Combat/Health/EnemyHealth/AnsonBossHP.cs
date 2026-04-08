@@ -137,7 +137,16 @@ public class AnsonBossHp : EnemyHealth
             finalBossPhase1.PhaseTransition();
         }
     }
-        
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        currentGauge = maxGauge;
+        currHealthPoint = maxHealthPoint;
+        animator.ResetControllerState();
+        damageMod = defaultdamageMod;
+    }
+
     public float checkHealth()
     {
         return currHealthPoint;

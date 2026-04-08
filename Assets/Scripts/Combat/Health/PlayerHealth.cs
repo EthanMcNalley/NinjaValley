@@ -61,6 +61,7 @@ public class PlayerHealth : HealthSystem
     {
         NewMovement.is_dead = isDead;
         StartCoroutine(Die());
+        CombatManager.instance.ResetBoss();
         //SceneManager.LoadScene("GameOverScene");
     }
 
