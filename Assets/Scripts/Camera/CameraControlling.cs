@@ -21,21 +21,27 @@ public class CameraControlling : MonoBehaviour
     }
     public static float original_smoothing_amount;
     public static float smoothing_amount;
+    public static Vector3 damping_amount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         original_smoothing_amount = main_cam_brain.DefaultBlend.Time;
         // original_smoothing_amount = main_cam_brain.DefaultBlend.BlendTime;
         smoothing_amount = original_smoothing_amount;
+        damping_amount = cinemachine_orbital_follow.TrackerSettings.PositionDamping;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        main_cam_brain.DefaultBlend.Time = smoothing_amount;
         //main_cam_brain.DefaultBlend.BlendCurve = 
         FacePlayerBack();
+    }
+
+    void LateUpdate()
+    {
+        main_cam_brain.DefaultBlend.Time = smoothing_amount;
+        cinemachine_orbital_follow.TrackerSettings.PositionDamping = damping_amount;
     }
 
     public void FacePlayerBack(){

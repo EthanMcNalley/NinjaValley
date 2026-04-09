@@ -5,6 +5,9 @@ public class PlayOneShots : MonoBehaviour
 {
     public EventReference[] sound_effect;    
     public void PlayTheOneShot(int num){
-        AudioManager.instance.PlayOneShot(sound_effect[num], transform.position);
+        if (!(sound_effect.Length == 0))
+        {
+            AudioManager.instance.PlayOneShot(sound_effect[num], transform.position);
+        }
     }
 }

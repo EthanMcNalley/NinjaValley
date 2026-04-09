@@ -7,7 +7,7 @@ public class MoveBetweenTwoPoints : MonoBehaviour
     [SerializeField] Transform start_point;
     [SerializeField] Transform end_point;
     [SerializeField] float speed;
-    [SerializeField] bool ignore_time_slow = false;
+    public bool ignore_time_slow = false;
     float time = 0.0f;
 
     // Update is called once per frame
@@ -50,5 +50,10 @@ public class MoveBetweenTwoPoints : MonoBehaviour
 
         float smoothed_time = Mathf.SmoothStep(0.0f, 1.0f, time);
         transform.position = Vector3.Slerp(start_point.position, end_point.position, smoothed_time);
+    }
+
+    public void IgnoreTimeSlowSet(bool ignore)
+    {
+        ignore_time_slow = ignore;
     }
 }
