@@ -399,7 +399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &25784092638893284
 Transform:
   m_ObjectHideFlags: 0
@@ -461,7 +461,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807803867372525553}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -2040,13 +2040,15 @@ GameObject:
   - component: {fileID: 6910927213425525690}
   - component: {fileID: 5623321591361375716}
   - component: {fileID: 995112329462766004}
+  - component: {fileID: 621900355994307036}
+  - component: {fileID: 8949272350319729916}
   m_Layer: 0
   m_Name: Ninetailfox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3367686767144150953
 Transform:
   m_ObjectHideFlags: 0
@@ -2143,8 +2145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2d8452d2808874fa8bddbdea0eeb5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NineTailFoxScript
-  BeamVFX: {fileID: 0}
-  HowlingVFX: {fileID: 0}
+  BeamVFX: {fileID: 807803867372525553}
   groundStompVFX: {fileID: 0}
   beamHitbox: {fileID: 7872483547359800616}
   howlingHitbox: {fileID: 1559684754148644834}
@@ -2163,7 +2164,14 @@ MonoBehaviour:
   isBreak: 0
   canAttack: 0
   playerCollision: 0
+  inCombat: 0
+  justBreak: 0
+  dead: 0
   bossHPSystem: {fileID: 0}
+  howlingEffect: {fileID: 0}
+  bossFoxMusic: 0
+  finalArea: 0
+  death_spawn: {fileID: 0}
 --- !u!114 &995112329462766004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2184,6 +2192,95 @@ MonoBehaviour:
   currentGauge: 0
   breakTimer: 0
   breakState: 0
+--- !u!114 &621900355994307036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558969008854517937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c35fa902937cc48ac910a96f2b61bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinalBossPhase2
+  animator: {fileID: 326009296930139099}
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
+  bossHpSystem: {fileID: 0}
+  inCombat: 0
+  isDead: 0
+  agroDistance: 0
+  currentStateTime: 0
+  hpCanvus: {fileID: 0}
+  beamVFX: {fileID: 0}
+  beamHitbox: {fileID: 0}
+  howlingHitbox: {fileID: 0}
+  airAttackHitBox: {fileID: 0}
+  howlingEffect: {fileID: 0}
+  moveSpeed: 5
+  rotationSpeed: 10
+  normalAttacked: 0
+  bossPhase2Music: 0
+  silent: 0
+  death_spawn: {fileID: 0}
+--- !u!114 &8949272350319729916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558969008854517937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9554be36a9ff945bfd7ea6061cd114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnsonBossHp
+  maxHealthPoint: 10
+  currHealthPoint: 10
+  isInvincible: 0
+  shadowAssassin: {fileID: 0}
+  animator: {fileID: 0}
+  healthBar: {fileID: 0}
+  particles: {fileID: 0}
+  normalDeathParticles: {fileID: 0}
+  executeDeathParticles: {fileID: 0}
+  particalTransform: {fileID: 0}
+  health_essence: {fileID: 0}
+  shadow_essence: {fileID: 0}
+  essence_spawnpoint: {fileID: 0}
+  executeOutline: {fileID: 0}
+  cross: {fileID: 0}
+  enemySoul: {fileID: 0}
+  soul: {fileID: 0}
+  baseGameObjectDestroy: {fileID: 0}
+  hurtSound:
+    Guid:
+      Data1: 980805730
+      Data2: 1088026020
+      Data3: -1955573094
+      Data4: -96558538
+    Path: event:/Enemies/UmberllaHurt
+  deathSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  isBoss: 1
+  maxGauge: 50
+  maxBreakTimer: 10
+  healthBreakBar: {fileID: 0}
+  tenguBoss: {fileID: 0}
+  finalBossPhase1: {fileID: 0}
+  currentGauge: 0
+  breakTimer: 0
+  breakState: 0
+  healthSpawnThreshold: 0.2
+  bossDead: 0
+  defaultdamageMod: 0.67
+  damageMod: 0.67
 --- !u!1 &4618469830586819759
 GameObject:
   m_ObjectHideFlags: 0
