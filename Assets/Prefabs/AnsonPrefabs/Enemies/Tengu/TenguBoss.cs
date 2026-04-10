@@ -6,7 +6,7 @@ using FMODUnity;
 
 public class TenguBoss : MonoBehaviour
 {
-    Animator animator;
+    public Animator animator;
     [SerializeField] GameObject TornadoVFX, RockSpikeVFX, groundStompVFX;
     [SerializeField] GameObject spearHitbox, airAttackHitBox, player;
     Vector3 playerPos, targetPos, vfxPos;
@@ -28,7 +28,6 @@ public class TenguBoss : MonoBehaviour
     {
         //bossHPSystem = GetComponent<AnsonBossHp>();
         player = GameObject.FindGameObjectWithTag("Player");
-        animator = GetComponent<Animator>();
         spearAttackScript = spearHitbox.GetComponent<BossAttackScript>();
         airAttackScript = airAttackHitBox.GetComponent<BossAttackScript>();
         spearHitbox.SetActive(false);
@@ -46,8 +45,10 @@ public class TenguBoss : MonoBehaviour
     {
         CombatEvents.ShadowAssassinStarted += OnShadowStart;
         CombatEvents.ShadowAssassinEnded += OnShadowEnd;
-        
         AudioManager.instance.SetMusicArea(bossMusic);
+        animator.enabled = true;
+        spearHitbox.SetActive(true);
+        EnterCombat();
     }
 
     private void OnDisable()
@@ -59,7 +60,11 @@ public class TenguBoss : MonoBehaviour
         CombatEvents.ShadowAssassinEnded -= OnShadowEnd;
         
         AudioManager.instance.SetMusicArea(theTree);
-        death_spawn.SetActive(true);
+
+        if (bossCurrentHP < 0){
+            death_spawn.SetActive(true);
+        }
+
         ExitCombat();
     }
 

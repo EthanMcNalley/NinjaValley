@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Unity.Cinemachine;
 using UnityEngine.Playables;
+using System.Collections;
 
 public class TimelineTrigger : MonoBehaviour
 {
@@ -13,10 +14,11 @@ public class TimelineTrigger : MonoBehaviour
     bool timeline_active = false;
     Collider player;
     public UnityEvent done_event;
-    public GameObject TEMPBOSS;
+    public GameObject boss;
     private PlayableDirector timeline_director;
     public string cinemachineTrack = "Cinemachine Track";
     private CinemachineBrain cinemachineBrain;
+    private bool first_time = true;
     
     void Awake()
     {
@@ -26,7 +28,6 @@ public class TimelineTrigger : MonoBehaviour
 
     void Start()
     {
-        TEMPBOSS = GameObject.FindGameObjectWithTag("Temp");
         cinemachineBrain = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CinemachineBrain>();
     }
     
@@ -34,14 +35,23 @@ public class TimelineTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            timeline.SetActive(true);
-            SetMainCamera();
-            //original_position = other.transform.position;
-            other.transform.position = temp_position.position;
-            other.GetComponent<NewMovement>().canMove = false;
-            timeline_active = true;
-            player = other;
+            if (first_time){
+                timeline.SetActive(true);
+                SetMainCamera();
+                //original_position = other.transform.position;
+                other.transform.position = temp_position.position;
+                other.GetComponent<NewMovement>().canMove = false;
+                timeline_active = true;
+                player = other;
+                first_time = false;
+            }
 
+            else
+            {
+                gameObject.GetComponent<Collider>().enabled = false;
+                boss.SetActive(true);
+                Debug.Log("SUFFERING");
+            }
         }
     }
 
@@ -65,6 +75,7 @@ public class TimelineTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 
@@ -77,8 +88,8 @@ public class TimelineTrigger : MonoBehaviour
             {
                 player.transform.position = original_position.position;
                 //TEMPORARY //TEMPORARY //TEMPORARY
-                TEMPBOSS.transform.GetChild(0).gameObject.SetActive(true);
-
+                //TEMPBOSS.transform.GetChild(0).gameObject.SetActive(true);
+                boss.SetActive(true);
                 Debug.Log("workds");
                 player.GetComponent<NewMovement>().canMove = true;
                 timeline_active = false;
@@ -86,5 +97,20 @@ public class TimelineTrigger : MonoBehaviour
                 gameObject.GetComponent<Collider>().enabled = false;
             }
         }
+
+        else
+        {
+            if (NewMovement.is_dead)
+            {
+                StartCoroutine(EnableNow());
+            }
+        }
+    }
+
+    IEnumerator EnableNow()
+    {
+        yield return new WaitForSeconds(1.0f);
+        gameObject.GetComponent<Collider>().enabled = true;
+
     }
 }
