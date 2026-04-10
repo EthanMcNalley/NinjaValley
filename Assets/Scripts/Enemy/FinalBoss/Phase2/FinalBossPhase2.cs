@@ -40,6 +40,8 @@ public class FinalBossPhase2 : BossManager
     [HideInInspector] public GameObject activeGate1, activeGate2;
     private bool realm1Triggered;
     private bool realm2Triggered;
+    public GameObject barrier;
+    public GameObject brush1, brush2;
     public static event Action OnRealmEnemyKilled;
     public static void RealmEnemyKilled() => OnRealmEnemyKilled?.Invoke();
 
@@ -196,6 +198,14 @@ public class FinalBossPhase2 : BossManager
     {
         base.OnEnable();
         AudioManager.instance.SetMusicArea(bossPhase2Music);
+        brush1.SetActive(true);
+        brush2.SetActive(true);
+        DeactivateBeamVFX();
+        DisableBeamHitBox();
+        DisableHowlingHitBox();
+        DisableAirAttackHitBox();
+        SetPlayerPerfectDodgeFalse();
+        NewMovement.revive_position = realmReturnPosition.position;
         CombatEvents.ShadowAssassinStarted += OnShadowStart;
         CombatEvents.ShadowAssassinEnded += OnShadowEnd;
     }

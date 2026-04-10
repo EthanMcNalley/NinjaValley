@@ -120,14 +120,15 @@ public class BossPhase1DoorWordAttack : BossState
         boss.portalTopIndicator.SetActive(true);
         boss.portalIndicatorUI.ClearPortals();
         boss.NeededPortalColors();
-        //Animation here
+        
+        boss.barrier.SetActive(true);
         boss.animator.SetBool("Portal", true);
         foreach(Animator animator in boss.slidingDoorAnimator)
         {
             animator.SetBool("Open", true);
         }
 
-        boss.bossHpSystem.damageMod = 0.2f;
+        boss.bossHpSystem.damageMod = 0.1f;
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -148,6 +149,7 @@ public class BossPhase1DoorWordAttack : BossState
         boss.portalTopIndicator.SetActive(false);
         boss.portalIndicatorUI.ClearPortals();
         bossManager.animator.SetBool("Portal", false);
+        boss.barrier.SetActive(false);
         
         foreach(Animator animator in boss.slidingDoorAnimator)
         {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossPhase2Idle : BossState
 {
-    public float stateTime = 5f;
+    public float stateTime = 4f;
     private float currentStateTime;
     private FinalBossPhase2 boss;
 
@@ -44,7 +44,7 @@ public class BossPhase2Idle : BossState
 
 public class BossPhase2BeamAttack : BossState
 {
-    public float stateTime = 8f;
+    public float stateTime = 7f;
     private float currentStateTime;
     private FinalBossPhase2 boss;
 
@@ -103,8 +103,8 @@ public class BossPhase2HowlingAttack : BossState
 
 public class BossPhase2AirAttack : BossState
 {
-    public float stateTime = 8f;
-    public float travelTime = 1.5f; // how long the dive takes regardless of distance
+    public float stateTime = 7f;
+    public float travelTime = 1.5f; //how long the dive takes regardless of distance
     private float currentStateTime;
     private Vector3 lockedTargetPos;
     private float speed;
@@ -161,6 +161,7 @@ public class BossPhase2RealmAttack : BossState
         boss.activeGate2.GetComponent<BoxCollider>().enabled = true;
         boss.activeGate1.GetComponent<Animator>().SetBool("Open", true);
         boss.activeGate2.GetComponent<Animator>().SetBool("Open", true);
+        boss.barrier.SetActive(true);
  
         boss.activeRealmPortal.SetActive(true);
         
@@ -191,6 +192,7 @@ public class BossPhase2RealmAttack : BossState
         boss.activeGate2.GetComponent<BoxCollider>().enabled = false;
         boss.activeGate1.GetComponent<Animator>().SetBool("Open", false);
         boss.activeGate2.GetComponent<Animator>().SetBool("Open", false);
+        boss.barrier.SetActive(false);
  
         if (!realmCompleted)
         {

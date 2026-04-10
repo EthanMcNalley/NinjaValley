@@ -34,6 +34,7 @@ public class FinalBossPhase1 : BossManager
     public List<Color> avaliablePortalColors;
     public List<Color> neededPortalColors;
     public Animator[] slidingDoorAnimator;
+    public GameObject barrier;
     
     [Header("Normal Attack")]
     //normal attacks
@@ -181,6 +182,7 @@ public class FinalBossPhase1 : BossManager
 
     public void PhaseTransition()
     {
+        if (phaseTransition) return;
         Debug.Log("Phase Transition");
         phaseTransition = true;
         hpCanvus.SetActive(false);
@@ -199,11 +201,18 @@ public class FinalBossPhase1 : BossManager
             yield return null;
         }
         
+        AsyncOperation asyncOp = SceneManager.LoadSceneAsync("FinalBossPhase2", LoadSceneMode.Additive);
         yield return new WaitForSeconds(3f);
         
-        SceneManager.LoadScene("TitleScene");
+        while (asyncOp.progress < 0.9f)
+        {
+            yield return null;
+        }
         
-        //teleportPlayer = true;
+        teleportPlayer = true;
+        yield return new WaitForSeconds(1f);
+        SceneManager.UnloadSceneAsync("FinalArea");
+
     }
 
     private void LateUpdate()
@@ -221,6 +230,9 @@ public class FinalBossPhase1 : BossManager
     protected override void OnEnable()
     {
         base.OnEnable();
+        normalAttacked = 0;
+        firstPoopAttack = true;
+        attackAlternate = false;
         AudioManager.instance.SetMusicArea(bossPhase1Music);
         PortalFinal.OnPlayerTeleported += PortalUsed;
     }
