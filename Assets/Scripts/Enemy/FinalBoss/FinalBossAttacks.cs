@@ -85,6 +85,7 @@ public class BossPhase1TileAttack : BossState
         currentPoopAttack.pointing.SetActive(true);
         //Animation here
         bossManager.animator.SetTrigger("Poop");
+        AudioManager.instance.PlayOneShot(boss.poopSound,  boss.transform.position);
     }
 
     public override void UpdateState(BossManager bossManager)

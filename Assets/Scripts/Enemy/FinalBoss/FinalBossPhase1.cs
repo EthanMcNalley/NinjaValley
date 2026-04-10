@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using FMODUnity;
 
 public class FinalBossPhase1 : BossManager
 {
@@ -24,6 +25,7 @@ public class FinalBossPhase1 : BossManager
     public PoopAttack[] poopAttacks3;
     private bool firstPoopAttack = true;
     private PoopAttack lastPoopAttack;
+    public EventReference poopSound;
 
     [Header("Portal")]
     //portal stuff
@@ -52,6 +54,7 @@ public class FinalBossPhase1 : BossManager
     public Volume transitionVolume;
     [SerializeField] private float transitionTime;
     [SerializeField] private Transform phaseTransitionPosition;
+    public EventReference transitionSound;
 
     private bool attackAlternate;
     
@@ -195,6 +198,7 @@ public class FinalBossPhase1 : BossManager
     {
         var volume = Instantiate(transitionVolume, transform.position, Quaternion.identity);
 
+        AudioManager.instance.PlayOneShot(transitionSound, transform.position);
         while (volume.weight < 1)
         {
             volume.weight = Mathf.MoveTowards(volume.weight, 1, Time.deltaTime * transitionTime);

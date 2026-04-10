@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using FMODUnity;
 
 public class FinalBossP1BasicAttack : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class FinalBossP1BasicAttack : MonoBehaviour
 
     private Transform player;
     private Rigidbody rb;
+    public EventReference floats;
+    public EventReference dropDown;
 
     private void Awake()
     {
@@ -35,6 +38,7 @@ public class FinalBossP1BasicAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
+        AudioManager.instance.PlayOneShot(floats, transform.position);
         while (timer <= followDuration)
         {
             //follow player
@@ -42,6 +46,7 @@ public class FinalBossP1BasicAttack : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * followSpeed);
             
             timer += Time.deltaTime;
+            
             //wait for one frame which makes it the same as Update() :D
             yield return null;
         }
@@ -54,6 +59,7 @@ public class FinalBossP1BasicAttack : MonoBehaviour
         rb.useGravity = true;
         
         rb.AddForce(Vector3.down * gravity, ForceMode.VelocityChange);
+        AudioManager.instance.PlayOneShot(dropDown, transform.position);
         
         Destroy(gameObject, 3f);
     }

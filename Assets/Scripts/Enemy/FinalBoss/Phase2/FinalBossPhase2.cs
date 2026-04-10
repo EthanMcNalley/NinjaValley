@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using FMODUnity;
 
 public class FinalBossPhase2 : BossManager
 {
@@ -48,6 +49,10 @@ public class FinalBossPhase2 : BossManager
     [Header("Music&Sounds")]
     public MusicEnum bossPhase2Music;
     public MusicEnum silent;
+    public EventReference howlSound;
+    public EventReference beamSound;
+    public EventReference biteSound;
+    
 
     public GameObject death_spawn;
     private bool dead;
@@ -155,17 +160,27 @@ public class FinalBossPhase2 : BossManager
     public void ActivateBeamVFX() => beamVFX.SetActive(true);
     public void DeactivateBeamVFX() => beamVFX.SetActive(false);
 
-    public void EnableBeamHitBox() => beamHitbox.SetActive(true);
+    public void EnableBeamHitBox()
+    {
+        AudioManager.instance.PlayOneShot(beamSound, transform.position);
+        beamHitbox.SetActive(true);
+    }
     public void DisableBeamHitBox() => beamHitbox.SetActive(false);
 
     public void EnableHowlingHitBox()
     {
         howlingHitbox.SetActive(true);
+        AudioManager.instance.PlayOneShot(howlSound, transform.position);
         howlingEffect.Play();
     }
     public void DisableHowlingHitBox() => howlingHitbox.SetActive(false);
 
-    public void EnableAirAttackHitBox() => airAttackHitBox.SetActive(true);
+    public void EnableAirAttackHitBox()
+    {
+        AudioManager.instance.PlayOneShot(biteSound, transform.position);
+        airAttackHitBox.SetActive(true);
+    }
+
     public void DisableAirAttackHitBox() => airAttackHitBox.SetActive(false);
     
     public void SetPlayerPerfectDodgeTrue()

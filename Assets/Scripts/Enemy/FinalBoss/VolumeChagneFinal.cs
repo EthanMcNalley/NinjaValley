@@ -7,7 +7,7 @@ public class VolumeChagneFinal : MonoBehaviour
     public Volume volume;
     [SerializeField] private float transitionTime = 0.4f;
 
-    public void ChangeVolume()
+    void OnEnable()
     {
         StartCoroutine(ChangeVolumeCoroutine());
     }

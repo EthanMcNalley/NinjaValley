@@ -16,5 +16,6 @@ public class SpawnHereAtStart : MonoBehaviour
         player.GetComponent<NewMovement>().double_jump_able = false;
         player.transform.position = spawn_point.position;
         player.transform.rotation = Quaternion.identity;
+        AudioManager.instance.SetMusicArea(MusicEnum.Tutorial);
     }
 }

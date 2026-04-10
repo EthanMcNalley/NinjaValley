@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using Unity.Cinemachine;
+using FMODUnity;
 
 public class PortalFinal : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PortalFinal : MonoBehaviour
     public static event Action<PortalFinal> OnPlayerTeleported;
     private CinemachineBrain cinemachineBrain;
     private NewMovement movement;
+    public EventReference enterSound;
+    
     
     void Start()
     {
@@ -35,6 +38,7 @@ public class PortalFinal : MonoBehaviour
             if (dotProduct < 0f)
             {
                 OnPlayerTeleported?.Invoke(this);
+                AudioManager.instance.PlayOneShot(enterSound, transform.position);
                 
                 Quaternion rotationDiff = otherPortal.rotation * Quaternion.Inverse(transform.rotation);
                 rotationDiff *= rotationDifference; //maybe not needed

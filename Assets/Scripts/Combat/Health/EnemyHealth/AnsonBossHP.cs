@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem.Processors;
+using UnityEngine.SceneManagement;
 
 public class AnsonBossHp : EnemyHealth
 {
@@ -10,6 +11,7 @@ public class AnsonBossHp : EnemyHealth
     public BossHPUI healthBreakBar;
     public TenguBoss tenguBoss;
     public FinalBossPhase1 finalBossPhase1;
+    public FinalBossPhase2 finalBossPhase2;
     public float currentGauge;
     public float breakTimer;
     public bool breakState = false;
@@ -135,6 +137,12 @@ public class AnsonBossHp : EnemyHealth
         {
             bossDead = true;
             finalBossPhase1.PhaseTransition();
+        }
+        else if (finalBossPhase2 != null)
+        {
+            bossDead = true;
+            AudioManager.instance.SetMusicArea(MusicEnum.Silence);
+            SceneManager.LoadScene("FinalCutscene");
         }
     }
 

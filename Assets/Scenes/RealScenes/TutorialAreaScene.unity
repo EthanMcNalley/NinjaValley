@@ -7602,6 +7602,7 @@ GameObject:
   - component: {fileID: 448523169}
   - component: {fileID: 448523171}
   - component: {fileID: 448523170}
+  - component: {fileID: 448523172}
   m_Layer: 7
   m_Name: Tutorial river
   m_TagString: Water
@@ -7680,6 +7681,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448523168}
+  m_Mesh: {fileID: 2395275709262771385, guid: bfcfc8461b79d74438d4b50df97dec15, type: 3}
+--- !u!64 &448523172
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448523168}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 2395275709262771385, guid: bfcfc8461b79d74438d4b50df97dec15, type: 3}
 --- !u!1 &463468856
 GameObject:
