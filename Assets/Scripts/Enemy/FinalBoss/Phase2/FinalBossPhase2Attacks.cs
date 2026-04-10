@@ -157,6 +157,10 @@ public class BossPhase2RealmAttack : BossState
         currentStateTime = stateTime;
         realmCompleted = false;
         boss.realmAttackActive = true;
+        boss.activeGate1.GetComponent<BoxCollider>().enabled = true;
+        boss.activeGate2.GetComponent<BoxCollider>().enabled = true;
+        boss.activeGate1.GetComponent<Animator>().SetBool("Open", true);
+        boss.activeGate2.GetComponent<Animator>().SetBool("Open", true);
  
         boss.activeRealmPortal.SetActive(true);
         
@@ -183,6 +187,10 @@ public class BossPhase2RealmAttack : BossState
     {
         FinalBossPhase2.OnRealmEnemyKilled -= OnEnemyKilled;
         boss.activeRealmPortal.SetActive(false);
+        boss.activeGate1.GetComponent<BoxCollider>().enabled = false;
+        boss.activeGate2.GetComponent<BoxCollider>().enabled = false;
+        boss.activeGate1.GetComponent<Animator>().SetBool("Open", false);
+        boss.activeGate2.GetComponent<Animator>().SetBool("Open", false);
  
         if (!realmCompleted)
         {

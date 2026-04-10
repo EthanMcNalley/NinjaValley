@@ -31,13 +31,16 @@ public class FinalBossPhase2 : BossManager
     
     [Header("Realm Attack")]
     public GameObject realmPortal1;
+    public GameObject Gate1, Gate2;
     public GameObject realmPortal2;
+    public GameObject Gate3, Gate4;
     public Transform realmReturnPosition;
     [HideInInspector] public bool realmAttackActive;
     [HideInInspector] public GameObject activeRealmPortal;
+    [HideInInspector] public GameObject activeGate1, activeGate2;
     private bool realm1Triggered;
     private bool realm2Triggered;
-    public static event System.Action OnRealmEnemyKilled;
+    public static event Action OnRealmEnemyKilled;
     public static void RealmEnemyKilled() => OnRealmEnemyKilled?.Invoke();
 
     [Header("Music&Sounds")]
@@ -106,6 +109,8 @@ public class FinalBossPhase2 : BossManager
         {
             realm1Triggered = true;
             activeRealmPortal = realmPortal1;
+            activeGate1 = Gate1;
+            activeGate2 = Gate2;
             SwitchState(bossRealmAttack);
             return;
         }
@@ -114,6 +119,8 @@ public class FinalBossPhase2 : BossManager
         {
             realm2Triggered = true;
             activeRealmPortal = realmPortal2;
+            activeGate1 = Gate3;
+            activeGate2 = Gate4;
             SwitchState(bossRealmAttack);
             return;
         }

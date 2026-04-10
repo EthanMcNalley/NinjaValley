@@ -20,12 +20,15 @@ public class CameraSensitifity : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        xSlider.value = inputAxis.Controllers[0].Input.Gain;
-        ySlider.value = inputAxis.Controllers[1].Input.Gain;
+        //xSlider.value = inputAxis.Controllers[0].Input.Gain;
+        //ySlider.value = inputAxis.Controllers[1].Input.Gain;
         xSlider.onValueChanged.AddListener(SetGainX);
         ySlider.onValueChanged.AddListener(SetGainY);
         invertY = invertYToggle.isOn;
         invertYToggle.onValueChanged.AddListener(SetInvertY);
+        
+        SetGainX(xSlider.value);
+        SetGainY(ySlider.value);
     }
 
     void OnEnable()

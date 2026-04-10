@@ -10,6 +10,7 @@ public class PortalFinal : MonoBehaviour
 
     private bool playerIsOverLapping;
     public Color portalColor;
+    public Quaternion rotationDifference = Quaternion.Euler(0f, 180f, 0f);
     
     public static event Action<PortalFinal> OnPlayerTeleported;
     private CinemachineBrain cinemachineBrain;
@@ -36,7 +37,7 @@ public class PortalFinal : MonoBehaviour
                 OnPlayerTeleported?.Invoke(this);
                 
                 Quaternion rotationDiff = otherPortal.rotation * Quaternion.Inverse(transform.rotation);
-                rotationDiff *= Quaternion.Euler(0f, 180f, 0f); //maybe not needed
+                rotationDiff *= rotationDifference; //maybe not needed
                 
                 player.rotation = rotationDiff * player.rotation;
                 
