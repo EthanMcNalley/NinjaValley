@@ -1,8 +1,5 @@
 using UnityEngine;
 
-// -------------------------------------------------------
-// IDLE — moves toward player, then picks next attack
-// -------------------------------------------------------
 public class BossPhase2Idle : BossState
 {
     public float stateTime = 5f;
@@ -40,12 +37,9 @@ public class BossPhase2Idle : BossState
     }
 }
 
-// -------------------------------------------------------
-// BEAM ATTACK — ranged, plays beam VFX
-// -------------------------------------------------------
 public class BossPhase2BeamAttack : BossState
 {
-    public float stateTime = 4f;
+    public float stateTime = 8f;
     private float currentStateTime;
     private FinalBossPhase2 boss;
 
@@ -53,7 +47,7 @@ public class BossPhase2BeamAttack : BossState
     {
         boss = bossManager as FinalBossPhase2;
         currentStateTime = stateTime;
-        boss.animator.SetTrigger("Attack");
+        boss.animator.SetTrigger("Attack1");
         Debug.Log("Phase2 Beam Attack");
     }
 
@@ -73,9 +67,6 @@ public class BossPhase2BeamAttack : BossState
     }
 }
 
-// -------------------------------------------------------
-// HOWLING ATTACK — close AoE
-// -------------------------------------------------------
 public class BossPhase2HowlingAttack : BossState
 {
     public float stateTime = 4f;
@@ -110,7 +101,7 @@ public class BossPhase2HowlingAttack : BossState
 // -------------------------------------------------------
 public class BossPhase2AirAttack : BossState
 {
-    public float stateTime = 6f;
+    public float stateTime = 8f;
     private float currentStateTime;
     private bool isFlying;
     private FinalBossPhase2 boss;
@@ -120,7 +111,7 @@ public class BossPhase2AirAttack : BossState
         boss = bossManager as FinalBossPhase2;
         currentStateTime = stateTime;
         isFlying = true;
-        // Animation: trigger air attack
+        boss.animator.SetTrigger("Attack2");
         Debug.Log("Phase2 Air Attack");
     }
 
@@ -186,9 +177,6 @@ public class BossPhase2Break : BossState
     }
 }
 
-// -------------------------------------------------------
-// PHASE TRANSITION (game ending)
-// -------------------------------------------------------
 public class BossPhase2Transition : BossState
 {
     public float stateTime = 60f;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class FinalBossPhase2 : BossManager
@@ -19,7 +20,7 @@ public class FinalBossPhase2 : BossManager
 
     [Header("Movement")]
     public float moveSpeed = 5f;
-    public float rotationSpeed = 10f;
+    public float rotationSpeed = 4f;
     public float distToPlayer { get; private set; }
 
     [Header("Attack Pattern")]
@@ -32,6 +33,12 @@ public class FinalBossPhase2 : BossManager
 
     public GameObject death_spawn;
     private bool dead;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        //playerHealth =  player.GetComponent<HealthSystem>();
+    }
 
     protected override void Start()
     {
@@ -61,7 +68,6 @@ public class FinalBossPhase2 : BossManager
 
     private void FixedUpdate()
     {
-        // Always face player
         Vector3 direction = player.transform.position - transform.position;
         direction.y = 0f;
         if (direction != Vector3.zero)
@@ -70,8 +76,7 @@ public class FinalBossPhase2 : BossManager
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
-
-    // Pattern: beam → howling → air → repeat, break resets
+    
     public void ChoseAttack()
     {
         if (currentState != bossIdle)
@@ -98,8 +103,6 @@ public class FinalBossPhase2 : BossManager
         }
     }
 
-    // --- Hitbox / VFX helpers (called by animation events) ---
-
     public void ActivateBeamVFX() => beamVFX.SetActive(true);
     public void DeactivateBeamVFX() => beamVFX.SetActive(false);
 
@@ -121,13 +124,13 @@ public class FinalBossPhase2 : BossManager
     public void SetPlayerPerfectDodgeTrue()
     {
         if (dead) return;
-        // hook into your BossAttackScript dodge windows here
+        player.GetComponent<CombatStateManager>().SetPerfectDodgeWindow(true);
     }
 
     public void SetPlayerPerfectDodgeFalse()
     {
         if (dead) return;
-        // hook into your BossAttackScript dodge windows here
+        player.GetComponent<CombatStateManager>().SetPerfectDodgeWindow(false);
     }
 
     public void PlaySound(string soundName)
@@ -136,15 +139,13 @@ public class FinalBossPhase2 : BossManager
         AudioManager.instance.PlayOneShot(soundName, transform.position);
     }
 
-    // --- Shadow assassin slow ---
-
     void OnShadowStart() => GetComponent<Animator>().speed = 0.1f;
     void OnShadowEnd() => GetComponent<Animator>().speed = 1f;
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        //AudioManager.instance.SetMusicArea(bossPhase2Music);
+        AudioManager.instance.SetMusicArea(bossPhase2Music);
         CombatEvents.ShadowAssassinStarted += OnShadowStart;
         CombatEvents.ShadowAssassinEnded += OnShadowEnd;
     }
