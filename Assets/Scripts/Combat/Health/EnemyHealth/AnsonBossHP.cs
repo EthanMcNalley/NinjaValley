@@ -143,6 +143,7 @@ public class AnsonBossHp : EnemyHealth
         base.OnEnable();
         currentGauge = maxGauge;
         currHealthPoint = maxHealthPoint;
+        animator.enabled = true;
         animator.ResetControllerState();
         damageMod = defaultdamageMod;
     }

@@ -312,7 +312,7 @@ public class NewMovement : MonoBehaviour
         controller.Move(Time.deltaTime * (horizontal + vertical) + knockbackForce);
         
         if (!groundedPlayer){
-            animator.SetFloat("YVelocity", vertical.y);
+            animator.SetFloat("YVelocity", vertical.y + 5);
         }
         else
         {

@@ -49,14 +49,14 @@ public class CombatManager : MonoBehaviour
             if (boss.transform.Find("AnsonTenguBoss").name == "AnsonTenguBoss")
             {
                 boss.transform.Find("AnsonTenguBoss").gameObject.SetActive(false);
-                return;
             }
 
-            boss = GameObject.Find("FoxGirlRigging");
-
-            if (boss.name == "FoxGirlRigging")
+            boss = GameObject.FindGameObjectWithTag("FoxGirl");
+            Debug.Log("TE");
+            if (boss != null)
             {
-                boss.SetActive(false);
+                Debug.Log("TEST");
+                boss.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }

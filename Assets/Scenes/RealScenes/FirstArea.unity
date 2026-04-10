@@ -50689,7 +50689,7 @@ MonoBehaviour:
   feathersPos: {fileID: 2125117874}
   feathersvfx: {fileID: 5497198053552825058, guid: 8a0b98fe7978589419a0e9cbc74b3883, type: 3}
   bossMusic: 5
-  theTree: 4
+  theTree: 6
   death_spawn: {fileID: 1992627803}
 --- !u!64 &4451386231915833446
 MeshCollider:
@@ -54755,8 +54755,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9554be36a9ff945bfd7ea6061cd114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnsonBossHp
-  maxHealthPoint: 170
-  currHealthPoint: 170
+  maxHealthPoint: 125
+  currHealthPoint: 125
   isInvincible: 0
   shadowAssassin: {fileID: 0}
   animator: {fileID: 792903900329549278}
@@ -66545,6 +66545,7 @@ GameObject:
   - component: {fileID: 378793173149677786}
   - component: {fileID: 4450484764378184812}
   - component: {fileID: 8238842003266528938}
+  - component: {fileID: 8911742963163354724}
   m_Layer: 11
   m_Name: AnsonTenguBoss
   m_TagString: Enemy
@@ -66552,6 +66553,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &8911742963163354724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8911742963163354723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b14642470d49d041ab083942eff0ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SmokeSpawn
+  smoke_puff: {fileID: 7433560725545908634, guid: e48fc7c5d85ec714da768e7a9db251a6, type: 3}
 --- !u!4 &8911900708936097177
 Transform:
   m_ObjectHideFlags: 0
