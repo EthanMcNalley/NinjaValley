@@ -19,6 +19,7 @@ public class TimelineTrigger : MonoBehaviour
     public string cinemachineTrack = "Cinemachine Track";
     private CinemachineBrain cinemachineBrain;
     private bool first_time = true;
+    CutsceneBars cutscene_bars;
     
     void Awake()
     {
@@ -28,6 +29,7 @@ public class TimelineTrigger : MonoBehaviour
 
     void Start()
     {
+        cutscene_bars = GameObject.FindGameObjectWithTag("UIManager").GetComponent<CutsceneBars>();
         cinemachineBrain = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CinemachineBrain>();
     }
     
@@ -36,6 +38,7 @@ public class TimelineTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (first_time){
+                cutscene_bars.ActivateCutscene(timeline_time);
                 timeline.SetActive(true);
                 SetMainCamera();
                 //original_position = other.transform.position;
@@ -95,6 +98,11 @@ public class TimelineTrigger : MonoBehaviour
                 timeline_active = false;
                 timeline.SetActive(false);
                 gameObject.GetComponent<Collider>().enabled = false;
+
+                if (done_event != null)
+                {
+                    done_event.Invoke();
+                }
             }
         }
 

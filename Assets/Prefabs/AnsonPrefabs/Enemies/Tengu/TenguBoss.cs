@@ -61,7 +61,7 @@ public class TenguBoss : MonoBehaviour
         
         AudioManager.instance.SetMusicArea(theTree);
 
-        if (bossCurrentHP < 0){
+        if (bossCurrentHP <= 0){
             death_spawn.SetActive(true);
         }
 
