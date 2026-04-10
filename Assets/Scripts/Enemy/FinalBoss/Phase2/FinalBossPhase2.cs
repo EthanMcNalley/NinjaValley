@@ -8,6 +8,7 @@ public class FinalBossPhase2 : BossManager
     BossState bossBeamAttack = new BossPhase2BeamAttack();
     BossState bossHowlingAttack = new BossPhase2HowlingAttack();
     BossState bossAirAttack = new BossPhase2AirAttack();
+    BossState bossRealmAttack = new BossPhase2RealmAttack();
     BossState bossBreak = new BossPhase2Break();
     private BossState bossPhaseTransition = new BossPhase2Transition();
 
@@ -20,12 +21,24 @@ public class FinalBossPhase2 : BossManager
 
     [Header("Movement")]
     public float moveSpeed = 5f;
-    public float rotationSpeed = 4f;
+    public float rotationSpeed = 1f;
     public float distToPlayer { get; private set; }
+    public Vector3 playerCurrentPos;
 
     [Header("Attack Pattern")]
     public int normalAttacked;
     private bool attackAlternate;
+    
+    [Header("Realm Attack")]
+    public GameObject realmPortal1;
+    public GameObject realmPortal2;
+    public Transform realmReturnPosition;
+    [HideInInspector] public bool realmAttackActive;
+    [HideInInspector] public GameObject activeRealmPortal;
+    private bool realm1Triggered;
+    private bool realm2Triggered;
+    public static event System.Action OnRealmEnemyKilled;
+    public static void RealmEnemyKilled() => OnRealmEnemyKilled?.Invoke();
 
     [Header("Music&Sounds")]
     public MusicEnum bossPhase2Music;
@@ -48,6 +61,8 @@ public class FinalBossPhase2 : BossManager
         beamHitbox.SetActive(false);
         howlingHitbox.SetActive(false);
         airAttackHitBox.SetActive(false);
+        realmPortal1.SetActive(false);
+        realmPortal2.SetActive(false);
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -84,7 +99,25 @@ public class FinalBossPhase2 : BossManager
             SwitchState(bossIdle);
             return;
         }
-
+ 
+        float hp = bossHpSystem.checkHealthPercent();
+ 
+        if (!realm1Triggered && hp <= 0.66f)
+        {
+            realm1Triggered = true;
+            activeRealmPortal = realmPortal1;
+            SwitchState(bossRealmAttack);
+            return;
+        }
+ 
+        if (!realm2Triggered && hp <= 0.33f)
+        {
+            realm2Triggered = true;
+            activeRealmPortal = realmPortal2;
+            SwitchState(bossRealmAttack);
+            return;
+        }
+ 
         if (normalAttacked < 1)
         {
             normalAttacked++;
@@ -102,6 +135,13 @@ public class FinalBossPhase2 : BossManager
             SwitchState(bossAirAttack);
         }
     }
+    
+    public void OnRealmComplete()
+    {
+        player.transform.position = realmReturnPosition.position;
+        realmAttackActive = false;
+        SwitchState(bossIdle);
+    }
 
     public void ActivateBeamVFX() => beamVFX.SetActive(true);
     public void DeactivateBeamVFX() => beamVFX.SetActive(false);
@@ -118,9 +158,7 @@ public class FinalBossPhase2 : BossManager
 
     public void EnableAirAttackHitBox() => airAttackHitBox.SetActive(true);
     public void DisableAirAttackHitBox() => airAttackHitBox.SetActive(false);
-
-    // --- Perfect dodge (called by animation events) ---
-
+    
     public void SetPlayerPerfectDodgeTrue()
     {
         if (dead) return;
@@ -131,6 +169,11 @@ public class FinalBossPhase2 : BossManager
     {
         if (dead) return;
         player.GetComponent<CombatStateManager>().SetPerfectDodgeWindow(false);
+    }
+
+    public void SetPlayerCurrentPos()
+    {
+        playerCurrentPos = player.transform.position;
     }
 
     public void PlaySound(string soundName)

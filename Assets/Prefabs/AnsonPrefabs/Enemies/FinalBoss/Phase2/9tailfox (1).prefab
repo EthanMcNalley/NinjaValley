@@ -546,7 +546,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5861424750447131013}
   - component: {fileID: 1710476408727547394}
-  - component: {fileID: 6659477366290101304}
   - component: {fileID: 7358247243890690078}
   - component: {fileID: 2831088228812167233}
   - component: {fileID: 2862845795171972439}
@@ -601,28 +600,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &6659477366290101304
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165568372895368410}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!136 &7358247243890690078
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -733,6 +710,8 @@ MonoBehaviour:
   breakState: 0
   healthSpawnThreshold: 0.2
   bossDead: 0
+  defaultdamageMod: 0.67
+  damageMod: 0.67
 --- !u!1 &1191914654553804766
 GameObject:
   m_ObjectHideFlags: 0

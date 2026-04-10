@@ -1,4 +1,5 @@
 using FMODUnity;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -36,6 +37,7 @@ public class EnemyHealth : HealthSystem
     private bool markedForDeath = false;
     private bool markedForExecute = false;
     public bool isBoss = false;
+    public bool brush;
 
     void Awake()
     {
@@ -187,13 +189,18 @@ public class EnemyHealth : HealthSystem
         }
         Instantiate(health_essence, essence_spawnpoint.transform.position, Quaternion.identity);
 
-        if (baseGameObjectDestroy != null && !isBoss)
+        if (baseGameObjectDestroy != null && !isBoss && !brush)
         {
             Destroy(baseGameObjectDestroy, 0);
         }
-        else if (!isBoss)
+        else if (!isBoss  && !brush)
         {
             Destroy(gameObject, 0);
+        }
+        else if (brush)
+        {
+            FinalBossPhase2.RealmEnemyKilled();
+            gameObject.SetActive(false);
         }
         
     }

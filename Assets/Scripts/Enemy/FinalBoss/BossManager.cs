@@ -9,7 +9,7 @@ public class BossManager : MonoBehaviour
     public bool inCombat;
     public bool isDead;
     public float agroDistance;
-    protected float distToPlayer;
+    public float distToPlayer;
     
     public BossState currentState;
     public float currentStateTime;
