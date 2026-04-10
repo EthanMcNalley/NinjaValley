@@ -196,17 +196,17 @@ public class FinalBossPhase1 : BossManager
 
     IEnumerator VolumeChange()
     {
-        var volume = Instantiate(transitionVolume, transform.position, Quaternion.identity);
+        /*var volume = Instantiate(transitionVolume, transform.position, Quaternion.identity);*/
 
         AudioManager.instance.PlayOneShot(transitionSound, transform.position);
-        while (volume.weight < 1)
+        /*while (volume.weight < 1)
         {
             volume.weight = Mathf.MoveTowards(volume.weight, 1, Time.deltaTime * transitionTime);
             yield return null;
-        }
+        }*/
         
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync("FinalBossPhase2", LoadSceneMode.Additive);
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
         
         while (asyncOp.progress < 0.9f)
         {
