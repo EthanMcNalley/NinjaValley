@@ -10,8 +10,6 @@ public class NewMovement : MonoBehaviour
     public float playerRunSpeed = 30.0f;
     [SerializeField]private float playerCurrSpeed = 20.0f;
     public float gravityValue = -9.81f;
-    float failsafe_timer = 0.0f;
-    public float fall_failsafe = 15.0f;
 
     private CharacterController controller;
     private GroundCheck groundCheck;
@@ -193,22 +191,6 @@ public class NewMovement : MonoBehaviour
     void Update()
     {
         groundedPlayer = groundCheck.IsGrounded;
-
-        if (groundedPlayer)
-        {
-            failsafe_timer = 0.0f;
-        }
-
-        else
-        {
-            failsafe_timer += Time.deltaTime;
-
-            if (failsafe_timer > fall_failsafe)
-            {
-                failsafe_timer = 0.0f;
-                StartCoroutine(PoofUnpoof(GetComponent<NewMovement>(), last_grounded_position));
-            }
-        }
 
         if (!play_landing && groundedPlayer && Time.timeScale != 0)
         {
