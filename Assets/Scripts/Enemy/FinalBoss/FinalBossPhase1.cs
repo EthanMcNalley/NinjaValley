@@ -56,7 +56,7 @@ public class FinalBossPhase1 : BossManager
     [SerializeField] private Transform phaseTransitionPosition;
     public EventReference transitionSound;
 
-    private bool attackAlternate;
+    public bool attackAlternate;
     
     protected override void Start()
     {
@@ -196,27 +196,31 @@ public class FinalBossPhase1 : BossManager
 
     IEnumerator VolumeChange()
     {
-        /*var volume = Instantiate(transitionVolume, transform.position, Quaternion.identity);*/
+        var volume = Instantiate(transitionVolume, transform.position, Quaternion.identity);
+        SceneManager.MoveGameObjectToScene(volume.gameObject, SceneManager.GetSceneByName("RealPersistables"));
 
         AudioManager.instance.PlayOneShot(transitionSound, transform.position);
-        /*while (volume.weight < 1)
+        while (volume.weight < 1)
         {
             volume.weight = Mathf.MoveTowards(volume.weight, 1, Time.deltaTime * transitionTime);
             yield return null;
-        }*/
+        }
         
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync("FinalBossPhase2", LoadSceneMode.Additive);
-        //yield return new WaitForSeconds(3f);
-        
+        yield return new WaitForSecondsRealtime(3f);
+        asyncOp.allowSceneActivation = false;
         while (asyncOp.progress < 0.9f)
         {
             yield return null;
         }
+        asyncOp.allowSceneActivation = true;
+        yield return null;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("FinalBossPhase2"));
         
         teleportPlayer = true;
-        yield return new WaitForSeconds(1f);
+        
+        yield return null;
         SceneManager.UnloadSceneAsync("FinalArea");
-
     }
 
     private void LateUpdate()
@@ -237,6 +241,7 @@ public class FinalBossPhase1 : BossManager
         normalAttacked = 0;
         firstPoopAttack = true;
         attackAlternate = false;
+        SwitchState(bossIdle);
         AudioManager.instance.SetMusicArea(bossPhase1Music);
         PortalFinal.OnPlayerTeleported += PortalUsed;
     }

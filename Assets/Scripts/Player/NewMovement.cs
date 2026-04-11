@@ -149,6 +149,14 @@ public class NewMovement : MonoBehaviour
         canMove =  false;
     }
 
+    public void StopKnockBack()
+    {
+        knockbackForce = Vector3.zero;
+        knockbackTimer = -1f;
+        knocked_back = false;
+        playerVelocity.y = 0f;
+    }
+
     private void OnJumpPerformed(InputAction.CallbackContext ctx)
     {
         if (canMove && Time.timeScale != 0)

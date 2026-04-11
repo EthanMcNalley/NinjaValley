@@ -12,6 +12,9 @@ public class PortalFinal : MonoBehaviour
     private bool playerIsOverLapping;
     public Color portalColor;
     public Quaternion rotationDifference = Quaternion.Euler(0f, 180f, 0f);
+    private float teleportCooldown = 0f;
+    private float cooldownDurration = 0.1f;
+    
     
     public static event Action<PortalFinal> OnPlayerTeleported;
     private CinemachineBrain cinemachineBrain;
@@ -28,6 +31,12 @@ public class PortalFinal : MonoBehaviour
 
     void LateUpdate()
     {
+        if (teleportCooldown > 0f)
+        {
+            teleportCooldown -= Time.deltaTime;
+            return;
+        }
+        
         if (playerIsOverLapping)
         {
             Vector3 portalToPlayer = player.position - transform.position;
@@ -50,13 +59,14 @@ public class PortalFinal : MonoBehaviour
                 player.position = otherPortal.position + positionOffset - otherPortal.forward * offset;
                 
                 playerIsOverLapping = false;
+                teleportCooldown = cooldownDurration;
             }
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && teleportCooldown <= 0f)
         {
             playerIsOverLapping = true;
         }

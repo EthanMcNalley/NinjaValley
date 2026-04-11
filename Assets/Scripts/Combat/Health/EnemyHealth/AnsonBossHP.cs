@@ -142,7 +142,7 @@ public class AnsonBossHp : EnemyHealth
         {
             bossDead = true;
             AudioManager.instance.SetMusicArea(MusicEnum.Silence);
-            SceneManager.LoadScene("FinalCutscene");
+            SceneManager.LoadScene("FinalCutscene", LoadSceneMode.Single);
         }
     }
 

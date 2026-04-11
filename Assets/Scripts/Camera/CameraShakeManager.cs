@@ -26,7 +26,7 @@ public class CameraShakeManager : MonoBehaviour
         
         //just shake :D
         impulseSource.GenerateImpulseWithForce(profile.impulseForce);
-        Debug.Log("ScreenShake: " + profile.name);
+        //Debug.Log("ScreenShake: " + profile.name);
     }
 
     private void SetupScreenShakeSettings(ScreenShakeSO profile, CinemachineImpulseSource impulseSource)

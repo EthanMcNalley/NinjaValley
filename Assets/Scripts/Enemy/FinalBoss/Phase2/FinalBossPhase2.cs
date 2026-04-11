@@ -12,6 +12,7 @@ public class FinalBossPhase2 : BossManager
     BossState bossRealmAttack = new BossPhase2RealmAttack();
     BossState bossBreak = new BossPhase2Break();
     private BossState bossPhaseTransition = new BossPhase2Transition();
+    public float movementmulti;
 
     [Header("References")]
     public GameObject beamVFX;
@@ -98,7 +99,7 @@ public class FinalBossPhase2 : BossManager
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * movementmulti * Time.deltaTime);
         }
     }
     
@@ -157,12 +158,16 @@ public class FinalBossPhase2 : BossManager
         SwitchState(bossIdle);
     }
 
-    public void ActivateBeamVFX() => beamVFX.SetActive(true);
+    public void ActivateBeamVFX()
+    {
+        AudioManager.instance.PlayOneShot(beamSound, transform.position);
+        beamVFX.SetActive(true);
+    }
+
     public void DeactivateBeamVFX() => beamVFX.SetActive(false);
 
     public void EnableBeamHitBox()
     {
-        AudioManager.instance.PlayOneShot(beamSound, transform.position);
         beamHitbox.SetActive(true);
     }
     public void DisableBeamHitBox() => beamHitbox.SetActive(false);
@@ -206,8 +211,17 @@ public class FinalBossPhase2 : BossManager
         AudioManager.instance.PlayOneShot(soundName, transform.position);
     }
 
-    void OnShadowStart() => GetComponent<Animator>().speed = 0.1f;
-    void OnShadowEnd() => GetComponent<Animator>().speed = 1f;
+    void OnShadowStart()
+    {
+        GetComponent<Animator>().speed = 0.1f;
+        movementmulti = 0.1f;
+    }
+
+    void OnShadowEnd()
+    {
+        GetComponent<Animator>().speed = 1f;
+        movementmulti = 1f;
+    }
 
     protected override void OnEnable()
     {

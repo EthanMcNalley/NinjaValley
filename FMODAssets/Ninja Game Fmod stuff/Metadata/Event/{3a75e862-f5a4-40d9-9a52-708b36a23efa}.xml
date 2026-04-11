@@ -62,7 +62,14 @@
 			<destination>{06deea95-519e-4a48-b70f-c2300daab6f4}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{7c850395-4383-4161-bb36-4dc689ffd914}" />
+	<object class="EventAutomatableProperties" id="{7c850395-4383-4161-bb36-4dc689ffd914}">
+		<property name="minimumDistance">
+			<value>75</value>
+		</property>
+		<property name="maximumDistance">
+			<value>100</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{db153cd6-e209-4e1e-90f5-cc7135c9678a}" />
 	<object class="Timeline" id="{f88d9ed9-2e09-49f8-9fb5-9ffe26d5fa2a}">
 		<property name="isProxyEnabled">
@@ -75,6 +82,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{7aef5550-a904-4760-9685-198cd829d0f2}">
+		<property name="volume">
+			<value>-2.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{6754c293-818b-4528-8e03-35ba3b96374a}</destination>
 		</relationship>
@@ -107,6 +117,9 @@
 		<property name="playlistMode">
 			<value>1</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{af5ca1cb-f7f7-4d19-810b-cc4c9839c696}</destination>
+		</relationship>
 		<relationship name="sounds">
 			<destination>{a5edfcc9-9750-45c9-8dae-3e4909a3fd1b}</destination>
 			<destination>{0afed619-d511-433a-b36b-f0f19d74a017}</destination>
@@ -115,6 +128,14 @@
 	<object class="MixerBusFader" id="{20d6eea2-445f-490f-a74f-0857f0bf6752}" />
 	<object class="MixerBusFader" id="{e74c63d8-0faf-4e6d-8393-860edcd6bc56}" />
 	<object class="SpatialiserEffect" id="{4fc5f0a2-52b1-4e58-8e92-ec4c4209382d}" />
+	<object class="RandomizerModulator" id="{af5ca1cb-f7f7-4d19-810b-cc4c9839c696}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>10</value>
+		</property>
+	</object>
 	<object class="SingleSound" id="{a5edfcc9-9750-45c9-8dae-3e4909a3fd1b}">
 		<relationship name="audioFile">
 			<destination>{2dd2737b-fe6e-4d7d-9093-c4bf024054ac}</destination>

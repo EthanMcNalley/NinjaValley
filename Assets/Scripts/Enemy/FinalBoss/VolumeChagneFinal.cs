@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class VolumeChagneFinal : MonoBehaviour
 {
@@ -9,6 +10,15 @@ public class VolumeChagneFinal : MonoBehaviour
 
     void OnEnable()
     {
+        Scene persistables = SceneManager.GetSceneByName("RealPersistables");
+        foreach (GameObject go in persistables.GetRootGameObjects())
+        {
+            if (go.name == "FinalBossTransitionVolume(Clone)")
+            {
+                volume = go.GetComponent<Volume>();
+                break;
+            }
+        }
         StartCoroutine(ChangeVolumeCoroutine());
     }
 

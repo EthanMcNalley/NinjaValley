@@ -115,6 +115,9 @@ PrefabInstance:
       addedObject: {fileID: 1971234983195055486}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bc5b2d0798a621e4a8268ab9bc56ed70, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4331229187639218190}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bc5b2d0798a621e4a8268ab9bc56ed70, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1755053752998648122}
   m_SourcePrefab: {fileID: 100100000, guid: bc5b2d0798a621e4a8268ab9bc56ed70, type: 3}
 --- !u!4 &2548059918300413604 stripped
@@ -171,6 +174,27 @@ MonoBehaviour:
       Data4: 1778545633
     Path: event:/Interactables/BellCheckpoint
   revive_position: {fileID: 5220197002773833529}
+--- !u!65 &4331229187639218190
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2888872597276369950}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0123788575, y: 0.011268996, z: 0.027780805}
+  m_Center: {x: -0.0000002826559, y: 0.0000005734148, z: -0.013856436}
 --- !u!64 &1755053752998648122
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -188,7 +212,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30

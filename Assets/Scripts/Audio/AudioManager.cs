@@ -166,4 +166,25 @@ public class AudioManager : MonoBehaviour
         instance.getPlaybackState(out state);
         return state != PLAYBACK_STATE.STOPPED;
     }
+    
+    private void OnDisable()
+    {
+        if (musicEventInstance.isValid())
+        {
+            musicEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            musicEventInstance.release();
+        }
+
+        if (footstepEventInstance.isValid())
+        {
+            footstepEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            footstepEventInstance.release();
+        }
+
+        if (CurrentSound.isValid())
+        {
+            CurrentSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            CurrentSound.release();
+        }
+    }
 }

@@ -69,8 +69,8 @@ public class BossPhase1NormalAttack : BossState
 
 public class BossPhase1TileAttack : BossState
 {
-    public float stateTime = 12f;
-    private float currentStateTime = 12f;
+    public float stateTime = 9f;
+    private float currentStateTime = 9f;
     public bool attackAnimationTriggered;
     private PoopAttack currentPoopAttack;
     private FinalBossPhase1 boss;
@@ -85,7 +85,7 @@ public class BossPhase1TileAttack : BossState
         currentPoopAttack.pointing.SetActive(true);
         //Animation here
         bossManager.animator.SetTrigger("Poop");
-        AudioManager.instance.PlayOneShot(boss.poopSound,  boss.transform.position);
+        
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -102,8 +102,13 @@ public class BossPhase1TileAttack : BossState
     {
         Debug.Log("Exit tile attack");
         currentPoopAttack.pointing.SetActive(false);
-        boss.tileAttackAnimator.SetTrigger("Poop" + currentPoopAttack.thePoop);
-        bossManager.animator.ResetTrigger("Poop");
+        if (currentStateTime <= 2)
+        {
+            boss.tileAttackAnimator.SetTrigger("Poop" + currentPoopAttack.thePoop);
+            bossManager.animator.ResetTrigger("Poop");
+        }
+
+        AudioManager.instance.PlayOneShot(boss.poopSound,  boss.transform.position);
     }
 
 }
@@ -129,7 +134,7 @@ public class BossPhase1DoorWordAttack : BossState
             animator.SetBool("Open", true);
         }
 
-        boss.bossHpSystem.damageMod = 0.1f;
+        boss.bossHpSystem.damageMod = 0f;
     }
 
     public override void UpdateState(BossManager bossManager)
@@ -156,6 +161,9 @@ public class BossPhase1DoorWordAttack : BossState
         {
             animator.SetBool("Open", false);
         }
+        
+        boss.normalAttacked = 0;
+        boss.attackAlternate = false;
         
         boss.bossHpSystem.damageMod = boss.bossHpSystem.defaultdamageMod;
     }

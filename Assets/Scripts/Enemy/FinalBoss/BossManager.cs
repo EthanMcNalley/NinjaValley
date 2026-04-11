@@ -48,7 +48,7 @@ public class BossManager : MonoBehaviour
         //Reset for new state
         currentStateTime = 0f;
         
-        Debug.Log("Switching to current state -> " + currentState);
+        //Debug.Log("Switching to current state -> " + currentState);
         
         state.EnterState(this);
     }

@@ -60,6 +60,7 @@ public class PlayerHealth : HealthSystem
     protected override void Dead()
     {
         NewMovement.is_dead = isDead;
+        GetComponent<NewMovement>().StopKnockBack();
         StartCoroutine(Die());
         CombatManager.instance.ResetBoss();
         //SceneManager.LoadScene("GameOverScene");

@@ -65,6 +65,9 @@ public class ScriptUsageVideoPlayback : MonoBehaviour
     private uint mTotalSamplesRead;
 
     private uint mLastReadPositionBytes;
+    
+    [Range(0f, 1f)]
+    public float volume = 1.0f;
 
     private void Start()
     {
@@ -191,6 +194,7 @@ public class ScriptUsageVideoPlayback : MonoBehaviour
             FMOD.ChannelGroup mMasterChannelGroup;
             FMODUnity.RuntimeManager.CoreSystem.getMasterChannelGroup(out mMasterChannelGroup);
             FMODUnity.RuntimeManager.CoreSystem.playSound(mSound, mMasterChannelGroup, false, out mChannel);
+            mChannel.setVolume(volume);
         }
 
         if (mBuffer.Count > 0 && mChannel.hasHandle())
