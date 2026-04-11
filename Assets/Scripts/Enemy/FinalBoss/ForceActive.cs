@@ -14,7 +14,7 @@ public class ForceActive : MonoBehaviour
 
     IEnumerator ForceActiveCoroutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(time);
         activeObject.SetActive(true);
     }
 }
