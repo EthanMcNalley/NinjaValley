@@ -125,6 +125,7 @@ public class AnsonBossHp : EnemyHealth
 
     protected override void Dead()
     {
+        healthBreakBar.gameObject.SetActive(false);
         //Debug.Log("Boss Defeated!");
         if (tenguBoss != null)
         {

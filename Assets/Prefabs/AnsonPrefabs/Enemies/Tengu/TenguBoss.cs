@@ -49,6 +49,7 @@ public class TenguBoss : MonoBehaviour
         animator.enabled = true;
         animator.ResetControllerState();
         spearHitbox.SetActive(true);
+        death_spawn.SetActive(false);
         EnterCombat();
     }
 
@@ -122,7 +123,7 @@ public class TenguBoss : MonoBehaviour
         bossCurrentGauge = bossHPSystem.checkGauge();
         targetPos = new Vector3(playerPos.x, transform.position.y, playerPos.z);
         vfxPos = new Vector3(transform.position.x, 0, transform.position.z);
-        death_spawn.SetActive(false);
+        //death_spawn.SetActive(false);
 
         distToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
